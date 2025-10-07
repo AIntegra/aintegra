@@ -1,0 +1,122 @@
+/* src/index.css */
+
+/* ✨ Fuente principal: Inter Variable (ligera, elegante, moderna) */
+@import "@fontsource-variable/inter";
+
+/* 🎨 Base Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌌 Estilos globales */
+html {
+  scroll-behavior: smooth;
+  background-color: #0a0a0a;
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'InterVariable', system-ui, sans-serif;
+  background-color: #0a0a0a;
+  color: #f3f4f6; /* neutral-100 */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 🩵 Selección de texto */
+::selection {
+  background-color: rgba(99, 102, 241, 0.25); /* indigo-500/25 */
+  color: #fff;
+}
+
+/* 🪄 Scrollbar personalizada (moderna y discreta) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(99,102,241,0.6), rgba(244,114,182,0.6));
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(99,102,241,0.9), rgba(244,114,182,0.9));
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* 🧊 Tarjetas / fondos translúcidos */
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ⚡ Transiciones suaves */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* 💎 Gradientes reutilizables */
+.gradient-text {
+  background: linear-gradient(to right, #818cf8, #38bdf8, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-bg {
+  background: radial-gradient(
+    1000px circle at 50% 0%,
+    rgba(99, 102, 241, 0.1),
+    transparent 70%
+  ),
+  radial-gradient(
+    800px circle at 80% 80%,
+    rgba(244, 114, 182, 0.1),
+    transparent 70%
+  );
+}
+
+/* 🧭 Navbar y footer con bordes suaves */
+header, footer {
+  backdrop-filter: blur(10px);
+  background-color: rgba(10, 10, 10, 0.75);
+}
+
+/* ✨ Animaciones básicas */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+.float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* 🔮 Botones */
+.btn {
+  @apply inline-flex items-center justify-center px-5 py-3 rounded-xl text-sm font-medium;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #6366f1, #f472b6);
+  color: white;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f3f4f6;
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
