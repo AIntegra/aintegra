@@ -1,43 +1,108 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react"
+import { useState, useRef } from "react"
 
-const ShowcaseVideo = ({ t }) => {
+export default function ShowcaseVideo({ t }) {
+  const [playing, setPlaying] = useState(false)
+  const [muted, setMuted] = useState(false)
+  const videoRef = useRef(null)
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (playing) {
+        videoRef.current.pause()
+      } else {
+        videoRef.current.play()
+      }
+      setPlaying(!playing)
+    }
+  }
+
   return (
-    <div className="flex flex-col items-center w-full py-20 bg-gradient-to-b from-transparent to-black/10">
-      {/* 🔹 Título y subtítulo dinámicos */}
-  
+    <section className="relative py-24">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 via-transparent to-fuchsia-500/5" />
 
-      <motion.p
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true }}
-        className="text-lg md:text-xl text-white/70 text-center mb-10 max-w-3xl"
-      >
-        
-      </motion.p>
+      <div className="relative max-w-6xl mx-auto">
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 gradient-text">
+            See It In Action
+          </h2>
+          <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+            Watch how AIntegra transforms human-computer interaction
+          </p>
+        </motion.div>
 
-      {/* 💻 Video con marco Apple-style y controles */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-        viewport={{ once: true }}
-        className="relative w-[90%] max-w-5xl aspect-video rounded-3xl overflow-hidden border border-white/10 bg-black shadow-[0_10px_50px_rgba(0,0,0,0.35)]"
-      >
-        <video
-          src="/video/demo.mp4" // 📂 Asegúrate de que esté en public/video/demo.mp4
-          className="w-full h-full object-cover"
-          controls   // ✅ Permite pausar, adelantar, retroceder y pantalla completa
-          playsInline
-        />
+        {/* Video container */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative group"
+        >
+          {/* Video wrapper with premium styling */}
+          <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/20 bg-black shadow-2xl">
+            {/* Gradient overlay for premium look */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10" />
 
-        {/* Marco brillante */}
-        <div className="absolute inset-0 rounded-3xl border-[2px] border-white/20 pointer-events-none" />
-        <div className="absolute top-0 inset-x-0 h-[25%] bg-gradient-to-b from-white/10 to-transparent rounded-t-3xl pointer-events-none" />
-      </motion.div>
-    </div>
-  );
-};
+            {/* Video element */}
+            <video
+              ref={videoRef}
+              src="/video/demo.mp4"
+              className="w-full h-full object-cover"
+              playsInline
+              loop
+              muted={muted}
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+            />
 
-export default ShowcaseVideo;
+            {/* Custom controls overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={togglePlay}
+                  className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                >
+                  {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+                </button>
+
+                <button
+                  onClick={() => setMuted(!muted)}
+                  className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300"
+                >
+                  {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                </button>
+
+                <div className="flex-1" />
+
+                <button
+                  onClick={() => videoRef.current?.requestFullscreen()}
+                  className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300"
+                >
+                  <Maximize className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Glow effect on hover */}
+            <div className="absolute inset-0 rounded-[inherit] ring-2 ring-indigo-500/0 group-hover:ring-indigo-500/50 transition-all duration-500 pointer-events-none" />
+          </div>
+
+          {/* Decorative elements */}
+          <div className="absolute -z-10 inset-0 blur-3xl opacity-30">
+            <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-indigo-500 rounded-full" />
+            <div className="absolute bottom-1/4 right-1/4 w-1/2 h-1/2 bg-fuchsia-500 rounded-full" />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}

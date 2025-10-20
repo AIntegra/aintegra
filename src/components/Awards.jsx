@@ -1,52 +1,89 @@
 import { motion } from "framer-motion"
-import { Award, Users } from "lucide-react"
+import { Award, Trophy, Star, Medal } from "lucide-react"
 
 export default function Awards({ t }) {
-  const icons = [Award, Award, Award, Award, Users]
+  const iconMap = [Trophy, Award, Star, Medal, Award]
 
   return (
-    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
-      {/* Texto + tarjetas a la izquierda */}
-      <div className="flex-1">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-indigo-400 to-fuchsia-400 bg-clip-text text-transparent mb-6">
-          {t.awards.title}
-        </h2>
+    <section>
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left: Awards list */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 mb-6">
+              <Trophy className="w-4 h-4 text-yellow-400" />
+              <span className="text-sm font-medium text-yellow-300">Recognition</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+              style={{
+                background: "linear-gradient(135deg, #f59e0b 0%, #eab308 50%, #f97316 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              {t.awards.title}
+            </h2>
+          </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 max-w-3xl">
-          {t.awards.items.map((a, i) => {
-            const Icon = icons[i] || Award
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: 0.05 * i }}
-                className="rounded-2xl border border-white/10 bg-gradient-to-tr from-indigo-950/20 via-sky-950/20 to-fuchsia-950/20 p-5 hover:scale-[1.03] transition-transform"
-              >
-                <Icon className="h-5 w-5 text-sky-400" />
-                <h4 className="mt-3 font-semibold text-white">{a.title}</h4>
-                <p className="mt-1 text-sm text-neutral-400">{a.body}</p>
-              </motion.div>
-            )
-          })}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {t.awards.items.map((award, i) => {
+              const Icon = iconMap[i] || Award
+
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="card p-6 group"
+                >
+                  <div className="relative inline-flex mb-4">
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+                    <div className="relative p-3 rounded-xl bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border border-yellow-500/20">
+                      <Icon className="h-6 w-6 text-yellow-400" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-lg text-white mb-2">{award.title}</h3>
+                  <p className="text-sm text-neutral-400 leading-relaxed">{award.body}</p>
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
-      </div>
 
-      {/* Imagen del premio a la derecha */}
-      <motion.div
-        className="flex justify-center lg:justify-end flex-1"
-        initial={{ opacity: 0, x: 40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <img
-          src="/assets/premio.jpg"  // 🔁 Pon aquí el nombre real de tu imagen (por ejemplo: /assets/premio-gennera.png)
-          alt="Premio AIntegra"
-          className="w-72 md:w-96 lg:w-[480px] object-contain rounded-2xl shadow-[0_0_40px_rgba(147,197,253,0.4)]"
-        />
-      </motion.div>
-    </div>
+        {/* Right: Award image */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <div className="card p-8 relative overflow-hidden group">
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+            {/* Image */}
+            <img
+              src="/assets/premio.jpg"
+              alt="Premio AIntegra"
+              className="relative w-full rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+            />
+
+            {/* Decorative corner */}
+            <div className="absolute top-4 right-4 p-4 rounded-xl bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 backdrop-blur-sm">
+              <Trophy className="h-8 w-8 text-yellow-400" />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   )
 }

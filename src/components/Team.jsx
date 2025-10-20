@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { Linkedin, Globe } from "lucide-react"
+import { Linkedin, Globe, Mail, Award } from "lucide-react"
 
 export default function Team({ t }) {
   const photos = {
@@ -7,14 +7,13 @@ export default function Team({ t }) {
     "Sergio Sabater": "/team/sergio.jpg",
   }
 
-  // Enlaces personalizados
   const links = {
     "Nerea Panadero": [
       { type: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/nerea-panadero-alfonso-959675372/" },
     ],
     "Sergio Sabater": [
       { type: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/sergio-sabater-ruiz-562753268" },
-      { type: "portfolio", label: "Portfolio", url: "https://sergiosabater.vercel.app/" },
+      { type: "portfolio", label: "Portfolio", url: "https://sergiosaba12.github.io/portfolio/" },
     ],
   }
 
@@ -24,70 +23,86 @@ export default function Team({ t }) {
   }
 
   return (
-    <div className="relative">
-      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 text-center">
-        {t.team.title}
-      </h2>
+    <section>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 gradient-text">
+          {t.team.title}
+        </h2>
+        <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+          Meet the minds behind AIntegra — combining engineering, AI, and accessibility
+        </p>
+      </motion.div>
 
-      <p className="text-neutral-400 text-center max-w-2xl mx-auto mb-12">
-        Meet the people behind AIntegra — combining engineering, AI, and accessibility.
-      </p>
-
-      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-10 justify-items-center">
+      <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
         {t.team.people.map((p, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.05 * i }}
-            className="relative w-80 rounded-2xl bg-gradient-to-tr from-[#1e1b4b]/60 via-[#0f172a]/70 to-[#312e81]/60 p-[1px] hover:from-indigo-500/50 hover:to-fuchsia-500/40 transition-all duration-500"
+            transition={{ duration: 0.6, delay: i * 0.2 }}
+            className="relative group"
           >
-            <div className="relative rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 p-6 flex flex-col items-center text-center transition-all duration-500 hover:bg-white/10 hover:scale-[1.02]">
-              
-              {/* Foto */}
-              <div className="relative h-28 w-28 mb-4">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-400/30 via-sky-400/20 to-fuchsia-400/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <img
-                  src={photos[p.name]}
-                  alt={p.name}
-                  className="rounded-full object-cover w-full h-full border border-white/20 shadow-xl"
-                />
+            <div className="card card-interactive p-8 text-center">
+              {/* Profile photo with enhanced glow */}
+              <div className="relative inline-block mb-6">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 via-sky-500 to-fuchsia-500 blur-2xl opacity-40 group-hover:opacity-80 transition-opacity duration-500 scale-110" />
+                <div className="relative">
+                  <img
+                    src={photos[p.name]}
+                    alt={p.name}
+                    className="w-40 h-40 rounded-full object-cover border-4 border-white/20 shadow-2xl relative z-10"
+                  />
+                  {/* Ring animation on hover */}
+                  <div className="absolute inset-0 rounded-full border-2 border-indigo-500/0 group-hover:border-indigo-500/50 group-hover:scale-110 transition-all duration-500" />
+                </div>
               </div>
 
-              {/* Nombre y rol */}
-              <div>
-                <h4 className="font-semibold text-lg text-white">{p.name}</h4>
-                <p className="text-sm text-neutral-300 mt-1">{roles[p.name]}</p>
+              {/* Name and role */}
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-white mb-2 group-hover:gradient-text transition-all">
+                  {p.name}
+                </h3>
+                <p className="text-neutral-400 font-medium">{roles[p.name]}</p>
               </div>
 
-              {/* Botones */}
-              <div className="flex flex-wrap justify-center gap-3 mt-4">
+              {/* Social links */}
+              <div className="flex flex-wrap justify-center gap-3">
                 {links[p.name]?.map((link, idx) => {
                   const Icon = link.type === "linkedin" ? Linkedin : Globe
-                  const baseColor =
-                    link.type === "linkedin"
-                      ? "border-[#0A66C2]/40 bg-[#0A66C2]/10 hover:bg-[#0A66C2]/20 text-[#0A66C2]"
-                      : "border-white/20 bg-white/5 hover:bg-white/10 text-neutral-200"
+                  const colorClass = link.type === "linkedin"
+                    ? "bg-[#0A66C2]/10 border-[#0A66C2]/30 text-[#0A66C2] hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50"
+                    : "bg-indigo-500/10 border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 hover:border-indigo-500/50"
 
                   return (
-                    <a
+                    <motion.a
                       key={idx}
                       href={link.url}
                       target="_blank"
                       rel="noreferrer"
-                      className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-medium transition-all duration-300 ${baseColor}`}
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border font-medium text-sm transition-all duration-300 ${colorClass}`}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       <Icon className="h-4 w-4" />
                       {link.label}
-                    </a>
+                    </motion.a>
                   )
                 })}
               </div>
+
+              {/* Decorative corner accents */}
+              <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-indigo-500/20 rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-fuchsia-500/20 rounded-bl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

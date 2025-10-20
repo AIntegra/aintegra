@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { Handshake } from "lucide-react"
 
 export default function Partners({ t }) {
   const partners = [
@@ -10,44 +11,58 @@ export default function Partners({ t }) {
     {
       name: "UVemprén",
       logo: "/logos/uvempren.jpeg",
-      url: "https://uvempren.uv.es/",
+      url: "https://www.uv.es/uv-emprende/es/uvempren.html",
     },
   ]
 
   return (
-    <section
-      id="partners"
-      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center"
-    >
-      {/* Título */}
-      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight bg-gradient-to-r from-indigo-400 via-sky-400 to-fuchsia-400 bg-clip-text text-transparent mb-3">
-        {t.partners.title}
-      </h2>
+    <section>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
+          <Handshake className="w-4 h-4 text-purple-400" />
+          <span className="text-sm font-medium text-purple-300">Trusted Partnerships</span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 gradient-text">
+          {t.partners.title}
+        </h2>
+        <p className="text-neutral-400 max-w-2xl mx-auto">
+          {t.partners.subtitle}
+        </p>
+      </motion.div>
 
-      <p className="text-neutral-400 mb-10">{t.partners.subtitle}</p>
-
-      {/* Rejilla / Carrusel */}
-      <div className="flex flex-wrap md:grid md:grid-cols-2 gap-6 justify-center overflow-x-auto md:overflow-visible no-scrollbar pb-2">
+      <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
         {partners.map((partner, i) => (
           <motion.a
             key={i}
             href={partner.url}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            className="group relative flex items-center justify-center rounded-2xl border border-white/10
-                       bg-gradient-to-tr from-indigo-500/10 via-sky-500/10 to-fuchsia-500/10
-                       p-6 md:p-8 shadow-[0_0_25px_rgba(139,92,246,0.15)]
-                       hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]
-                       hover:border-fuchsia-400/30 backdrop-blur-md transition-all min-w-[200px]"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.2 }}
+            whileHover={{ scale: 1.05, y: -5 }}
+            className="card p-12 flex items-center justify-center group relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-fuchsia-400/0 via-sky-400/0 to-indigo-400/0 group-hover:from-fuchsia-400/10 group-hover:via-sky-400/10 group-hover:to-indigo-400/10 rounded-2xl transition-all" />
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-indigo-500/0 to-fuchsia-500/0 group-hover:from-purple-500/10 group-hover:via-indigo-500/10 group-hover:to-fuchsia-500/10 transition-all duration-500" />
+
+            {/* Logo */}
             <img
               src={partner.logo}
               alt={partner.name}
-              className="relative z-10 max-h-20 w-auto object-contain opacity-85 group-hover:opacity-100 transition"
+              className="relative z-10 max-h-24 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity filter grayscale group-hover:grayscale-0"
             />
+
+            {/* Partner label */}
+            <div className="absolute bottom-4 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-xs text-neutral-400">{partner.name}</span>
+            </div>
           </motion.a>
         ))}
       </div>

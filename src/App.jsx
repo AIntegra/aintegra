@@ -1,37 +1,31 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, lazy, Suspense } from "react"
 import { motion } from "framer-motion"
 import Nav from "./components/Nav"
-import ShowcaseVideo from "./components/ShowcaseVideo"; // 👈 añadido aquí
+import ShowcaseVideo from "./components/ShowcaseVideo"
 import {
-  Cpu, Hand, Keyboard, Languages, Sparkles, Rocket, Shield, Puzzle, Github, Mail, Globe, Linkedin,
-  Mic, MousePointerClick, ClipboardList, CheckCircle2, Award, Users, Activity, Cpu as Cpu2, Zap,
-  Layers, Settings2, BookOpen, Lock, FileText, Building2, Boxes, MessageCircle, Star, Map, Box
+  Mic, MousePointerClick, ClipboardList, CheckCircle2
 } from "lucide-react"
-import {
-  Hero,
-  Problem,
-  Solution,
-  FeatureGrid,
-  WhyNow,
-  Technology,
-  UseCases,
-  Integrations,
-  Market,
-  Roadmap,
-  Team,
-  Demo,
-  Hardware,
-  Ecosystem,
-  Security,
-  Partners,
-  FAQ,
-  Investor,
-  Awards,
-  CTA,
-  Footer,
-} from "./components"
 
-import { AIntegraBackground, SectionWrapper, Title, Button } from "./theme/AIntegraTheme"
+// 🚀 Code Splitting: Lazy load components
+const Hero = lazy(() => import("./components/Hero"))
+const Problem = lazy(() => import("./components/Problem"))
+const Solution = lazy(() => import("./components/Solution"))
+const UseCases = lazy(() => import("./components/UseCases"))
+const Team = lazy(() => import("./components/Team"))
+const Demo = lazy(() => import("./components/Demo"))
+const Partners = lazy(() => import("./components/Partners"))
+const FAQ = lazy(() => import("./components/FAQ"))
+const Awards = lazy(() => import("./components/Awards"))
+const Testimonials = lazy(() => import("./components/Testimonials"))
+const Investors = lazy(() => import("./components/Investors"))
+const Newsletter = lazy(() => import("./components/Newsletter"))
+const Roadmap = lazy(() => import("./components/Roadmap"))
+const Comparison = lazy(() => import("./components/Comparison"))
+const CTA = lazy(() => import("./components/CTA"))
+const Footer = lazy(() => import("./components/Footer"))
+const Chatbot = lazy(() => import("./components/Chatbot"))
+
+import { SectionWrapper } from "./theme/AIntegraTheme"
 
 
 // -------------------------------------------------------------
@@ -50,186 +44,314 @@ const TEXT = {
     nav: {
       video: "Video",
       problem: "Problem",
-      solution: "Solution",
+      solution: "Our Products",
       features: "Features",
-      whynow: "Why Now",
-      tech: "Technology",
-      usecases: "Use Cases",
-      integrations: "Integrations",
-      market: "Market & Impact",
-      roadmap: "Go‑to‑Market",
-      team: "Team",
       demo: "Live Demo",
-      awards: "Impact & Awards",
-      hardware: "Hardware",
-      ecosystem: "Ecosystem",
-      security: "Security",
-      partners: "Partners",
+      usecases: "Use Cases",
+      team: "Team",
+      comparison: "Compare",
+      roadmap: "Roadmap",
       faq: "FAQ",
-      investor: "Investors",
       contact: "Contact"
     },
     hero: {
-      eyebrow: "Universal gesture intelligence",
-      title: "Reinventing how humans interact with computers.",
+      eyebrow: "Technology that redefines your interaction with computers",
+      title: "Technology that redefines your interaction with computers",
       subtitle:
-        "AIntegra replaces the mouse with AI‑powered gestures and voice. Natural, fast, and inclusive by design — ready for the 2025 Accessibility Act.",
-      cta1: "Watch demo",
-      cta2: "Download whitepaper",
-      cta3: "Try AIntegrassist"
+        "Control your device with intelligent gestures and natural voice — accessible, intuitive, and barrier-free.",
+      cta1: "Try C.A.T. Demo",
+      cta2: "Early Access to Kira"
     },
     video: {
-  title: "Showcase Video",
-  subtitle: "See AIntegra’s vision of natural, inclusive computing.", // 🇬🇧
-},
+      title: "See AIntegra in Action",
+      subtitle: "Discover how C.A.T. and Kira transform human-computer interaction",
+    },
+
+    aboutUs: {
+      title: "Innovation in Human-Machine Interaction",
+      body: "AIntegra Limited is a technology startup focused on digital accessibility and human-machine interaction through artificial intelligence and intelligent hardware. We were born to eliminate barriers in computer use, creating natural, efficient solutions adapted to each person.",
+      highlights: [
+        "Founded by Sergio Sabater Ruiz and Nerea Panadero Alfonso",
+        "Selected for the IAtecUV incubator (Universitat de València)",
+        "Focus on accessibility, ergonomics, and digital innovation"
+      ]
+    },
 
     problem: {
-      title: "The problem",
+      title: "Digital Interaction is Stuck",
+      subtitle: "Computers are still designed for a traditional mouse and keyboard model that isn't accessible to everyone and doesn't leverage the potential of artificial intelligence.",
       bullets: [
-        "The mouse/keyboard paradigm hasn’t evolved in 40 years.",
-        "Millions are excluded by design: seniors and people with disabilities struggle with today’s inputs.",
-        "Organizations must meet new accessibility regulations (EAA 2025) without sacrificing productivity."
+        "Difficulty for people with reduced mobility",
+        "Inefficient processes for everyday tasks",
+        "Unintuitive interaction with machines",
+        "Limitations of traditional manual control"
       ]
     },
+
     solution: {
-      title: "The solution",
-      hw: {
-        title: "Smart Gesture Touchpad",
-        body: "A precision trackpad built to fully replace the mouse — taps, drags, right‑click, multi‑finger swipes, and scroll with sub‑ms latency."
+      title: "AIntegra Ecosystem",
+      cat: {
+        name: "C.A.T.",
+        tagline: "Cognitive Assistive Trackpad",
+        subtitle: "A new standard of control",
+        body: "C.A.T. is an intelligent gesture-based trackpad that replaces the traditional mouse and enables more intuitive, fluid, and accessible navigation.",
+        benefits: [
+          "Advanced gesture control",
+          "More ergonomic navigation",
+          "Improved digital accessibility",
+          "AI integration"
+        ],
+        features: [
+          "Multi-touch gestures",
+          "Natural drag, slide, and scroll",
+          "Designed to reduce fatigue",
+          "Integration with virtual assistants like Kira"
+        ],
+        cta: "View Demo"
       },
-      sw: {
-        title: "AIntegrassist (AI Companion)",
-        body: "Voice + gestures + automations. Kira & Kai learn your habits, trigger shortcuts, transform documents, open apps, and guide navigation."
+      kira: {
+        name: "Kira",
+        tagline: "Intelligent Virtual Assistant",
+        subtitle: "The voice that understands your computer",
+        body: "Kira is an AI virtual assistant that allows you to control system functions by voice and converse naturally with your computer.",
+        benefits: [
+          "Voice commands for complete tasks",
+          "Natural conversation with the system",
+          "Automation of repetitive flows",
+          "File access and management through natural language"
+        ],
+        features: [
+          "Open applications by voice",
+          "Navigate menus and documents",
+          "Contextual responses",
+          "Integration with C.A.T. for hybrid experience"
+        ],
+        cta: "Try Kira Now"
       }
     },
-    features: {
-      title: "Feature highlights",
-      list: [
-        { icon: Cpu, title: "Edge AI", body: "On‑device models for gesture recognition and intent parsing." },
-        { icon: Languages, title: "Voice first", body: "Hands‑free control — open apps, read content aloud, dictate actions." },
-        { icon: Puzzle, title: "Integrations", body: "Works across browsers, editors, DAWs, design tools, and more." },
-        { icon: Shield, title: "Privacy & GDPR", body: "Local by default. Cloud optional. You own your data." },
-        { icon: Keyboard, title: "Macros & Shortcuts", body: "Chain routines and per‑app layers for pro workflows." },
-        { icon: Globe, title: "Multi‑platform", body: "Windows today; macOS & Linux on the roadmap." },
+
+    ecosystem: {
+      title: "A Complete Ecosystem",
+      subtitle: "C.A.T. and Kira combine to offer a completely natural interaction experience: physical control through gestures and conversational communication by voice, adapted to each user.",
+      points: [
+        "Hybrid control: gestures + voice",
+        "Personalized experience",
+        "Reduction of digital barriers"
       ]
     },
-    whynow: {
-      title: "Why now",
-      cards: [
-        { icon: Activity, title: "Accessibility Act 2025", body: "Regulation accelerates adoption across Europe: accessibility becomes mandatory." },
-        { icon: Zap, title: "AI at the edge", body: "Local models + cheaper compute make real‑time gesture intelligence a reality." },
-        { icon: Layers, title: "User expectations", body: "People demand natural, voice‑first, touch‑first workflows that feel human." },
-      ]
-    },
-    tech: {
-      title: "Technology — Behind the scenes",
-      steps: [
-        { icon: Hand, title: "Sense", body: "Raw HID / sensor input captured with sub‑ms latency." },
-        { icon: Cpu2, title: "Understand", body: "On‑device ML parses gestures + intent (Kira/Kai)." },
-        { icon: Settings2, title: "Act", body: "System hooks & APIs trigger actions, macros and voice responses." },
-      ]
-    },
+
     usecases: {
-      title: "Use cases",
+      title: "Who is AIntegra For?",
       items: [
-        { title: "Office Productivity", body: "Control your entire desktop with gestures + voice. Less friction, more focus." },
-        { title: "Accessibility", body: "Inclusive computing for seniors and people with reduced mobility or low vision." },
-        { title: "Education", body: "Inclusive classrooms and faster navigation for teachers and students." },
-        { title: "Enterprise", body: "Compliance + productivity: upgrade workstations without changing apps." },
+        {
+          title: "People with Reduced Mobility",
+          body: "Natural access and ergonomic control for everyone"
+        },
+        {
+          title: "Creative Professionals",
+          body: "Faster interaction speed without physical fatigue"
+        },
+        {
+          title: "Corporate and Remote Teams",
+          body: "Efficient collaboration with voice and gesture controls"
+        },
+        {
+          title: "Accessible Educational Environments",
+          body: "Intuitive access for students with different needs"
+        },
       ]
     },
-    integrations: {
-      title: "Integrations",
-      line: "Works across your workflow — no plugins needed.",
-      logos: ["Word", "Chrome", "Photoshop", "Notion", "Zoom", "VS Code"]
-    },
-    market: {
-      title: "Market & impact",
-      lines: [
-        "Mass‑market appeal (consumers, education, public sector, enterprise).",
-        "Accessibility compliance as a growth driver (EAA 2025).",
-        "From inclusion to efficiency: doing good also boosts productivity."
-      ]
-    },
-    gtm: {
-      title: "Go‑to‑Market",
-      items: [
-        { q: "2025‑26", title: "Pilot & Validation", body: "Programs with accessibility orgs — collect evidence, refine UX." },
-        { q: "2026‑27", title: "National Launch", body: "B2C online + B2B institutional deals; retail partnerships." },
-        { q: "2027‑29", title: "Global Expansion", body: "EU & North America; distributors and OEM bundles." }
-      ]
-    },
+
     team: {
-      title: "Team",
+      title: "Meet the Team",
       people: [
-        { name: "Nerea Panadero", role: "CTO & Co-Founder", link: "#" },
-        { name: "Sergio Sabater", role: "CEO & Co-Founder", link: "#" }
+        { name: "Nerea Panadero", role: "CTO • Engineering & AI" },
+        { name: "Sergio Sabater", role: "CEO • Leadership & Innovation" }
       ]
     },
+
     demo: {
-      title: "AIntegrassist — Live commands",
-      subtitle: "Try what the assistant can do in the demo:"
+      title: "AIntegra in Action",
+      subtitle: "Try what you can do with our technology:"
     },
+
     commands: [
       { icon: Mic, text: "\"Open Word\" — launch desktop apps" },
-      { icon: ClipboardList, text: "\"List my notes\" — manage notes in DB" },
-      { icon: CheckCircle2, text: "\"Remind me tomorrow at 10am to call the doctor\"" },
-      { icon: MousePointerClick, text: "Swipe down (3 fingers) → New note (Ctrl+Shift+N)" },
+      { icon: ClipboardList, text: "\"List my notes\" — manage your files" },
+      { icon: CheckCircle2, text: "\"Remind me tomorrow at 10am\"" },
+      { icon: MousePointerClick, text: "Swipe down (3 fingers) → New note" },
     ],
-    hardware: {
-      title: "Hardware",
-      bullets: [
-        "Aluminum unibody • USB‑C / Bluetooth",
-        "Multi‑touch precision • Haptic feedback",
-        "Gesture latency < 5 ms • OS‑level accuracy"
-      ]
-    },
-    ecosystem: {
-      title: "AIntegrassist Ecosystem",
+
+    awards: {
+      title: "Recognition and Support",
+      subtitle: "AIntegra Limited has been selected by IAtecUV, the technology incubator of the Universitat de València, to accelerate its development and technological validation.",
       items: [
-        { icon: FileText, title: "Document transforms", body: "PDF ⇄ DOCX ⇄ TXT with voice prompts." },
-        { icon: Boxes, title: "Automations", body: "If‑this‑gesture‑then‑that recipes with conditions." },
-        { icon: MessageCircle, title: "Voice OS", body: "Navigate, open apps, read aloud — fully by voice." }
+        { title: "MOTIVEM Fest 2024", body: "3rd place" },
+        { title: "IAtecUV Incubator", body: "Selected Startup" },
+        { title: "Best Project - School of Engineering UV", body: "Xarxa de Preincubadors by UVemprén" },
+        { title: "Startup Valencia Incubator", body: "Selected Startup" },
+        { title: "Valencia Digital Summit", body: "Official Presentation" },
       ]
     },
-    security: {
-      title: "Security & Ethics",
-      lines: [
-        "Privacy by design: local processing by default.",
-        "GDPR‑ready, WCAG 2.2 and EN 301 549 aligned.",
-        "User‑centric AI: inclusive research and testing."
-      ]
-    },
+
     partners: {
-  title: "Partners & Collaborators",
-  subtitle: "Recognitions and strategic alliances with institutions promoting accessibility and innovation.",
-},
+      title: "Partners & Collaborators",
+      subtitle: "Strategic alliances with institutions promoting accessibility and innovation",
+    },
 
     faq: {
-      title: "FAQ",
+      title: "Frequently Asked Questions",
       qas: [
-        { q: "Is it compatible with macOS?", a: "Windows today; macOS & Linux on the roadmap with feature parity." },
-        { q: "Can I train my own gestures?", a: "Yes, pro studio tools allow custom gestures and per‑app layers." },
-        { q: "Do you store my data?", a: "No by default. Cloud features are opt‑in and transparent." },
+        {
+          q: "What is C.A.T. and how does it help?",
+          a: "C.A.T. is an intelligent trackpad that replaces the mouse with intuitive gestures, offering more ergonomic and accessible navigation."
+        },
+        {
+          q: "Do I need special hardware to use Kira?",
+          a: "No, Kira works with your existing computer. C.A.T. enhances the experience but isn't required."
+        },
+        {
+          q: "Does it work with Windows, macOS, and Linux?",
+          a: "Currently optimized for Windows. macOS and Linux support is on our roadmap."
+        },
+        {
+          q: "Is Kira available in multiple languages?",
+          a: "Yes, Kira supports Spanish and English, with more languages coming soon."
+        },
       ]
     },
-    investor: {
-      title: "Investors",
-      points: [
-        "Opening pre‑seed for pilots and certification.",
-        "B2C/B2B hybrid model with diversified revenue.",
-        "First‑mover advantage + regulatory tailwinds."
-      ],
-      cta: "Request the investor deck"
-    },
-    awards: {
-      title: "Impact & awards",
+
+    testimonials: {
+      badge: "Early Testers",
+      title: "First Impressions",
+      subtitle: "Feedback from our early testers and accessibility experts",
       items: [
-        { title: "ETSE Best Project", body: "Award" },
-        { title: "MOTIVEM Fest 2024", body: "3rd place" },
+        {
+          quote: "The concept behind AIntegra is exactly what the accessibility community has been waiting for. I can't wait to see the final product.",
+          name: "María García",
+          role: "Accessibility Consultant"
+        },
+        {
+          quote: "As someone with visual impairment, I'm excited about this technology. Finally, a team designing with us in mind from the start.",
+          name: "Carlos Rodríguez",
+          role: "Software Developer"
+        },
+        {
+          quote: "The gesture control prototype shows incredible promise. This could revolutionize how we interact with computers.",
+          name: "Ana Martínez",
+          role: "University Professor"
+        }
       ]
     },
-    cta: { title: "Join the accessibility revolution.", subtitle: "Have questions, proposals, or want to learn more about our project? Send us a message and we’ll get back to you soon.", button: "Contact us" },
+
+    investors: {
+      badge: "Investment Opportunity",
+      title: "Join Our Journey",
+      subtitle: "Be part of the revolution in accessible human-computer interaction",
+      metrics: [
+        { value: "€45B", label: "Global Assistive Tech Market" },
+        { value: "1M+", label: "Potential Early Adopters" },
+        { value: "20K", label: "Target Users in Spain" },
+        { value: "2", label: "Active Incubators" },
+        { value: "MVP", label: "In Development" },
+        { value: "5", label: "Awards & Recognitions" }
+      ],
+      opportunity: {
+        title: "Pre-Seed Investment Round",
+        description: "We are looking for strategic investors who share our vision of making technology accessible to everyone. Join us in eliminating digital barriers and democratizing access to technology.",
+        highlights: [
+          "MVP in active development",
+          "Selected by IAtecUV and Startup Valencia",
+          "First-mover advantage in inclusive AI interfaces",
+          "Experienced founding team from Universitat de València"
+        ],
+        seeking: "Currently Seeking",
+        amount: "€150K",
+        round: "Pre-Seed Round",
+        cta: "Schedule a Meeting"
+      }
+    },
+
+    newsletter: {
+      title: "Stay Updated",
+      subtitle: "Join our newsletter to receive exclusive updates, early access opportunities, and insider news about AIntegra's development.",
+      placeholder: "Enter your email",
+      button: "Subscribe",
+      success: "Thanks for subscribing! Check your email.",
+      privacy: "We respect your privacy. Unsubscribe at any time."
+    },
+
+    roadmap: {
+      badge: "Our Journey",
+      title: "Product Roadmap",
+      subtitle: "From concept to market: follow our path to revolutionizing accessibility",
+      milestones: [
+        {
+          date: "Q3 2025",
+          title: "Idea & Team Formation",
+          description: "Project born at Universitat de València. Core team assembled.",
+          status: "completed"
+        },
+        {
+          date: "Q4 2025",
+          title: "Incubator Selection",
+          description: "Selected by IAtecUV and Startup Valencia. Won ETSE Best Project award.",
+          status: "completed"
+        },
+        {
+          date: "Q1 2026",
+          title: "MVP Development",
+          description: "Building core AI assistant and gesture recognition prototypes.",
+          status: "current"
+        },
+        {
+          date: "Q2 2026",
+          title: "Beta Testing",
+          description: "Closed beta with accessibility community and early adopters.",
+          status: "upcoming"
+        },
+        {
+          date: "Q3 2026",
+          title: "Public Launch",
+          description: "Official product launch and hardware pre-orders begin.",
+          status: "upcoming"
+        }
+      ]
+    },
+
+    comparison: {
+      badge: "Why AIntegra",
+      title: "How We Compare",
+      subtitle: "See how AIntegra stands out from traditional accessibility solutions",
+      featureLabel: "Feature",
+      recommended: "✨ Our Solution",
+      competitors: [
+        { name: "AIntegra", isUs: true },
+        { name: "Screen Readers", isUs: false },
+        { name: "Voice Assistants", isUs: false }
+      ],
+      features: [
+        { name: "Voice Control", values: [true, false, true] },
+        { name: "Gesture Recognition", values: [true, false, false] },
+        { name: "Custom Hardware", values: [true, false, false] },
+        { name: "AI-Powered Automation", values: [true, false, "partial"] },
+        { name: "Designed for Accessibility", values: [true, true, false] },
+        { name: "Works Offline", values: [true, true, false] },
+        { name: "Multi-language Support", values: [true, true, true] },
+        { name: "Personalization", values: [true, "partial", "partial"] }
+      ],
+      legend: {
+        yes: "Full Support",
+        no: "Not Available",
+        partial: "Limited"
+      }
+    },
+
+    cta: {
+      title: "Join the New Era of Human Interaction",
+      subtitle: "Request early access, a demo, or sign up to receive news and exclusive offers.",
+      button: "Contact Us"
+    },
     footer: { rights: "All rights reserved." },
     langLabel: "EN",
   },
@@ -237,104 +359,314 @@ const TEXT = {
     nav: {
       video: "Video",
       problem: "Problema",
-      solution: "Solución",
-      features: "Funciones",
-      whynow: "Por qué ahora",
-      tech: "Tecnología",
-      usecases: "Casos de uso",
-      integrations: "Integraciones",
-      market: "Mercado e Impacto",
-      roadmap: "Go‑to‑Market",
+      solution: "Nuestros Productos",
+      features: "Características",
+      demo: "Demo en Vivo",
+      usecases: "Casos de Uso",
       team: "Equipo",
-      demo: "Demo",
-      awards: "Impacto y Premios",
-      hardware: "Hardware",
-      ecosystem: "Ecosistema",
-      security: "Seguridad",
-      partners: "Partners",
+      comparison: "Comparativa",
+      roadmap: "Roadmap",
       faq: "FAQ",
-      investor: "Inversores",
       contact: "Contacto"
     },
     hero: {
-      eyebrow: "Inteligencia gestual universal",
-      title: "Reinventamos cómo interactúas con el ordenador.",
+      eyebrow: "Tecnología que redefine tu interacción con el ordenador",
+      title: "Tecnología que redefine tu interacción con el ordenador",
       subtitle:
-        "AIntegra reemplaza el ratón con gestos y voz impulsados por IA. Natural, rápido e inclusivo — listo para la Ley de Accesibilidad 2025.",
-      cta1: "Ver demo",
-      cta2: "Descargar whitepaper",
-      cta3: "Probar AIntegrassist"
+        "Controla tu dispositivo con gestos inteligentes y voz natural — accesible, intuitivo y sin barreras.",
+      cta1: "Probar demo de C.A.T.",
+      cta2: "Acceso anticipado a Kira"
     },
     video: {
-  title: "Vídeo de presentación",
-  subtitle: "Descubre la visión de AIntegra: una informática natural e inclusiva.", // 🇪🇸
-},
+      title: "Ver AIntegra en Acción",
+      subtitle: "Descubre cómo C.A.T. y Kira transforman la interacción humano-ordenador",
+    },
+
+    aboutUs: {
+      title: "Innovación en Interacción Humano-Máquina",
+      body: "AIntegra Limited es una startup tecnológica centrada en accesibilidad digital e interacción humano-máquina mediante inteligencia artificial y hardware inteligente. Nace para eliminar barreras en el uso de ordenadores, creando soluciones naturales, eficientes y adaptadas a cada persona.",
+      highlights: [
+        "Fundada por Sergio Sabater Ruiz y Nerea Panadero Alfonso",
+        "Seleccionada para la incubadora IAtecUV (Universitat de València)",
+        "Enfoque en accesibilidad, ergonomía e innovación digital"
+      ]
+    },
+
     problem: {
-      title: "El problema",
+      title: "La Interacción Digital está Atascada",
+      subtitle: "Los ordenadores siguen diseñados para un modelo tradicional de ratón y teclado que no es accesible para todos y no aprovecha el potencial de la inteligencia artificial.",
       bullets: [
-        "El paradigma ratón/teclado lleva 40 años casi igual.",
-        "Millones quedan fuera por diseño: mayores y personas con discapacidad.",
-        "Las organizaciones deben cumplir la EAA 2025 sin perder productividad."
+        "Dificultad para personas con movilidad reducida",
+        "Procesos ineficientes para tareas cotidianas",
+        "Interacción poco intuitiva con máquinas",
+        "Limitaciones del control manual tradicional"
       ]
     },
+
     solution: {
-      title: "La solución",
-      hw: { title: "Touchpad de Gestos Inteligente", body: "Trackpad de precisión para reemplazar por completo el ratón — toques, arrastre, clic derecho, gestos multi‑dedo y scroll con latencia sub‑ms." },
-      sw: { title: "AIntegrassist (Compañero IA)", body: "Voz + gestos + automatizaciones. Kira y Kai aprenden tus hábitos, disparan atajos, transforman documentos, abren apps y guían la navegación." }
+      title: "Ecosistema AIntegra",
+      cat: {
+        name: "C.A.T.",
+        tagline: "Cognitive Assistive Trackpad",
+        subtitle: "Un nuevo estándar de control",
+        body: "C.A.T. es un trackpad inteligente basado en gestos que reemplaza el ratón tradicional y permite una navegación más intuitiva, fluida y accesible.",
+        benefits: [
+          "Control por gestos avanzados",
+          "Navegación más ergonómicaç",
+          "Mejora de accesibilidad digital",
+          "Integración con inteligencia artificial"
+        ],
+        features: [
+          "Gestos multitáctiles",
+          "Arrastrar, deslizar y hacer scroll de forma natural",
+          "Diseño pensado para reducir fatiga",
+          "Integración con asistentes virtuales como Kira"
+        ],
+        cta: "Ver Demo"
+      },
+      kira: {
+        name: "Kira",
+        tagline: "Asistente Virtual Inteligente",
+        subtitle: "La voz que entiende tu ordenador",
+        body: "Kira es un asistente virtual de inteligencia artificial que permite controlar funciones del sistema por voz y conversar de forma natural con tu ordenador.",
+        benefits: [
+          "Comandos por voz para tareas completas",
+          "Conversación natural con el sistema",
+          "Automatización de flujos repetitivos",
+          "Acceso y gestión de archivos por lenguaje natural"
+        ],
+        features: [
+          "Abrir aplicaciones por voz",
+          "Navegar por menús y documentos",
+          "Respuestas contextuales",
+          "Integración con C.A.T. para experiencia híbrida"
+        ],
+        cta: "Probar Kira Ahora"
+      }
     },
-    features: {
-      title: "Funciones destacadas",
-      list: [
-        { icon: Cpu, title: "IA en el dispositivo", body: "Modelos locales para gestos e intención." },
-        { icon: Languages, title: "Voz primero", body: "Control manos libres — abre apps, lecturas en voz alta y dictado de acciones." },
-        { icon: Puzzle, title: "Integraciones", body: "Funciona con navegadores, editores, DAWs, diseño y más." },
-        { icon: Shield, title: "Privacidad & RGPD", body: "Local por defecto. Nube opcional. Tus datos son tuyos." },
-        { icon: Keyboard, title: "Macros y atajos", body: "Rutinas encadenadas y capas por app para flujos profesionales." },
-        { icon: Globe, title: "Multiplataforma", body: "Windows hoy; macOS y Linux en la hoja de ruta." },
+
+    ecosystem: {
+      title: "Un Ecosistema Completo",
+      subtitle: "C.A.T. y Kira se combinan para ofrecer una experiencia de interacción totalmente natural: control físico por gestos y comunicación conversacional por voz, adaptada a cada usuario.",
+      points: [
+        "Control híbrido: gestos + voz",
+        "Experiencia personalizada",
+        "Reducción de barreras digitales"
       ]
     },
-    whynow: {
-      title: "Por qué ahora",
-      cards: [
-        { icon: Activity, title: "Ley de Accesibilidad 2025", body: "La regulación acelera la adopción: la accesibilidad pasa a ser obligatoria." },
-        { icon: Zap, title: "IA en el borde", body: "Modelos locales + cómputo accesible permiten inteligencia gestual en tiempo real." },
-        { icon: Layers, title: "Expectativas de usuario", body: "Se demandan flujos naturales, voz‑primero y táctiles que se sientan humanos." },
-      ]
-    },
-    tech: {
-      title: "Tecnología — Bajo el capó",
-      steps: [
-        { icon: Hand, title: "Captar", body: "Entrada Raw HID / sensores con latencia sub‑ms." },
-        { icon: Cpu2, title: "Entender", body: "ML en dispositivo interpreta gestos + intención (Kira/Kai)." },
-        { icon: Settings2, title: "Actuar", body: "Hooks de sistema y APIs ejecutan acciones, macros y voz." },
-      ]
-    },
+
     usecases: {
-      title: "Casos de uso",
+      title: "¿Para Quién es AIntegra?",
       items: [
-        { title: "Productividad de oficina", body: "Control total del escritorio con gestos + voz. Menos fricción, más foco." },
-        { title: "Accesibilidad", body: "Computación inclusiva para mayores y personas con movilidad reducida o baja visión." },
-        { title: "Educación", body: "Aulas inclusivas y navegación más rápida para profes y estudiantes." },
-        { title: "Empresa", body: "Cumplimiento + productividad: actualiza puestos sin cambiar tus apps." },
+        {
+          title: "Personas con Movilidad Reducida",
+          body: "Acceso natural y control ergonómico para todos"
+        },
+        {
+          title: "Profesionales Creativos",
+          body: "Mayor velocidad de interacción sin fatiga física"
+        },
+        {
+          title: "Equipos Corporativos y Remotos",
+          body: "Colaboración eficiente con voz y controles gestuales"
+        },
+        {
+          title: "Entornos Educativos Accesibles",
+          body: "Acceso intuitivo para estudiantes con distintas necesidades"
+        },
       ]
     },
-    integrations: { title: "Integraciones", line: "Funciona en tu flujo — sin plugins.", logos: ["Word", "Chrome", "Photoshop", "Notion", "Zoom", "VS Code"] },
-    market: { title: "Mercado e impacto", lines: ["Apelación masiva (consumo, educación, sector público, empresa).","El cumplimiento en accesibilidad impulsa la adopción (EAA 2025).","De la inclusión a la eficiencia: hacer el bien también impulsa la productividad."] },
-    gtm: { title: "Go‑to‑Market", items: [ { q: "2025‑26", title: "Piloto y validación", body: "Programas con entidades de accesibilidad — evidencia y UX." }, { q: "2026‑27", title: "Lanzamiento nacional", body: "B2C online + acuerdos B2B; retail." }, { q: "2027‑29", title: "Expansión internacional", body: "UE y Norteamérica; distribuidores y bundles con OEM." } ] },
-    team: { title: "Equipo", people: [ { name: "Nerea Panadero", role: "CTO & Co-Founder", link: "#" }, { name: "Sergio Sabater", role: "CEO & Co-Founder", link: "#" } ] },
-    demo: { title: "AIntegrassist — Comandos en vivo", subtitle: "Prueba lo que puede hacer el asistente en la demo:" },
-    commands: [ { icon: Mic, text: "\"Abre Word\" — lanza apps de escritorio" }, { icon: ClipboardList, text: "\"Lista mis notas\" — gestiona notas en BD" }, { icon: CheckCircle2, text: "\"Recuérdame mañana a las 10 llamar al médico\"" }, { icon: MousePointerClick, text: "Swipe 3 dedos hacia abajo → Nueva nota (Ctrl+Shift+N)" } ],
-    hardware: { title: "Hardware", bullets: ["Unibody de aluminio • USB‑C / Bluetooth","Precisión multi‑touch • Feedback háptico","Latencia gestual < 5 ms • Precisión a nivel de SO"] },
-    ecosystem: { title: "Ecosistema AIntegrassist", items: [ { icon: FileText, title: "Transformación de documentos", body: "PDF ⇄ DOCX ⇄ TXT con prompts por voz." }, { icon: Boxes, title: "Automatizaciones", body: "Recetas si‑este‑gesto‑entonces‑aquello con condiciones." }, { icon: MessageCircle, title: "Sistema por voz", body: "Navega, abre apps, lee en voz alta — totalmente por voz." } ] },
-    security: { title: "Seguridad y ética", lines: ["Privacidad desde el diseño: procesamiento local por defecto.","Alineado con RGPD, WCAG 2.2 y EN 301 549.","IA centrada en el usuario: investigación y pruebas inclusivas."] },
+
+    team: {
+      title: "Conoce al Equipo",
+      people: [
+        { name: "Nerea Panadero", role: "CTO • Ingeniería e IA" },
+        { name: "Sergio Sabater", role: "CEO • Dirección e Innovación" }
+      ]
+    },
+
+    demo: {
+      title: "AIntegra en Acción",
+      subtitle: "Prueba lo que puedes hacer con nuestra tecnología:"
+    },
+
+    commands: [
+      { icon: Mic, text: "\"Abre Word\" — lanza aplicaciones de escritorio" },
+      { icon: ClipboardList, text: "\"Lista mis notas\" — gestiona tus archivos" },
+      { icon: CheckCircle2, text: "\"Recuérdame mañana a las 10\"" },
+      { icon: MousePointerClick, text: "Desliza hacia abajo (3 dedos) → Nueva nota" },
+    ],
+
+    awards: {
+      title: "Reconocimientos y Apoyo",
+      subtitle: "AIntegra Limited ha sido seleccionada por IAtecUV, la incubadora tecnológica de la Universitat de València, para acelerar su desarrollo y validación tecnológica.",
+      items: [
+        { title: "MOTIVEM Fest 2024", body: "3º puesto" },
+        { title: "Incubadora IAtecUV", body: "Startup Seleccionada" },
+        { title: "Mejor Proyecto - Escuela de Ingeniería UV", body: "Xarxa de Preincubadors de UVemprén" },
+        { title: "Incubadora Startup Valencia", body: "Startup Seleccionada" },
+        { title: "Valencia Digital Summit", body: "Presentación Oficial" },
+      ]
+    },
+
     partners: {
-  title: "Partners y Colaboradores",
-  subtitle: "Reconocimientos y alianzas estratégicas con entidades que impulsan la accesibilidad y la innovación.",
-},
-    faq: { title: "FAQ", qas: [ { q: "¿Es compatible con macOS?", a: "Windows hoy; macOS y Linux en la hoja de ruta con paridad de funciones." }, { q: "¿Puedo entrenar mis gestos?", a: "Sí, herramientas Pro permiten gestos personalizados y capas por app." }, { q: "¿Guardáis mis datos?", a: "No por defecto. La nube es opcional y transparente." } ] },
-    investor: { title: "Inversores", points: ["Abrimos pre‑seed para pilotos y certificación.","Modelo híbrido B2C/B2B con ingresos diversificados.","Ventaja del first‑mover + vientos regulatorios a favor."], cta: "Solicitar investor deck" },
-    awards: { title: "Impacto y premios", items: [{ title: "Mejor Proyecto ETSE", body: "Premio" }, { title: "MOTIVEM Fest 2024", body: "3º puesto" } ] },
-    cta: { title: "Súmate a la revolución de la accesibilidad.", subtitle: "¿Tienes preguntas, propuestas o quieres saber más sobre nuestro proyecto? Escríbenos y te responderemos pronto.", button: "Contactar" },
+      title: "Partners y Colaboradores",
+      subtitle: "Alianzas estratégicas con instituciones que impulsan la accesibilidad y la innovación",
+    },
+
+    faq: {
+      title: "Preguntas Frecuentes",
+      qas: [
+        {
+          q: "¿Qué es C.A.T. y cómo ayuda?",
+          a: "C.A.T. es un trackpad inteligente que reemplaza el ratón con gestos intuitivos, ofreciendo navegación más ergonómica y accesible."
+        },
+        {
+          q: "¿Necesito hardware especial para usar Kira?",
+          a: "No, Kira funciona con tu ordenador actual. C.A.T. mejora la experiencia pero no es obligatorio."
+        },
+        {
+          q: "¿Funciona con Windows, macOS y Linux?",
+          a: "Actualmente optimizado para Windows. Soporte para macOS y Linux en nuestra hoja de ruta."
+        },
+        {
+          q: "¿Kira está disponible en varios idiomas?",
+          a: "Sí, Kira soporta español e inglés, con más idiomas próximamente."
+        },
+      ]
+    },
+
+    testimonials: {
+      badge: "Primeros Testers",
+      title: "Primeras Impresiones",
+      subtitle: "Feedback de nuestros primeros testers y expertos en accesibilidad",
+      items: [
+        {
+          quote: "El concepto detrás de AIntegra es exactamente lo que la comunidad de accesibilidad ha estado esperando. No puedo esperar a ver el producto final.",
+          name: "María García",
+          role: "Consultora de Accesibilidad"
+        },
+        {
+          quote: "Como persona con discapacidad visual, estoy emocionado con esta tecnología. Por fin un equipo que diseña pensando en nosotros desde el principio.",
+          name: "Carlos Rodríguez",
+          role: "Desarrollador de Software"
+        },
+        {
+          quote: "El prototipo de control por gestos muestra un potencial increíble. Esto podría revolucionar cómo interactuamos con los ordenadores.",
+          name: "Ana Martínez",
+          role: "Profesora Universitaria"
+        }
+      ]
+    },
+
+    investors: {
+      badge: "Oportunidad de Inversión",
+      title: "Únete a Nuestro Viaje",
+      subtitle: "Forma parte de la revolución en interacción humano-ordenador accesible",
+      metrics: [
+        { value: "€45B", label: "Mercado Global Tech Asistiva" },
+        { value: "1M+", label: "Early Adopters Potenciales" },
+        { value: "20K", label: "Usuarios Objetivo en España" },
+        { value: "2", label: "Incubadoras Activas" },
+        { value: "MVP", label: "En Desarrollo" },
+        { value: "5", label: "Premios y Reconocimientos" }
+      ],
+      opportunity: {
+        title: "Ronda de Inversión Pre-Seed",
+        description: "Buscamos inversores estratégicos que compartan nuestra visión de hacer la tecnología accesible para todos. Únete a nosotros para eliminar barreras digitales y democratizar el acceso a la tecnología.",
+        highlights: [
+          "MVP en desarrollo activo",
+          "Seleccionados por IAtecUV y Startup Valencia",
+          "Ventaja de pioneros en interfaces IA inclusivas",
+          "Equipo fundador con experiencia de la Universitat de València"
+        ],
+        seeking: "Buscando Actualmente",
+        amount: "€150K",
+        round: "Ronda Pre-Seed",
+        cta: "Agendar Reunión"
+      }
+    },
+
+    newsletter: {
+      title: "Mantente Actualizado",
+      subtitle: "Únete a nuestra newsletter para recibir actualizaciones exclusivas, acceso anticipado y noticias sobre el desarrollo de AIntegra.",
+      placeholder: "Tu email",
+      button: "Suscribirse",
+      success: "¡Gracias por suscribirte! Revisa tu email.",
+      privacy: "Respetamos tu privacidad. Cancela cuando quieras."
+    },
+
+    roadmap: {
+      badge: "Nuestro Camino",
+      title: "Hoja de Ruta",
+      subtitle: "Del concepto al mercado: sigue nuestro camino para revolucionar la accesibilidad",
+      milestones: [
+        {
+          date: "Q3 2025",
+          title: "Idea y Formación del Equipo",
+          description: "Proyecto nacido en la Universitat de València. Equipo fundador formado.",
+          status: "completed"
+        },
+        {
+          date: "Q4 2025",
+          title: "Selección en Incubadoras",
+          description: "Seleccionados por IAtecUV y Startup Valencia. Premio Mejor Proyecto ETSE.",
+          status: "completed"
+        },
+        {
+          date: "Q1 2026",
+          title: "Desarrollo del MVP",
+          description: "Construyendo el asistente IA y prototipos de reconocimiento gestual.",
+          status: "current"
+        },
+        {
+          date: "Q2 2026",
+          title: "Beta Testing",
+          description: "Beta cerrada con comunidad de accesibilidad y early adopters.",
+          status: "upcoming"
+        },
+        {
+          date: "Q3 2026",
+          title: "Lanzamiento Público",
+          description: "Lanzamiento oficial del producto y pre-pedidos del hardware.",
+          status: "upcoming"
+        }
+      ]
+    },
+
+    comparison: {
+      badge: "Por Qué AIntegra",
+      title: "Cómo Nos Comparamos",
+      subtitle: "Descubre cómo AIntegra destaca frente a las soluciones de accesibilidad tradicionales",
+      featureLabel: "Característica",
+      recommended: "✨ Nuestra Solución",
+      competitors: [
+        { name: "AIntegra", isUs: true },
+        { name: "Lectores de Pantalla", isUs: false },
+        { name: "Asistentes de Voz", isUs: false }
+      ],
+      features: [
+        { name: "Control por Voz", values: [true, false, true] },
+        { name: "Reconocimiento de Gestos", values: [true, false, false] },
+        { name: "Hardware Propio", values: [true, false, false] },
+        { name: "Automatización con IA", values: [true, false, "partial"] },
+        { name: "Diseñado para Accesibilidad", values: [true, true, false] },
+        { name: "Funciona Offline", values: [true, true, false] },
+        { name: "Soporte Multi-idioma", values: [true, true, true] },
+        { name: "Personalización", values: [true, "partial", "partial"] }
+      ],
+      legend: {
+        yes: "Soporte Completo",
+        no: "No Disponible",
+        partial: "Limitado"
+      }
+    },
+
+    cta: {
+      title: "Únete a la Nueva Era de la Interacción Humana",
+      subtitle: "Solicita acceso anticipado, una demo o inscríbete para recibir noticias y ofertas exclusivas.",
+      button: "Contactar"
+    },
     footer: { rights: "Todos los derechos reservados." },
     langLabel: "ES",
   }
@@ -350,127 +682,144 @@ function useLang() {
 export default function App() {
   const { lang, setLang, t } = useLang()
   return (
-     <div className="min-h-screen gradient-bg text-white">
-      {/* Fondo animado del theme */}
-      <AIntegraBackground />
-
+    <motion.div
+      className="min-h-screen gradient-bg text-white"
+      initial={false}
+      animate={false}
+    >
       {/* Navbar */}
       <Nav t={t} lang={lang} setLang={setLang} />
 
       {/* Secciones con theme aplicado */}
       <main className="relative">
         <SectionWrapper>
-          <Hero t={t} />
+          <Suspense fallback={<LoadingSection />}>
+            <Hero t={t} />
+          </Suspense>
         </SectionWrapper>
 
         <SectionWrapper>
-  <div className="text-center mb-10">
-    <motion.h2
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="text-4xl md:text-5xl font-semibold mb-4"
-    >
-      <span className="bg-gradient-to-r from-[#5AA9E6] via-[#7B61FF] to-[#F178B6] text-transparent bg-clip-text">
-        {t.video.title}
-      </span>
-    </motion.h2>
+          <div className="text-center mb-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="text-4xl md:text-5xl font-semibold mb-4"
+            >
+              <span className="bg-gradient-to-r from-[#5AA9E6] via-[#7B61FF] to-[#F178B6] text-transparent bg-clip-text">
+                {t.video.title}
+              </span>
+            </motion.h2>
 
-    <motion.p
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
-      className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto"
-    >
-      {t.video.subtitle}
-    </motion.p>
-  </div>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+              className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto"
+            >
+              {t.video.subtitle}
+            </motion.p>
+          </div>
 
-  <ShowcaseVideo t={t} />
-</SectionWrapper>
-
-
-        <SectionWrapper>
-          <Section id="problem"><Problem t={t} /></Section>
+          <ShowcaseVideo t={t} />
         </SectionWrapper>
 
-        <SectionWrapper>
-          <Section id="solution"><Solution t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="problem"><Problem t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="features"><FeatureGrid items={t.features.list} title={t.features.title} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="solution"><Solution t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="whynow"><WhyNow t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="usecases"><UseCases t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="tech"><Technology t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="team"><Team t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="usecases"><UseCases t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="demo"><Demo t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="integrations"><Integrations t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="partners"><Partners t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="market"><Market t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="awards"><Awards t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="roadmap"><Roadmap items={t.gtm.items} title={t.gtm.title} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="testimonials"><Testimonials t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="team"><Team t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="investors"><Investors t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="demo"><Demo t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="comparison"><Comparison t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="hardware"><Hardware t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="roadmap"><Roadmap t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="ecosystem"><Ecosystem t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="faq"><FAQ t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-          <Section id="security"><Security t={t} /></Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="newsletter"><Newsletter t={t} /></Section>
+          </SectionWrapper>
+        </Suspense>
 
-        <SectionWrapper>
-        <Section id="partners"><Partners t={t} /></Section>
-        </SectionWrapper>
-
-        <SectionWrapper>
-          <Section id="faq"><FAQ t={t} /></Section>
-        </SectionWrapper>
-
-        <SectionWrapper>
-          <Section id="investor"><Investor t={t} /></Section>
-        </SectionWrapper>
-
-        <SectionWrapper>
-          <Section id="awards"><Awards t={t} /></Section>
-        </SectionWrapper>
-
-        <SectionWrapper>
-          <Section id="contact"><CTA lang={lang} />
-</Section>
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSection />}>
+          <SectionWrapper>
+            <Section id="contact"><CTA lang={lang} />
+            </Section>
+          </SectionWrapper>
+        </Suspense>
       </main>
 
       {/* Footer */}
-      <Footer rights={t.footer.rights} />
-    </div>
+      <Suspense fallback={null}>
+        <Footer rights={t.footer.rights} />
+      </Suspense>
+
+      {/* Chatbot */}
+      <Suspense fallback={null}>
+        <Chatbot lang={lang} />
+      </Suspense>
+    </motion.div>
   )
 }
 
@@ -493,7 +842,18 @@ function GradientBg() {
 }
 
 
-
+// Loading fallback component
+function LoadingSection() {
+  return (
+    <div className="relative py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-center items-center min-h-[200px]">
+        <div className="animate-pulse flex space-x-4">
+          <div className="h-12 w-12 bg-white/10 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function Section({ id, children }) {
   return (

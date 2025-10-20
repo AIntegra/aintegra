@@ -1,31 +1,59 @@
 import { motion } from "framer-motion"
+import { AlertCircle } from "lucide-react"
 
 export default function Problem({ t }) {
   return (
-    <section className="text-center md:text-left">
-      {/* Título */}
-      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight bg-gradient-to-r from-indigo-400 via-sky-400 to-fuchsia-400 bg-clip-text text-transparent mb-8">
-        {t.problem.title}
-      </h2>
+    <section>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+          style={{
+            background: "linear-gradient(135deg, #ef4444 0%, #f59e0b 50%, #dc2626 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent"
+          }}
+        >
+          {t.problem.title}
+        </h2>
+        <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+          {t.problem.subtitle}
+        </p>
+      </motion.div>
 
-      {/* Tarjetas */}
-      <ul className="grid md:grid-cols-3 gap-6">
-        {t.problem.bullets.map((b, i) => (
-          <motion.li
+      {/* Problem cards */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {t.problem.bullets.map((bullet, i) => (
+          <motion.div
             key={i}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: i * 0.08 }}
-            className="rounded-2xl border border-white/10 
-                       bg-gradient-to-tr from-indigo-500/10 via-sky-500/10 to-fuchsia-500/10
-                       p-6 text-neutral-200 shadow-[0_0_25px_rgba(139,92,246,0.1)]
-                       backdrop-blur-sm transition hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: i * 0.15 }}
+            className="card group relative overflow-hidden p-6"
           >
-            {b}
-          </motion.li>
+            {/* Icon */}
+            <div className="relative inline-flex mb-4">
+              <div className="absolute inset-0 rounded-xl bg-red-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pulse-glow" />
+              <div className="relative p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+                <AlertCircle className="h-6 w-6 text-red-400" />
+              </div>
+            </div>
+
+            {/* Content */}
+            <p className="text-neutral-300 leading-relaxed group-hover:text-white transition-colors">
+              {bullet}
+            </p>
+
+            {/* Accent line */}
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500/0 via-red-500/50 to-red-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          </motion.div>
         ))}
-      </ul>
+      </div>
     </section>
   )
 }
