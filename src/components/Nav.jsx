@@ -29,7 +29,7 @@ export default function Nav({ t, lang, setLang }) {
           <div className="h-7 w-7 rounded-xl bg-white/5 ring-1 ring-white/10 grid place-items-center">
             <Sparkles className="h-4 w-4 text-fuchsia-400" />
           </div>
-          <span className="text-white">AIntegra</span>
+          <span className="text-white">AIntegra Limited</span>
         </a>
 
         {/* Menú desktop */}

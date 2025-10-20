@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import Nav from "./components/Nav"
+import ShowcaseVideo from "./components/ShowcaseVideo"; // 👈 añadido aquí
 import {
   Cpu, Hand, Keyboard, Languages, Sparkles, Rocket, Shield, Puzzle, Github, Mail, Globe, Linkedin,
   Mic, MousePointerClick, ClipboardList, CheckCircle2, Award, Users, Activity, Cpu as Cpu2, Zap,
@@ -27,7 +28,7 @@ import {
   Investor,
   Awards,
   CTA,
-  Footer
+  Footer,
 } from "./components"
 
 import { AIntegraBackground, SectionWrapper, Title, Button } from "./theme/AIntegraTheme"
@@ -47,6 +48,7 @@ import { AIntegraBackground, SectionWrapper, Title, Button } from "./theme/AInte
 const TEXT = {
   en: {
     nav: {
+      video: "Video",
       problem: "Problem",
       solution: "Solution",
       features: "Features",
@@ -76,6 +78,11 @@ const TEXT = {
       cta2: "Download whitepaper",
       cta3: "Try AIntegrassist"
     },
+    video: {
+  title: "Showcase Video",
+  subtitle: "See AIntegra’s vision of natural, inclusive computing.", // 🇬🇧
+},
+
     problem: {
       title: "The problem",
       bullets: [
@@ -228,6 +235,7 @@ const TEXT = {
   },
   es: {
     nav: {
+      video: "Video",
       problem: "Problema",
       solution: "Solución",
       features: "Funciones",
@@ -257,6 +265,10 @@ const TEXT = {
       cta2: "Descargar whitepaper",
       cta3: "Probar AIntegrassist"
     },
+    video: {
+  title: "Vídeo de presentación",
+  subtitle: "Descubre la visión de AIntegra: una informática natural e inclusiva.", // 🇪🇸
+},
     problem: {
       title: "El problema",
       bullets: [
@@ -350,6 +362,33 @@ export default function App() {
         <SectionWrapper>
           <Hero t={t} />
         </SectionWrapper>
+
+        <SectionWrapper>
+  <div className="text-center mb-10">
+    <motion.h2
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="text-4xl md:text-5xl font-semibold mb-4"
+    >
+      <span className="bg-gradient-to-r from-[#5AA9E6] via-[#7B61FF] to-[#F178B6] text-transparent bg-clip-text">
+        {t.video.title}
+      </span>
+    </motion.h2>
+
+    <motion.p
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+      className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto"
+    >
+      {t.video.subtitle}
+    </motion.p>
+  </div>
+
+  <ShowcaseVideo t={t} />
+</SectionWrapper>
+
 
         <SectionWrapper>
           <Section id="problem"><Problem t={t} /></Section>

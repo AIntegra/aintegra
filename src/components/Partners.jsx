@@ -12,16 +12,6 @@ export default function Partners({ t }) {
       logo: "/logos/uvempren.jpeg",
       url: "https://uvempren.uv.es/",
     },
-    {
-      name: "ONCE",
-      logo: "/logos/once.png",
-      url: "https://www.once.es/",
-    },
-    {
-      name: "Grupo Inserta Empleo",
-      logo: "/logos/inserta.png",
-      url: "https://insertaempleo.es/",
-    },
   ]
 
   return (
@@ -37,7 +27,7 @@ export default function Partners({ t }) {
       <p className="text-neutral-400 mb-10">{t.partners.subtitle}</p>
 
       {/* Rejilla / Carrusel */}
-      <div className="flex flex-wrap md:grid md:grid-cols-4 gap-6 justify-center overflow-x-auto md:overflow-visible no-scrollbar pb-2">
+      <div className="flex flex-wrap md:grid md:grid-cols-2 gap-6 justify-center overflow-x-auto md:overflow-visible no-scrollbar pb-2">
         {partners.map((partner, i) => (
           <motion.a
             key={i}

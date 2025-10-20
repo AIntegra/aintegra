@@ -33,7 +33,7 @@ export default function Team({ t }) {
         Meet the people behind AIntegra — combining engineering, AI, and accessibility.
       </p>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-10 justify-items-center">
         {t.team.people.map((p, i) => (
           <motion.div
             key={i}
@@ -41,9 +41,9 @@ export default function Team({ t }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.05 * i }}
-            className="relative w-80 rounded-3xl bg-gradient-to-tr from-[#1e1b4b]/60 via-[#0f172a]/70 to-[#312e81]/60 p-[1px] hover:from-indigo-500/50 hover:to-fuchsia-500/40 transition-all duration-500"
+            className="relative w-80 rounded-2xl bg-gradient-to-tr from-[#1e1b4b]/60 via-[#0f172a]/70 to-[#312e81]/60 p-[1px] hover:from-indigo-500/50 hover:to-fuchsia-500/40 transition-all duration-500"
           >
-            <div className="relative rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 p-6 flex flex-col items-center text-center transition-all duration-500 hover:bg-white/10 hover:scale-[1.02]">
+            <div className="relative rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 p-6 flex flex-col items-center text-center transition-all duration-500 hover:bg-white/10 hover:scale-[1.02]">
               
               {/* Foto */}
               <div className="relative h-28 w-28 mb-4">

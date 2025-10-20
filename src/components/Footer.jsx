@@ -1,10 +1,8 @@
-import { Sparkles, Linkedin, Github, Globe } from "lucide-react"
+import { Sparkles, Linkedin, Github, Globe, Instagram } from "lucide-react"
 
 export default function Footer({ rights }) {
   const links = [
-    { href: "https://www.linkedin.com/company/aintegra/", icon: Linkedin, label: "LinkedIn" },
-    { href: "https://github.com/AIntegra-Limited", icon: Github, label: "GitHub" },
-    { href: "https://aintegra.ai", icon: Globe, label: "Website" },
+    { href: "https://www.instagram.com/aintegralimited?igsh=MTdsYWh3bzY3eXY3bA==", icon: Instagram, label: "Instagram" }
   ]
 
   return (
@@ -17,7 +15,7 @@ export default function Footer({ rights }) {
             <Sparkles className="h-4 w-4 text-fuchsia-400" />
           </div>
           <span>
-            <strong className="text-white/90">AIntegra</strong> © {new Date().getFullYear()} — {rights}  
+            <strong className="text-white/90">AIntegra Limited</strong> © {new Date().getFullYear()} — {rights}  
             <span className="hidden sm:inline"> • React • FastAPI • Supabase • Tauri • Tailwind • Framer Motion</span>
           </span>
         </div>
