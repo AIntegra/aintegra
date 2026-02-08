@@ -74,7 +74,7 @@ Instrucciones adicionales:
 const getGroqClient = () => {
     const apiKey = import.meta.env.VITE_GROQ_API_KEY
     if (!apiKey) {
-        console.warn("No Groq API key found in environment variables")
+        console.warn("No Groq API key found - using demo mode")
         return null
     }
 
@@ -90,6 +90,60 @@ const getGroqClient = () => {
     }
 }
 
+// Demo mode responses when no API key is available
+const DEMO_RESPONSES = {
+    es: {
+        default: "¡Gracias por tu interés en AIntegra! 🚀 Para más información, te invito a explorar nuestra web o contactarnos a través del formulario.",
+        greeting: "¡Hola! 👋 Soy el asistente de AIntegra en modo demo. Puedo contarte sobre nuestros productos, misión y equipo. ¿Qué te gustaría saber?",
+        patterns: [
+            { keywords: ["qué es", "que es", "aintegra", "empresa", "startup"], response: "AIntegra es una startup tecnológica nacida en la Universitat de València. Desarrollamos tecnología de asistencia que permite controlar el ordenador mediante voz y gestos, haciendo la tecnología más accesible e inclusiva. 🎯" },
+            { keywords: ["producto", "productos", "cat", "kira", "ofrecen"], response: "Tenemos dos productos principales:\n\n🔹 **C.A.T.** (Cognitive Assistive Trackpad): Un trackpad inteligente con control por gestos.\n\n🔹 **Kira**: Nuestro asistente de IA que permite controlar el ordenador por voz.\n\nAmbos están diseñados para la accesibilidad." },
+            { keywords: ["misión", "mision", "objetivo"], response: "Nuestra misión es eliminar barreras digitales y democratizar el acceso a la tecnología. Queremos que cualquier persona pueda usar un ordenador de forma natural e intuitiva. 🌍" },
+            { keywords: ["visión", "vision", "futuro"], response: "Nuestra visión es convertirnos en referencia internacional en interfaces inteligentes inclusivas, cambiando la forma en que las personas interactúan con la tecnología. ✨" },
+            { keywords: ["equipo", "team", "fundadores", "quiénes", "quienes"], response: "AIntegra fue fundada por Sergio Sabater (CEO) y Nerea Panadero (CTO). Ambos son graduados de la Universitat de València y están especializados en IA y accesibilidad. 👥" },
+            { keywords: ["precio", "coste", "costo", "cuánto", "cuanto", "pagar"], response: "Actualmente estamos en fase Pre-Seed desarrollando nuestro MVP. Para información sobre precios y disponibilidad, te invito a contactarnos a través del formulario de contacto. 📧" },
+            { keywords: ["invertir", "inversión", "inversion", "inversor", "investors"], response: "Estamos buscando inversores estratégicos para nuestra ronda Pre-Seed de €150K. Si te interesa invertir en accesibilidad e IA, contáctanos a través del formulario. 💼" },
+            { keywords: ["accesibilidad", "discapacidad", "inclusivo", "inclusión"], response: "La accesibilidad está en el corazón de AIntegra. Nuestro enfoque principal son personas con discapacidad visual, aunque nuestra tecnología beneficia a cualquier usuario que busque una interacción más natural con el ordenador. ♿" },
+            { keywords: ["contacto", "contactar", "email", "correo"], response: "¡Nos encantaría saber de ti! Puedes contactarnos a través del formulario en la sección de contacto de esta web. También puedes seguirnos en LinkedIn para más novedades. 📬" },
+            { keywords: ["hola", "hello", "hey", "buenas"], response: "¡Hola! 👋 Encantado de saludarte. Soy el asistente virtual de AIntegra. ¿En qué puedo ayudarte?" },
+            { keywords: ["gracias", "thanks", "thank you"], response: "¡De nada! 😊 Si tienes más preguntas sobre AIntegra, estaré encantado de ayudarte." },
+            { keywords: ["premios", "reconocimientos", "awards", "logros"], response: "Hemos recibido varios reconocimientos:\n\n🏆 3er puesto en MOTIVEM Fest 2024\n🚀 Seleccionados por IAtecUV y Startup Valencia\n🎓 Mejor Proyecto ETSE-UV\n📢 Presentación en Valencia Digital Summit" }
+        ]
+    },
+    en: {
+        default: "Thanks for your interest in AIntegra! 🚀 For more information, feel free to explore our website or contact us through the form.",
+        greeting: "Hello! 👋 I'm AIntegra's assistant in demo mode. I can tell you about our products, mission, and team. What would you like to know?",
+        patterns: [
+            { keywords: ["what is", "aintegra", "company", "startup"], response: "AIntegra is a tech startup born at the Universitat de València. We develop assistive technology that allows you to control your computer using voice and gestures, making technology more accessible and inclusive. 🎯" },
+            { keywords: ["product", "products", "cat", "kira", "offer"], response: "We have two main products:\n\n🔹 **C.A.T.** (Cognitive Assistive Trackpad): An intelligent trackpad with gesture control.\n\n🔹 **Kira**: Our AI assistant that lets you control your computer by voice.\n\nBoth are designed for accessibility." },
+            { keywords: ["mission", "objective", "goal"], response: "Our mission is to eliminate digital barriers and democratize access to technology. We want anyone to be able to use a computer naturally and intuitively. 🌍" },
+            { keywords: ["vision", "future"], response: "Our vision is to become an international reference in inclusive intelligent interfaces, changing the way people interact with technology. ✨" },
+            { keywords: ["team", "founders", "who"], response: "AIntegra was founded by Sergio Sabater (CEO) and Nerea Panadero (CTO). Both are graduates from Universitat de València and specialize in AI and accessibility. 👥" },
+            { keywords: ["price", "cost", "how much", "pay"], response: "We're currently in Pre-Seed phase developing our MVP. For pricing and availability information, please contact us through the contact form. 📧" },
+            { keywords: ["invest", "investment", "investor"], response: "We're looking for strategic investors for our €150K Pre-Seed round. If you're interested in investing in accessibility and AI, contact us through the form. 💼" },
+            { keywords: ["accessibility", "disability", "inclusive", "inclusion"], response: "Accessibility is at the heart of AIntegra. Our main focus is people with visual impairment, though our technology benefits anyone seeking more natural computer interaction. ♿" },
+            { keywords: ["contact", "email"], response: "We'd love to hear from you! You can contact us through the form in the contact section of this website. Also follow us on LinkedIn for updates. 📬" },
+            { keywords: ["hello", "hi", "hey"], response: "Hello! 👋 Nice to meet you. I'm AIntegra's virtual assistant. How can I help you?" },
+            { keywords: ["thanks", "thank you"], response: "You're welcome! 😊 If you have more questions about AIntegra, I'll be happy to help." },
+            { keywords: ["awards", "recognition", "achievements"], response: "We've received several recognitions:\n\n🏆 3rd place at MOTIVEM Fest 2024\n🚀 Selected by IAtecUV and Startup Valencia\n🎓 Best Project ETSE-UV\n📢 Presentation at Valencia Digital Summit" }
+        ]
+    }
+}
+
+// Get demo response based on user input
+const getDemoResponse = (userInput, lang) => {
+    const input = userInput.toLowerCase()
+    const langResponses = DEMO_RESPONSES[lang] || DEMO_RESPONSES.es
+
+    for (const pattern of langResponses.patterns) {
+        if (pattern.keywords.some(keyword => input.includes(keyword))) {
+            return pattern.response
+        }
+    }
+
+    return langResponses.default
+}
+
 export default function Chatbot({ lang = "es" }) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
@@ -98,6 +152,7 @@ export default function Chatbot({ lang = "es" }) {
     const [isTyping, setIsTyping] = useState(false)
     const [error, setError] = useState(null)
     const [client, setClient] = useState(null)
+    const [isDemoMode, setIsDemoMode] = useState(false)
     const messagesEndRef = useRef(null)
     const inputRef = useRef(null)
 
@@ -134,12 +189,16 @@ export default function Chatbot({ lang = "es" }) {
             const groqClient = getGroqClient()
             if (groqClient) {
                 setClient(groqClient)
+                setIsDemoMode(false)
                 setConversationHistory([
                     { role: "system", content: SYSTEM_PROMPT }
                 ])
                 setMessages([{ role: "bot", text: greetings[lang] || greetings.es }])
             } else {
-                setMessages([{ role: "bot", text: noApiKeyMessages[lang] || noApiKeyMessages.es }])
+                // Demo mode - no API key
+                setIsDemoMode(true)
+                const demoGreeting = DEMO_RESPONSES[lang]?.greeting || DEMO_RESPONSES.es.greeting
+                setMessages([{ role: "bot", text: demoGreeting }])
             }
         }
         if (isOpen) {
@@ -148,7 +207,10 @@ export default function Chatbot({ lang = "es" }) {
     }, [isOpen])
 
     const handleSend = async () => {
-        if (!input.trim() || !client) return
+        if (!input.trim()) return
+
+        // Demo mode doesn't require a client
+        if (!client && !isDemoMode) return
 
         const userMessage = input.trim()
         setInput("")
@@ -156,6 +218,17 @@ export default function Chatbot({ lang = "es" }) {
         setMessages(prev => [...prev, { role: "user", text: userMessage }])
         setIsTyping(true)
 
+        // Demo mode - use predefined responses
+        if (isDemoMode) {
+            setTimeout(() => {
+                const demoResponse = getDemoResponse(userMessage, lang)
+                setMessages(prev => [...prev, { role: "bot", text: demoResponse }])
+                setIsTyping(false)
+            }, 500 + Math.random() * 1000) // Simulate typing delay
+            return
+        }
+
+        // API mode
         const newHistory = [...conversationHistory, { role: "user", content: userMessage }]
         setConversationHistory(newHistory)
 
