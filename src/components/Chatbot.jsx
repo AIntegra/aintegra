@@ -420,20 +420,20 @@ export default function Chatbot({ lang = "es" }) {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyPress={handleKeyPress}
                                     placeholder={placeholders[lang] || placeholders.es}
-                                    disabled={!client}
+                                    disabled={!client && !isDemoMode}
                                     className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                                 <motion.button
                                     onClick={handleSend}
-                                    disabled={!input.trim() || !client}
+                                    disabled={!input.trim() || (!client && !isDemoMode)}
                                     className="p-3 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{
-                                        background: input.trim() && client
+                                        background: input.trim() && (client || isDemoMode)
                                             ? "linear-gradient(135deg, #6366f1, #8b5cf6)"
                                             : "rgba(255,255,255,0.1)"
                                     }}
-                                    whileHover={input.trim() && client ? { scale: 1.05 } : {}}
-                                    whileTap={input.trim() && client ? { scale: 0.95 } : {}}
+                                    whileHover={input.trim() && (client || isDemoMode) ? { scale: 1.05 } : {}}
+                                    whileTap={input.trim() && (client || isDemoMode) ? { scale: 0.95 } : {}}
                                 >
                                     <Send className="w-5 h-5 text-white" />
                                 </motion.button>
