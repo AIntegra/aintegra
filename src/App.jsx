@@ -378,7 +378,7 @@ function useLang() {
 
 function Loader() {
   return (
-    <div style={{ minHeight: "100svh", display: "flex", alignItems: "center", justifyContent: "center", background: "#000" }}>
+    <div style={{ minHeight: "100svh", display: "flex", alignItems: "center", justifyContent: "center", background: "#03030a" }}>
       <div style={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.1)", borderTopColor: "#7c3aed", animation: "spin 1s linear infinite" }} />
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
@@ -401,86 +401,113 @@ export default function App() {
   }, [consent.analytics])
 
   return (
-    <div style={{ background: "#000", color: "white", minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
-      {/* Sticky ultra-thin nav */}
-      <Nav t={t} lang={lang} setLang={setLang} />
+    <div style={{ background: "#03030a", color: "white", minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
+      {/* ── AMBIENT BACKGROUND GLOW ── */}
+      <div style={{
+        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+        pointerEvents: 'none', zIndex: 0, overflow: 'hidden'
+      }}>
+        {/* Top left purple */}
+        <div style={{
+          position: 'absolute', top: '-10%', left: '-10%', width: '50vw', height: '50vh',
+          background: 'radial-gradient(ellipse, rgba(124,58,237,0.08) 0%, transparent 70%)',
+          filter: 'blur(80px)'
+        }} />
+        {/* Top right cyan */}
+        <div style={{
+          position: 'absolute', top: '10%', right: '-20%', width: '60vw', height: '60vh',
+          background: 'radial-gradient(ellipse, rgba(6,182,212,0.06) 0%, transparent 60%)',
+          filter: 'blur(100px)'
+        }} />
+        {/* Bottom center blue */}
+        <div style={{
+          position: 'absolute', bottom: '-20%', left: '20%', width: '60vw', height: '60vh',
+          background: 'radial-gradient(ellipse, rgba(37,99,235,0.07) 0%, transparent 60%)',
+          filter: 'blur(100px)'
+        }} />
+      </div>
 
-      <main>
-        {/* 1. Hero (hook) */}
-        <Suspense fallback={<Loader />}>
-          <Hero t={t} />
-        </Suspense>
+      <div style={{ position: "relative", zIndex: 1 }}>
+        {/* Sticky ultra-thin nav */}
+        <Nav t={t} lang={lang} setLang={setLang} />
 
-        {/* 2. Partners (early social proof) */}
+        <main>
+          {/* 1. Hero (hook) */}
+          <Suspense fallback={<Loader />}>
+            <Hero t={t} />
+          </Suspense>
+
+          {/* 2. Partners (early social proof) */}
+          <Suspense fallback={null}>
+            <Partners t={t} />
+          </Suspense>
+
+          {/* 3. Problem (agitate pain point) */}
+          <Suspense fallback={null}>
+            <Problem t={t} />
+          </Suspense>
+
+          {/* 4. FeatureGrid (introduce value proposition) */}
+          <FeatureGrid
+            variant="emoji"
+            badge={t.features.badge}
+            title={t.features.title}
+            subtitle={t.features.subtitle}
+            items={t.features.items}
+          />
+
+          {/* 5. Solution — Kira & C.A.T. (deep dive into the product) */}
+          <Suspense fallback={null}>
+            <Solution t={t} />
+          </Suspense>
+
+          {/* 6. Benefits (ROI / stats) */}
+          <Suspense fallback={null}>
+            <Benefits t={t} />
+          </Suspense>
+
+          {/* 7. Testimonials (deep social proof) */}
+          <Suspense fallback={null}>
+            <Testimonials t={t} />
+          </Suspense>
+
+          {/* 8. Pricing (how much is it?) */}
+          <Suspense fallback={null}>
+            <Pricing lang={lang} />
+          </Suspense>
+
+          {/* 9. FAQ (overcome final objections) */}
+          <Suspense fallback={null}>
+            <FAQ t={t} />
+          </Suspense>
+
+          {/* 10. CTA (close the sale / book demo) */}
+          <Suspense fallback={null}>
+            <CTA lang={lang} />
+          </Suspense>
+        </main>
+
         <Suspense fallback={null}>
-          <Partners t={t} />
+          <Footer rights={t.footer.rights} onReopenCookies={reopenBanner} lang={lang} />
         </Suspense>
 
-        {/* 3. Problem (agitate pain point) */}
+        {/* Chatbot */}
         <Suspense fallback={null}>
-          <Problem t={t} />
+          <Chatbot lang={lang} />
         </Suspense>
 
-        {/* 4. FeatureGrid (introduce value proposition) */}
-        <FeatureGrid
-          variant="emoji"
-          badge={t.features.badge}
-          title={t.features.title}
-          subtitle={t.features.subtitle}
-          items={t.features.items}
+        {/* Cookie consent system */}
+        <CookieBanner
+          show={showBanner}
+          consent={consent}
+          onAcceptAll={acceptAll}
+          onRejectAll={rejectAll}
+          onSaveCustom={saveCustom}
+          showSettings={showSettings}
+          onOpenSettings={openSettings}
+          onCloseSettings={closeSettings}
         />
-
-        {/* 5. Solution — Kira & C.A.T. (deep dive into the product) */}
-        <Suspense fallback={null}>
-          <Solution t={t} />
-        </Suspense>
-
-        {/* 6. Benefits (ROI / stats) */}
-        <Suspense fallback={null}>
-          <Benefits t={t} />
-        </Suspense>
-
-        {/* 7. Testimonials (deep social proof) */}
-        <Suspense fallback={null}>
-          <Testimonials t={t} />
-        </Suspense>
-
-        {/* 8. Pricing (how much is it?) */}
-        <Suspense fallback={null}>
-          <Pricing lang={lang} />
-        </Suspense>
-
-        {/* 9. FAQ (overcome final objections) */}
-        <Suspense fallback={null}>
-          <FAQ t={t} />
-        </Suspense>
-
-        {/* 10. CTA (close the sale / book demo) */}
-        <Suspense fallback={null}>
-          <CTA lang={lang} />
-        </Suspense>
-      </main>
-
-      <Suspense fallback={null}>
-        <Footer rights={t.footer.rights} onReopenCookies={reopenBanner} lang={lang} />
-      </Suspense>
-
-      {/* Chatbot */}
-      <Suspense fallback={null}>
-        <Chatbot lang={lang} />
-      </Suspense>
-
-      {/* Cookie consent system */}
-      <CookieBanner
-        show={showBanner}
-        consent={consent}
-        onAcceptAll={acceptAll}
-        onRejectAll={rejectAll}
-        onSaveCustom={saveCustom}
-        showSettings={showSettings}
-        onOpenSettings={openSettings}
-        onCloseSettings={closeSettings}
-      />
+      </div>
     </div>
   )
 }
