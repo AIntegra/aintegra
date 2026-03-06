@@ -51,18 +51,28 @@ body {
   color: inherit;
 }
 
-/* Minimal scrollbar */
+/* Minimal Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124, 58, 237, 0.4) transparent;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--apple-black);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.4), rgba(6, 182, 212, 0.4));
   border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.6), rgba(6, 182, 212, 0.6));
 }
 
 /* ────────────────────────────────────────
