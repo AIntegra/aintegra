@@ -20,8 +20,9 @@ export default function CookieBanner({
                         exit={{ y: 100, opacity: 0 }}
                         transition={{ duration: 0.4, ease: "easeOut" }}
                         style={{
-                            position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)",
-                            zIndex: 999, width: "calc(100% - 32px)", maxWidth: 860,
+                            position: "fixed", bottom: 20,
+                            left: 16, right: 16, margin: "0 auto",
+                            zIndex: 999, width: "auto", maxWidth: 860,
                             background: "rgba(10,10,18,0.96)",
                             backdropFilter: "blur(24px) saturate(180%)",
                             borderRadius: 20,
