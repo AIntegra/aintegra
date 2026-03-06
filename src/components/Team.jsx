@@ -1,9 +1,19 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronRight } from "lucide-react"
 
 export default function Team({ t }) {
   const containerRef = useRef(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const handleScroll = (e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const itemWidth = e.target.offsetWidth;
+    const newIndex = Math.round(scrollLeft / itemWidth);
+    if (newIndex !== activeIndex) {
+      setActiveIndex(newIndex);
+    }
+  }
 
   // Use framer-motion to create a parallax scroll effect
   const { scrollYProgress } = useScroll({
@@ -81,20 +91,22 @@ export default function Team({ t }) {
           style={{ flex: 1.2, width: "100%", overflow: "hidden", position: "relative" }}
         >
           {/* Scroll instruction for desktop */}
-          <div style={{ position: "absolute", top: -30, right: 0, fontSize: 13, color: "rgba(255,255,255,0.4)", display: "flex", alignItems: "center", gap: 4 }}>
-            <span>{t.team.swipeHint || "Swipe to view"}</span>
+          <div style={{ position: "absolute", top: -32, right: 0, fontSize: 13, color: "rgba(255,255,255,0.6)", display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.05)", padding: "4px 12px", borderRadius: 100, border: "1px solid rgba(255,255,255,0.1)" }}>
+            <span>{images.length > 0 ? `${activeIndex + 1} / ${images.length}` : ""} {t.team.swipeHint || "Desliza para ver más"}</span>
             <ChevronRight size={14} />
           </div>
 
           <div
             className="carousel-container"
+            onScroll={handleScroll}
             style={{
               display: "flex",
               gap: 24,
               overflowX: "auto",
               paddingBottom: 24,
               scrollSnapType: "x mandatory",
-              scrollbarWidth: "none" // Hide scrollbar Firefox
+              scrollbarWidth: "none", // Hide scrollbar Firefox
+              scrollBehavior: "smooth"
             }}
           >
             {/* Inject horizontal scrollbar hiding for webkit as an inline style block */}
@@ -136,6 +148,23 @@ export default function Team({ t }) {
                   pointerEvents: "none"
                 }} />
               </div>
+            ))}
+          </div>
+
+          {/* Carousel Indicators (Dots) */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: -4, marginBottom: 16 }}>
+            {images.map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  width: i === activeIndex ? 24 : 8,
+                  height: 8,
+                  borderRadius: 4,
+                  background: i === activeIndex ? "rgba(124,58,237, 0.9)" : "rgba(255,255,255,0.2)",
+                  transition: "all 0.3s ease",
+                  boxShadow: i === activeIndex ? "0 0 8px rgba(124,58,237, 0.5)" : "none"
+                }}
+              />
             ))}
           </div>
         </motion.div>
