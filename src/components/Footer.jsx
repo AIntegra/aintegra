@@ -66,10 +66,23 @@ export default function Footer({ rights, onReopenCookies, lang = "es" }) {
 
   return (
     <footer style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#050508" }}>
-
+      <style>{`
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr;
+          gap: 64px;
+          align-items: start;
+        }
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+        }
+      `}</style>
       {/* Main grid */}
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 32px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 64, alignItems: "start" }}>
+        <div className="footer-grid">
 
           {/* Brand column */}
           <div>

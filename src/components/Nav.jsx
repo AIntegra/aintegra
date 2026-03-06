@@ -43,6 +43,18 @@ export default function Nav({ t, lang, setLang }) {
 
   return (
     <>
+      <style>{`
+        @media (max-width: 992px) {
+          .nav-desktop-links { display: none !important; }
+          .nav-desktop-cta { display: none !important; }
+          .nav-mobile-burger { display: flex !important; }
+          .nav-lang-btn { padding: 4px 6px !important; font-size: 11px !important; }
+        }
+        @media (min-width: 993px) {
+          .nav-mobile-burger { display: none !important; }
+        }
+      `}</style>
+
       {/* ── NAVBAR ── */}
       <motion.header
         initial={{ y: -80, opacity: 0 }}
@@ -60,12 +72,14 @@ export default function Nav({ t, lang, setLang }) {
           style={{
             maxWidth: 1200,
             margin: "0 auto",
-            height: 54,
+            minHeight: 54,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 12,
             borderRadius: scrolled ? 16 : 0,
-            padding: "0 20px",
+            padding: "8px 20px",
             transition: "all 0.35s ease",
             background: scrolled
               ? "rgba(8, 8, 12, 0.88)"
@@ -91,12 +105,11 @@ export default function Nav({ t, lang, setLang }) {
             </span>
           </a>
 
-          {/* Desktop links — centered */}
           <nav style={{
             display: "flex", alignItems: "center", gap: 4,
             position: "absolute", left: "50%", transform: "translateX(-50%)"
           }}
-            className="hidden lg:flex"
+            className="nav-desktop-links"
           >
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href
@@ -139,7 +152,7 @@ export default function Nav({ t, lang, setLang }) {
           </nav>
 
           {/* Right side */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "clamp(6px, 1.5vw, 12px)", flexShrink: 0 }}>
             {/* Lang toggle */}
             <button
               onClick={() => setLang(lang === "en" ? "es" : "en")}
@@ -158,7 +171,7 @@ export default function Nav({ t, lang, setLang }) {
             {/* CTA — desktop */}
             <motion.a
               href="#contact"
-              className="hidden sm:flex"
+              className="nav-desktop-cta"
               whileTap={{ scale: 0.97 }}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 5,
@@ -183,7 +196,7 @@ export default function Nav({ t, lang, setLang }) {
             {/* Mobile burger */}
             <button
               onClick={() => setMobile(!mobileOpen)}
-              className="flex lg:hidden"
+              className="nav-mobile-burger"
               style={{
                 background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 8, padding: "6px 8px", cursor: "pointer", color: "white"

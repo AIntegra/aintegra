@@ -36,12 +36,12 @@ export default function CookieBanner({
                             background: "linear-gradient(90deg,transparent,rgba(124,58,237,0.5),transparent)"
                         }} />
 
-                        <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap" }}>
-                            {/* Icon */}
-                            <div style={{
+                        <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", flexDirection: "row" }}>
+                            {/* Icon - hidden on very small screens to save space if needed, otherwise shrinks */}
+                            <div className="hidden sm:flex" style={{
                                 width: 42, height: 42, borderRadius: 12, flexShrink: 0,
                                 background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.25)",
-                                display: "flex", alignItems: "center", justifyContent: "center"
+                                alignItems: "center", justifyContent: "center"
                             }}>
                                 <Cookie size={18} color="#a78bfa" />
                             </div>
@@ -60,7 +60,7 @@ export default function CookieBanner({
                             </div>
 
                             {/* Actions */}
-                            <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", flexShrink: 0 }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", width: "100%", justifyContent: "flex-end" }}>
                                 <button
                                     onClick={onOpenSettings}
                                     style={{

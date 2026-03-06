@@ -401,7 +401,7 @@ export default function App() {
   }, [consent.analytics])
 
   return (
-    <div style={{ background: "#000", color: "white", minHeight: "100vh" }}>
+    <div style={{ background: "#000", color: "white", minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
       {/* Sticky ultra-thin nav */}
       <Nav t={t} lang={lang} setLang={setLang} />
 
