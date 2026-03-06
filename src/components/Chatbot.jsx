@@ -1,204 +1,204 @@
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Send, Mic, Sparkles, ChevronRight, AlertCircle } from "lucide-react"
-import OpenAI from "openai"
+import { X, Mic, Sparkles, ChevronRight } from "lucide-react"
 
 /* ─────────────────────────────────────────────
-   SYSTEM PROMPT — conversion-focused B2B/B2G
+   STATIC DIALOGUE FLOW (B2C Focus + B2B options)
 ───────────────────────────────────────────── */
-const SYSTEM_PROMPT = `Eres Kira, el asistente oficial de AIntegra Limited. Eres la IA de la plataforma AIntegra.
-
-AIntegra es una startup tecnológica en Pre-Seed. La plataforma tiene dos módulos:
-- Kira: Asistente de voz nativo de IA, procesa localmente, sin datos en la nube.
-- C.A.T. (Cognitive Assistive Trackpad): Hardware de control gestual de alta precisión.
-
-TARGET: Empresas (B2B), instituciones públicas (B2G) y profesionales avanzados.
-
-Beneficios clave: 3× más velocidad en tareas, <5ms latencia, 60% menos fricción de UX, escalable de 1 a 10.000 puestos.
-
-Modelo de negocio: SaaS + licencias enterprise. Pre-Seed fase.
-
-Tono: Experto, conciso, orientado a conversión. Siempre ofrece concretar una demo al finalizar.
-
-Reglas:
-- Responde en el idioma del usuario (ES/EN)
-- Máximo 2-3 frases por respuesta
-- Si preguntan precio, redirige al formulario de demo
-- Siempre termina con una micro-CTA si hay oportunidad`
-
-/* ─────────────────────────────────────────────
-   CLIENT GROQ
-───────────────────────────────────────────── */
-const getGroqClient = () => {
-    const apiKey = import.meta.env.VITE_GROQ_API_KEY
-    if (!apiKey) return null
-    try {
-        return new OpenAI({ apiKey, baseURL: "https://api.groq.com/openai/v1", dangerouslyAllowBrowser: true })
-    } catch { return null }
-}
-
-/* ─────────────────────────────────────────────
-   DEMO RESPONSES
-───────────────────────────────────────────── */
-const DEMO = {
+const CHAT_FLOW = {
     es: {
-        greeting: "Hola, soy **Kira** — asistente de IA de AIntegra. Estás hablando con el producto real. ¿Tienes preguntas sobre cómo podemos ayudar a tu organización?",
-        patterns: [
-            { kw: ["qué es", "que es", "aintegra"], r: "AIntegra es la plataforma que integra IA y hardware adaptativo. Kira (yo) gestiono tu entorno por voz. C.A.T. reemplaza el ratón con gestos de precisión. Juntos eliminan la fricción digital en tu equipo." },
-            { kw: ["kira"], r: "Soy Kira — controlo tu sistema operativo por voz, automatizo flujos repetitivos y proceso todo en el dispositivo. Sin nube. Sin exposición de datos. ¿Quieres ver una demo en tu organización?" },
-            { kw: ["cat", "c.a.t", "trackpad", "hardware"], r: "C.A.T. es nuestro trackpad cognitivo de hardware. Latencia <5ms, gestos personalizables y se integra conmigo para control 100% manos libres. Ideal para equipos de diseño y operaciones." },
-            { kw: ["precio", "coste", "costo", "cuánto", "cuanto"], r: "Los precios se adaptan al tamaño y caso de uso de tu organización. ¿Agendamos 30 minutos para mostrarte el ROI concreto para tu equipo?" },
-            { kw: ["empresa", "empresa", "b2b", "equipo", "team"], r: "Para empresas ofrecemos despliegue corporativo, integración con vuestro stack y reducción del 60% en fricción de UX. ¿Cuántos puestos estás valorando?" },
-            { kw: ["institución", "institucion", "público", "b2g", "admin"], r: "Para instituciones públicas ofrecemos cumplimiento WCAG, opción on-premise/air-gapped y proceso de licitación estructurado. ¿Te interesa una propuesta técnica?" },
-            { kw: ["demo", "ver", "probar", "demostración"], r: "Perfecto. Rellena el formulario y recibe una demo de 30 minutos personalizada a tu caso de uso. Tiempo de respuesta < 24h." },
-            { kw: ["hola", "hello", "buenas", "hi", "hey"], r: "Hola. Soy Kira, la IA de AIntegra. ¿En qué puedo ayudar a tu organización hoy?" },
-            { kw: ["gracias", "thanks"], r: "Con gusto. Si quieres ver Kira y C.A.T. en acción, agenda tu demo en el formulario." },
-        ],
-        default: "Puedo contarte más sobre Kira, C.A.T., casos de uso enterprise o cómo empezar. ¿Qué te interesa?",
+        start: {
+            msg: "Hola, soy **Kira** — tu asistente de IA personal en AIntegra. ¿En qué te puedo ayudar hoy?",
+            options: [
+                { label: "¿Qué es AIntegra?", next: "what_is" },
+                { label: "Usar AIntegra (B2C)", next: "b2c" },
+                { label: "¿Cómo funciona el trackpad C.A.T.?", next: "cat" },
+                { label: "Soy una Empresa (B2B)", next: "enterprise" }
+            ]
+        },
+        what_is: {
+            msg: "Somos la plataforma que une IA con hardware avanzado para tu día a día. Yo gestiono tu PC por voz, y nuestro trackpad C.A.T. hace que tus dedos vuelen. Juntos, adiós a los clics lentos.",
+            options: [
+                { label: "Lo quiero. ¿Cómo empiezo?", next: "b2c" },
+                { label: "Cuéntame más del trackpad", next: "cat" },
+                { label: "Volver atrás", next: "start" }
+            ]
+        },
+        b2c: {
+            msg: "Actualmente estamos preparando el lanzamiento para usuarios individuales. Puedes registrarte y ser de los primeros en experimentar tu ordenador controlado por Kira y gestos fluidos.",
+            options: [
+                { label: "Apuntarme al lanzamiento (Demo)", next: "demo" },
+                { label: "¿Cuánto costará?", next: "pricing_b2c" },
+                { label: "Volver al inicio", next: "start" }
+            ]
+        },
+        enterprise: {
+            msg: "Por supuesto, también tenemos soluciones B2B corporativas: integración nativa en ERP/CRM, despliegues On-Premise y automatización de procesos internos con métricas de ahorro.",
+            options: [
+                { label: "Agendar Demo para Empresa", next: "demo_b2b" },
+                { label: "Sector Público / Licitaciones", next: "b2g" },
+                { label: "Volver al inicio", next: "start" }
+            ]
+        },
+        b2g: {
+            msg: "Para instituciones públicas garantizamos cumplimiento estricto WCAG, opción de despliegue On-Premise (aislado de red) y ayuda durante las licitaciones.",
+            options: [
+                { label: "Contactar Ventas", next: "demo_b2b" },
+                { label: "Volver atrás", next: "enterprise" }
+            ]
+        },
+        cat: {
+            msg: "C.A.T. (Cognitive Assistive Trackpad) es nuestro dispositivo estrella. Olvídate del ratón: siente el control gestual con latencia <5ms y comunícate conmigo sin tocar el teclado.",
+            options: [
+                { label: "Apuntarme para conseguirlo", next: "demo" },
+                { label: "Volver al inicio", next: "start" }
+            ]
+        },
+        pricing_b2c: {
+            msg: "Lanzaremos planes muy accesibles orientados a productividad personal. Las suscripciones estarán al nivel de una herramienta diaria esencial. Te avisaremos en exclusiva.",
+            options: [
+                { label: "Dejar mis datos", next: "demo" },
+                { label: "Volver atrás", next: "b2c" }
+            ]
+        },
+        demo: {
+            msg: "¡Genial! Únete usando el formulario de contacto principal. Te avisaremos en cuanto abramos acceso a los primeros usuarios e invitaremos a nuestra Demo interactiva.",
+            options: [
+                { label: "Terminar conversación", next: "end" },
+                { label: "Volver al menú inicial", next: "start" }
+            ]
+        },
+        demo_b2b: {
+            msg: "Perfecto. Rellena el formulario de la web indicando tu industria y roles del equipo. Nuestros técnicos te contactarán para agendar la llamada comercial.",
+            options: [
+                { label: "Terminar", next: "end" },
+                { label: "Ir al inicio", next: "start" }
+            ]
+        },
+        end: {
+            msg: "Ha sido un placer asistirte. Quedo apagada pero atenta por si necesitas repasar cualquier otra funcionalidad.",
+            options: [
+                { label: "Comenzar de nuevo", next: "start" }
+            ]
+        }
     },
     en: {
-        greeting: "Hi, I'm **Kira** — AIntegra's AI assistant. You're talking to the real product. How can I help your organization today?",
-        patterns: [
-            { kw: ["what is", "aintegra"], r: "AIntegra is the platform integrating AI and adaptive hardware. I (Kira) manage your environment by voice. C.A.T. replaces the mouse with precision gestures. Together we eliminate digital friction for your team." },
-            { kw: ["kira"], r: "I'm Kira — I control your OS by voice, automate repetitive flows and process everything on-device. No cloud. No data exposure. Want to see a demo for your organization?" },
-            { kw: ["cat", "c.a.t", "trackpad", "hardware"], r: "C.A.T. is our cognitive hardware trackpad. <5ms latency, customizable gestures and deep integration with me for 100% hands-free control. Great for design and ops teams." },
-            { kw: ["price", "cost", "how much", "pricing"], r: "Pricing adapts to your organization's size and use case. Shall we schedule 30 minutes to show you the concrete ROI for your team?" },
-            { kw: ["business", "b2b", "team", "enterprise"], r: "For businesses we offer company-wide deployment, stack integration and 60% reduction in UX friction. How many seats are you evaluating?" },
-            { kw: ["institution", "public", "b2g", "government"], r: "For public institutions we offer WCAG compliance, on-premise/air-gapped option and structured procurement process. Interested in a technical proposal?" },
-            { kw: ["demo", "see", "try", "show"], r: "Perfect. Fill in the form and get a 30-minute demo tailored to your use case. Response time < 24h." },
-            { kw: ["hello", "hi", "hey"], r: "Hi. I'm Kira, AIntegra's AI. How can I help your organization today?" },
-            { kw: ["thanks", "thank you"], r: "My pleasure. If you'd like to see Kira and C.A.T. in action, book your demo via the form." },
-        ],
-        default: "I can tell you more about Kira, C.A.T., enterprise use cases or how to get started. What interests you?",
+        start: {
+            msg: "Hi, I'm **Kira** — your personal AI assistant at AIntegra. How can I help you today?",
+            options: [
+                { label: "What is AIntegra?", next: "what_is" },
+                { label: "I want to use it (B2C)", next: "b2c" },
+                { label: "How does the C.A.T. trackpad work?", next: "cat" },
+                { label: "I'm a Business (B2B)", next: "enterprise" }
+            ]
+        },
+        what_is: {
+            msg: "We blend AI with advanced hardware for your daily life. I manage your PC by voice, and our C.A.T. trackpad makes your fingers fly. Together, no more slow clicking.",
+            options: [
+                { label: "I want it. How to start?", next: "b2c" },
+                { label: "Tell me about the trackpad", next: "cat" },
+                { label: "Go back", next: "start" }
+            ]
+        },
+        b2c: {
+            msg: "We are currently gearing up for our consumer launch. You can register now to be among the first to experience PC control driven by pure voice and fluid gestures.",
+            options: [
+                { label: "Join the Waitlist (Demo)", next: "demo" },
+                { label: "How much will it cost?", next: "pricing_b2c" },
+                { label: "Go back", next: "start" }
+            ]
+        },
+        enterprise: {
+            msg: "Certainly. We also offer corporate B2B solutions: native ERP/CRM integrations, On-Premise deployments, and internal workflow automation with proven ROI.",
+            options: [
+                { label: "Schedule Enterprise Demo", next: "demo_b2b" },
+                { label: "Public Sector (B2G)", next: "b2g" },
+                { label: "Go back", next: "start" }
+            ]
+        },
+        b2g: {
+            msg: "For public institutions we ensure full WCAG adherence, Air-Gapped / On-Premise options, and full procurement support.",
+            options: [
+                { label: "Talk to Sales", next: "demo_b2b" },
+                { label: "Go back", next: "enterprise" }
+            ]
+        },
+        cat: {
+            msg: "C.A.T. (Cognitive Assistive Trackpad) is our flagship device. Forget the mouse: feel raw gesture control (<5ms latency) and talk to me without a keyboard.",
+            options: [
+                { label: "Count me in for launch", next: "demo" },
+                { label: "Start over", next: "start" }
+            ]
+        },
+        pricing_b2c: {
+            msg: "We will launch very accessible plans tailored for individual personal productivity. It will be priced like an essential daily tool. We'll give you an exclusive heads-up.",
+            options: [
+                { label: "Leave my details", next: "demo" },
+                { label: "Go back", next: "b2c" }
+            ]
+        },
+        demo: {
+            msg: "Awesome! Join via our main contact form. We'll notify you the exact moment we open access to early adopters and invite you to our interactive Demo.",
+            options: [
+                { label: "End conversation", next: "end" },
+                { label: "Back to main menu", next: "start" }
+            ]
+        },
+        demo_b2b: {
+            msg: "Great. Please fill out the website form detailing your industry and team roles. Our technical staff will contact you to schedule a corporate call.",
+            options: [
+                { label: "End", next: "end" },
+                { label: "Start over", next: "start" }
+            ]
+        },
+        end: {
+            msg: "It was a pleasure assisting you. I'll power down but remain on standby if you want to review any other features.",
+            options: [
+                { label: "Restart menu", next: "start" }
+            ]
+        }
     }
 }
 
-const getDemoResponse = (input, lang) => {
-    const lc = input.toLowerCase()
-    const d = DEMO[lang] || DEMO.es
-    for (const p of d.patterns) {
-        if (p.kw.some(k => lc.includes(k))) return p.r
-    }
-    return d.default
-}
-
 /* ─────────────────────────────────────────────
-   QUICK ACTION CHIPS
-───────────────────────────────────────────── */
-const QUICK = {
-    es: ["¿Qué es Kira?", "Demo para empresa", "¿Cómo funciona C.A.T.?", "Quiero una demo"],
-    en: ["What is Kira?", "Enterprise demo", "How does C.A.T. work?", "Book a demo"],
-}
-
-/* ─────────────────────────────────────────────
-   ORBE ANIMADO — Kira visual identity
-───────────────────────────────────────────── */
-function KiraOrb({ isTyping }) {
-    return (
-        <div style={{ position: "relative", width: 40, height: 40, flexShrink: 0 }}>
-            {/* Glow rings */}
-            {isTyping && (
-                <>
-                    <motion.div
-                        style={{
-                            position: "absolute", inset: -6, borderRadius: "50%",
-                            border: "1.5px solid rgba(124,58,237,0.35)"
-                        }}
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
-                        transition={{ duration: 1.8, repeat: Infinity }}
-                    />
-                    <motion.div
-                        style={{
-                            position: "absolute", inset: -10, borderRadius: "50%",
-                            border: "1px solid rgba(124,58,237,0.2)"
-                        }}
-                        animate={{ scale: [1, 1.6, 1], opacity: [0.3, 0, 0.3] }}
-                        transition={{ duration: 1.8, repeat: Infinity, delay: 0.3 }}
-                    />
-                </>
-            )}
-            {/* Core orb */}
-            <div style={{
-                width: 40, height: 40, borderRadius: "50%",
-                background: "linear-gradient(135deg, #7c3aed, #2563eb, #06b6d4)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                position: "relative", zIndex: 1,
-                boxShadow: "0 0 20px rgba(124,58,237,0.4)"
-            }}>
-                <Mic size={16} color="white" />
-            </div>
-        </div>
-    )
-}
-
-/* ─────────────────────────────────────────────
-   MAIN CHATBOT
+   MAIN CHATBOT COMPONENT
 ───────────────────────────────────────────── */
 export default function Chatbot({ lang = "es" }) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
-    const [convHistory, setConvHistory] = useState([])
-    const [input, setInput] = useState("")
+    const [currentNode, setCurrentNode] = useState("start")
     const [isTyping, setIsTyping] = useState(false)
-    const [client, setClient] = useState(null)
-    const [isDemoMode, setIsDemoMode] = useState(false)
     const endRef = useRef(null)
-    const inputRef = useRef(null)
 
     const txt = {
-        es: { placeholder: "Escribe tu pregunta…", chipHint: "Preguntas frecuentes", close: "Cerrar", product: "Preview del producto" },
-        en: { placeholder: "Type your question…", chipHint: "Quick questions", close: "Close", product: "Product preview" }
-    }[lang] || { placeholder: "", chipHint: "", close: "", product: "" }
+        es: { close: "Cerrar", product: "Preview del producto", optionsHint: "Elige una opción:" },
+        en: { close: "Close", product: "Product preview", optionsHint: "Choose an option:" }
+    }[lang] || { close: "", product: "", optionsHint: "" }
 
-    useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }) }, [messages])
+    const flow = CHAT_FLOW[lang] || CHAT_FLOW.es
+
+    useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }) }, [messages, isTyping])
 
     useEffect(() => {
         if (isOpen && messages.length === 0) {
-            const groq = getGroqClient()
-            if (groq) {
-                setClient(groq)
-                setConvHistory([{ role: "system", content: SYSTEM_PROMPT }])
-            } else {
-                setIsDemoMode(true)
-            }
-            const greeting = DEMO[lang]?.greeting || DEMO.es.greeting
-            setMessages([{ role: "bot", text: greeting }])
+            setMessages([{ role: "bot", text: flow.start.msg }])
+            setCurrentNode("start")
         }
-        if (isOpen) setTimeout(() => inputRef.current?.focus(), 150)
-    }, [isOpen])
+    }, [isOpen, flow.start.msg, messages.length])
 
-    const send = async (text) => {
-        const userMsg = text || input.trim()
-        if (!userMsg) return
-        setInput("")
-        setMessages(prev => [...prev, { role: "user", text: userMsg }])
+    const handleOptionSelect = (optionLabel, nextNodeId) => {
+        // User's selection bubble
+        setMessages(prev => [...prev, { role: "user", text: optionLabel }])
+        setCurrentNode(null) // Hide options while "thinking"
         setIsTyping(true)
 
-        if (isDemoMode || !client) {
-            setTimeout(() => {
-                setMessages(prev => [...prev, { role: "bot", text: getDemoResponse(userMsg, lang) }])
-                setIsTyping(false)
-            }, 600 + Math.random() * 800)
-            return
-        }
-
-        const newHistory = [...convHistory, { role: "user", content: userMsg }]
-        setConvHistory(newHistory)
-        try {
-            const res = await client.chat.completions.create({
-                model: "llama-3.3-70b-versatile", messages: newHistory, max_tokens: 400, temperature: 0.7
-            })
-            const answer = res.choices[0].message.content
-            setConvHistory(prev => [...prev, { role: "assistant", content: answer }])
-            setMessages(prev => [...prev, { role: "bot", text: answer }])
-        } catch {
-            setMessages(prev => [...prev, { role: "bot", text: "Error de conexión. Inténtalo de nuevo.", isError: true }])
-        } finally {
+        // Simulate typing delay before showing Kira's response
+        setTimeout(() => {
             setIsTyping(false)
-        }
+            setMessages(prev => [...prev, { role: "bot", text: flow[nextNodeId].msg }])
+            setCurrentNode(nextNodeId) // Show new options
+        }, 800 + Math.random() * 400)
     }
-
-    const quickActions = QUICK[lang] || QUICK.es
 
     return (
         <>
@@ -207,19 +207,22 @@ export default function Chatbot({ lang = "es" }) {
                 onClick={() => setIsOpen(!isOpen)}
                 style={{
                     position: "fixed", bottom: 28, right: 28, zIndex: 200,
-                    width: 56, height: 56, borderRadius: "50%",
-                    background: "linear-gradient(135deg, #7c3aed 0%, #2563eb 60%, #06b6d4 100%)",
-                    border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-                    boxShadow: "0 8px 32px rgba(124,58,237,0.45)"
+                    width: 60, height: 60, borderRadius: "50%",
+                    background: "rgba(10, 10, 15, 0.6)",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    border: "1px solid rgba(124,58,237,0.3)",
+                    cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                    boxShadow: "0 8px 32px rgba(124,58,237,0.25), inset 0 0 20px rgba(124,58,237,0.1)"
                 }}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
+                whileHover={{ scale: 1.05, background: "rgba(20, 20, 25, 0.8)", borderColor: "rgba(124,58,237,0.5)" }}
+                whileTap={{ scale: 0.95 }}
                 animate={{
                     boxShadow: isOpen
-                        ? "0 8px 20px rgba(124,58,237,0.3)"
-                        : ["0 8px 32px rgba(124,58,237,0.45)", "0 8px 48px rgba(37,99,235,0.55)", "0 8px 32px rgba(124,58,237,0.45)"]
+                        ? "0 4px 12px rgba(0,0,0,0.5)"
+                        : ["0 8px 32px rgba(124,58,237,0.2)", "0 8px 48px rgba(124,58,237,0.4)", "0 8px 32px rgba(124,58,237,0.2)"]
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
                 <AnimatePresence mode="wait">
                     {isOpen ? (
@@ -246,27 +249,30 @@ export default function Chatbot({ lang = "es" }) {
                             position: "fixed", bottom: 96, right: 28, zIndex: 200,
                             width: 380, maxWidth: "calc(100vw - 32px)",
                             borderRadius: 24, overflow: "hidden",
-                            border: "1px solid rgba(124,58,237,0.25)",
-                            boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), 0 0 80px rgba(124,58,237,0.15)",
-                            background: "#0c0c10"
+                            border: "1px solid rgba(255,255,255,0.08)",
+                            boxShadow: "0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1)",
+                            background: "rgba(10, 10, 15, 0.75)",
+                            backdropFilter: "blur(24px)",
+                            WebkitBackdropFilter: "blur(24px)",
+                            display: "flex", flexDirection: "column"
                         }}
                     >
                         {/* ── HEADER ── */}
                         <div style={{
                             padding: "16px 20px",
-                            background: "linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(37,99,235,0.12) 50%, rgba(6,182,212,0.08) 100%)",
-                            borderBottom: "1px solid rgba(255,255,255,0.06)",
+                            background: "rgba(255, 255, 255, 0.03)",
+                            borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
                             display: "flex", alignItems: "center", justifyContent: "space-between"
                         }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                                {/* Kira orb */}
                                 <div style={{
                                     width: 44, height: 44, borderRadius: "50%", flexShrink: 0,
-                                    background: "linear-gradient(135deg, #7c3aed, #2563eb, #06b6d4)",
+                                    background: "linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(37,99,235,0.2) 100%)",
+                                    border: "1px solid rgba(124,58,237,0.4)",
                                     display: "flex", alignItems: "center", justifyContent: "center",
-                                    boxShadow: "0 0 20px rgba(124,58,237,0.5), 0 0 40px rgba(124,58,237,0.2)"
+                                    boxShadow: "inset 0 2px 0 rgba(255,255,255,0.1)"
                                 }}>
-                                    <Mic size={18} color="white" />
+                                    <Mic size={18} color="#a78bfa" />
                                 </div>
 
                                 <div>
@@ -300,16 +306,15 @@ export default function Chatbot({ lang = "es" }) {
                         </div>
 
                         {/* ── MESSAGES ── */}
-                        <div style={{ height: 300, overflowY: "auto", padding: "16px 16px 8px", display: "flex", flexDirection: "column", gap: 12 }}>
+                        <div style={{ height: 340, overflowY: "auto", padding: "16px 16px 8px", display: "flex", flexDirection: "column", gap: 12 }}>
                             {messages.map((msg, i) => (
                                 <motion.div
                                     key={i}
-                                    initial={{ opacity: 0, y: 8 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.25 }}
+                                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
                                     style={{ display: "flex", gap: 10, flexDirection: msg.role === "user" ? "row-reverse" : "row", alignItems: "flex-end" }}
                                 >
-                                    {/* Avatar */}
+                                    {/* Bot Avatar Base */}
                                     {msg.role === "bot" && (
                                         <div style={{
                                             width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
@@ -321,23 +326,23 @@ export default function Chatbot({ lang = "es" }) {
                                         </div>
                                     )}
 
-                                    {/* Bubble */}
                                     <div style={{
-                                        maxWidth: "78%", padding: "10px 14px", borderRadius: 16,
-                                        borderBottomLeftRadius: msg.role === "bot" ? 4 : 16,
-                                        borderBottomRightRadius: msg.role === "user" ? 4 : 16,
+                                        maxWidth: "80%", padding: "12px 16px", borderRadius: 20,
+                                        borderBottomLeftRadius: msg.role === "bot" ? 4 : 20,
+                                        borderBottomRightRadius: msg.role === "user" ? 4 : 20,
                                         background: msg.role === "user"
-                                            ? "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(37,99,235,0.2))"
-                                            : "rgba(255,255,255,0.05)",
+                                            ? "linear-gradient(135deg, #7c3aed, #4f46e5)"
+                                            : "rgba(255, 255, 255, 0.06)",
                                         border: msg.role === "user"
-                                            ? "1px solid rgba(124,58,237,0.25)"
-                                            : "1px solid rgba(255,255,255,0.07)",
+                                            ? "none"
+                                            : "1px solid rgba(255, 255, 255, 0.05)",
+                                        boxShadow: msg.role === "user" ? "0 4px 12px rgba(124,58,237,0.3)" : "none"
                                     }}>
                                         <p
-                                            style={{ margin: 0, fontSize: 13, lineHeight: 1.65, color: msg.isError ? "#f87171" : "rgba(255,255,255,0.85)" }}
+                                            style={{ margin: 0, fontSize: 13.5, lineHeight: 1.6, color: "white", letterSpacing: "0.01em" }}
                                             dangerouslySetInnerHTML={{
                                                 __html: msg.text
-                                                    .replace(/\*\*(.*?)\*\*/g, '<strong style="color:white">$1</strong>')
+                                                    .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#a78bfa">$1</strong>')
                                                     .replace(/\n/g, "<br/>")
                                             }}
                                         />
@@ -349,7 +354,7 @@ export default function Chatbot({ lang = "es" }) {
                             {isTyping && (
                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: "flex", gap: 10, alignItems: "flex-end" }}>
                                     <div style={{
-                                        width: 28, height: 28, borderRadius: "50%",
+                                        width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
                                         background: "linear-gradient(135deg, #7c3aed, #2563eb)",
                                         display: "flex", alignItems: "center", justifyContent: "center",
                                         boxShadow: "0 0 12px rgba(124,58,237,0.35)"
@@ -372,82 +377,48 @@ export default function Chatbot({ lang = "es" }) {
                             <div ref={endRef} />
                         </div>
 
-                        {/* ── QUICK ACTION CHIPS ── */}
-                        {messages.length <= 1 && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-                                style={{ padding: "0 14px 12px", display: "flex", flexDirection: "column", gap: 6 }}
-                            >
-                                <p style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 4px", paddingLeft: 2 }}>
-                                    {txt.chipHint}
-                                </p>
-                                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                                    {quickActions.map((q, i) => (
-                                        <motion.button
-                                            key={i}
-                                            onClick={() => send(q)}
-                                            whileHover={{ scale: 1.03, borderColor: "rgba(124,58,237,0.5)" }}
-                                            whileTap={{ scale: 0.97 }}
-                                            style={{
-                                                display: "flex", alignItems: "center", gap: 5,
-                                                padding: "6px 12px", borderRadius: 980,
-                                                background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)",
-                                                color: "rgba(255,255,255,0.65)", fontSize: 12, cursor: "pointer",
-                                                transition: "all 0.15s ease"
-                                            }}
-                                        >
-                                            {q}
-                                            <ChevronRight size={10} style={{ opacity: 0.5 }} />
-                                        </motion.button>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* ── INPUT ── */}
-                        <div style={{ padding: "12px 14px 16px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                                <input
-                                    ref={inputRef}
-                                    type="text"
-                                    value={input}
-                                    onChange={e => setInput(e.target.value)}
-                                    onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send() } }}
-                                    placeholder={txt.placeholder}
-                                    style={{
-                                        flex: 1, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
-                                        borderRadius: 14, padding: "11px 16px", fontSize: 13, color: "white",
-                                        outline: "none", fontFamily: "inherit", transition: "border-color 0.15s"
-                                    }}
-                                    onFocus={e => e.target.style.borderColor = "rgba(124,58,237,0.5)"}
-                                    onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"}
-                                />
-                                <motion.button
-                                    onClick={() => send()}
-                                    disabled={!input.trim()}
-                                    whileHover={input.trim() ? { scale: 1.06 } : {}}
-                                    whileTap={input.trim() ? { scale: 0.94 } : {}}
-                                    style={{
-                                        width: 40, height: 40, borderRadius: 12, border: "none", cursor: input.trim() ? "pointer" : "default",
-                                        background: input.trim()
-                                            ? "linear-gradient(135deg, #7c3aed, #2563eb)"
-                                            : "rgba(255,255,255,0.08)",
-                                        display: "flex", alignItems: "center", justifyContent: "center",
-                                        transition: "background 0.15s"
-                                    }}
-                                >
-                                    <Send size={15} color={input.trim() ? "white" : "rgba(255,255,255,0.3)"} />
-                                </motion.button>
-                            </div>
+                        {/* ── DYNAMIC BUTTON OPTIONS (REPLACES INPUT) ── */}
+                        <div style={{ padding: "0 16px 16px", background: "rgba(0,0,0,0.2)" }}>
+                            <AnimatePresence>
+                                {currentNode && flow[currentNode]?.options && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        style={{ display: "flex", flexDirection: "column", gap: 8 }}
+                                    >
+                                        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", margin: "8px 0 4px", paddingLeft: 4 }}>
+                                            {txt.optionsHint}
+                                        </p>
+                                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                                            {flow[currentNode].options.map((opt, idx) => (
+                                                <motion.button
+                                                    key={idx}
+                                                    onClick={() => handleOptionSelect(opt.label, opt.next)}
+                                                    whileHover={{ scale: 1.015, background: "rgba(124,58,237,0.15)", borderColor: "rgba(124,58,237,0.4)" }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                    style={{
+                                                        display: "flex", alignItems: "center", justifyContent: "space-between",
+                                                        width: "100%", padding: "12px 18px", borderRadius: 16,
+                                                        background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.1)",
+                                                        color: "white", fontSize: 13.5, cursor: "pointer", textAlign: "left",
+                                                        transition: "all 0.2s ease"
+                                                    }}
+                                                >
+                                                    {opt.label}
+                                                    <ChevronRight size={14} style={{ opacity: 0.5, color: "#a78bfa" }} />
+                                                </motion.button>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
 
                             {/* Footer branding */}
-                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 4, marginTop: 10 }}>
-                                <div style={{
-                                    width: 12, height: 12, borderRadius: "50%",
-                                    background: "linear-gradient(135deg, #7c3aed, #06b6d4)"
-                                }} />
+                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 4, marginTop: 16 }}>
+                                <div style={{ width: 12, height: 12, borderRadius: "50%", background: "linear-gradient(135deg, #7c3aed, #06b6d4)" }} />
                                 <span style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", letterSpacing: "0.04em" }}>
-                                    Kira by AIntegra
+                                    Kira Interactive Flow
                                 </span>
                             </div>
                         </div>

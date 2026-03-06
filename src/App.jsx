@@ -32,6 +32,7 @@ const Pricing = lazy(() => import("./components/Pricing"))
 const CTA = lazy(() => import("./components/CTA"))
 const Footer = lazy(() => import("./components/Footer"))
 const Chatbot = lazy(() => import("./components/Chatbot"))
+const Team = lazy(() => import("./components/Team"))
 
 // ──────────────────────────────────────────────────────────────────
 // BILINGUAL COPY
@@ -181,6 +182,25 @@ const TEXT = {
         { q: "What operating systems are supported?", a: "Currently optimized for Windows. macOS and Linux are on the active roadmap for H2 2026." },
         { q: "How does on-device AI work?", a: "Kira processes language and commands locally. No audio or data is sent to external servers — suitable for high-security environments." },
         { q: "What does enterprise deployment look like?", a: "We provide a structured onboarding program: setup, custom automation config, and team training. Typical time-to-value: 2–4 weeks." }
+      ]
+    },
+    team: {
+      badge: "The Founders",
+      title: "Built by Engineers. Driven by Impact.",
+      subtitle: "AIntegra was born from the realization that technology was leaving people behind. We combined hardware engineering and AI architecture to build a platform that adapts to humans, not the other way around. Today, we're bringing that vision to organizations worldwide.",
+      swipeHint: "Swipe to view gallery",
+      images: [
+        "/team/media__1772837796935.png",
+        "/team/media__1772837805329.jpg",
+        "/team/media__1772837811703.jpg",
+        "/team/media__1772837816721.png",
+        "/team/media__1772837822552.png",
+        "/team/media__1772837841446.jpg",
+        "/team/media__1772838036814.jpg"
+      ],
+      founders: [
+        { name: "Nerea Panadero", role: "CEO & Head of Sales" },
+        { name: "Sergio Sabater", role: "CTO & Head of Software" }
       ]
     },
     testimonials: {
@@ -349,6 +369,25 @@ const TEXT = {
         { q: "¿Cómo es el despliegue para una empresa?", a: "Ofrecemos un programa de onboarding estructurado con configuración, automatizaciones personalizadas y formación. Tiempo típico hasta el primer valor: 2–4 semanas." }
       ]
     },
+    team: {
+      badge: "Los Fundadores",
+      title: "Desarrollado por Ingenieros. Impulsado por el Impacto.",
+      subtitle: "AIntegra nació al darnos cuenta de que la tecnología dejaba a personas atrás. Combinamos la ingeniería de hardware y la arquitectura de IA para construir una plataforma que se adapta a las personas, y no al revés. Hoy, llevamos esa visión a organizaciones de todo el mundo.",
+      swipeHint: "Desliza para ver fotos",
+      images: [
+        "/team/media__1772837796935.png",
+        "/team/media__1772837805329.jpg",
+        "/team/media__1772837811703.jpg",
+        "/team/media__1772837816721.png",
+        "/team/media__1772837822552.png",
+        "/team/media__1772837841446.jpg",
+        "/team/media__1772838036814.jpg"
+      ],
+      founders: [
+        { name: "Nerea Panadero", role: "CEO & Head of Sales" },
+        { name: "Sergio Sabater", role: "CTO & Head of Software" }
+      ]
+    },
     testimonials: {
       badge: "Early Adopters",
       title: "Primeros Resultados",
@@ -464,6 +503,11 @@ export default function App() {
           {/* 6. Benefits (ROI / stats) */}
           <Suspense fallback={null}>
             <Benefits t={t} />
+          </Suspense>
+
+          {/* 6.5 Founders */}
+          <Suspense fallback={null}>
+            <Team t={t} />
           </Suspense>
 
           {/* 7. Testimonials (deep social proof) */}
