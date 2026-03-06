@@ -31,7 +31,6 @@ const Partners = lazy(() => import("./components/Partners"))
 const Pricing = lazy(() => import("./components/Pricing"))
 const CTA = lazy(() => import("./components/CTA"))
 const Footer = lazy(() => import("./components/Footer"))
-const Chatbot = lazy(() => import("./components/Chatbot"))
 const Team = lazy(() => import("./components/Team"))
 
 // ──────────────────────────────────────────────────────────────────
@@ -169,7 +168,7 @@ const TEXT = {
         { value: "10000", suffix: "+", label: "Scalable Deployment", description: "From 1 seat to enterprise-wide" }
       ],
       highlights: [
-        { title: "Deploy in weeks, not months", body: "AIntegra is plug & play at its core. No rearchitecting your stack — it layers on top of your existing tools." },
+        { title: "Deployed in seconds", body: "AIntegra is plug & play at its core. No rearchitecting your stack — it layers on top of your existing tools." },
         { title: "On-device AI — your data stays yours", body: "Kira processes locally. No data is sent to external servers. Designed for environments where privacy is non-negotiable." },
         { title: "One platform, two modules", body: "Use Kira, C.A.T., or both. Pay for what you deploy. Expand as your teams adopt." }
       ]
@@ -354,7 +353,7 @@ const TEXT = {
         { value: "10000", suffix: "+", label: "Puestos Escalables", description: "Desde 1 usuario hasta empresa" }
       ],
       highlights: [
-        { title: "Desplegado en semanas, no meses", body: "AIntegra es plug & play en su núcleo. Sin reestructurar tu stack — se superpone a tus herramientas existentes." },
+        { title: "Desplegado en segundos", body: "AIntegra es plug & play en su núcleo. Sin reestructurar tu stack — se superpone a tus herramientas existentes." },
         { title: "IA en el dispositivo — tus datos son tuyos", body: "Kira procesa localmente. Ningún dato se envía a servidores externos. Diseñado para entornos donde la privacidad no es negociable." },
         { title: "Una plataforma, dos módulos", body: "Usa Kira, C.A.T. o los dos. Paga lo que despliegas. Expande a medida que tu equipo adopta." }
       ]
@@ -533,11 +532,6 @@ export default function App() {
 
         <Suspense fallback={null}>
           <Footer rights={t.footer.rights} onReopenCookies={reopenBanner} lang={lang} />
-        </Suspense>
-
-        {/* Chatbot */}
-        <Suspense fallback={null}>
-          <Chatbot lang={lang} />
         </Suspense>
 
         {/* Cookie consent system */}
