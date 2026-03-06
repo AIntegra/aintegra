@@ -1,59 +1,84 @@
 import { motion } from "framer-motion"
-import { AlertCircle } from "lucide-react"
+import { AlertCircle, TrendingDown, Clock, Layers } from "lucide-react"
+
+const ITEMS = [TrendingDown, Clock, Layers, AlertCircle]
 
 export default function Problem({ t }) {
   return (
-    <section>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-12"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
-          style={{
-            background: "linear-gradient(135deg, #ef4444 0%, #f59e0b 50%, #dc2626 100%)",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            WebkitTextFillColor: "transparent"
-          }}
+    <section id="problem" className="apple-panel dark" style={{ paddingTop: 120, paddingBottom: 120 }}>
+      <div style={{ maxWidth: 960, width: "100%", padding: "0 24px" }}>
+
+        {/* Header */}
+        <motion.div
+          style={{ textAlign: "center", marginBottom: 72 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-          {t.problem.title}
-        </h2>
-        <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
-          {t.problem.subtitle}
-        </p>
-      </motion.div>
+          <p className="apple-eyebrow" style={{ color: "#ff453a", marginBottom: 12 }}>
+            {t.problem.badge || "Por qué importa"}
+          </p>
+          <h2 className="apple-headline" style={{ color: "white" }}>
+            {t.problem.title}
+          </h2>
+          <p className="apple-sub light-mid" style={{ marginTop: 20 }}>
+            {t.problem.subtitle}
+          </p>
+        </motion.div>
 
-      {/* Problem cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {t.problem.bullets.map((bullet, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: i * 0.15 }}
-            className="card group relative overflow-hidden p-6"
-          >
-            {/* Icon */}
-            <div className="relative inline-flex mb-4">
-              <div className="absolute inset-0 rounded-xl bg-red-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pulse-glow" />
-              <div className="relative p-3 rounded-xl bg-red-500/10 border border-red-500/20">
-                <AlertCircle className="h-6 w-6 text-red-400" />
-              </div>
-            </div>
+        {/* 2×2 grid */}
+        <div className="problem-grid">
+          {t.problem.bullets.map((bullet, i) => {
+            const Icon = ITEMS[i % ITEMS.length]
+            const isLeft = i % 2 === 0
+            const isTop = i < 2
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                style={{
+                  padding: "44px 40px",
+                  background: "#111113",
+                  borderRadius: !isLeft && !isTop ? "0 0 20px 0"
+                    : !isLeft && isTop ? "0 20px 0 0"
+                      : isLeft && !isTop ? "0 0 0 20px"
+                        : "20px 0 0 0",
+                  position: "relative", overflow: "hidden"
+                }}
+              >
+                {/* Large number background */}
+                <span style={{
+                  position: "absolute", top: 16, right: 20,
+                  fontSize: 80, fontWeight: 800, lineHeight: 1,
+                  color: "rgba(255,255,255,0.03)",
+                  userSelect: "none", pointerEvents: "none"
+                }}>
+                  0{i + 1}
+                </span>
 
-            {/* Content */}
-            <p className="text-neutral-300 leading-relaxed group-hover:text-white transition-colors">
-              {bullet}
-            </p>
+                {/* Icon only */}
+                <div style={{ marginBottom: 24 }}>
+                  <Icon size={18} color="#ff453a" strokeWidth={1.8} />
+                </div>
 
-            {/* Accent line */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500/0 via-red-500/50 to-red-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-          </motion.div>
-        ))}
+                <p style={{
+                  color: "rgba(255,255,255,0.75)",
+                  fontSize: 16, lineHeight: 1.65,
+                  margin: 0, position: "relative", zIndex: 1
+                }}>
+                  {bullet}
+                </p>
+              </motion.div>
+            )
+          })}
+        </div>
+
       </div>
     </section>
   )
 }
+

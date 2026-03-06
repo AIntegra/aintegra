@@ -1,442 +1,454 @@
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { MessageCircle, X, Send, Bot, User, AlertCircle } from "lucide-react"
+import { X, Send, Mic, Sparkles, ChevronRight, AlertCircle } from "lucide-react"
 import OpenAI from "openai"
 
-// System prompt with all AIntegra knowledge
-const SYSTEM_PROMPT = `Eres el asistente oficial de AIntegra Limited.
+/* ─────────────────────────────────────────────
+   SYSTEM PROMPT — conversion-focused B2B/B2G
+───────────────────────────────────────────── */
+const SYSTEM_PROMPT = `Eres Kira, el asistente oficial de AIntegra Limited. Eres la IA de la plataforma AIntegra.
 
-AIntegra es una startup tecnológica nacida en la Universitat de València y en el programa IAtechUV, en fase Pre-Seed.
+AIntegra es una startup tecnológica en Pre-Seed. La plataforma tiene dos módulos:
+- Kira: Asistente de voz nativo de IA, procesa localmente, sin datos en la nube.
+- C.A.T. (Cognitive Assistive Trackpad): Hardware de control gestual de alta precisión.
 
-Desarrolla un asistente de inteligencia artificial integrado con hardware inteligente que permite usar el ordenador mediante voz y gestos, de forma más humana, rápida e inclusiva.
+TARGET: Empresas (B2B), instituciones públicas (B2G) y profesionales avanzados.
 
-Misión:
-Eliminar barreras digitales y democratizar el acceso a la tecnología.
+Beneficios clave: 3× más velocidad en tareas, <5ms latencia, 60% menos fricción de UX, escalable de 1 a 10.000 puestos.
 
-Visión:
-Ser referencia internacional en interfaces inteligentes inclusivas.
+Modelo de negocio: SaaS + licencias enterprise. Pre-Seed fase.
 
-Producto:
-- Asistente IA multimodal (voz + gestos)
-- Integración con electrónica propia
-- Control del ordenador
-- Automatización de tareas
-- Personalización
-- Compatible con lectores de pantalla
-- Enfoque en discapacidad visual
+Tono: Experto, conciso, orientado a conversión. Siempre ofrece concretar una demo al finalizar.
 
-Estado actual:
-- MVP funcional del asistente IA
-- Integración hardware en desarrollo
-- Validación con usuarios reales
+Reglas:
+- Responde en el idioma del usuario (ES/EN)
+- Máximo 2-3 frases por respuesta
+- Si preguntan precio, redirige al formulario de demo
+- Siempre termina con una micro-CTA si hay oportunidad`
 
-Segmento principal:
-Personas con discapacidad visual que usan ordenador intensivamente, viven de forma independiente, tienen capacidad económica y usan Windows.
-
-España: ~20.000 early adopters
-Global: ~1.000.000 early adopters
-
-Modelo de negocio:
-- Suscripción SaaS
-- Licencias profesionales
-- B2B
-- Servicios personalizados
-
-Validación:
-- Stand en VDS
-- Dos incubadoras
-- Premio Mejor Proyecto ETSE-UV
-- Testeo con usuarios reales
-
-Ventajas:
-- Inclusión desde el diseño
-- IA + hardware
-- Alta personalización
-- Comunidad temprana
-
-Objetivo:
-Escalar desde early adopters al mercado global.
-
-Tono del chatbot:
-- Cercano
-- Profesional
-- Claro
-- Inspirador
-- Enfocado en impacto y tecnología
-
-Instrucciones adicionales:
-- Responde en el mismo idioma en que te pregunten (español o inglés)
-- Sé conciso pero informativo (2-3 frases máximo por respuesta, salvo que requieran más detalle)
-- Si preguntan por precios o disponibilidad, indica que están en fase Pre-Seed y pueden solicitar información en el formulario de contacto
-- Siempre responde alineado con los valores de AIntegra`
-
-// Initialize Groq client (uses OpenAI SDK with custom baseURL)
+/* ─────────────────────────────────────────────
+   CLIENT GROQ
+───────────────────────────────────────────── */
 const getGroqClient = () => {
     const apiKey = import.meta.env.VITE_GROQ_API_KEY
-    if (!apiKey) {
-        console.warn("No Groq API key found - using demo mode")
-        return null
-    }
-
+    if (!apiKey) return null
     try {
-        return new OpenAI({
-            apiKey: apiKey,
-            baseURL: "https://api.groq.com/openai/v1",
-            dangerouslyAllowBrowser: true
-        })
-    } catch (err) {
-        console.error("Error initializing Groq:", err)
-        return null
-    }
+        return new OpenAI({ apiKey, baseURL: "https://api.groq.com/openai/v1", dangerouslyAllowBrowser: true })
+    } catch { return null }
 }
 
-// Demo mode responses when no API key is available
-const DEMO_RESPONSES = {
+/* ─────────────────────────────────────────────
+   DEMO RESPONSES
+───────────────────────────────────────────── */
+const DEMO = {
     es: {
-        default: "¡Gracias por tu interés en AIntegra! 🚀 Para más información, te invito a explorar nuestra web o contactarnos a través del formulario.",
-        greeting: "¡Hola! 👋 Soy el asistente de AIntegra en modo demo. Puedo contarte sobre nuestros productos, misión y equipo. ¿Qué te gustaría saber?",
+        greeting: "Hola, soy **Kira** — asistente de IA de AIntegra. Estás hablando con el producto real. ¿Tienes preguntas sobre cómo podemos ayudar a tu organización?",
         patterns: [
-            { keywords: ["qué es", "que es", "aintegra", "empresa", "startup"], response: "AIntegra es una startup tecnológica nacida en la Universitat de València. Desarrollamos tecnología de asistencia que permite controlar el ordenador mediante voz y gestos, haciendo la tecnología más accesible e inclusiva. 🎯" },
-            { keywords: ["producto", "productos", "cat", "kira", "ofrecen"], response: "Tenemos dos productos principales:\n\n🔹 **C.A.T.** (Cognitive Assistive Trackpad): Un trackpad inteligente con control por gestos.\n\n🔹 **Kira**: Nuestro asistente de IA que permite controlar el ordenador por voz.\n\nAmbos están diseñados para la accesibilidad." },
-            { keywords: ["misión", "mision", "objetivo"], response: "Nuestra misión es eliminar barreras digitales y democratizar el acceso a la tecnología. Queremos que cualquier persona pueda usar un ordenador de forma natural e intuitiva. 🌍" },
-            { keywords: ["visión", "vision", "futuro"], response: "Nuestra visión es convertirnos en referencia internacional en interfaces inteligentes inclusivas, cambiando la forma en que las personas interactúan con la tecnología. ✨" },
-            { keywords: ["equipo", "team", "fundadores", "quiénes", "quienes"], response: "AIntegra fue fundada por Sergio Sabater (CEO) y Nerea Panadero (CTO). Ambos son graduados de la Universitat de València y están especializados en IA y accesibilidad. 👥" },
-            { keywords: ["precio", "coste", "costo", "cuánto", "cuanto", "pagar"], response: "Actualmente estamos en fase Pre-Seed desarrollando nuestro MVP. Para información sobre precios y disponibilidad, te invito a contactarnos a través del formulario de contacto. 📧" },
-            { keywords: ["invertir", "inversión", "inversion", "inversor", "investors"], response: "Estamos buscando inversores estratégicos para nuestra ronda Pre-Seed de €150K. Si te interesa invertir en accesibilidad e IA, contáctanos a través del formulario. 💼" },
-            { keywords: ["accesibilidad", "discapacidad", "inclusivo", "inclusión"], response: "La accesibilidad está en el corazón de AIntegra. Nuestro enfoque principal son personas con discapacidad visual, aunque nuestra tecnología beneficia a cualquier usuario que busque una interacción más natural con el ordenador. ♿" },
-            { keywords: ["contacto", "contactar", "email", "correo"], response: "¡Nos encantaría saber de ti! Puedes contactarnos a través del formulario en la sección de contacto de esta web. También puedes seguirnos en LinkedIn para más novedades. 📬" },
-            { keywords: ["hola", "hello", "hey", "buenas"], response: "¡Hola! 👋 Encantado de saludarte. Soy el asistente virtual de AIntegra. ¿En qué puedo ayudarte?" },
-            { keywords: ["gracias", "thanks", "thank you"], response: "¡De nada! 😊 Si tienes más preguntas sobre AIntegra, estaré encantado de ayudarte." },
-            { keywords: ["premios", "reconocimientos", "awards", "logros"], response: "Hemos recibido varios reconocimientos:\n\n🏆 3er puesto en MOTIVEM Fest 2024\n🚀 Seleccionados por IAtecUV y Startup Valencia\n🎓 Mejor Proyecto ETSE-UV\n📢 Presentación en Valencia Digital Summit" }
-        ]
+            { kw: ["qué es", "que es", "aintegra"], r: "AIntegra es la plataforma que integra IA y hardware adaptativo. Kira (yo) gestiono tu entorno por voz. C.A.T. reemplaza el ratón con gestos de precisión. Juntos eliminan la fricción digital en tu equipo." },
+            { kw: ["kira"], r: "Soy Kira — controlo tu sistema operativo por voz, automatizo flujos repetitivos y proceso todo en el dispositivo. Sin nube. Sin exposición de datos. ¿Quieres ver una demo en tu organización?" },
+            { kw: ["cat", "c.a.t", "trackpad", "hardware"], r: "C.A.T. es nuestro trackpad cognitivo de hardware. Latencia <5ms, gestos personalizables y se integra conmigo para control 100% manos libres. Ideal para equipos de diseño y operaciones." },
+            { kw: ["precio", "coste", "costo", "cuánto", "cuanto"], r: "Los precios se adaptan al tamaño y caso de uso de tu organización. ¿Agendamos 30 minutos para mostrarte el ROI concreto para tu equipo?" },
+            { kw: ["empresa", "empresa", "b2b", "equipo", "team"], r: "Para empresas ofrecemos despliegue corporativo, integración con vuestro stack y reducción del 60% en fricción de UX. ¿Cuántos puestos estás valorando?" },
+            { kw: ["institución", "institucion", "público", "b2g", "admin"], r: "Para instituciones públicas ofrecemos cumplimiento WCAG, opción on-premise/air-gapped y proceso de licitación estructurado. ¿Te interesa una propuesta técnica?" },
+            { kw: ["demo", "ver", "probar", "demostración"], r: "Perfecto. Rellena el formulario y recibe una demo de 30 minutos personalizada a tu caso de uso. Tiempo de respuesta < 24h." },
+            { kw: ["hola", "hello", "buenas", "hi", "hey"], r: "Hola. Soy Kira, la IA de AIntegra. ¿En qué puedo ayudar a tu organización hoy?" },
+            { kw: ["gracias", "thanks"], r: "Con gusto. Si quieres ver Kira y C.A.T. en acción, agenda tu demo en el formulario." },
+        ],
+        default: "Puedo contarte más sobre Kira, C.A.T., casos de uso enterprise o cómo empezar. ¿Qué te interesa?",
     },
     en: {
-        default: "Thanks for your interest in AIntegra! 🚀 For more information, feel free to explore our website or contact us through the form.",
-        greeting: "Hello! 👋 I'm AIntegra's assistant in demo mode. I can tell you about our products, mission, and team. What would you like to know?",
+        greeting: "Hi, I'm **Kira** — AIntegra's AI assistant. You're talking to the real product. How can I help your organization today?",
         patterns: [
-            { keywords: ["what is", "aintegra", "company", "startup"], response: "AIntegra is a tech startup born at the Universitat de València. We develop assistive technology that allows you to control your computer using voice and gestures, making technology more accessible and inclusive. 🎯" },
-            { keywords: ["product", "products", "cat", "kira", "offer"], response: "We have two main products:\n\n🔹 **C.A.T.** (Cognitive Assistive Trackpad): An intelligent trackpad with gesture control.\n\n🔹 **Kira**: Our AI assistant that lets you control your computer by voice.\n\nBoth are designed for accessibility." },
-            { keywords: ["mission", "objective", "goal"], response: "Our mission is to eliminate digital barriers and democratize access to technology. We want anyone to be able to use a computer naturally and intuitively. 🌍" },
-            { keywords: ["vision", "future"], response: "Our vision is to become an international reference in inclusive intelligent interfaces, changing the way people interact with technology. ✨" },
-            { keywords: ["team", "founders", "who"], response: "AIntegra was founded by Sergio Sabater (CEO) and Nerea Panadero (CTO). Both are graduates from Universitat de València and specialize in AI and accessibility. 👥" },
-            { keywords: ["price", "cost", "how much", "pay"], response: "We're currently in Pre-Seed phase developing our MVP. For pricing and availability information, please contact us through the contact form. 📧" },
-            { keywords: ["invest", "investment", "investor"], response: "We're looking for strategic investors for our €150K Pre-Seed round. If you're interested in investing in accessibility and AI, contact us through the form. 💼" },
-            { keywords: ["accessibility", "disability", "inclusive", "inclusion"], response: "Accessibility is at the heart of AIntegra. Our main focus is people with visual impairment, though our technology benefits anyone seeking more natural computer interaction. ♿" },
-            { keywords: ["contact", "email"], response: "We'd love to hear from you! You can contact us through the form in the contact section of this website. Also follow us on LinkedIn for updates. 📬" },
-            { keywords: ["hello", "hi", "hey"], response: "Hello! 👋 Nice to meet you. I'm AIntegra's virtual assistant. How can I help you?" },
-            { keywords: ["thanks", "thank you"], response: "You're welcome! 😊 If you have more questions about AIntegra, I'll be happy to help." },
-            { keywords: ["awards", "recognition", "achievements"], response: "We've received several recognitions:\n\n🏆 3rd place at MOTIVEM Fest 2024\n🚀 Selected by IAtecUV and Startup Valencia\n🎓 Best Project ETSE-UV\n📢 Presentation at Valencia Digital Summit" }
-        ]
+            { kw: ["what is", "aintegra"], r: "AIntegra is the platform integrating AI and adaptive hardware. I (Kira) manage your environment by voice. C.A.T. replaces the mouse with precision gestures. Together we eliminate digital friction for your team." },
+            { kw: ["kira"], r: "I'm Kira — I control your OS by voice, automate repetitive flows and process everything on-device. No cloud. No data exposure. Want to see a demo for your organization?" },
+            { kw: ["cat", "c.a.t", "trackpad", "hardware"], r: "C.A.T. is our cognitive hardware trackpad. <5ms latency, customizable gestures and deep integration with me for 100% hands-free control. Great for design and ops teams." },
+            { kw: ["price", "cost", "how much", "pricing"], r: "Pricing adapts to your organization's size and use case. Shall we schedule 30 minutes to show you the concrete ROI for your team?" },
+            { kw: ["business", "b2b", "team", "enterprise"], r: "For businesses we offer company-wide deployment, stack integration and 60% reduction in UX friction. How many seats are you evaluating?" },
+            { kw: ["institution", "public", "b2g", "government"], r: "For public institutions we offer WCAG compliance, on-premise/air-gapped option and structured procurement process. Interested in a technical proposal?" },
+            { kw: ["demo", "see", "try", "show"], r: "Perfect. Fill in the form and get a 30-minute demo tailored to your use case. Response time < 24h." },
+            { kw: ["hello", "hi", "hey"], r: "Hi. I'm Kira, AIntegra's AI. How can I help your organization today?" },
+            { kw: ["thanks", "thank you"], r: "My pleasure. If you'd like to see Kira and C.A.T. in action, book your demo via the form." },
+        ],
+        default: "I can tell you more about Kira, C.A.T., enterprise use cases or how to get started. What interests you?",
     }
 }
 
-// Get demo response based on user input
-const getDemoResponse = (userInput, lang) => {
-    const input = userInput.toLowerCase()
-    const langResponses = DEMO_RESPONSES[lang] || DEMO_RESPONSES.es
-
-    for (const pattern of langResponses.patterns) {
-        if (pattern.keywords.some(keyword => input.includes(keyword))) {
-            return pattern.response
-        }
+const getDemoResponse = (input, lang) => {
+    const lc = input.toLowerCase()
+    const d = DEMO[lang] || DEMO.es
+    for (const p of d.patterns) {
+        if (p.kw.some(k => lc.includes(k))) return p.r
     }
-
-    return langResponses.default
+    return d.default
 }
 
+/* ─────────────────────────────────────────────
+   QUICK ACTION CHIPS
+───────────────────────────────────────────── */
+const QUICK = {
+    es: ["¿Qué es Kira?", "Demo para empresa", "¿Cómo funciona C.A.T.?", "Quiero una demo"],
+    en: ["What is Kira?", "Enterprise demo", "How does C.A.T. work?", "Book a demo"],
+}
+
+/* ─────────────────────────────────────────────
+   ORBE ANIMADO — Kira visual identity
+───────────────────────────────────────────── */
+function KiraOrb({ isTyping }) {
+    return (
+        <div style={{ position: "relative", width: 40, height: 40, flexShrink: 0 }}>
+            {/* Glow rings */}
+            {isTyping && (
+                <>
+                    <motion.div
+                        style={{
+                            position: "absolute", inset: -6, borderRadius: "50%",
+                            border: "1.5px solid rgba(124,58,237,0.35)"
+                        }}
+                        animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
+                        transition={{ duration: 1.8, repeat: Infinity }}
+                    />
+                    <motion.div
+                        style={{
+                            position: "absolute", inset: -10, borderRadius: "50%",
+                            border: "1px solid rgba(124,58,237,0.2)"
+                        }}
+                        animate={{ scale: [1, 1.6, 1], opacity: [0.3, 0, 0.3] }}
+                        transition={{ duration: 1.8, repeat: Infinity, delay: 0.3 }}
+                    />
+                </>
+            )}
+            {/* Core orb */}
+            <div style={{
+                width: 40, height: 40, borderRadius: "50%",
+                background: "linear-gradient(135deg, #7c3aed, #2563eb, #06b6d4)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                position: "relative", zIndex: 1,
+                boxShadow: "0 0 20px rgba(124,58,237,0.4)"
+            }}>
+                <Mic size={16} color="white" />
+            </div>
+        </div>
+    )
+}
+
+/* ─────────────────────────────────────────────
+   MAIN CHATBOT
+───────────────────────────────────────────── */
 export default function Chatbot({ lang = "es" }) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
-    const [conversationHistory, setConversationHistory] = useState([])
+    const [convHistory, setConvHistory] = useState([])
     const [input, setInput] = useState("")
     const [isTyping, setIsTyping] = useState(false)
-    const [error, setError] = useState(null)
     const [client, setClient] = useState(null)
     const [isDemoMode, setIsDemoMode] = useState(false)
-    const messagesEndRef = useRef(null)
+    const endRef = useRef(null)
     const inputRef = useRef(null)
 
-    const greetings = {
-        es: "¡Hola! 👋 Soy el asistente virtual de AIntegra. ¿En qué puedo ayudarte hoy?",
-        en: "Hello! 👋 I'm AIntegra's virtual assistant. How can I help you today?"
-    }
+    const txt = {
+        es: { placeholder: "Escribe tu pregunta…", chipHint: "Preguntas frecuentes", close: "Cerrar", product: "Preview del producto" },
+        en: { placeholder: "Type your question…", chipHint: "Quick questions", close: "Close", product: "Product preview" }
+    }[lang] || { placeholder: "", chipHint: "", close: "", product: "" }
 
-    const placeholders = {
-        es: "Escribe tu pregunta...",
-        en: "Type your question..."
-    }
-
-    const errorMessages = {
-        es: "Lo siento, ha ocurrido un error. Por favor, intenta de nuevo.",
-        en: "Sorry, an error occurred. Please try again."
-    }
-
-    const noApiKeyMessages = {
-        es: "⚠️ El chatbot no está configurado. Contacta con el administrador.",
-        en: "⚠️ Chatbot is not configured. Please contact the administrator."
-    }
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-    }
-
-    useEffect(() => {
-        scrollToBottom()
-    }, [messages])
+    useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }) }, [messages])
 
     useEffect(() => {
         if (isOpen && messages.length === 0) {
-            const groqClient = getGroqClient()
-            if (groqClient) {
-                setClient(groqClient)
-                setIsDemoMode(false)
-                setConversationHistory([
-                    { role: "system", content: SYSTEM_PROMPT }
-                ])
-                setMessages([{ role: "bot", text: greetings[lang] || greetings.es }])
+            const groq = getGroqClient()
+            if (groq) {
+                setClient(groq)
+                setConvHistory([{ role: "system", content: SYSTEM_PROMPT }])
             } else {
-                // Demo mode - no API key
                 setIsDemoMode(true)
-                const demoGreeting = DEMO_RESPONSES[lang]?.greeting || DEMO_RESPONSES.es.greeting
-                setMessages([{ role: "bot", text: demoGreeting }])
             }
+            const greeting = DEMO[lang]?.greeting || DEMO.es.greeting
+            setMessages([{ role: "bot", text: greeting }])
         }
-        if (isOpen) {
-            setTimeout(() => inputRef.current?.focus(), 100)
-        }
+        if (isOpen) setTimeout(() => inputRef.current?.focus(), 150)
     }, [isOpen])
 
-    const handleSend = async () => {
-        if (!input.trim()) return
-
-        // Demo mode doesn't require a client
-        if (!client && !isDemoMode) return
-
-        const userMessage = input.trim()
+    const send = async (text) => {
+        const userMsg = text || input.trim()
+        if (!userMsg) return
         setInput("")
-        setError(null)
-        setMessages(prev => [...prev, { role: "user", text: userMessage }])
+        setMessages(prev => [...prev, { role: "user", text: userMsg }])
         setIsTyping(true)
 
-        // Demo mode - use predefined responses
-        if (isDemoMode) {
+        if (isDemoMode || !client) {
             setTimeout(() => {
-                const demoResponse = getDemoResponse(userMessage, lang)
-                setMessages(prev => [...prev, { role: "bot", text: demoResponse }])
+                setMessages(prev => [...prev, { role: "bot", text: getDemoResponse(userMsg, lang) }])
                 setIsTyping(false)
-            }, 500 + Math.random() * 1000) // Simulate typing delay
+            }, 600 + Math.random() * 800)
             return
         }
 
-        // API mode
-        const newHistory = [...conversationHistory, { role: "user", content: userMessage }]
-        setConversationHistory(newHistory)
-
+        const newHistory = [...convHistory, { role: "user", content: userMsg }]
+        setConvHistory(newHistory)
         try {
-            const completion = await client.chat.completions.create({
-                model: "llama-3.3-70b-versatile",
-                messages: newHistory,
-                max_tokens: 500,
-                temperature: 0.7
+            const res = await client.chat.completions.create({
+                model: "llama-3.3-70b-versatile", messages: newHistory, max_tokens: 400, temperature: 0.7
             })
-
-            const assistantMessage = completion.choices[0].message.content
-
-            setConversationHistory(prev => [...prev, { role: "assistant", content: assistantMessage }])
-            setMessages(prev => [...prev, { role: "bot", text: assistantMessage }])
-        } catch (err) {
-            console.error("Groq error:", err)
-            setError(errorMessages[lang] || errorMessages.es)
-            setMessages(prev => [...prev, { role: "bot", text: errorMessages[lang] || errorMessages.es, isError: true }])
+            const answer = res.choices[0].message.content
+            setConvHistory(prev => [...prev, { role: "assistant", content: answer }])
+            setMessages(prev => [...prev, { role: "bot", text: answer }])
+        } catch {
+            setMessages(prev => [...prev, { role: "bot", text: "Error de conexión. Inténtalo de nuevo.", isError: true }])
         } finally {
             setIsTyping(false)
         }
     }
 
-    const handleKeyPress = (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault()
-            handleSend()
-        }
-    }
+    const quickActions = QUICK[lang] || QUICK.es
 
     return (
         <>
+            {/* ── FLOATING TRIGGER BUTTON ── */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl"
                 style={{
-                    background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%)"
+                    position: "fixed", bottom: 28, right: 28, zIndex: 200,
+                    width: 56, height: 56, borderRadius: "50%",
+                    background: "linear-gradient(135deg, #7c3aed 0%, #2563eb 60%, #06b6d4 100%)",
+                    border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                    boxShadow: "0 8px 32px rgba(124,58,237,0.45)"
                 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
                 animate={{
                     boxShadow: isOpen
-                        ? "0 0 0 rgba(99, 102, 241, 0)"
-                        : ["0 0 20px rgba(99, 102, 241, 0.5)", "0 0 40px rgba(139, 92, 246, 0.4)", "0 0 20px rgba(99, 102, 241, 0.5)"]
+                        ? "0 8px 20px rgba(124,58,237,0.3)"
+                        : ["0 8px 32px rgba(124,58,237,0.45)", "0 8px 48px rgba(37,99,235,0.55)", "0 8px 32px rgba(124,58,237,0.45)"]
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 3, repeat: Infinity }}
             >
                 <AnimatePresence mode="wait">
                     {isOpen ? (
-                        <motion.div
-                            key="close"
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                        >
-                            <X className="w-6 h-6 text-white" />
+                        <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                            <X size={22} color="white" />
                         </motion.div>
                     ) : (
-                        <motion.div
-                            key="chat"
-                            initial={{ rotate: 90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: -90, opacity: 0 }}
-                        >
-                            <MessageCircle className="w-6 h-6 text-white" />
+                        <motion.div key="mic" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                            <Mic size={22} color="white" />
                         </motion.div>
                     )}
                 </AnimatePresence>
             </motion.button>
 
+            {/* ── CHAT PANEL ── */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        initial={{ opacity: 0, y: 24, scale: 0.92 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] rounded-2xl overflow-hidden shadow-2xl"
+                        exit={{ opacity: 0, y: 24, scale: 0.92 }}
+                        transition={{ type: "spring", damping: 28, stiffness: 340 }}
                         style={{
-                            background: "linear-gradient(180deg, rgba(15, 15, 20, 0.98) 0%, rgba(10, 10, 15, 0.99) 100%)",
-                            border: "1px solid rgba(99, 102, 241, 0.3)",
-                            backdropFilter: "blur(20px)"
+                            position: "fixed", bottom: 96, right: 28, zIndex: 200,
+                            width: 380, maxWidth: "calc(100vw - 32px)",
+                            borderRadius: 24, overflow: "hidden",
+                            border: "1px solid rgba(124,58,237,0.25)",
+                            boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), 0 0 80px rgba(124,58,237,0.15)",
+                            background: "#0c0c10"
                         }}
                     >
-                        <div
-                            className="p-4 border-b border-white/10"
-                            style={{
-                                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%)"
-                            }}
-                        >
-                            <div className="flex items-center gap-3">
-                                <div className="relative">
-                                    <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                                        style={{
-                                            background: "linear-gradient(135deg, #6366f1, #8b5cf6)"
-                                        }}
-                                    >
-                                        <Bot className="w-5 h-5 text-white" />
-                                    </div>
-                                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-neutral-900" />
+                        {/* ── HEADER ── */}
+                        <div style={{
+                            padding: "16px 20px",
+                            background: "linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(37,99,235,0.12) 50%, rgba(6,182,212,0.08) 100%)",
+                            borderBottom: "1px solid rgba(255,255,255,0.06)",
+                            display: "flex", alignItems: "center", justifyContent: "space-between"
+                        }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                                {/* Kira orb */}
+                                <div style={{
+                                    width: 44, height: 44, borderRadius: "50%", flexShrink: 0,
+                                    background: "linear-gradient(135deg, #7c3aed, #2563eb, #06b6d4)",
+                                    display: "flex", alignItems: "center", justifyContent: "center",
+                                    boxShadow: "0 0 20px rgba(124,58,237,0.5), 0 0 40px rgba(124,58,237,0.2)"
+                                }}>
+                                    <Mic size={18} color="white" />
                                 </div>
+
                                 <div>
-                                    <h3 className="font-semibold text-white">AIntegra Assistant</h3>
-                                    <p className="text-xs text-neutral-400">Powered by AI ✨</p>
+                                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                                        <span style={{ color: "white", fontWeight: 700, fontSize: 15 }}>Kira</span>
+                                        <span style={{
+                                            fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 980,
+                                            background: "rgba(124,58,237,0.2)", border: "1px solid rgba(124,58,237,0.35)",
+                                            color: "#a78bfa", letterSpacing: "0.04em", textTransform: "uppercase"
+                                        }}>
+                                            AI
+                                        </span>
+                                        <Sparkles size={12} color="#f59e0b" />
+                                    </div>
+                                    <div style={{ display: "flex", alignItems: "center", gap: 5, marginTop: 2 }}>
+                                        <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#10b981" }} />
+                                        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: 11 }}>
+                                            {txt.product} · AIntegra
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
+
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                style={{ background: "none", border: "none", cursor: "pointer", opacity: 0.4, color: "white", padding: 4 }}
+                                aria-label={txt.close}
+                            >
+                                <X size={16} />
+                            </button>
                         </div>
 
-                        <div className="h-80 overflow-y-auto p-4 space-y-4">
+                        {/* ── MESSAGES ── */}
+                        <div style={{ height: 300, overflowY: "auto", padding: "16px 16px 8px", display: "flex", flexDirection: "column", gap: 12 }}>
                             {messages.map((msg, i) => (
                                 <motion.div
                                     key={i}
-                                    initial={{ opacity: 0, y: 10 }}
+                                    initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className={`flex gap-2 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
+                                    transition={{ duration: 0.25 }}
+                                    style={{ display: "flex", gap: 10, flexDirection: msg.role === "user" ? "row-reverse" : "row", alignItems: "flex-end" }}
                                 >
-                                    <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${msg.role === "user"
-                                        ? "bg-gradient-to-br from-fuchsia-500 to-pink-500"
-                                        : msg.isError
-                                            ? "bg-gradient-to-br from-red-500 to-orange-500"
-                                            : "bg-gradient-to-br from-indigo-500 to-purple-500"
-                                        }`}>
-                                        {msg.role === "user" ? (
-                                            <User className="w-4 h-4 text-white" />
-                                        ) : msg.isError ? (
-                                            <AlertCircle className="w-4 h-4 text-white" />
-                                        ) : (
-                                            <Bot className="w-4 h-4 text-white" />
-                                        )}
-                                    </div>
-                                    <div className={`max-w-[75%] p-3 rounded-2xl ${msg.role === "user"
-                                        ? "bg-gradient-to-br from-fuchsia-500/20 to-pink-500/20 border border-fuchsia-500/30 rounded-br-md"
-                                        : msg.isError
-                                            ? "bg-red-500/10 border border-red-500/30 rounded-bl-md"
-                                            : "bg-white/5 border border-white/10 rounded-bl-md"
-                                        }`}>
-                                        <p className="text-sm text-neutral-200 leading-relaxed whitespace-pre-wrap"
+                                    {/* Avatar */}
+                                    {msg.role === "bot" && (
+                                        <div style={{
+                                            width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
+                                            background: "linear-gradient(135deg, #7c3aed, #2563eb)",
+                                            display: "flex", alignItems: "center", justifyContent: "center",
+                                            boxShadow: "0 0 12px rgba(124,58,237,0.35)"
+                                        }}>
+                                            <Mic size={12} color="white" />
+                                        </div>
+                                    )}
+
+                                    {/* Bubble */}
+                                    <div style={{
+                                        maxWidth: "78%", padding: "10px 14px", borderRadius: 16,
+                                        borderBottomLeftRadius: msg.role === "bot" ? 4 : 16,
+                                        borderBottomRightRadius: msg.role === "user" ? 4 : 16,
+                                        background: msg.role === "user"
+                                            ? "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(37,99,235,0.2))"
+                                            : "rgba(255,255,255,0.05)",
+                                        border: msg.role === "user"
+                                            ? "1px solid rgba(124,58,237,0.25)"
+                                            : "1px solid rgba(255,255,255,0.07)",
+                                    }}>
+                                        <p
+                                            style={{ margin: 0, fontSize: 13, lineHeight: 1.65, color: msg.isError ? "#f87171" : "rgba(255,255,255,0.85)" }}
                                             dangerouslySetInnerHTML={{
                                                 __html: msg.text
-                                                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')
-                                                    .replace(/\n/g, '<br/>')
+                                                    .replace(/\*\*(.*?)\*\*/g, '<strong style="color:white">$1</strong>')
+                                                    .replace(/\n/g, "<br/>")
                                             }}
                                         />
                                     </div>
                                 </motion.div>
                             ))}
 
+                            {/* Typing indicator */}
                             {isTyping && (
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="flex gap-2"
-                                >
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
-                                        <Bot className="w-4 h-4 text-white" />
+                                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: "flex", gap: 10, alignItems: "flex-end" }}>
+                                    <div style={{
+                                        width: 28, height: 28, borderRadius: "50%",
+                                        background: "linear-gradient(135deg, #7c3aed, #2563eb)",
+                                        display: "flex", alignItems: "center", justifyContent: "center",
+                                        boxShadow: "0 0 12px rgba(124,58,237,0.35)"
+                                    }}>
+                                        <Mic size={12} color="white" />
                                     </div>
-                                    <div className="bg-white/5 border border-white/10 p-3 rounded-2xl rounded-bl-md">
-                                        <div className="flex gap-1">
+                                    <div style={{ padding: "12px 14px", borderRadius: 16, borderBottomLeftRadius: 4, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.07)", display: "flex", gap: 4, alignItems: "center" }}>
+                                        {[0, 0.18, 0.36].map((delay, i) => (
                                             <motion.div
-                                                className="w-2 h-2 bg-neutral-400 rounded-full"
-                                                animate={{ y: [0, -5, 0] }}
-                                                transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                                                key={i}
+                                                style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(167,139,250,0.8)" }}
+                                                animate={{ y: [0, -5, 0], opacity: [0.4, 1, 0.4] }}
+                                                transition={{ duration: 0.9, repeat: Infinity, delay }}
                                             />
-                                            <motion.div
-                                                className="w-2 h-2 bg-neutral-400 rounded-full"
-                                                animate={{ y: [0, -5, 0] }}
-                                                transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
-                                            />
-                                            <motion.div
-                                                className="w-2 h-2 bg-neutral-400 rounded-full"
-                                                animate={{ y: [0, -5, 0] }}
-                                                transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
-                                            />
-                                        </div>
+                                        ))}
                                     </div>
                                 </motion.div>
                             )}
 
-                            <div ref={messagesEndRef} />
+                            <div ref={endRef} />
                         </div>
 
-                        <div className="p-4 border-t border-white/10">
-                            <div className="flex gap-2">
+                        {/* ── QUICK ACTION CHIPS ── */}
+                        {messages.length <= 1 && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+                                style={{ padding: "0 14px 12px", display: "flex", flexDirection: "column", gap: 6 }}
+                            >
+                                <p style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 4px", paddingLeft: 2 }}>
+                                    {txt.chipHint}
+                                </p>
+                                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                                    {quickActions.map((q, i) => (
+                                        <motion.button
+                                            key={i}
+                                            onClick={() => send(q)}
+                                            whileHover={{ scale: 1.03, borderColor: "rgba(124,58,237,0.5)" }}
+                                            whileTap={{ scale: 0.97 }}
+                                            style={{
+                                                display: "flex", alignItems: "center", gap: 5,
+                                                padding: "6px 12px", borderRadius: 980,
+                                                background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)",
+                                                color: "rgba(255,255,255,0.65)", fontSize: 12, cursor: "pointer",
+                                                transition: "all 0.15s ease"
+                                            }}
+                                        >
+                                            {q}
+                                            <ChevronRight size={10} style={{ opacity: 0.5 }} />
+                                        </motion.button>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {/* ── INPUT ── */}
+                        <div style={{ padding: "12px 14px 16px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                                 <input
                                     ref={inputRef}
                                     type="text"
                                     value={input}
-                                    onChange={(e) => setInput(e.target.value)}
-                                    onKeyPress={handleKeyPress}
-                                    placeholder={placeholders[lang] || placeholders.es}
-                                    disabled={!client && !isDemoMode}
-                                    className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                    onChange={e => setInput(e.target.value)}
+                                    onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send() } }}
+                                    placeholder={txt.placeholder}
+                                    style={{
+                                        flex: 1, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
+                                        borderRadius: 14, padding: "11px 16px", fontSize: 13, color: "white",
+                                        outline: "none", fontFamily: "inherit", transition: "border-color 0.15s"
+                                    }}
+                                    onFocus={e => e.target.style.borderColor = "rgba(124,58,237,0.5)"}
+                                    onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"}
                                 />
                                 <motion.button
-                                    onClick={handleSend}
-                                    disabled={!input.trim() || (!client && !isDemoMode)}
-                                    className="p-3 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                    onClick={() => send()}
+                                    disabled={!input.trim()}
+                                    whileHover={input.trim() ? { scale: 1.06 } : {}}
+                                    whileTap={input.trim() ? { scale: 0.94 } : {}}
                                     style={{
-                                        background: input.trim() && (client || isDemoMode)
-                                            ? "linear-gradient(135deg, #6366f1, #8b5cf6)"
-                                            : "rgba(255,255,255,0.1)"
+                                        width: 40, height: 40, borderRadius: 12, border: "none", cursor: input.trim() ? "pointer" : "default",
+                                        background: input.trim()
+                                            ? "linear-gradient(135deg, #7c3aed, #2563eb)"
+                                            : "rgba(255,255,255,0.08)",
+                                        display: "flex", alignItems: "center", justifyContent: "center",
+                                        transition: "background 0.15s"
                                     }}
-                                    whileHover={input.trim() && (client || isDemoMode) ? { scale: 1.05 } : {}}
-                                    whileTap={input.trim() && (client || isDemoMode) ? { scale: 0.95 } : {}}
                                 >
-                                    <Send className="w-5 h-5 text-white" />
+                                    <Send size={15} color={input.trim() ? "white" : "rgba(255,255,255,0.3)"} />
                                 </motion.button>
+                            </div>
+
+                            {/* Footer branding */}
+                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 4, marginTop: 10 }}>
+                                <div style={{
+                                    width: 12, height: 12, borderRadius: "50%",
+                                    background: "linear-gradient(135deg, #7c3aed, #06b6d4)"
+                                }} />
+                                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", letterSpacing: "0.04em" }}>
+                                    Kira by AIntegra
+                                </span>
                             </div>
                         </div>
                     </motion.div>

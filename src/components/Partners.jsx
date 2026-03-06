@@ -1,70 +1,100 @@
 import { motion } from "framer-motion"
-import { Handshake } from "lucide-react"
+
+const PARTNERS = [
+  {
+    name: "IAtecUV",
+    tagline: "Programa de Aceleración IA",
+    url: "https://iatecuv.es",
+    logo: "/logos/iatecuv.png",
+    filter: "none",   // PNG logo — show as-is
+    maxH: 52,
+  },
+  {
+    name: "Startup Valencia",
+    tagline: "Ecosistema de Startups",
+    url: "https://startupvalencia.org",
+    logo: "/logos/startupvalencia.svg",
+    filter: "none",   // White SVG — already fits dark bg
+    maxH: 48,
+  },
+]
 
 export default function Partners({ t }) {
-  const partners = [
-    {
-      name: "Universitat de València",
-      logo: "/logos/uv.png",
-      url: "https://www.uv.es/",
-    },
-    {
-      name: "UVemprén",
-      logo: "/logos/uvempren.jpeg",
-      url: "https://www.uv.es/uv-emprende/es/uvempren.html",
-    },
-  ]
-
   return (
-    <section>
+    <section style={{ padding: "100px 24px", maxWidth: 1000, margin: "0 auto" }}>
+
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        style={{ textAlign: "center", marginBottom: 56 }}
       >
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
-          <Handshake className="w-4 h-4 text-purple-400" />
-          <span className="text-sm font-medium text-purple-300">Trusted Partnerships</span>
-        </div>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 gradient-text">
+        <p style={{
+          fontSize: 11, fontWeight: 600, textTransform: "uppercase",
+          letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)", marginBottom: 16
+        }}>
           {t.partners.title}
-        </h2>
-        <p className="text-neutral-400 max-w-2xl mx-auto">
-          {t.partners.subtitle}
         </p>
+        <h2 style={{
+          fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 700, color: "white",
+          letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: 14
+        }}>
+          {t.partners.subtitle}
+        </h2>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-        {partners.map((partner, i) => (
-          <motion.a
-            key={i}
-            href={partner.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.2 }}
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="card p-12 flex items-center justify-center group relative overflow-hidden"
-          >
-            {/* Glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-indigo-500/0 to-fuchsia-500/0 group-hover:from-purple-500/10 group-hover:via-indigo-500/10 group-hover:to-fuchsia-500/10 transition-all duration-500" />
+      {/* Partner cards */}
+      <div className="partners-grid">
+        {PARTNERS.map((p, i) => {
+          return (
+            <motion.a
+              key={i}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.12 }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              style={{
+                display: "flex", flexDirection: "column", alignItems: "center",
+                justifyContent: "center", gap: 16, padding: "48px 32px",
+                textDecoration: "none", borderRadius: 20,
+                background: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.07)",
+                transition: "border-color 0.2s, background 0.2s",
+                cursor: "pointer"
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"
+                e.currentTarget.style.background = "rgba(255,255,255,0.05)"
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"
+                e.currentTarget.style.background = "rgba(255,255,255,0.03)"
+              }}
+            >
+              {/* Logo */}
+              <img
+                src={p.logo}
+                alt={p.name}
+                style={{ maxHeight: p.maxH || 48, maxWidth: 200, objectFit: "contain", filter: p.filter, opacity: 0.9 }}
+              />
 
-            {/* Logo */}
-            <img
-              src={partner.logo}
-              alt={partner.name}
-              className="relative z-10 max-h-24 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity filter grayscale group-hover:grayscale-0"
-            />
-
-            {/* Partner label */}
-            <div className="absolute bottom-4 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <span className="text-xs text-neutral-400">{partner.name}</span>
-            </div>
-          </motion.a>
-        ))}
+              {/* Name */}
+              <div style={{ textAlign: "center" }}>
+                <p style={{ color: "white", fontWeight: 700, fontSize: 18, margin: "0 0 6px" }}>
+                  {p.name}
+                </p>
+                <p style={{ color: "rgba(255,255,255,0.38)", fontSize: 13, margin: 0 }}>
+                  {p.tagline}
+                </p>
+              </div>
+            </motion.a>
+          )
+        })}
       </div>
     </section>
   )

@@ -1,90 +1,190 @@
 import { motion } from "framer-motion"
-import { Sparkles, Instagram, Heart } from "lucide-react"
+import { Instagram, Linkedin, Mail } from "lucide-react"
 
-export default function Footer({ rights }) {
-  const links = [
-    { href: "https://www.instagram.com/aintegralimited?igsh=MTdsYWh3bzY3eXY3bA==", icon: Instagram, label: "Instagram" }
-  ]
+const NAV_COLS = {
+  es: [
+    {
+      heading: "Plataforma",
+      links: [
+        { label: "Kira", href: "#kira" },
+        { label: "C.A.T.", href: "#cat" },
+        { label: "Para quien", href: "#segments" },
+        { label: "Resultados", href: "#benefits" },
+      ],
+    },
+    {
+      heading: "Empresa",
+      links: [
+        { label: "El Problema", href: "#problem" },
+        { label: "FAQ", href: "#faq" },
+        { label: "Solicitar Demo", href: "#contact" },
+      ],
+    },
+  ],
+  en: [
+    {
+      heading: "Platform",
+      links: [
+        { label: "Kira", href: "#kira" },
+        { label: "C.A.T.", href: "#cat" },
+        { label: "Who It's For", href: "#segments" },
+        { label: "Results", href: "#benefits" },
+      ],
+    },
+    {
+      heading: "Company",
+      links: [
+        { label: "The Problem", href: "#problem" },
+        { label: "FAQ", href: "#faq" },
+        { label: "Book a Demo", href: "#contact" },
+      ],
+    },
+  ],
+}
 
-  const techStack = ["React", "Vite", "Tailwind", "Framer Motion", "FastAPI", "Supabase"]
+const SOCIALS = [
+  {
+    label: "Instagram",
+    icon: Instagram,
+    href: "https://www.instagram.com/aintegralimited?igsh=MTdsYWh3bzY3eXY3bA==",
+  },
+  {
+    label: "LinkedIn",
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/aintegra",
+  },
+  {
+    label: "Email",
+    icon: Mail,
+    href: "mailto:hola@aintegra.ai",
+  },
+]
+
+export default function Footer({ rights, onReopenCookies, lang = "es" }) {
+  const isEs = lang !== "en"
+  const cols = NAV_COLS[lang] ?? NAV_COLS.es
 
   return (
-    <footer className="relative border-t border-white/10 bg-gradient-to-b from-transparent to-black/50 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Main content */}
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Logo & Description */}
+    <footer style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#050508" }}>
+
+      {/* Main grid */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 32px 48px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 64, alignItems: "start" }}>
+
+          {/* Brand column */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 blur-lg opacity-50" />
-                <div className="relative h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500/20 to-fuchsia-500/20 ring-1 ring-white/20 grid place-items-center">
-                  <Sparkles className="h-5 w-5 text-fuchsia-400" />
-                </div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <img
+                src="/assets/logo_blanco.webp"
+                alt="AIntegra"
+                style={{ height: 24, opacity: 0.85, marginBottom: 20 }}
+              />
+              <p style={{ fontSize: 14, lineHeight: 1.75, color: "rgba(255,255,255,0.4)", maxWidth: 320 }}>
+                {isEs
+                  ? "Integramos inteligencia artificial y hardware adaptativo para transformar como las organizaciones interactuan con la tecnologia."
+                  : "We integrate artificial intelligence and adaptive hardware to transform how organisations interact with technology."}
+              </p>
+
+              {/* Social icons */}
+              <div style={{ display: "flex", gap: 10, marginTop: 28 }}>
+                {SOCIALS.map((s) => (
+                  <motion.a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    whileHover={{ scale: 1.08, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      width: 36, height: 36, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center",
+                      background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)",
+                      color: "rgba(255,255,255,0.45)", transition: "all 0.18s ease", cursor: "pointer"
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(124,58,237,0.15)"; e.currentTarget.style.borderColor = "rgba(124,58,237,0.3)"; e.currentTarget.style.color = "#a78bfa" }}
+                    onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)"; e.currentTarget.style.color = "rgba(255,255,255,0.45)" }}
+                  >
+                    <s.icon size={15} />
+                  </motion.a>
+                ))}
               </div>
-              <span className="text-xl font-bold gradient-text">AIntegra</span>
-            </div>
-            <p className="text-sm text-neutral-400 leading-relaxed">
-              Transforming human-computer interaction through AI-powered accessibility solutions.
-            </p>
+            </motion.div>
           </div>
 
-          {/* Tech Stack */}
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-3">Built With</h3>
-            <div className="flex flex-wrap gap-2">
-              {techStack.map((tech, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-neutral-400 hover:text-white hover:border-white/20 transition-all"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-3">Connect</h3>
-            <div className="flex items-center gap-3">
-              {links.map((l, i) => (
-                <motion.a
-                  key={i}
-                  href={l.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 group"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <l.icon className="h-5 w-5 text-neutral-400 group-hover:text-white transition-colors" />
-                  <span className="sr-only">{l.label}</span>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-400">
-            <div className="flex items-center gap-2">
-              <span>© {new Date().getFullYear()} <strong className="text-white">AIntegra Limited</strong></span>
-              <span className="hidden sm:inline">•</span>
-              <span className="hidden sm:inline">{rights}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
-              <span>for accessibility</span>
-            </div>
-          </div>
+          {/* Nav columns */}
+          {cols.map((col, ci) => (
+            <motion.div
+              key={ci}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 + ci * 0.08 }}
+            >
+              <p style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(255,255,255,0.3)", marginBottom: 20 }}>
+                {col.heading}
+              </p>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.15s" }}
+                      onMouseEnter={e => e.currentTarget.style.color = "white"}
+                      onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
 
-      {/* Gradient bottom glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{
+          maxWidth: 1200, margin: "0 auto", padding: "20px 32px",
+          display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12
+        }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", margin: 0 }}>
+            {"\u00A9"} {new Date().getFullYear()} AIntegra Limited. {rights}
+          </p>
+
+          <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+            {(isEs ? ["Privacidad", "Terminos"] : ["Privacy", "Terms"]).map((item) => (
+              <a
+                key={item}
+                href="#"
+                style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", textDecoration: "none", transition: "color 0.15s" }}
+                onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.25)"}
+              >
+                {item}
+              </a>
+            ))}
+            {onReopenCookies && (
+              <button
+                onClick={onReopenCookies}
+                style={{
+                  fontSize: 12, color: "rgba(255,255,255,0.25)", background: "none",
+                  border: "none", cursor: "pointer", padding: 0, transition: "color 0.15s"
+                }}
+                onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.25)"}
+              >
+                {isEs ? "Gestionar cookies" : "Manage cookies"}
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </footer>
   )
 }

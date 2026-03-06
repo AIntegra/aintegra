@@ -3,7 +3,7 @@ import { Quote, Star } from "lucide-react"
 
 export default function Testimonials({ t }) {
     return (
-        <section>
+        <section style={{ padding: "100px 24px", maxWidth: 1200, margin: "0 auto" }}>
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
