@@ -47,7 +47,7 @@ const TEXT = {
       contact: "Book a Demo"
     },
     hero: {
-      title: "Technology That Redefines Your Interaction With Computers",
+      title: "AIntegra: Technology That Redefines Your Interaction With Computers",
       subtitle: "Kira brings AI-powered voice control. C.A.T. replaces the mouse with adaptive gestures. Together, they eliminate the friction between people and technology.",
       cta1: "Request a Demo",
       cta2: "Explore the Platform",
@@ -232,7 +232,7 @@ const TEXT = {
       contact: "Solicitar Demo"
     },
     hero: {
-      title: "Tecnología que redefine tu interacción con el ordenador",
+      title: "AIntegra: Tecnología que redefine tu interacción con el ordenador",
       subtitle: "Kira lleva el control por voz con IA. C.A.T. reemplaza el ratón con gestos adaptativos. Juntos, eliminan la fricción entre las personas y la tecnología.",
       cta1: "Solicitar Demo",
       cta2: "Explorar la Plataforma",
