@@ -61,7 +61,7 @@ export default function Benefits({ t }) {
                                 />
                             </div>
                             <div className="stat-label">
-                                <div style={{ color: "rgba(255,255,255,0.85)", fontWeight: 600, marginBottom: 4, fontSize: 14 }}>
+                                <div style={{ color: "rgba(220,234,240,0.9)", fontWeight: 600, marginBottom: 4, fontSize: 14 }}>
                                     {m.label}
                                 </div>
                                 {m.description}
@@ -78,8 +78,11 @@ export default function Benefits({ t }) {
                             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
                             style={{
-                                background: "#1d1d1f", borderRadius: 20, padding: "32px 28px",
-                                border: "1px solid rgba(255,255,255,0.06)"
+                                background: "linear-gradient(160deg, rgba(220,234,240,0.08), rgba(11,54,95,0.58))",
+                                borderRadius: 20,
+                                padding: "32px 28px",
+                                border: "1px solid rgba(220,234,240,0.13)",
+                                boxShadow: "0 22px 56px rgba(0,11,51,0.22)"
                             }}
                         >
                             <div style={{
@@ -90,7 +93,7 @@ export default function Benefits({ t }) {
                             <h4 style={{ color: "white", fontWeight: 600, fontSize: 17, marginBottom: 10 }}>
                                 {h.title}
                             </h4>
-                            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 14, lineHeight: 1.65 }}>
+                            <p style={{ color: "rgba(220,234,240,0.68)", fontSize: 14, lineHeight: 1.65 }}>
                                 {h.body}
                             </p>
                         </motion.div>

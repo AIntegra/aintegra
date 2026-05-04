@@ -5,24 +5,24 @@ import { Check, Mic, Camera, PackageCheck, Clock } from "lucide-react"
 const PLANS = {
     es: [
         {
-            id: "kira",
+            id: "caty",
             badge: "Software",
             icon: Mic,
-            title: "Kira",
-            tagline: "Control por voz con IA local",
-            body: "Controla tu ordenador completamente con tu voz. Kira procesa todo en tu dispositivo: sin nube, sin datos enviados, sin limites.",
+            title: "CATY",
+            tagline: "Inteligencia adaptativa local",
+            body: "CATY interpreta contexto, automatiza tareas y convierte comandos en acciones del sistema. Diseñado para funcionar en local siempre que el equipo lo permita.",
             priceType: "subscription",
             popular: false,
-            accent: "#a78bfa",
-            accentDim: "rgba(167,139,250,0.12)",
-            accentBorder: "rgba(167,139,250,0.25)",
-            cta: "Empezar con Kira",
+            accent: "#87ADC6",
+            accentDim: "rgba(135,173,198,0.14)",
+            accentBorder: "rgba(135,173,198,0.3)",
+            cta: "Empezar con CATY",
             features: [
-                { text: "Asistente de voz Kira (IA 100% local)" },
-                { text: "Comandos personalizables ilimitados" },
-                { text: "Procesamiento en el dispositivo (sin nube)" },
-                { text: "Compatible con Windows y macOS" },
-                { text: "Actualizaciones continuas de modelos" },
+                { text: "Capa de inteligencia local CATY" },
+                { text: "Automatizaciones por lenguaje natural y gestos" },
+                { text: "Procesamiento local cuando sea viable" },
+                { text: "Configuración adaptada a cada usuario" },
+                { text: "Interacción con documentos y contexto de pantalla" },
                 { text: "Onboarding personalizado incluido" },
             ],
         },
@@ -30,67 +30,67 @@ const PLANS = {
             id: "cat",
             badge: "Hardware",
             icon: Camera,
-            title: "C.A.T.",
-            tagline: "Control gestual adaptativo, sin raton",
-            body: "El dispositivo C.A.T. detecta gestos faciales y corporales para manejar el ordenador sin manos. Compra unica, tuyo para siempre.",
+            title: "CAT",
+            tagline: "Trackpad gestual adaptativo",
+            body: "CAT es el hardware propio de AIntegra: un trackpad que aprende gestos personalizados y los traduce en comandos digitales fiables.",
             priceType: "onetime",
             popular: false,
-            accent: "#60a5fa",
-            accentDim: "rgba(96,165,250,0.10)",
-            accentBorder: "rgba(96,165,250,0.25)",
-            cta: "Comprar C.A.T.",
+            accent: "#3E89BB",
+            accentDim: "rgba(62,137,187,0.12)",
+            accentBorder: "rgba(62,137,187,0.3)",
+            cta: "Solicitar CAT",
             features: [
-                { text: "Dispositivo C.A.T. fisico incluido" },
-                { text: "Deteccion de gestos faciales y corporales" },
-                { text: "Sin raton ni teclado fisico necesario" },
-                { text: "Compatible con cualquier software de voz" },
-                { text: "Calibracion guiada en la primera instalacion" },
-                { text: "Garantia de 2 anos" },
+                { text: "Dispositivo físico CAT incluido" },
+                { text: "Reconocimiento de gestos personalizados" },
+                { text: "Tolerancia a variabilidad individual y fatiga" },
+                { text: "Mapeo libre de gestos a comandos" },
+                { text: "Calibración guiada en la primera instalación" },
+                { text: "Diseño orientado a ergonomía y reparabilidad" },
             ],
         },
         {
             id: "pack",
             badge: "Pack - Mejor opcion",
             icon: PackageCheck,
-            title: "Kira + C.A.T.",
-            tagline: "La combinacion definitiva de accesibilidad",
-            body: "Voz y gestos juntos: el ecosistema de accesibilidad mas completo del mercado. Ahorra comprando el pack frente a los productos por separado.",
+            title: "CATY + CAT",
+            tagline: "Ecosistema completo de interacción accesible",
+            body: "Hardware e inteligencia local trabajando juntos: CAT captura la intención y CATY la interpreta en contexto para ejecutar acciones.",
             priceType: "pack",
             popular: true,
-            accent: "#34d399",
-            accentDim: "rgba(52,211,153,0.10)",
-            accentBorder: "rgba(52,211,153,0.25)",
+            accent: "#3E89BB",
+            accentDim: "rgba(62,137,187,0.13)",
+            accentBorder: "rgba(62,137,187,0.28)",
             cta: "Pedir el Pack",
             features: [
-                { text: "Todo lo incluido en Kira" },
-                { text: "Dispositivo C.A.T. a precio de pack" },
-                { text: "Control por voz + gestos integrado" },
-                { text: "Sin raton ni teclado fisico necesario" },
+                { text: "Todo lo incluido en CATY" },
+                { text: "Dispositivo CAT incluido" },
+                { text: "Control gestual + automatización contextual" },
+                { text: "Perfil adaptativo para cada usuario" },
                 { text: "Soporte prioritario 24 / 5" },
-                { text: "Ahorro vs. comprar por separado" },
+                { text: "Preparado para pilotos B2B y uso individual" },
             ],
         },
     ],
     en: [
         {
-            id: "kira",
+            id: "caty",
             badge: "Software",
             icon: Mic,
-            title: "Kira",
-            tagline: "On-device AI voice control",
-            body: "Control your computer entirely with your voice. Kira runs fully on your device — no cloud, no data sent, no limits.",
+            title: "CATY",
+            tagline: "Local adaptive intelligence",
+            body: "CATY interprets context, automates tasks and turns commands into operating-system actions. Built to run locally whenever the device allows it.",
             priceType: "subscription",
             popular: false,
-            accent: "#a78bfa",
-            accentDim: "rgba(167,139,250,0.12)",
-            accentBorder: "rgba(167,139,250,0.25)",
-            cta: "Get started with Kira",
+            accent: "#87ADC6",
+            accentDim: "rgba(135,173,198,0.14)",
+            accentBorder: "rgba(135,173,198,0.3)",
+            cta: "Get started with CATY",
             features: [
-                { text: "Kira voice assistant (100% local AI)" },
-                { text: "Unlimited custom commands" },
-                { text: "On-device processing (no cloud)" },
-                { text: "Windows & macOS compatible" },
-                { text: "Continuous model updates" },
+                { text: "CATY local intelligence layer" },
+                { text: "Natural language and gesture automation" },
+                { text: "Local processing whenever viable" },
+                { text: "Configuration adapted to each user" },
+                { text: "Document and screen-context interaction" },
                 { text: "Personalised onboarding included" },
             ],
         },
@@ -98,44 +98,44 @@ const PLANS = {
             id: "cat",
             badge: "Hardware",
             icon: Camera,
-            title: "C.A.T.",
-            tagline: "Adaptive gesture control, no mouse",
-            body: "The C.A.T. device detects facial and body gestures to control your computer hands-free. One-time purchase — yours forever.",
+            title: "CAT",
+            tagline: "Adaptive gesture trackpad",
+            body: "CAT is AIntegra's proprietary hardware: a trackpad that learns personalized gestures and translates them into reliable digital commands.",
             priceType: "onetime",
             popular: false,
-            accent: "#60a5fa",
-            accentDim: "rgba(96,165,250,0.10)",
-            accentBorder: "rgba(96,165,250,0.25)",
-            cta: "Buy C.A.T.",
+            accent: "#3E89BB",
+            accentDim: "rgba(62,137,187,0.12)",
+            accentBorder: "rgba(62,137,187,0.3)",
+            cta: "Request CAT",
             features: [
-                { text: "Physical C.A.T. device included" },
-                { text: "Facial & body gesture detection" },
-                { text: "No physical mouse or keyboard needed" },
-                { text: "Compatible with any voice software" },
+                { text: "Physical CAT device included" },
+                { text: "Personalized gesture recognition" },
+                { text: "Tolerance for individual variation and fatigue" },
+                { text: "Free gesture-to-command mapping" },
                 { text: "Guided calibration at first setup" },
-                { text: "2-year warranty" },
+                { text: "Designed for ergonomics and reparability" },
             ],
         },
         {
             id: "pack",
             badge: "Bundle - Best value",
             icon: PackageCheck,
-            title: "Kira + C.A.T.",
-            tagline: "The ultimate accessibility combination",
-            body: "Voice and gestures together — the most complete accessibility ecosystem on the market. Save by choosing the bundle.",
+            title: "CATY + CAT",
+            tagline: "Complete accessible interaction ecosystem",
+            body: "Hardware and local intelligence working together: CAT captures intention and CATY interprets it in context to execute actions.",
             priceType: "pack",
             popular: true,
-            accent: "#34d399",
-            accentDim: "rgba(52,211,153,0.10)",
-            accentBorder: "rgba(52,211,153,0.25)",
+            accent: "#3E89BB",
+            accentDim: "rgba(62,137,187,0.13)",
+            accentBorder: "rgba(62,137,187,0.28)",
             cta: "Order the Bundle",
             features: [
-                { text: "Everything in Kira" },
-                { text: "C.A.T. device at bundle price" },
-                { text: "Voice + gesture control integrated" },
-                { text: "No physical mouse or keyboard needed" },
+                { text: "Everything in CATY" },
+                { text: "CAT device included" },
+                { text: "Gesture control + contextual automation" },
+                { text: "Adaptive profile for each user" },
                 { text: "Priority support 24 / 5" },
-                { text: "Save vs buying separately" },
+                { text: "Ready for B2B pilots and individual use" },
             ],
         },
     ],
@@ -151,7 +151,7 @@ export default function Pricing({ lang = "es" }) {
             id="pricing"
             style={{
                 padding: "120px 24px",
-                background: "radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.12) 0%, #000 60%)",
+                background: "radial-gradient(ellipse at 50% 0%, rgba(62,137,187,0.18) 0%, rgba(0,11,51,0.96) 62%)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -192,18 +192,19 @@ export default function Pricing({ lang = "es" }) {
                             whileHover={{ y: -6 }}
                             style={{
                                 background: plan.popular
-                                    ? "linear-gradient(160deg, rgba(52,211,153,0.06), rgba(0,0,0,0))"
-                                    : "rgba(255,255,255,0.025)",
+                                    ? "linear-gradient(160deg, rgba(62,137,187,0.14), rgba(255,255,255,0.035))"
+                                    : "rgba(255,255,255,0.045)",
                                 border: plan.popular
-                                    ? "1px solid rgba(52,211,153,0.3)"
-                                    : "1px solid rgba(255,255,255,0.07)",
+                                    ? "1px solid rgba(62,137,187,0.36)"
+                                    : "1px solid rgba(220,234,240,0.12)",
                                 borderRadius: 24,
                                 overflow: "hidden",
                                 display: "flex",
                                 flexDirection: "column",
                                 boxShadow: plan.popular
-                                    ? "0 0 60px rgba(52,211,153,0.08), 0 24px 60px rgba(0,0,0,0.4)"
-                                    : "0 24px 60px rgba(0,0,0,0.35)",
+                                    ? "0 0 60px rgba(62,137,187,0.2), 0 24px 60px rgba(0,11,51,0.42)"
+                                    : "0 24px 60px rgba(0,11,51,0.32)",
+                                backdropFilter: "blur(22px)",
                                 position: "relative",
                             }}
                         >
@@ -212,9 +213,9 @@ export default function Pricing({ lang = "es" }) {
                                 <div style={{
                                     position: "absolute", top: 16, right: 16,
                                     fontSize: 10, fontWeight: 700, letterSpacing: "0.08em",
-                                    textTransform: "uppercase", color: "#34d399",
-                                    background: "rgba(52,211,153,0.12)",
-                                    border: "1px solid rgba(52,211,153,0.3)",
+                                    textTransform: "uppercase", color: "#3E89BB",
+                                    background: "rgba(62,137,187,0.14)",
+                                    border: "1px solid rgba(62,137,187,0.34)",
                                     padding: "3px 9px", borderRadius: 20,
                                 }}>
                                     {isEs ? "Mas popular" : "Most popular"}
@@ -290,11 +291,11 @@ export default function Pricing({ lang = "es" }) {
                                     <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                                         <div style={{
                                             width: 20, height: 20, borderRadius: "50%", flexShrink: 0, marginTop: 1,
-                                            background: "rgba(52,211,153,0.12)",
-                                            border: "1px solid rgba(52,211,153,0.25)",
+                                            background: "rgba(62,137,187,0.14)",
+                                            border: "1px solid rgba(62,137,187,0.28)",
                                             display: "flex", alignItems: "center", justifyContent: "center",
                                         }}>
-                                            <Check size={11} color="#34d399" strokeWidth={2.5} />
+                                            <Check size={11} color="#3E89BB" strokeWidth={2.5} />
                                         </div>
                                         <span style={{ fontSize: 13, lineHeight: 1.5, color: "rgba(255,255,255,0.72)" }}>
                                             {f.text}
@@ -311,7 +312,7 @@ export default function Pricing({ lang = "es" }) {
                                         display: "flex", alignItems: "center", justifyContent: "center",
                                         width: "100%", padding: "13px 0", borderRadius: 100,
                                         background: plan.popular
-                                            ? "linear-gradient(135deg, #34d399, #059669)"
+                                            ? "linear-gradient(135deg, #3E89BB, #165F97)"
                                             : `linear-gradient(135deg, ${plan.accent}28, ${plan.accent}0d)`,
                                         border: plan.popular ? "none" : `1px solid ${plan.accentBorder}`,
                                         color: plan.popular ? "#001a10" : plan.accent,
@@ -324,7 +325,7 @@ export default function Pricing({ lang = "es" }) {
                                             e.currentTarget.style.background = plan.accentDim
                                             e.currentTarget.style.boxShadow = `0 0 24px ${plan.accent}35`
                                         } else {
-                                            e.currentTarget.style.boxShadow = "0 0 32px rgba(52,211,153,0.4)"
+                                            e.currentTarget.style.boxShadow = "0 0 32px rgba(62,137,187,0.4)"
                                         }
                                     }}
                                     onMouseLeave={e => {

@@ -19,7 +19,7 @@ export default function Investors({ t }) {
                 <h2
                     className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
                     style={{
-                        background: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%)",
+                        background: "linear-gradient(135deg, #3E89BB 0%, #3E89BB 50%, #87ADC6 100%)",
                         WebkitBackgroundClip: "text",
                         backgroundClip: "text",
                         WebkitTextFillColor: "transparent"
@@ -54,7 +54,7 @@ export default function Investors({ t }) {
                             <p
                                 className="text-3xl md:text-4xl font-bold mb-1"
                                 style={{
-                                    background: "linear-gradient(135deg, #60a5fa, #38bdf8)",
+                                    background: "linear-gradient(135deg, #3E89BB, #38bdf8)",
                                     WebkitBackgroundClip: "text",
                                     backgroundClip: "text",
                                     WebkitTextFillColor: "transparent"
@@ -99,7 +99,7 @@ export default function Investors({ t }) {
                             <p
                                 className="text-4xl md:text-5xl font-bold mb-4"
                                 style={{
-                                    background: "linear-gradient(135deg, #60a5fa, #a78bfa)",
+                                    background: "linear-gradient(135deg, #3E89BB, #87ADC6)",
                                     WebkitBackgroundClip: "text",
                                     backgroundClip: "text",
                                     WebkitTextFillColor: "transparent"

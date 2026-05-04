@@ -90,7 +90,7 @@ function VideoPlayer() {
   return (
     <div
       ref={wrapRef}
-      style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#080810", borderRadius: "inherit", overflow: "hidden", cursor: showCtrl ? "default" : "none" }}
+      style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#000B33", borderRadius: "inherit", overflow: "hidden", cursor: showCtrl ? "default" : "none" }}
       onMouseMove={scheduleHide}
       onMouseLeave={() => setShowCtrl(false)}
       onClick={togglePlay}
@@ -113,7 +113,7 @@ function VideoPlayer() {
         <div style={{
           position: "absolute", inset: 0, display: "flex",
           flexDirection: "column", alignItems: "center", justifyContent: "center",
-          background: "linear-gradient(160deg, #0d0d18 0%, #110921 60%, #0a0a14 100%)",
+          background: "linear-gradient(160deg, #000B33 0%, #0B365F 60%, #071d45 100%)",
         }}>
           <div style={{
             position: "absolute", inset: 0, opacity: 0.05,
@@ -122,9 +122,9 @@ function VideoPlayer() {
           }} />
           <div style={{
             width: 64, height: 64, borderRadius: "50%",
-            background: "linear-gradient(135deg, rgba(124,58,237,0.9), rgba(59,130,246,0.85))",
+            background: "linear-gradient(135deg, rgba(22,95,151,0.9), rgba(59,130,246,0.85))",
             display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 0 40px rgba(124,58,237,0.45)", marginBottom: 14,
+            boxShadow: "0 0 40px rgba(22,95,151,0.45)", marginBottom: 14,
             animation: "heroPulse 2.6s ease-in-out infinite",
           }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 3 }}>
@@ -162,7 +162,7 @@ function VideoPlayer() {
               {/* Buffered */}
               <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${buf}%`, background: "rgba(255,255,255,0.2)", borderRadius: 4 }} />
               {/* Progress */}
-              <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${pct}%`, background: "linear-gradient(90deg,#7c3aed,#3b82f6)", borderRadius: 4 }} />
+              <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${pct}%`, background: "linear-gradient(90deg,#165F97,#3E89BB)", borderRadius: 4 }} />
               {/* Thumb */}
               <div style={{ position: "absolute", top: "50%", left: `${pct}%`, transform: "translate(-50%, -50%)", width: 12, height: 12, borderRadius: "50%", background: "white", boxShadow: "0 0 6px rgba(0,0,0,0.5)" }} />
             </div>
@@ -203,8 +203,8 @@ function VideoPlayer() {
 
       <style>{`
         @keyframes heroPulse {
-          0%, 100% { box-shadow: 0 0 30px rgba(124,58,237,0.4); transform: scale(1); }
-          50%       { box-shadow: 0 0 55px rgba(124,58,237,0.65); transform: scale(1.07); }
+          0%, 100% { box-shadow: 0 0 30px rgba(22,95,151,0.4); transform: scale(1); }
+          50%       { box-shadow: 0 0 55px rgba(22,95,151,0.65); transform: scale(1.07); }
         }
       `}</style>
     </div>
@@ -233,9 +233,10 @@ export default function Hero({ t }) {
       >
         <div style={{
           display: "inline-flex", alignItems: "center", gap: 12,
-          background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.075)", border: "1px solid rgba(220,234,240,0.18)",
           padding: "10px 22px 10px 18px", borderRadius: 48,
-          boxShadow: "0 6px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)"
+          backdropFilter: "blur(22px)",
+          boxShadow: "0 18px 42px rgba(0,11,51,0.34), inset 0 1px 0 rgba(255,255,255,0.14)"
         }}>
           <img src="/assets/logo_blanco.webp" alt="AIntegra Logo" style={{ height: 38, opacity: 0.95 }} />
           <span className="grad-text" style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.02em" }}>
@@ -270,9 +271,10 @@ export default function Hero({ t }) {
       <motion.div
         className="apple-cta-row"
         style={{
-          background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)",
+          background: "rgba(255,255,255,0.075)", border: "1px solid rgba(220,234,240,0.16)",
           padding: "6px", borderRadius: 100, display: "inline-flex", alignItems: "center", gap: 4,
-          boxShadow: "0 8px 32px rgba(0,0,0,0.4)"
+          backdropFilter: "blur(20px)",
+          boxShadow: "0 20px 44px rgba(0,11,51,0.32)"
         }}
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -281,16 +283,16 @@ export default function Hero({ t }) {
         <a
           href="#contact"
           style={{
-            background: "linear-gradient(135deg, #7c3aed, #3b82f6)", color: "white",
+            background: "linear-gradient(135deg, #000B33, #0D406D 55%, #3E89BB)", color: "white",
             padding: "12px 24px", borderRadius: 100, fontSize: 15, fontWeight: 600,
             textDecoration: "none",
-            boxShadow: "0 4px 14px rgba(124, 58, 237, 0.4), inset 0 1px 0 rgba(255,255,255,0.2)"
+            boxShadow: "0 10px 24px rgba(0,11,51,0.42), inset 0 1px 0 rgba(255,255,255,0.22)"
           }}
         >
           {t.hero.cta1}
         </a>
         <a
-          href="#kira"
+          href="#caty"
           style={{
             color: "rgba(255,255,255,0.8)", padding: "12px 20px 12px 16px",
             borderRadius: 100, fontSize: 15, fontWeight: 500, textDecoration: "none",
@@ -311,14 +313,14 @@ export default function Hero({ t }) {
         transition={{ duration: 0.8, delay: 0.9 }}
       >
         {[
-          { name: "Kira", sub: t.hero.kiraDesc, href: "#kira", dot: "#a855f7" },
-          { name: "C.A.T.", sub: t.hero.catDesc, href: "#cat", dot: "#10b981" },
+          { name: "CATY", sub: t.hero.catyDesc, href: "#caty", dot: "#165F97" },
+          { name: "CAT", sub: t.hero.catDesc, href: "#cat", dot: "#3E89BB" },
         ].map((p) => (
           <a
             key={p.name}
             href={p.href}
             className="flex items-center gap-2 px-4 py-2 rounded-full"
-            style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}
+            style={{ background: "rgba(255,255,255,0.075)", border: "1px solid rgba(220,234,240,0.16)", backdropFilter: "blur(18px)" }}
           >
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: p.dot, display: "inline-block" }} />
             <span style={{ fontWeight: 600, color: "white", fontSize: 14 }}>{p.name}</span>
@@ -340,7 +342,7 @@ export default function Hero({ t }) {
         {/* Ambient glow */}
         <div style={{
           position: "absolute", inset: "-10%",
-          background: "radial-gradient(ellipse at 50% 60%, rgba(124,58,237,0.25), transparent 65%)",
+          background: "radial-gradient(ellipse at 50% 60%, rgba(62,137,187,0.34), transparent 65%)",
           filter: "blur(50px)", zIndex: 0, pointerEvents: "none"
         }} />
 
@@ -348,8 +350,8 @@ export default function Hero({ t }) {
         <div style={{
           position: "relative", zIndex: 1,
           borderRadius: 20, overflow: "hidden",
-          border: "1px solid rgba(255,255,255,0.1)",
-          boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.12)",
+          border: "1px solid rgba(220,234,240,0.16)",
+          boxShadow: "0 34px 90px rgba(0,11,51,0.62), 0 0 0 1px rgba(62,137,187,0.14)",
         }}>
           <VideoPlayer />
         </div>

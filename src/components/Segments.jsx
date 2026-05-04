@@ -3,9 +3,9 @@ import { Building2, Landmark, User2, Check } from "lucide-react"
 
 const ICONS = [Building2, Landmark, User2]
 const BENTO_STYLES = [
-    { background: "#000", color: "white", accent: "rgba(99,102,241,1)", accentBg: "rgba(99,102,241,0.12)", border: "rgba(99,102,241,0.2)" },
-    { background: "#1d1d1f", color: "white", accent: "rgba(167,139,250,1)", accentBg: "rgba(167,139,250,0.12)", border: "rgba(167,139,250,0.2)" },
-    { background: "#f5f5f7", color: "#1d1d1f", accent: "#059669", accentBg: "rgba(5,150,105,0.1)", border: "rgba(5,150,105,0.2)" },
+    { background: "#000B33", color: "white", accent: "rgba(99,102,241,1)", accentBg: "rgba(99,102,241,0.12)", border: "rgba(99,102,241,0.2)" },
+    { background: "#0B365F", color: "white", accent: "rgba(167,139,250,1)", accentBg: "rgba(135,173,198,0.14)", border: "rgba(167,139,250,0.2)" },
+    { background: "#f5f5f7", color: "#0B365F", accent: "#165F97", accentBg: "rgba(5,150,105,0.1)", border: "rgba(5,150,105,0.2)" },
 ]
 
 export default function Segments({ t }) {

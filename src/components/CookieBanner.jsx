@@ -9,7 +9,6 @@ export default function CookieBanner({
 }) {
     return (
         <>
-            {/* ── Bottom banner ── */}
             <AnimatePresence>
                 {show && !showSettings && (
                     <motion.div
@@ -23,52 +22,49 @@ export default function CookieBanner({
                             position: "fixed", bottom: 20,
                             left: 16, right: 16, margin: "0 auto",
                             zIndex: 999, width: "auto", maxWidth: 860,
-                            background: "rgba(10,10,18,0.96)",
+                            background: "rgba(255,255,255,0.92)",
                             backdropFilter: "blur(24px) saturate(180%)",
-                            borderRadius: 20,
-                            border: "1px solid rgba(255,255,255,0.1)",
-                            boxShadow: "0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.07)",
-                            padding: "20px 24px",
+                            borderRadius: 16,
+                            border: "1px solid rgba(13,64,109,0.12)",
+                            boxShadow: "0 24px 70px rgba(0,11,51,0.14)",
+                            padding: "18px",
+                            color: "#000B33",
                         }}
                     >
-                        {/* Top glow line */}
                         <div style={{
                             position: "absolute", top: 0, left: "10%", right: "10%", height: 1,
-                            background: "linear-gradient(90deg,transparent,rgba(124,58,237,0.5),transparent)"
+                            background: "linear-gradient(90deg,transparent,rgba(62,137,187,0.55),transparent)"
                         }} />
 
                         <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", flexDirection: "row" }}>
-                            {/* Icon - hidden on very small screens to save space if needed, otherwise shrinks */}
                             <div className="hidden sm:flex" style={{
                                 width: 42, height: 42, borderRadius: 12, flexShrink: 0,
-                                background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.25)",
+                                background: "rgba(220,234,240,0.72)", border: "1px solid rgba(13,64,109,0.1)",
                                 alignItems: "center", justifyContent: "center"
                             }}>
-                                <Cookie size={18} color="#a78bfa" />
+                                <Cookie size={18} color="#165F97" />
                             </div>
 
-                            {/* Text */}
                             <div style={{ flex: 1, minWidth: 220 }}>
-                                <p style={{ fontSize: 14, fontWeight: 600, color: "white", margin: "0 0 4px" }}>
+                                <p style={{ fontSize: 14, fontWeight: 800, color: "#000B33", margin: "0 0 4px" }}>
                                     Tu privacidad importa
                                 </p>
-                                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.55, margin: 0 }}>
+                                <p style={{ fontSize: 13, color: "rgba(0,11,51,0.62)", lineHeight: 1.55, margin: 0 }}>
                                     Usamos cookies necesarias para que el sitio funcione y, con tu permiso, cookies analíticas y de personalización.
                                     Conforme al{" "}
-                                    <strong style={{ color: "rgba(255,255,255,0.6)" }}>RGPD</strong> puedes gestionar o retirar tu consentimiento en cualquier momento.{" "}
-                                    <a href="#" style={{ color: "#a78bfa", textDecoration: "underline" }}>Política de privacidad</a>
+                                    <strong style={{ color: "#0D406D" }}>RGPD</strong> puedes gestionar o retirar tu consentimiento en cualquier momento.{" "}
+                                    <a href="#" style={{ color: "#165F97", textDecoration: "underline" }}>Política de privacidad</a>
                                 </p>
                             </div>
 
-                            {/* Actions */}
                             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", width: "100%", justifyContent: "flex-end" }}>
                                 <button
                                     onClick={onOpenSettings}
                                     style={{
                                         display: "inline-flex", alignItems: "center", gap: 6,
-                                        padding: "9px 14px", borderRadius: 10, fontSize: 13, fontWeight: 500,
-                                        background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
-                                        color: "rgba(255,255,255,0.65)", cursor: "pointer"
+                                        padding: "9px 14px", borderRadius: 999, fontSize: 13, fontWeight: 700,
+                                        background: "#F5FAFD", border: "1px solid rgba(13,64,109,0.12)",
+                                        color: "#000B33", cursor: "pointer"
                                     }}
                                 >
                                     <Settings size={13} /> Personalizar
@@ -76,9 +72,9 @@ export default function CookieBanner({
                                 <button
                                     onClick={onRejectAll}
                                     style={{
-                                        padding: "9px 16px", borderRadius: 10, fontSize: 13, fontWeight: 500,
-                                        background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
-                                        color: "rgba(255,255,255,0.45)", cursor: "pointer"
+                                        padding: "9px 16px", borderRadius: 999, fontSize: 13, fontWeight: 700,
+                                        background: "white", border: "1px solid rgba(13,64,109,0.12)",
+                                        color: "rgba(0,11,51,0.62)", cursor: "pointer"
                                     }}
                                 >
                                     Solo necesarias
@@ -86,10 +82,10 @@ export default function CookieBanner({
                                 <button
                                     onClick={onAcceptAll}
                                     style={{
-                                        padding: "9px 20px", borderRadius: 10, fontSize: 13, fontWeight: 600,
-                                        background: "linear-gradient(135deg,#7c3aed,#2563eb)",
+                                        padding: "9px 20px", borderRadius: 999, fontSize: 13, fontWeight: 800,
+                                        background: "#000B33",
                                         border: "none", color: "white", cursor: "pointer",
-                                        boxShadow: "0 0 16px rgba(124,58,237,0.4)"
+                                        boxShadow: "0 14px 28px rgba(0,11,51,0.18)"
                                     }}
                                 >
                                     Aceptar todas
@@ -100,7 +96,6 @@ export default function CookieBanner({
                 )}
             </AnimatePresence>
 
-            {/* ── Settings modal ── */}
             <AnimatePresence>
                 {showSettings && (
                     <CookieSettings

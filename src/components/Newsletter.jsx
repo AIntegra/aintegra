@@ -86,7 +86,7 @@ export default function Newsletter({ t }) {
                                 disabled={status === "loading"}
                                 className="px-6 py-3 rounded-xl font-medium text-white flex items-center justify-center gap-2 disabled:opacity-70"
                                 style={{
-                                    background: "linear-gradient(135deg, #6366f1, #8b5cf6)"
+                                    background: "linear-gradient(135deg, #6366f1, #165F97)"
                                 }}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}

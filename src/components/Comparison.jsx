@@ -24,7 +24,7 @@ export default function Comparison({ t }) {
                 <h2
                     className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
                     style={{
-                        background: "linear-gradient(135deg, #06b6d4 0%, #22d3ee 50%, #67e8f9 100%)",
+                        background: "linear-gradient(135deg, #3E89BB 0%, #3E89BB 50%, #87ADC6 100%)",
                         WebkitBackgroundClip: "text",
                         backgroundClip: "text",
                         WebkitTextFillColor: "transparent"

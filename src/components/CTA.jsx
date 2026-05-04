@@ -13,8 +13,8 @@ export default function CTA({ lang = "es" }) {
     es: {
       eyebrow: "Empieza hoy",
       badge: "30 min · Sin compromiso",
-      title: "Ve AIntegra en acción.",
-      subtitle: "Agenda tu demo personalizada. Kira y C.A.T. adaptados a tu organización.",
+      title: "Valida AIntegra con tu organización.",
+      subtitle: "Agenda una conversación para explorar CAT, CATY y un piloto adaptado a tus usuarios.",
       name: "Nombre completo", company: "Empresa u organización",
       email: "Email corporativo", usecase: "¿Para qué lo usarías?",
       usecaseOptions: [
@@ -28,13 +28,13 @@ export default function CTA({ lang = "es" }) {
       send: "Agendar Demo", sending: "Enviando...",
       success: "¡Solicitud recibida! Te contactamos en menos de 24h.",
       error: "Error al enviar. Inténtalo de nuevo.",
-      trust: ["Respuesta en < 24 horas", "Para empresas e instituciones", "Demo personalizada"],
+      trust: ["Respuesta en < 24 horas", "Para entidades, empresas e instituciones", "Piloto o demo personalizada"],
     },
     en: {
       eyebrow: "Get started",
       badge: "30 min · No commitment",
-      title: "See AIntegra in action.",
-      subtitle: "Book your personalized demo. Kira and C.A.T. tailored to your organization.",
+      title: "Validate AIntegra with your organization.",
+      subtitle: "Book a conversation to explore CAT, CATY and a pilot adapted to your users.",
       name: "Full name", company: "Company or organization",
       email: "Work email", usecase: "What would you use it for?",
       usecaseOptions: [
@@ -48,7 +48,7 @@ export default function CTA({ lang = "es" }) {
       send: "Book My Demo", sending: "Sending...",
       success: "Request received! We'll reach out within 24 hours.",
       error: "Error sending. Please try again.",
-      trust: ["Response in < 24h", "For companies & institutions", "Personalized demo"],
+      trust: ["Response in < 24h", "For entities, companies & institutions", "Personalized pilot or demo"],
     }
   }
 
@@ -81,7 +81,7 @@ export default function CTA({ lang = "es" }) {
       id="contact"
       className="apple-panel"
       style={{
-        background: "radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.25) 0%, #000 55%)",
+        background: "radial-gradient(ellipse at 50% 0%, rgba(62,137,187,0.24) 0%, rgba(0,11,51,0.96) 58%)",
         color: "white", minHeight: "auto", paddingBottom: 100
       }}
     >
@@ -107,10 +107,10 @@ export default function CTA({ lang = "es" }) {
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             marginTop: 20, padding: "8px 18px", borderRadius: 980,
-            background: "rgba(37,99,235,0.15)", border: "1px solid rgba(37,99,235,0.3)"
+            background: "rgba(220,234,240,0.08)", border: "1px solid rgba(62,137,187,0.28)"
           }}>
-            <Clock size={14} color="#60a5fa" />
-            <span style={{ color: "#93c5fd", fontSize: 14 }}>{t.badge}</span>
+            <Clock size={14} color="#3E89BB" />
+            <span style={{ color: "#87ADC6", fontSize: 14 }}>{t.badge}</span>
           </div>
         </motion.div>
 
@@ -132,10 +132,10 @@ export default function CTA({ lang = "es" }) {
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: 14 }}>
                   <div style={{
                     width: 40, height: 40, borderRadius: 12,
-                    background: "rgba(37,99,235,0.12)", border: "1px solid rgba(37,99,235,0.2)",
+                    background: "rgba(220,234,240,0.08)", border: "1px solid rgba(62,137,187,0.22)",
                     display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
                   }}>
-                    <item.icon size={18} color="#60a5fa" />
+                    <item.icon size={18} color="#3E89BB" />
                   </div>
                   <span style={{ color: "rgba(255,255,255,0.65)", fontSize: 16 }}>{item.text}</span>
                 </div>
@@ -145,17 +145,17 @@ export default function CTA({ lang = "es" }) {
             {/* Platform recap */}
             <div style={{
               marginTop: 40, padding: "24px", borderRadius: 20,
-              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)"
+              background: "rgba(255,255,255,0.055)", border: "1px solid rgba(220,234,240,0.13)", backdropFilter: "blur(20px)"
             }}>
               <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>
                 {lang === "es" ? "Incluye acceso a" : "Includes access to"}
               </p>
               <div style={{ display: "flex", gap: 16 }}>
-                {["Kira", "C.A.T."].map((prod, i) => (
+                {["CATY", "CAT"].map((prod, i) => (
                   <div key={i} style={{
                     flex: 1, padding: "12px 16px", borderRadius: 14,
-                    background: i === 0 ? "rgba(124,58,237,0.15)" : "rgba(16,185,129,0.12)",
-                    border: `1px solid ${i === 0 ? "rgba(124,58,237,0.3)" : "rgba(16,185,129,0.25)"}`,
+                    background: i === 0 ? "rgba(22,95,151,0.18)" : "rgba(62,137,187,0.14)",
+                    border: `1px solid ${i === 0 ? "rgba(135,173,198,0.28)" : "rgba(62,137,187,0.3)"}`,
                     textAlign: "center"
                   }}>
                     <div style={{ fontWeight: 700, color: "white", fontSize: 16 }}>{prod}</div>
@@ -173,12 +173,12 @@ export default function CTA({ lang = "es" }) {
             >
               <div style={{
                 width: 64, height: 64, borderRadius: "50%",
-                background: "linear-gradient(135deg, #059669, #06b6d4)",
+                background: "linear-gradient(135deg, #165F97, #3E89BB)",
                 display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px"
               }}>
                 <CalendarCheck size={32} color="white" />
               </div>
-              <p style={{ color: "#6ee7b7", fontSize: 18, fontWeight: 500 }}>{t.success}</p>
+              <p style={{ color: "#87ADC6", fontSize: 18, fontWeight: 500 }}>{t.success}</p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -199,7 +199,7 @@ export default function CTA({ lang = "es" }) {
               >
                 {loading ? <><Send size={18} />{t.sending}</> : <><CalendarCheck size={18} />{t.send}</>}
               </motion.button>
-              {error && <p style={{ color: "#f87171", fontSize: 14, textAlign: "center" }}>{error}</p>}
+              {error && <p style={{ color: "#E57373", fontSize: 14, textAlign: "center" }}>{error}</p>}
             </form>
           )}
         </motion.div>

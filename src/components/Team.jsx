@@ -45,7 +45,7 @@ export default function Team({ t }) {
           width: "60vw",
           height: "60vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(22,95,151,0.05) 0%, transparent 60%)",
           y: bgY,
           pointerEvents: "none"
         }}
@@ -77,7 +77,7 @@ export default function Team({ t }) {
             {t.team.founders?.map((founder, idx) => (
               <div key={idx} style={{ padding: "20px", background: "rgba(255,255,255,0.03)", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.05)", minWidth: 220, textAlign: "center" }}>
                 <h4 style={{ margin: 0, fontSize: "20px", fontWeight: "600", color: "#fff" }}>{founder.name}</h4>
-                <p style={{ margin: "4px 0 0 0", fontSize: "14px", color: "#a78bfa", fontWeight: "500" }}>{founder.role}</p>
+                <p style={{ margin: "4px 0 0 0", fontSize: "14px", color: "#87ADC6", fontWeight: "500" }}>{founder.role}</p>
               </div>
             ))}
           </div>
@@ -160,9 +160,9 @@ export default function Team({ t }) {
                   width: i === activeIndex ? 24 : 8,
                   height: 8,
                   borderRadius: 4,
-                  background: i === activeIndex ? "rgba(124,58,237, 0.9)" : "rgba(255,255,255,0.2)",
+                  background: i === activeIndex ? "rgba(62,137,187, 0.9)" : "rgba(255,255,255,0.2)",
                   transition: "all 0.3s ease",
-                  boxShadow: i === activeIndex ? "0 0 8px rgba(124,58,237, 0.5)" : "none"
+                  boxShadow: i === activeIndex ? "0 0 8px rgba(62,137,187, 0.5)" : "none"
                 }}
               />
             ))}

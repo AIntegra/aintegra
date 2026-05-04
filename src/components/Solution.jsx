@@ -3,21 +3,20 @@ import { ArrowRight } from "lucide-react"
 
 
 
-// Kira section stays dark with purple-emerald gradient to match the dark identity
-// C.A.T. section also dark with emerald tones
+// CATY and CAT use the AIntegra blue palette with Apple-style glass depth.
 
 export default function Solution({ t }) {
-  const kira = t.solution.kira
+  const caty = t.solution.caty
   const cat = t.solution.cat
 
   return (
     <>
-      {/* ── KIRA PANEL — dark / purple ── */}
+      {/* ── CATY PANEL — dark / purple ── */}
       <section
-        id="kira"
+        id="caty"
         className="apple-panel dark"
         style={{
-          background: "radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.28) 0%, #000 60%)",
+          background: "radial-gradient(ellipse at 50% 0%, rgba(62,137,187,0.3) 0%, rgba(0,11,51,0.94) 60%)",
           color: "white"
         }}
       >
@@ -28,7 +27,7 @@ export default function Solution({ t }) {
             initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6 }}
           >
-            {kira.name} — {kira.tagline}
+            {caty.name} — {caty.tagline}
           </motion.p>
 
           <motion.h2
@@ -37,7 +36,7 @@ export default function Solution({ t }) {
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
           >
-            {kira.subtitle}
+            {caty.subtitle}
           </motion.h2>
 
           <motion.p
@@ -46,7 +45,7 @@ export default function Solution({ t }) {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.25 }}
           >
-            {kira.body}
+            {caty.body}
           </motion.p>
 
           <motion.div
@@ -55,7 +54,7 @@ export default function Solution({ t }) {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
             viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.4 }}
           >
-            <a href="#contact" className="apple-btn apple-btn-blue">{kira.cta}</a>
+            <a href="#contact" className="apple-btn apple-btn-blue">{caty.cta}</a>
             <a href="#cat" className="apple-btn apple-btn-outline-white">
               {t.solution.cat.name} <ArrowRight size={15} />
             </a>
@@ -67,10 +66,10 @@ export default function Solution({ t }) {
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.5 }}
           >
-            {kira.benefits.map((b, i) => (
+            {caty.benefits.map((b, i) => (
               <span key={i} style={{
-                background: "rgba(124,58,237,0.12)", border: "1px solid rgba(124,58,237,0.25)",
-                borderRadius: 980, padding: "8px 18px", fontSize: 13, color: "rgba(255,255,255,0.75)"
+                background: "rgba(220,234,240,0.08)", border: "1px solid rgba(135,173,198,0.22)",
+                borderRadius: 980, padding: "8px 18px", fontSize: 13, color: "rgba(220,234,240,0.82)"
               }}>
                 {b}
               </span>
@@ -80,12 +79,12 @@ export default function Solution({ t }) {
         </div>
       </section>
 
-      {/* ── C.A.T. PANEL — DARK with emerald tones ── */}
+      {/* ── CAT PANEL — DARK with emerald tones ── */}
       <section
         id="cat"
         className="apple-panel dark"
         style={{
-          background: "radial-gradient(ellipse at 50% 0%, rgba(5,150,105,0.2) 0%, #000 60%)",
+          background: "radial-gradient(ellipse at 50% 0%, rgba(135,173,198,0.22) 0%, rgba(11,54,95,0.92) 58%, #000B33 100%)",
           color: "white"
         }}
       >
@@ -95,7 +94,7 @@ export default function Solution({ t }) {
             className="apple-eyebrow"
             style={{
               marginBottom: 8,
-              background: "linear-gradient(135deg, #10b981, #06b6d4)",
+              background: "linear-gradient(135deg, #87ADC6, #3E89BB)",
               WebkitBackgroundClip: "text", backgroundClip: "text",
               WebkitTextFillColor: "transparent"
             }}
@@ -132,7 +131,7 @@ export default function Solution({ t }) {
             <a
               href="#contact"
               className="apple-btn"
-              style={{ background: "linear-gradient(135deg, #10b981, #06b6d4)", color: "white" }}
+              style={{ background: "linear-gradient(135deg, #0B365F, #165F97 55%, #3E89BB)", color: "white" }}
             >
               {cat.cta}
             </a>
@@ -149,15 +148,15 @@ export default function Solution({ t }) {
           >
             {cat.benefits.map((b, i) => (
               <span key={i} style={{
-                background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.25)",
-                borderRadius: 980, padding: "8px 18px", fontSize: 13, color: "rgba(255,255,255,0.75)"
+                background: "rgba(220,234,240,0.08)", border: "1px solid rgba(62,137,187,0.26)",
+                borderRadius: 980, padding: "8px 18px", fontSize: 13, color: "rgba(220,234,240,0.82)"
               }}>
                 {b}
               </span>
             ))}
           </motion.div>
 
-          {/* C.A.T. two-view product shot */}
+          {/* CAT two-view product shot */}
           <motion.div
             style={{ position: "relative", marginTop: 72 }}
             initial={{ opacity: 0, y: 24 }}
@@ -167,7 +166,7 @@ export default function Solution({ t }) {
           >
             <div style={{
               position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse at 50% 50%, rgba(16,185,129,0.25), transparent 65%)",
+              background: "radial-gradient(ellipse at 50% 50%, rgba(62,137,187,0.32), transparent 65%)",
               filter: "blur(60px)", pointerEvents: "none"
             }} />
 
@@ -177,10 +176,10 @@ export default function Solution({ t }) {
                 viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}
                 style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}
               >
-                <img src="/assets/cat_front.png" alt="C.A.T. Trackpad — Vista superior"
+                <img src="/assets/cat_front.png" alt="CAT Trackpad — Vista superior"
                   style={{
                     width: "100%", objectFit: "contain", mixBlendMode: "screen",
-                    filter: "drop-shadow(0 20px 40px rgba(16,185,129,0.3))"
+                    filter: "drop-shadow(0 20px 40px rgba(62,137,187,0.34))"
                   }} />
                 <span style={{
                   fontSize: 12, fontWeight: 500, letterSpacing: "0.08em",
@@ -195,10 +194,10 @@ export default function Solution({ t }) {
                 viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.55 }}
                 style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}
               >
-                <img src="/assets/cat_back.png" alt="C.A.T. Trackpad — Vista trasera"
+                <img src="/assets/cat_back.png" alt="CAT Trackpad — Vista trasera"
                   style={{
                     width: "100%", objectFit: "contain", mixBlendMode: "screen",
-                    filter: "drop-shadow(0 20px 40px rgba(16,185,129,0.3))"
+                    filter: "drop-shadow(0 20px 40px rgba(62,137,187,0.34))"
                   }} />
                 <span style={{
                   fontSize: 12, fontWeight: 500, letterSpacing: "0.08em",
@@ -217,7 +216,7 @@ export default function Solution({ t }) {
                 fontSize: 13, color: "rgba(255,255,255,0.2)",
                 letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 500
               }}>
-                C.A.T. by AIntegra Limited
+                CAT by AIntegra Limited
               </p>
             </motion.div>
           </motion.div>

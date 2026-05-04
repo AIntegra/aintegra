@@ -4,10 +4,10 @@ import { X, Shield, BarChart2, Megaphone, SlidersHorizontal, ChevronDown } from 
 import { CATEGORIES } from "../hooks/useCookieConsent"
 
 const CATEGORY_META = {
-    necessary: { icon: Shield, color: "#10b981", desc: "Imprescindibles para el funcionamiento básico del sitio. No se pueden desactivar.", examples: "Sesión, seguridad, idioma." },
-    analytics: { icon: BarChart2, color: "#7c3aed", desc: "Nos ayudan a entender cómo los usuarios interactúan con el sitio para mejorarlo.", examples: "Google Analytics, Plausible." },
+    necessary: { icon: Shield, color: "#3E89BB", desc: "Imprescindibles para el funcionamiento básico del sitio. No se pueden desactivar.", examples: "Sesión, seguridad, idioma." },
+    analytics: { icon: BarChart2, color: "#165F97", desc: "Nos ayudan a entender cómo los usuarios interactúan con el sitio para mejorarlo.", examples: "Google Analytics, Plausible." },
     marketing: { icon: Megaphone, color: "#f59e0b", desc: "Usadas para mostrarte anuncios relevantes en otras plataformas.", examples: "Meta Pixel, Google Ads." },
-    preferences: { icon: SlidersHorizontal, color: "#3b82f6", desc: "Recuerdan tus preferencias como idioma o región.", examples: "Idioma seleccionado, región." },
+    preferences: { icon: SlidersHorizontal, color: "#3E89BB", desc: "Recuerdan tus preferencias como idioma o región.", examples: "Idioma seleccionado, región." },
 }
 
 function Toggle({ checked, onChange, disabled }) {
@@ -17,7 +17,7 @@ function Toggle({ checked, onChange, disabled }) {
             disabled={disabled}
             style={{
                 flexShrink: 0, width: 44, height: 24, borderRadius: 12, padding: 2,
-                background: checked ? "#7c3aed" : "rgba(255,255,255,0.1)",
+                background: checked ? "#165F97" : "rgba(255,255,255,0.1)",
                 border: "none", cursor: disabled ? "not-allowed" : "pointer",
                 transition: "background 0.2s", position: "relative", display: "flex", alignItems: "center"
             }}
@@ -198,9 +198,9 @@ export default function CookieSettings({ consent, onSave, onAcceptAll, onClose }
                         onClick={onAcceptAll}
                         style={{
                             flex: 1, padding: "12px 0", borderRadius: 12,
-                            background: "linear-gradient(135deg,#7c3aed,#2563eb)",
+                            background: "linear-gradient(135deg,#165F97,#0D406D)",
                             border: "none", color: "white", fontWeight: 600, fontSize: 14, cursor: "pointer",
-                            boxShadow: "0 0 20px rgba(124,58,237,0.35)"
+                            boxShadow: "0 0 20px rgba(22,95,151,0.35)"
                         }}
                     >
                         Aceptar todas

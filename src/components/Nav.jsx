@@ -4,8 +4,8 @@ import { Menu, X, ChevronRight } from "lucide-react"
 
 const NAV_ITEMS = [
   { href: "#problem", labelEs: "El Problema", labelEn: "Problem" },
-  { href: "#kira", labelEs: "Kira", labelEn: "Kira" },
-  { href: "#cat", labelEs: "C.A.T.", labelEn: "C.A.T." },
+  { href: "#caty", labelEs: "CATY", labelEn: "CATY" },
+  { href: "#cat", labelEs: "CAT", labelEn: "CAT" },
   { href: "#pricing", labelEs: "Planes", labelEn: "Plans" },
   { href: "#benefits", labelEs: "Resultados", labelEn: "Results" },
 ]
@@ -82,14 +82,14 @@ export default function Nav({ t, lang, setLang }) {
             padding: "8px 20px",
             transition: "all 0.35s ease",
             background: scrolled
-              ? "rgba(8, 8, 12, 0.88)"
+              ? "rgba(0, 11, 51, 0.78)"
               : "transparent",
-            backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
+            backdropFilter: scrolled ? "blur(24px) saturate(180%)" : "none",
             border: scrolled
-              ? "1px solid rgba(255,255,255,0.07)"
+              ? "1px solid rgba(220,234,240,0.16)"
               : "1px solid transparent",
             boxShadow: scrolled
-              ? "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)"
+              ? "0 12px 40px rgba(0,11,51,0.42), inset 0 1px 0 rgba(255,255,255,0.12)"
               : "none",
           }}
         >
@@ -123,10 +123,10 @@ export default function Nav({ t, lang, setLang }) {
                     borderRadius: 10,
                     fontSize: 13,
                     fontWeight: isActive ? 600 : 400,
-                    color: isActive ? "white" : "rgba(255,255,255,0.55)",
+                    color: isActive ? "white" : "rgba(220,234,240,0.62)",
                     textDecoration: "none",
                     transition: "color 0.15s, background 0.15s",
-                    background: isActive ? "rgba(255,255,255,0.08)" : "transparent",
+                    background: isActive ? "rgba(220,234,240,0.11)" : "transparent",
                   }}
                   onMouseEnter={e => {
                     if (!isActive) e.currentTarget.style.color = "rgba(255,255,255,0.9)"
@@ -141,7 +141,7 @@ export default function Nav({ t, lang, setLang }) {
                       layoutId="nav-pill"
                       style={{
                         position: "absolute", inset: 0, borderRadius: 10,
-                        background: "rgba(255,255,255,0.08)",
+                        background: "rgba(220,234,240,0.11)",
                         zIndex: -1
                       }}
                     />
@@ -176,8 +176,8 @@ export default function Nav({ t, lang, setLang }) {
               style={{
                 display: "inline-flex", alignItems: "center", gap: 5,
                 padding: "7px 16px", borderRadius: 100,
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.12)",
+                background: "rgba(220,234,240,0.08)",
+                border: "1px solid rgba(220,234,240,0.18)",
                 color: "rgba(255,255,255,0.9)", fontSize: 13, fontWeight: 500,
                 textDecoration: "none", transition: "all 0.2s"
               }}
@@ -238,7 +238,7 @@ export default function Nav({ t, lang, setLang }) {
                     display: "flex", alignItems: "center", justifyContent: "space-between",
                     padding: "13px 16px", borderRadius: 12, textDecoration: "none",
                     color: activeSection === item.href ? "white" : "rgba(255,255,255,0.6)",
-                    background: activeSection === item.href ? "rgba(124,58,237,0.12)" : "transparent",
+                    background: activeSection === item.href ? "rgba(22,95,151,0.12)" : "transparent",
                     fontSize: 15, fontWeight: activeSection === item.href ? 600 : 400,
                     transition: "all 0.15s"
                   }}

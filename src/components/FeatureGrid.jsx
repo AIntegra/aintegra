@@ -10,12 +10,12 @@ import { motion } from "framer-motion"
 export default function FeatureGrid({ items, title, subtitle, badge, variant = "dark" }) {
   if (variant === "emoji") {
     const ACCENTS = [
-      { grad: "linear-gradient(135deg,#6366f1,#a855f7)", glow: "rgba(99,102,241,0.25)", border: "rgba(99,102,241,0.2)" },
-      { grad: "linear-gradient(135deg,#a855f7,#ec4899)", glow: "rgba(168,85,247,0.25)", border: "rgba(168,85,247,0.2)" },
-      { grad: "linear-gradient(135deg,#3b82f6,#6366f1)", glow: "rgba(59,130,246,0.25)", border: "rgba(59,130,246,0.2)" },
-      { grad: "linear-gradient(135deg,#06b6d4,#3b82f6)", glow: "rgba(6,182,212,0.25)", border: "rgba(6,182,212,0.2)" },
-      { grad: "linear-gradient(135deg,#8b5cf6,#06b6d4)", glow: "rgba(139,92,246,0.25)", border: "rgba(139,92,246,0.2)" },
-      { grad: "linear-gradient(135deg,#ec4899,#8b5cf6)", glow: "rgba(236,72,153,0.25)", border: "rgba(236,72,153,0.2)" },
+      { grad: "linear-gradient(135deg,#6366f1,#165F97)", glow: "rgba(99,102,241,0.25)", border: "rgba(99,102,241,0.2)" },
+      { grad: "linear-gradient(135deg,#165F97,#ec4899)", glow: "rgba(168,85,247,0.25)", border: "rgba(168,85,247,0.2)" },
+      { grad: "linear-gradient(135deg,#3E89BB,#6366f1)", glow: "rgba(59,130,246,0.25)", border: "rgba(59,130,246,0.2)" },
+      { grad: "linear-gradient(135deg,#3E89BB,#3E89BB)", glow: "rgba(62,137,187,0.25)", border: "rgba(62,137,187,0.2)" },
+      { grad: "linear-gradient(135deg,#165F97,#3E89BB)", glow: "rgba(139,92,246,0.25)", border: "rgba(139,92,246,0.2)" },
+      { grad: "linear-gradient(135deg,#ec4899,#165F97)", glow: "rgba(236,72,153,0.25)", border: "rgba(236,72,153,0.2)" },
     ]
 
     return (
@@ -63,7 +63,7 @@ export default function FeatureGrid({ items, title, subtitle, badge, variant = "
                   transition={{ duration: 0.55, delay: i * 0.07 }}
                   whileHover={{ y: -4, boxShadow: `0 16px 48px ${acc.glow}` }}
                   style={{
-                    background: "#111113",
+                    background: "#071d45",
                     borderRadius: 20,
                     padding: "36px 28px 32px",
                     border: `1px solid rgba(255,255,255,0.06)`,

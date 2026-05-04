@@ -6,8 +6,8 @@ const NAV_COLS = {
     {
       heading: "Plataforma",
       links: [
-        { label: "Kira", href: "#kira" },
-        { label: "C.A.T.", href: "#cat" },
+        { label: "CATY", href: "#caty" },
+        { label: "CAT", href: "#cat" },
         { label: "Para quien", href: "#segments" },
         { label: "Resultados", href: "#benefits" },
       ],
@@ -25,8 +25,8 @@ const NAV_COLS = {
     {
       heading: "Platform",
       links: [
-        { label: "Kira", href: "#kira" },
-        { label: "C.A.T.", href: "#cat" },
+        { label: "CATY", href: "#caty" },
+        { label: "CAT", href: "#cat" },
         { label: "Who It's For", href: "#segments" },
         { label: "Results", href: "#benefits" },
       ],
@@ -65,7 +65,7 @@ export default function Footer({ rights, onReopenCookies, lang = "es" }) {
   const cols = NAV_COLS[lang] ?? NAV_COLS.es
 
   return (
-    <footer style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#050508" }}>
+    <footer style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#000B33" }}>
       <style>{`
         .footer-grid {
           display: grid;
@@ -99,8 +99,8 @@ export default function Footer({ rights, onReopenCookies, lang = "es" }) {
               />
               <p style={{ fontSize: 14, lineHeight: 1.75, color: "rgba(255,255,255,0.4)", maxWidth: 320 }}>
                 {isEs
-                  ? "Integramos inteligencia artificial y hardware adaptativo para transformar como las organizaciones interactuan con la tecnologia."
-                  : "We integrate artificial intelligence and adaptive hardware to transform how organisations interact with technology."}
+                  ? "Desarrollamos hardware gestual e inteligencia adaptativa local para que la tecnología se adapte a las personas."
+                  : "We build adaptive gesture hardware and local intelligence so technology adapts to people."}
               </p>
 
               {/* Social icons */}
@@ -119,7 +119,7 @@ export default function Footer({ rights, onReopenCookies, lang = "es" }) {
                       background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)",
                       color: "rgba(255,255,255,0.45)", transition: "all 0.18s ease", cursor: "pointer"
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(124,58,237,0.15)"; e.currentTarget.style.borderColor = "rgba(124,58,237,0.3)"; e.currentTarget.style.color = "#a78bfa" }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(22,95,151,0.15)"; e.currentTarget.style.borderColor = "rgba(22,95,151,0.3)"; e.currentTarget.style.color = "#87ADC6" }}
                     onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)"; e.currentTarget.style.color = "rgba(255,255,255,0.45)" }}
                   >
                     <s.icon size={15} />

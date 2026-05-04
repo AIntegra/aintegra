@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 
 const STORAGE_KEY = "aintegra_cookie_consent"
-const VERSION = "1.0" // bump to re-ask on policy change
+const VERSION = "1.1" // bump to re-ask on policy change
 
 export const CATEGORIES = {
     necessary: { id: "necessary", label: "Necesarias", required: true },
