@@ -51,7 +51,6 @@ const CONTENT = {
       how: "Cómo funciona",
       system: "Producto",
       video: "En acción",
-      demo: "Demo interactiva",
       users: "Pilotos",
       outcomes: "Valor",
       pilot: "Piloto",
@@ -85,6 +84,11 @@ const CONTENT = {
       title: "CAT",
       label: "Trackpad adaptativo",
       text: "El dispositivo físico de AIntegra. Aprende variaciones del usuario, tolera fatiga y permite controlar el ordenador mediante gestos personalizados.",
+      features: [
+        ["Gestos personalizados", "Cada usuario conserva su forma natural de interactuar."],
+        ["Tolerancia a fatiga", "CAT interpreta variaciones, presión y ritmo sin exigir precisión constante."],
+        ["Control sin ratón", "El gesto se transforma en navegación, selección o acción dentro del ordenador."],
+      ],
     },
     caty: {
       title: "CATY",
@@ -95,14 +99,6 @@ const CONTENT = {
     videoTitle: "Mira cómo se siente AIntegra en uso.",
     videoText:
       "Una demostración breve para entender el puente entre el gesto, el asistente y la acción digital.",
-    demoTitle: "Prueba mentalmente una demo antes de pedirla.",
-    demoText:
-      "Selecciona una acción y mira cómo CATY explica el resultado de forma clara.",
-    demoActions: [
-      ["Resumir web", "CATY lee la página abierta y devuelve un resumen por voz en lenguaje claro."],
-      ["Leer documento", "CATY acompaña la lectura y permite avanzar sin depender del ratón."],
-      ["Abrir recurso", "CAT traduce el gesto y CATY abre el recurso correcto en el ordenador."],
-    ],
     midCtaTitle: "¿Quieres verlo aplicado a tu caso?",
     midCtaText: "En una demo podemos adaptar el ejemplo a usuarios, asociación, empresa o institución.",
     midCtaButton: "Solicitar demo",
@@ -215,7 +211,6 @@ const CONTENT = {
       how: "How it works",
       system: "Product",
       video: "In action",
-      demo: "Interactive demo",
       users: "Pilots",
       outcomes: "Value",
       pilot: "Pilot",
@@ -249,6 +244,11 @@ const CONTENT = {
       title: "CAT",
       label: "Adaptive trackpad",
       text: "AIntegra's physical device. It learns user variation, tolerates fatigue and enables computer control through personalized gestures.",
+      features: [
+        ["Personalized gestures", "Each user keeps their natural way of interacting."],
+        ["Fatigue tolerance", "CAT interprets variation, pressure and rhythm without demanding constant precision."],
+        ["Mouse-free control", "The gesture becomes navigation, selection or action inside the computer."],
+      ],
     },
     caty: {
       title: "CATY",
@@ -259,14 +259,6 @@ const CONTENT = {
     videoTitle: "See how AIntegra feels in use.",
     videoText:
       "A short demo to understand the bridge between gesture, assistant and digital action.",
-    demoTitle: "Try a demo in your head before booking it.",
-    demoText:
-      "Choose an action and see how CATY explains the result clearly.",
-    demoActions: [
-      ["Summarize web", "CATY reads the open page and returns a clear voice summary."],
-      ["Read document", "CATY guides reading and lets the user move forward without relying on a mouse."],
-      ["Open resource", "CAT translates the gesture and CATY opens the right resource on the computer."],
-    ],
     midCtaTitle: "Want to see it applied to your case?",
     midCtaText: "In a demo we can adapt the example to users, associations, companies or institutions.",
     midCtaButton: "Request demo",
@@ -515,44 +507,6 @@ function HowItWorks({ t }) {
             <p>{text}</p>
           </article>
         ))}
-      </div>
-    </section>
-  )
-}
-
-function InteractiveDemo({ t }) {
-  const [active, setActive] = useState(0)
-  const [label, result] = t.demoActions[active]
-
-  return (
-    <section className="lab-demo">
-      <div className="lab-demo-copy">
-        <span className="lab-kicker">{t.sectionLabels.demo}</span>
-        <h2>{t.demoTitle}</h2>
-        <p>{t.demoText}</p>
-      </div>
-      <div className="lab-demo-console">
-        <div className="lab-demo-actions">
-          {t.demoActions.map(([item], index) => (
-            <button
-              type="button"
-              key={item}
-              className={index === active ? "active" : ""}
-              onClick={() => setActive(index)}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-        <div className="lab-demo-output">
-          <span>CATY</span>
-          <h3>{label}</h3>
-          <p>{result}</p>
-          <div>
-            <strong>CAT</strong>
-            <small>{t.process.join(" -> ")}</small>
-          </div>
-        </div>
       </div>
     </section>
   )
@@ -840,37 +794,48 @@ export default function App() {
               <span>{t.cat.label}</span>
               <h3>{t.cat.title}</h3>
               <p>{t.cat.text}</p>
+              <div className="lab-cat-capabilities">
+                {t.cat.features.map(([title, text], index) => (
+                  <div key={title}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{title}</strong>
+                    <small>{text}</small>
+                  </div>
+                ))}
+              </div>
             </article>
             <article>
               <div className="lab-assistant-visual" aria-label="CATY virtual assistant interface">
-                <div className="lab-mac-shell">
-                  <div className="lab-mac-topbar">
-                    <div>
-                      <span />
-                      <span />
-                      <span />
+                <div className="lab-caty-showcase">
+                  <div className="lab-demo-window">
+                    <div className="lab-demo-topbar">
+                      <div aria-hidden="true"><span /><span /><span /></div>
+                      <strong>CATY</strong>
+                      <em>{lang === "es" ? "Modo voz" : "Voice mode"}</em>
                     </div>
-                    <strong>CATY</strong>
-                  </div>
-                  <div className="lab-mac-screen">
-                    <aside>
-                      <span />
-                      <span />
-                      <span />
-                    </aside>
-                    <div className="lab-mac-workspace">
-                      <div className="lab-mac-document">
+                    <div className="lab-demo-screen">
+                      <aside className="lab-demo-dock" aria-hidden="true">
                         <span />
                         <span />
                         <span />
                         <span />
-                      </div>
-                      <div className="lab-caty-card">
-                        <span>CATY</span>
-                        <p>{lang === "es" ? "Estoy resumiendo esta web en voz clara." : "Summarizing this web in clear voice."}</p>
-                        <div>
-                          <strong>{lang === "es" ? "Modo voz" : "Voice mode"}</strong>
-                          <small>{lang === "es" ? "Web · Resumen · Lectura guiada" : "Web · Summary · Guided reading"}</small>
+                      </aside>
+                      <div className="lab-demo-main">
+                        <div className="lab-demo-browser" aria-hidden="true">
+                          <div>
+                            <span>{lang === "es" ? "Web abierta" : "Open web"}</span>
+                            <strong>{lang === "es" ? "Informe de accesibilidad digital" : "Digital accessibility report"}</strong>
+                          </div>
+                          <p>{lang === "es" ? "La interfaz se adapta al usuario, no al revés." : "The interface adapts to the user, not the other way around."}</p>
+                        </div>
+                        <div className="lab-demo-caty">
+                          <span>CATY</span>
+                          <h3>{lang === "es" ? "Resumiendo esta web en voz clara." : "Summarizing this web in clear voice."}</h3>
+                          <p>{lang === "es" ? "He detectado los puntos clave y puedo leerlos, abrir documentos o seguir en modo voz." : "I found the key points and can read them, open documents or continue in voice mode."}</p>
+                          <div>
+                            <strong>{lang === "es" ? "Modo voz" : "Voice mode"}</strong>
+                            <small>{lang === "es" ? "Web · Resumen · Lectura guiada" : "Web · Summary · Guided reading"}</small>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -909,7 +874,6 @@ export default function App() {
           </div>
         </section>
 
-        <InteractiveDemo t={t} />
         <MidCta t={t} onClick={(event) => scrollTo(event, "#contact")} />
 
         <section id="users" className="lab-section lab-users">
