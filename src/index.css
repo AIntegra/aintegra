@@ -3538,6 +3538,28 @@ html {
   color: #000b33;
 }
 
+.lab-video-section {
+  width: min(1180px, calc(100% - 32px));
+  margin: 110px auto 0;
+}
+
+.lab-video-frame {
+  overflow: hidden;
+  margin-top: 32px;
+  border: 1px solid rgba(13, 64, 109, 0.1);
+  border-radius: 8px;
+  background: #000b33;
+  box-shadow: 0 28px 90px rgba(0, 11, 51, 0.14);
+}
+
+.lab-video-frame video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #000b33;
+}
+
 .lab-users .lab-section-copy {
   max-width: 880px;
   margin-inline: auto;
@@ -3979,6 +4001,11 @@ html {
 
   .lab-contact {
     padding: 24px;
+  }
+
+  .lab-video-section {
+    width: min(100% - 20px, 1180px);
+    margin-top: 76px;
   }
 
   .lab-founders {

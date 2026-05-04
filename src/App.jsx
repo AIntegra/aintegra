@@ -49,6 +49,7 @@ const CONTENT = {
     sectionLabels: {
       diagnosis: "El cambio",
       system: "Producto",
+      video: "En acción",
       users: "Pilotos",
       outcomes: "Valor",
       validation: "Confianza",
@@ -77,6 +78,9 @@ const CONTENT = {
       text: "El asistente virtual que acompaña al usuario por voz. Puede leer, resumir webs y documentos, y ayudar a ejecutar acciones sin depender de interfaces complejas.",
     },
     process: ["Gesto real", "Contexto local", "Acción digital"],
+    videoTitle: "Mira cómo se siente AIntegra en uso.",
+    videoText:
+      "Una demostración breve para entender el puente entre el gesto, el asistente y la acción digital.",
     usersTitle: "Diseñado para convertir interés en pilotos.",
     users: [
       ["Usuario individual", "Autonomía digital para personas con barreras visuales, motoras, cognitivas o de edad.", Users],
@@ -149,6 +153,7 @@ const CONTENT = {
     sectionLabels: {
       diagnosis: "The shift",
       system: "Product",
+      video: "In action",
       users: "Pilots",
       outcomes: "Value",
       validation: "Trust",
@@ -177,6 +182,9 @@ const CONTENT = {
       text: "The virtual assistant that supports the user by voice. It can read, summarize websites and documents, and help execute actions without complex interfaces.",
     },
     process: ["Real gesture", "Local context", "Digital action"],
+    videoTitle: "See how AIntegra feels in use.",
+    videoText:
+      "A short demo to understand the bridge between gesture, assistant and digital action.",
     usersTitle: "Designed to turn interest into pilots.",
     users: [
       ["Individual user", "Digital autonomy for people with visual, motor, cognitive or age-related barriers.", Users],
@@ -606,6 +614,23 @@ export default function App() {
                 <strong>{step}</strong>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="lab-video-section">
+          <div className="lab-section-copy compact">
+            <span className="lab-kicker">{t.sectionLabels.video}</span>
+            <h2>{t.videoTitle}</h2>
+            <p>{t.videoText}</p>
+          </div>
+          <div className="lab-video-frame">
+            <video
+              src="/video/demo.mp4"
+              poster="/assets/hero_desktop_trackpad_apple.png"
+              controls
+              playsInline
+              preload="metadata"
+            />
           </div>
         </section>
 
