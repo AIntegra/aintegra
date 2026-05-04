@@ -48,10 +48,16 @@ const CONTENT = {
     trust: "Ecosistema de validación",
     sectionLabels: {
       diagnosis: "El cambio",
+      how: "Cómo funciona",
       system: "Producto",
       video: "En acción",
+      demo: "Demo interactiva",
       users: "Pilotos",
       outcomes: "Valor",
+      pilot: "Piloto",
+      privacy: "Privacidad",
+      roadmap: "Roadmap",
+      testimonials: "Voces",
       validation: "Confianza",
       founders: "Fundadores",
       faq: "Dudas frecuentes",
@@ -63,6 +69,14 @@ const CONTENT = {
       ["Interacción rígida", "Ratón, teclado y comandos estándar no representan la diversidad de movimiento, visión o ritmo."],
       ["Dependencia operativa", "Tareas sencillas terminan necesitando apoyo externo, reduciendo autonomía y confianza digital."],
       ["Datos sensibles", "Salud, educación y administración necesitan control local, trazabilidad y mínima exposición."],
+    ],
+    howTitle: "De gesto a acción en tres pasos.",
+    howText:
+      "AIntegra convierte la interacción en un flujo simple, demostrable y fácil de explicar en una reunión.",
+    howSteps: [
+      ["CAT recoge el gesto", "El trackpad aprende la forma real de interactuar de cada usuario."],
+      ["CATY entiende el contexto", "El asistente interpreta pantalla, documento o web activa."],
+      ["El ordenador ejecuta", "La intención se convierte en lectura, resumen, navegación o acción."],
     ],
     systemTitle: "CAT es el trackpad. CATY es el asistente que lo entiende.",
     systemText:
@@ -81,6 +95,17 @@ const CONTENT = {
     videoTitle: "Mira cómo se siente AIntegra en uso.",
     videoText:
       "Una demostración breve para entender el puente entre el gesto, el asistente y la acción digital.",
+    demoTitle: "Prueba mentalmente una demo antes de pedirla.",
+    demoText:
+      "Selecciona una acción y mira cómo CATY explica el resultado de forma clara.",
+    demoActions: [
+      ["Resumir web", "CATY lee la página abierta y devuelve un resumen por voz en lenguaje claro."],
+      ["Leer documento", "CATY acompaña la lectura y permite avanzar sin depender del ratón."],
+      ["Abrir recurso", "CAT traduce el gesto y CATY abre el recurso correcto en el ordenador."],
+    ],
+    midCtaTitle: "¿Quieres verlo aplicado a tu caso?",
+    midCtaText: "En una demo podemos adaptar el ejemplo a usuarios, asociación, empresa o institución.",
+    midCtaButton: "Solicitar demo",
     usersTitle: "Diseñado para convertir interés en pilotos.",
     users: [
       ["Usuario individual", "Autonomía digital para personas con barreras visuales, motoras, cognitivas o de edad.", Users],
@@ -88,11 +113,42 @@ const CONTENT = {
       ["Empresas e instituciones", "Inclusión laboral, accesibilidad operativa y despliegues controlados por equipos.", Target],
     ],
     outcomesTitle: "Lo que el cliente entiende en los primeros minutos.",
+    beforeAfterTitle: "Antes y después de AIntegra.",
+    beforeAfter: {
+      beforeLabel: "Antes",
+      afterLabel: "Después",
+      before: ["Interfaz rígida", "Dependencia para tareas básicas", "Aprendizaje lento", "Datos difíciles de controlar"],
+      after: ["Interacción adaptada", "Más autonomía digital", "Voz y gestos naturales", "Privacidad local desde el diseño"],
+    },
     outcomes: [
       "Accesibilidad desde el diseño, no como parche final",
       "Hardware tangible que diferencia la propuesta",
       "Arquitectura orientada a privacidad y RGPD",
       "Pilotos medibles para validar adopción e impacto",
+    ],
+    pilotTitle: "Qué incluye un piloto AIntegra.",
+    pilotItems: [
+      ["Sesión de diagnóstico", "Entendemos perfil de usuario, contexto y barreras principales."],
+      ["Demo guiada", "Mostramos CAT y CATY con ejemplos cercanos al caso real."],
+      ["Configuración inicial", "Definimos gestos, flujos y acciones prioritarias para validar."],
+      ["Informe de impacto", "Recogemos aprendizajes para decidir siguiente fase."],
+    ],
+    privacyTitle: "Privacidad pensada para organizaciones sensibles.",
+    privacyText:
+      "AIntegra prioriza procesamiento local, minimización de datos y control del usuario para encajar en educación, salud, administración y entornos corporativos.",
+    privacyItems: ["Local-first cuando sea viable", "Minimización de datos", "Consentimiento y trazabilidad", "Enfoque RGPD"],
+    roadmapTitle: "Roadmap sencillo para avanzar sin humo.",
+    roadmapItems: [
+      ["Validación", "Demos y entrevistas con usuarios y entidades."],
+      ["MVP", "Trackpad CAT funcional y CATY para flujos prioritarios."],
+      ["Pilotos", "Pruebas controladas con asociaciones, empresas e instituciones."],
+      ["Despliegue", "Soporte, medición e iteración por perfiles de usuario."],
+    ],
+    testimonialsTitle: "Lo que queremos demostrar en cada piloto.",
+    testimonials: [
+      ["Autonomía", "Que el usuario pueda completar tareas digitales con menos ayuda externa."],
+      ["Confianza", "Que la tecnología resulte comprensible, privada y fácil de repetir."],
+      ["Impacto", "Que la organización pueda medir utilidad antes de escalar."],
     ],
     validationTitle: "Credibilidad para abrir puertas.",
     foundersTitle: "Detrás de AIntegra hay producto, impacto y mucha calle.",
@@ -118,6 +174,10 @@ const CONTENT = {
       ["¿Es solo software?", "No. CAT es hardware propio y CATY es la capa de inteligencia local que lo potencia."],
       ["¿Qué perfiles encajan mejor?", "Usuarios con dificultades de interacción y organizaciones que necesitan desplegar accesibilidad digital real."],
       ["¿Cómo se trata la privacidad?", "La arquitectura prioriza procesamiento local, minimización de datos y cumplimiento RGPD."],
+      ["¿Necesito comprar hardware?", "La demo sirve para valorar si CAT aporta sentido al caso. En piloto se define el alcance del hardware y la configuración."],
+      ["¿Funciona sin internet?", "La visión es priorizar procesamiento local siempre que sea viable, especialmente en flujos sensibles."],
+      ["¿Cuánto dura un piloto?", "Depende del caso, pero se plantea como una validación acotada con objetivos, feedback e informe de impacto."],
+      ["¿Puede adaptarse a una institución?", "Sí. La propuesta está pensada para usuarios individuales y para entidades que necesitan procesos de despliegue y soporte."],
     ],
     contactTitle: "Agenda una demo. Valida el caso. Decide el piloto.",
     contactText:
@@ -152,10 +212,16 @@ const CONTENT = {
     trust: "Validation ecosystem",
     sectionLabels: {
       diagnosis: "The shift",
+      how: "How it works",
       system: "Product",
       video: "In action",
+      demo: "Interactive demo",
       users: "Pilots",
       outcomes: "Value",
+      pilot: "Pilot",
+      privacy: "Privacy",
+      roadmap: "Roadmap",
+      testimonials: "Voices",
       validation: "Trust",
       founders: "Founders",
       faq: "Questions",
@@ -167,6 +233,14 @@ const CONTENT = {
       ["Rigid interaction", "Mouse, keyboard and standard commands do not represent diverse movement, vision or pace."],
       ["Operational dependence", "Simple tasks end up requiring external support, reducing autonomy and digital confidence."],
       ["Sensitive data", "Health, education and administration need local control, traceability and minimum exposure."],
+    ],
+    howTitle: "From gesture to action in three steps.",
+    howText:
+      "AIntegra turns interaction into a simple, demonstrable flow that is easy to explain in a meeting.",
+    howSteps: [
+      ["CAT captures the gesture", "The trackpad learns each user's real way of interacting."],
+      ["CATY understands context", "The assistant interprets the active screen, document or website."],
+      ["The computer acts", "Intent becomes reading, summary, navigation or action."],
     ],
     systemTitle: "CAT is the trackpad. CATY is the assistant that understands it.",
     systemText:
@@ -185,6 +259,17 @@ const CONTENT = {
     videoTitle: "See how AIntegra feels in use.",
     videoText:
       "A short demo to understand the bridge between gesture, assistant and digital action.",
+    demoTitle: "Try a demo in your head before booking it.",
+    demoText:
+      "Choose an action and see how CATY explains the result clearly.",
+    demoActions: [
+      ["Summarize web", "CATY reads the open page and returns a clear voice summary."],
+      ["Read document", "CATY guides reading and lets the user move forward without relying on a mouse."],
+      ["Open resource", "CAT translates the gesture and CATY opens the right resource on the computer."],
+    ],
+    midCtaTitle: "Want to see it applied to your case?",
+    midCtaText: "In a demo we can adapt the example to users, associations, companies or institutions.",
+    midCtaButton: "Request demo",
     usersTitle: "Designed to turn interest into pilots.",
     users: [
       ["Individual user", "Digital autonomy for people with visual, motor, cognitive or age-related barriers.", Users],
@@ -192,11 +277,42 @@ const CONTENT = {
       ["Companies and institutions", "Workplace inclusion, operational accessibility and controlled deployments.", Target],
     ],
     outcomesTitle: "What the customer understands in the first minutes.",
+    beforeAfterTitle: "Before and after AIntegra.",
+    beforeAfter: {
+      beforeLabel: "Before",
+      afterLabel: "After",
+      before: ["Rigid interface", "Dependence for basic tasks", "Slow learning curve", "Hard-to-control data"],
+      after: ["Adaptive interaction", "More digital autonomy", "Natural voice and gestures", "Local privacy by design"],
+    },
     outcomes: [
       "Accessibility from design, not as a final patch",
       "Tangible hardware that differentiates the offer",
       "Architecture oriented to privacy and GDPR",
       "Measurable pilots to validate adoption and impact",
+    ],
+    pilotTitle: "What an AIntegra pilot includes.",
+    pilotItems: [
+      ["Diagnosis session", "We understand user profile, context and main barriers."],
+      ["Guided demo", "We show CAT and CATY with examples close to the real case."],
+      ["Initial setup", "We define gestures, flows and priority actions to validate."],
+      ["Impact report", "We collect learnings to decide the next phase."],
+    ],
+    privacyTitle: "Privacy for sensitive organizations.",
+    privacyText:
+      "AIntegra prioritizes local processing, data minimization and user control to fit education, healthcare, public administration and corporate environments.",
+    privacyItems: ["Local-first when viable", "Data minimization", "Consent and traceability", "GDPR-oriented"],
+    roadmapTitle: "A simple roadmap without noise.",
+    roadmapItems: [
+      ["Validation", "Demos and interviews with users and entities."],
+      ["MVP", "Functional CAT trackpad and CATY for priority flows."],
+      ["Pilots", "Controlled tests with associations, companies and institutions."],
+      ["Deployment", "Support, measurement and iteration by user profile."],
+    ],
+    testimonialsTitle: "What every pilot should prove.",
+    testimonials: [
+      ["Autonomy", "Users can complete digital tasks with less external support."],
+      ["Trust", "Technology feels understandable, private and repeatable."],
+      ["Impact", "Organizations can measure usefulness before scaling."],
     ],
     validationTitle: "Credibility that opens doors.",
     foundersTitle: "Behind AIntegra: product, impact and real-world validation.",
@@ -222,6 +338,10 @@ const CONTENT = {
       ["Is it software-only?", "No. CAT is proprietary hardware and CATY is the local intelligence layer that powers it."],
       ["Who fits best?", "Users with interaction difficulties and organizations that need to deploy real digital accessibility."],
       ["How is privacy handled?", "The architecture prioritizes local processing, data minimization and GDPR alignment."],
+      ["Do I need to buy hardware?", "The demo helps assess whether CAT makes sense for the case. Pilot scope defines hardware and setup."],
+      ["Can it work without internet?", "The vision is to prioritize local processing whenever viable, especially in sensitive flows."],
+      ["How long does a pilot take?", "It depends on the case, but it is designed as a focused validation with objectives, feedback and an impact report."],
+      ["Can it adapt to an institution?", "Yes. The proposal supports individual users and entities that need deployment and support processes."],
     ],
     contactTitle: "Book a demo. Validate the case. Define the pilot.",
     contactText:
@@ -376,6 +496,159 @@ function DemoForm({ t }) {
       {status === "sent" && <p className="lab-form-success">{t.success}</p>}
       {status === "error" && <p className="lab-form-error">{t.error}</p>}
     </form>
+  )
+}
+
+function HowItWorks({ t }) {
+  return (
+    <section className="lab-how">
+      <div className="lab-section-copy compact">
+        <span className="lab-kicker">{t.sectionLabels.how}</span>
+        <h2>{t.howTitle}</h2>
+        <p>{t.howText}</p>
+      </div>
+      <div className="lab-how-grid">
+        {t.howSteps.map(([title, text], index) => (
+          <article key={title}>
+            <span>{index + 1}</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function InteractiveDemo({ t }) {
+  const [active, setActive] = useState(0)
+  const [label, result] = t.demoActions[active]
+
+  return (
+    <section className="lab-demo">
+      <div className="lab-demo-copy">
+        <span className="lab-kicker">{t.sectionLabels.demo}</span>
+        <h2>{t.demoTitle}</h2>
+        <p>{t.demoText}</p>
+      </div>
+      <div className="lab-demo-console">
+        <div className="lab-demo-actions">
+          {t.demoActions.map(([item], index) => (
+            <button
+              type="button"
+              key={item}
+              className={index === active ? "active" : ""}
+              onClick={() => setActive(index)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+        <div className="lab-demo-output">
+          <span>CATY</span>
+          <h3>{label}</h3>
+          <p>{result}</p>
+          <div>
+            <strong>CAT</strong>
+            <small>{t.process.join(" -> ")}</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function MidCta({ t, onClick }) {
+  return (
+    <section className="lab-mid-cta">
+      <div>
+        <h2>{t.midCtaTitle}</h2>
+        <p>{t.midCtaText}</p>
+      </div>
+      <a href="#contact" onClick={onClick}>{t.midCtaButton}<ArrowRight size={18} /></a>
+    </section>
+  )
+}
+
+function BeforeAfter({ t }) {
+  return (
+    <section className="lab-before-after">
+      <div className="lab-section-copy compact">
+        <span className="lab-kicker">{t.sectionLabels.outcomes}</span>
+        <h2>{t.beforeAfterTitle}</h2>
+      </div>
+      <div className="lab-ba-grid">
+        <article>
+          <span>{t.beforeAfter.beforeLabel}</span>
+          {t.beforeAfter.before.map((item) => <p key={item}>{item}</p>)}
+        </article>
+        <article>
+          <span>{t.beforeAfter.afterLabel}</span>
+          {t.beforeAfter.after.map((item) => <p key={item}>{item}</p>)}
+        </article>
+      </div>
+    </section>
+  )
+}
+
+function PilotPrivacyRoadmap({ t }) {
+  return (
+    <section className="lab-pilot-stack">
+      <div className="lab-pilot-card">
+        <span className="lab-kicker">{t.sectionLabels.pilot}</span>
+        <h2>{t.pilotTitle}</h2>
+        <div>
+          {t.pilotItems.map(([title, text]) => (
+            <article key={title}>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="lab-privacy-card">
+        <span className="lab-kicker">{t.sectionLabels.privacy}</span>
+        <h2>{t.privacyTitle}</h2>
+        <p>{t.privacyText}</p>
+        <div>
+          {t.privacyItems.map((item) => <span key={item}><ShieldCheck size={16} />{item}</span>)}
+        </div>
+      </div>
+
+      <div className="lab-roadmap-card">
+        <span className="lab-kicker">{t.sectionLabels.roadmap}</span>
+        <h2>{t.roadmapTitle}</h2>
+        <div>
+          {t.roadmapItems.map(([title, text], index) => (
+            <article key={title}>
+              <span>{index + 1}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Testimonials({ t }) {
+  return (
+    <section className="lab-testimonials">
+      <div className="lab-section-copy compact">
+        <span className="lab-kicker">{t.sectionLabels.testimonials}</span>
+        <h2>{t.testimonialsTitle}</h2>
+      </div>
+      <div className="lab-testimonial-grid">
+        {t.testimonials.map(([title, text]) => (
+          <article key={title}>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
   )
 }
 
@@ -551,6 +824,8 @@ export default function App() {
           </div>
         </section>
 
+        <HowItWorks t={t} />
+
         <section id="system" className="lab-system">
           <div className="lab-system-copy">
             <span className="lab-kicker">{t.sectionLabels.system}</span>
@@ -634,6 +909,9 @@ export default function App() {
           </div>
         </section>
 
+        <InteractiveDemo t={t} />
+        <MidCta t={t} onClick={(event) => scrollTo(event, "#contact")} />
+
         <section id="users" className="lab-section lab-users">
           <div className="lab-section-copy compact">
             <span className="lab-kicker">{t.sectionLabels.users}</span>
@@ -650,6 +928,8 @@ export default function App() {
           </div>
         </section>
 
+        <BeforeAfter t={t} />
+
         <section className="lab-outcomes">
           <div>
             <span className="lab-kicker">{t.sectionLabels.outcomes}</span>
@@ -661,6 +941,9 @@ export default function App() {
             ))}
           </div>
         </section>
+
+        <PilotPrivacyRoadmap t={t} />
+        <Testimonials t={t} />
 
         <section id="validation" className="lab-validation lab-section">
           <div className="lab-award">
