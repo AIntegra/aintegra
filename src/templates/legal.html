@@ -1,0 +1,39 @@
+    <section class="theme-dark hero">
+      <div class="container container--narrow">
+        <p class="eyebrow">{{footer.legalHeading}}</p>
+        <h1>{{page.title}}</h1>
+        <p class="hero__lead">{{page.lead}}</p>
+        <p class="hero__note">{{legal.updatedLabel}}: {{page.updated}}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="prose-legal">
+          {{#each page.sections}}
+          <section>
+            <h2>{{this.h}}</h2>
+            {{#each this.body}}
+            <p>{{this}}</p>
+            {{/each}}
+            <ul>{{#each this.list}}<li>{{this}}</li>{{/each}}</ul>
+          </section>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+    <section class="section ctaband theme-dark" aria-labelledby="h-lcta">
+      <div class="container ctaband__inner">
+        <div class="ctaband__text">
+          <img class="ctaband__mark" src="{{base}}assets/img/aintegra-mark-white.png" alt="" width="256" height="251">
+          <div>
+            <h2 id="h-lcta">{{footer.contactHeading}}</h2>
+            <p style="margin-bottom:0">
+              <a href="mailto:{{site.email}}">{{site.email}}</a> ·
+              <a href="tel:{{site.phoneHref}}">{{site.phone}}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>

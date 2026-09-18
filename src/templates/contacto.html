@@ -1,0 +1,198 @@
+    <section class="theme-dark hero">
+      <div class="container">
+        <div class="split split--stretch">
+          <div>
+            <p class="eyebrow">{{contacto.hero.eyebrow}}</p>
+            <h1>{{contacto.hero.title}}</h1>
+            <p class="hero__lead">{{contacto.hero.lead}}</p>
+          </div>
+
+          <!-- La conversación: alguien cuenta lo que se le atasca y la respuesta
+               llega de vuelta. El trazo que va de un bocadillo al otro es el
+               mismo gesto que recorre todo el sitio. -->
+          <svg class="talk split__visual" viewBox="0 0 240 200" role="img" aria-label="{{contacto.hero.artAlt}}">
+            <defs>
+              <linearGradient id="bubbleA" x1="0" y1="0" x2="0.4" y2="1">
+                <stop offset="0%" stop-color="#245E8D"/><stop offset="100%" stop-color="#0C3862"/>
+              </linearGradient>
+              <linearGradient id="bubbleB" x1="0" y1="0" x2="0.4" y2="1">
+                <stop offset="0%" stop-color="#F5F8FA"/><stop offset="100%" stop-color="#DCE6EE"/>
+              </linearGradient>
+            </defs>
+
+            <g class="talk__in">
+              <path d="M14 24h122a10 10 0 0 1 10 10v52a10 10 0 0 1-10 10H52l-22 20V96H14A10 10 0 0 1 4 86V34a10 10 0 0 1 10-10z"
+                    transform="translate(10 6)" fill="url(#bubbleA)" stroke="#7FA8C9" stroke-width="2"/>
+              <g stroke="#7FA8C9" stroke-width="4" stroke-linecap="round" opacity=".75">
+                <path d="M34 52h96"/><path d="M34 70h72"/>
+              </g>
+            </g>
+
+            <path class="talk__thread" d="M56 116 C 86 168, 150 150, 176 128"
+                  fill="none" stroke="#357FB2" stroke-width="3"
+                  stroke-linecap="round" stroke-dasharray="4 12"/>
+
+            <g class="talk__out">
+              <path d="M92 104h122a10 10 0 0 1 10 10v46a10 10 0 0 1-10 10h-84l-22 18v-18H92a10 10 0 0 1-10-10v-46a10 10 0 0 1 10-10z"
+                    fill="url(#bubbleB)" stroke="#7FA8C9" stroke-width="2"/>
+              <g stroke="#245E8D" stroke-width="4" stroke-linecap="round" opacity=".8">
+                <path d="M112 130h84"/><path d="M112 148h56"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FORMULARIO ============================
+         Se envía por mailto: al pulsar, se abre el programa de correo con el
+         mensaje ya escrito. No hay servidor nuestro ni de terceros de por
+         medio, y por eso no hay nada que guardar ni que consentir.
+
+         El día que haya backend propio, solo cambia el `submit` de
+         src/scripts/form.js: el marcado, la validación y los mensajes de error
+         se quedan igual.
+    -->
+    <section class="section" aria-labelledby="h-form">
+      <div class="container">
+        <div class="split split--form">
+          <div>
+            <h2 id="h-form">{{contacto.form.title}}</h2>
+            <p>{{contacto.form.lead}}</p>
+
+            <form class="form" id="demo-form" novalidate
+                  data-mailto="{{site.email}}"
+                  data-subject="{{contacto.form.mailSubject}}"
+                  data-intro="{{contacto.form.mailIntro}}"
+                  data-l-profile="{{contacto.form.mailProfileLabel}}"
+                  data-l-name="{{contacto.form.mailNameLabel}}"
+                  data-l-org="{{contacto.form.mailOrgLabel}}"
+                  data-l-task="{{contacto.form.mailTaskLabel}}"
+                  data-outro="{{contacto.form.mailOutro}}"
+                  data-err-name="{{contacto.form.errName}}"
+                  data-err-email="{{contacto.form.errEmail}}"
+                  data-err-task="{{contacto.form.errTask}}"
+                  data-copied="{{contacto.form.copied}}"
+                  data-copy-fail="{{contacto.form.copyFail}}">
+
+              <!-- Resumen de errores: recibe el foco al fallar la validación y
+                   enlaza a cada campo, para no tener que ir a buscarlos. -->
+              <div class="form__errors" id="form-errors" tabindex="-1" hidden>
+                <h3>{{contacto.form.errorsTitle}}</h3>
+                <ul></ul>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="f-name">{{contacto.form.name}}
+                  <span class="field__required" aria-hidden="true">*</span>
+                  <span class="visually-hidden">({{contacto.form.required}})</span>
+                </label>
+                <input class="input" id="f-name" name="name" type="text" autocomplete="name" required>
+                <p class="field__error" id="f-name-error"></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="f-email">{{contacto.form.email}}
+                  <span class="field__required" aria-hidden="true">*</span>
+                  <span class="visually-hidden">({{contacto.form.required}})</span>
+                </label>
+                <input class="input" id="f-email" name="email" type="email" autocomplete="email"
+                       required aria-describedby="f-email-hint">
+                <p class="field__hint" id="f-email-hint">{{contacto.form.emailHint}}</p>
+                <p class="field__error" id="f-email-error"></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="f-org">{{contacto.form.org}}</label>
+                <input class="input" id="f-org" name="org" type="text" autocomplete="organization"
+                       aria-describedby="f-org-hint">
+                <p class="field__hint" id="f-org-hint">{{contacto.form.orgHint}}</p>
+              </div>
+
+              <fieldset class="fieldset">
+                <legend class="field__label">{{contacto.form.profileLegend}}</legend>
+                {{#each contacto.form.profiles}}
+                <label class="choice">
+                  <input type="radio" name="perfil" value="{{this.label}}">
+                  <span>{{this.label}}</span>
+                </label>
+                {{/each}}
+              </fieldset>
+
+              <div class="field">
+                <label class="field__label" for="f-task">{{contacto.form.task}}
+                  <span class="field__required" aria-hidden="true">*</span>
+                  <span class="visually-hidden">({{contacto.form.required}})</span>
+                </label>
+                <textarea class="textarea" id="f-task" name="task" required
+                          aria-describedby="f-task-hint"></textarea>
+                <p class="field__hint" id="f-task-hint">{{contacto.form.taskHint}}</p>
+                <p class="field__error" id="f-task-error"></p>
+              </div>
+
+              <button class="btn btn--primary" type="submit">{{contacto.form.submit}}</button>
+            </form>
+
+            <!-- Al validar, el formulario se oculta y aparece esto. Damos tres
+                 salidas porque mailto: no hace nada en un ordenador sin
+                 programa de correo de escritorio, que es el caso más común
+                 hoy: la mayoría usa el correo en el navegador. -->
+            <div class="ready" id="form-ready" tabindex="-1" hidden>
+              <h3>{{contacto.form.readyTitle}}</h3>
+              <p>{{contacto.form.readyLead}}</p>
+
+              <div class="ready__actions">
+                <a class="btn btn--primary" id="ready-gmail" href="#" target="_blank" rel="noopener">
+                  {{contacto.form.openGmail}}
+                  <span class="visually-hidden">({{ui.openInNewTab}})</span>
+                </a>
+                <a class="btn btn--secondary" id="ready-mailto" href="#">{{contacto.form.openMail}}</a>
+                <button class="btn btn--secondary" type="button" id="ready-copy">{{contacto.form.copy}}</button>
+              </div>
+
+              <p class="field__hint">{{contacto.form.noMailHint}}</p>
+              <p class="ready__status" id="ready-status" role="status"></p>
+
+              <dl class="ready__meta">
+                <dt>{{contacto.form.toLabel}}</dt><dd>{{site.email}}</dd>
+                <dt>{{contacto.form.subjectLabel}}</dt><dd>{{contacto.form.mailSubject}}</dd>
+              </dl>
+
+              <label class="field__label" for="ready-body">{{contacto.form.previewLabel}}</label>
+              <textarea class="textarea ready__body" id="ready-body" readonly rows="12"></textarea>
+
+              <p><button class="btn btn--secondary btn--sm" type="button" id="ready-back">{{contacto.form.edit}}</button></p>
+            </div>
+          </div>
+
+          <aside class="form__aside">
+            <div class="callout">
+              <h3>{{contacto.form.howTitle}}</h3>
+              <p>{{contacto.form.how}}</p>
+            </div>
+
+            <div class="form__direct">
+              <h3>{{contacto.form.fallbackTitle}}</h3>
+              <p>{{contacto.form.fallback}}</p>
+              <p class="form__contact">
+                <a href="mailto:{{site.email}}">{{site.email}}</a><br>
+                <a href="tel:{{site.phoneHref}}">{{site.phone}}</a>
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ctaband theme-dark" aria-labelledby="h-ccta">
+      <div class="container ctaband__inner">
+        <div class="ctaband__text">
+          <img class="ctaband__mark" src="{{base}}assets/img/aintegra-mark-white.png" alt="" width="256" height="251">
+          <div>
+            <h2 id="h-ccta">{{home.cta.title}}</h2>
+            <p style="margin-bottom:0">{{home.cta.text}}</p>
+          </div>
+        </div>
+        <p style="margin:0"><a class="btn btn--primary" href="#h-form">{{home.cta.button}}</a></p>
+      </div>
+    </section>

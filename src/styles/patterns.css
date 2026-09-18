@@ -1,0 +1,1219 @@
+/* ==========================================================================
+   Patrones de sección — composiciones que se repiten entre páginas.
+   components.css tiene las piezas sueltas; aquí van los bloques completos.
+   ========================================================================== */
+
+/* --- Hero ----------------------------------------------------------------- */
+.hero { padding-block: clamp(2.25rem, 1.25rem + 3.5vw, 4rem); }
+.hero__lead { font-size: var(--step-1); max-width: 46ch; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6); }
+.hero__note { margin-top: var(--space-5); font-size: var(--step--1); color: var(--brand-sky); max-width: 52ch; }
+
+@media (min-width: 62em) {
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: var(--space-8); align-items: center; }
+}
+
+/* --- Vídeo con descripción en texto --------------------------------------
+   Regla de producto: ningún vídeo va solo. Debajo siempre hay una descripción
+   de lo que se ve y lo que se dice, para quien navega sin sonido, con lector
+   de pantalla o con el vídeo bloqueado. La descripción es contenido de
+   primera, redactado al mismo nivel que el resto de la página.
+   -------------------------------------------------------------------------- */
+.video { margin: 0; display: grid; gap: var(--space-5); }
+@media (min-width: 56em) {
+  .video--side { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: var(--space-7); align-items: start; }
+}
+.video__player {
+  width: 100%;
+  max-width: 22rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--brand-mid);
+  background: var(--brand-night);
+  display: block;
+}
+.video__desc > * { max-width: 60ch; }
+.video__desc h3 { font-size: var(--step-1); margin-bottom: var(--space-3); }
+.video__meta { font-size: var(--step--1); color: var(--text-on-light-muted); }
+.theme-dark .video__meta { color: var(--brand-sky); }
+
+.transcript { margin-top: var(--space-4); }
+.transcript > summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: var(--space-2) 0;
+  border-bottom: 2px solid var(--border-interactive);
+  display: inline-block;
+}
+.transcript > summary::marker { color: var(--brand-bright); }
+.transcript__body { padding-top: var(--space-4); }
+.transcript__body p { margin-bottom: var(--space-3); }
+
+/* --- Pasos numerados ------------------------------------------------------ */
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-7); counter-reset: step; }
+@media (min-width: 60em) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.steps > li { margin: 0; max-width: none; }
+.step__n {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--brand-bright);   /* texto grande: umbral 3:1 ✔ */
+  display: block;
+  margin-bottom: var(--space-3);
+}
+.step__arrow { display: none; }
+
+/* --- Pilares (icono + título + texto) ------------------------------------- */
+.pillars { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-7); }
+@media (min-width: 52em) { .pillars { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 72em) { .pillars--3 { grid-template-columns: repeat(3, 1fr); } }
+.pillars > li { margin: 0; max-width: none; }
+.pillar__icon { color: var(--brand-bright); margin-bottom: var(--space-3); display: block; }
+.theme-dark .pillar__icon { color: var(--brand-sky); }
+
+/* --- Antes y después ------------------------------------------------------ */
+.compare { display: grid; gap: var(--space-7); }
+@media (min-width: 52em) { .compare { grid-template-columns: 1fr 1fr; } }
+.compare__col { padding: var(--space-7); border-radius: var(--radius-lg); }
+.compare__col--before { background: var(--brand-white); border: 1px solid var(--brand-ice); }
+.compare__col--after { background: var(--brand-night); color: var(--brand-warm); }
+.compare__col--after h3 { color: var(--brand-warm); }
+.compare__col--after .compare__mark { color: var(--brand-sky); }
+.compare__label {
+  font-size: var(--step--1); font-weight: 700; letter-spacing: var(--tracking-wide);
+  text-transform: uppercase; margin-bottom: var(--space-3); display: block;
+}
+.compare ul { list-style: none; padding: 0; margin: 0; }
+.compare li { display: flex; gap: var(--space-3); align-items: flex-start; max-width: none; }
+.compare__mark { flex: none; margin-top: 0.15em; color: var(--brand-mid); }
+
+/* --- Hoja de ruta ---------------------------------------------------------
+   Lista ordenada de verdad: el orden es información, no decoración.
+   -------------------------------------------------------------------------- */
+.roadmap { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-7); }
+@media (min-width: 60em) { .roadmap { grid-template-columns: repeat(4, 1fr); } }
+.roadmap > li {
+  margin: 0; max-width: none;
+  padding-top: var(--space-5);
+  border-top: 3px solid var(--brand-mid);
+}
+.roadmap > li[data-state='current'] { border-top-color: var(--brand-bright); }
+.roadmap__phase {
+  font-size: var(--step--1); font-weight: 700; letter-spacing: var(--tracking-wide);
+  text-transform: uppercase; color: var(--text-on-light-muted); display: block; margin-bottom: var(--space-2);
+}
+.theme-dark .roadmap__phase { color: var(--brand-sky); }
+.roadmap h3 { font-size: var(--step-1); }
+.roadmap__now {
+  display: inline-block; margin-left: var(--space-2);
+  font-size: var(--step--1); font-weight: 700;
+  color: var(--brand-blue); background: var(--brand-ice);
+  border-radius: var(--radius-pill); padding: 0 var(--space-3);
+}
+.theme-dark .roadmap__now { background: var(--brand-warm); color: var(--brand-night); }
+
+/* --- Precio --------------------------------------------------------------- */
+.prices { display: grid; gap: var(--space-7); }
+@media (min-width: 52em) { .prices { grid-template-columns: repeat(3, 1fr); } }
+.price__amount {
+  font-family: var(--font-display); font-size: var(--step-3); font-weight: 700;
+  line-height: 1; color: var(--brand-blue); display: block; margin-bottom: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+.price__unit { font-size: var(--step--1); color: var(--text-on-light-muted); display: block; margin-bottom: var(--space-4); }
+
+/* --- Preguntas frecuentes -------------------------------------------------- */
+.faq { border-top: 1px solid var(--brand-ice); }
+.faq__item { border-bottom: 1px solid var(--brand-ice); }
+.faq__item > summary {
+  cursor: pointer;
+  padding: var(--space-4) var(--space-6) var(--space-4) 0;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  position: relative;
+  list-style: none;
+}
+.faq__item > summary::-webkit-details-marker { display: none; }
+.faq__item > summary::after {
+  content: '';
+  position: absolute; right: 0; top: 50%;
+  width: 0.7em; height: 0.7em;
+  border-right: 3px solid var(--brand-bright);
+  border-bottom: 3px solid var(--brand-bright);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform var(--dur) var(--ease);
+}
+.faq__item[open] > summary::after { transform: translateY(-20%) rotate(-135deg); }
+.faq__item > summary:hover { color: var(--brand-blue); }
+.faq__answer { padding: 0 0 var(--space-5); }
+
+/* --- Personas -------------------------------------------------------------- */
+.people { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-6); }
+@media (min-width: 52em) { .people { grid-template-columns: repeat(2, 1fr); } }
+/* stretch, no flex-start: si el bloque de texto no ocupa todo el alto de la
+   fila, el margin-top:auto de los botones no tiene contra qué empujar y cada
+   pareja cae a una altura distinta. */
+.people > li { margin: 0; max-width: none; display: flex; gap: var(--space-5); align-items: stretch; }
+.person__photo {
+  flex: none;
+  inline-size: 6.5rem; block-size: 6.5rem;
+  border-radius: var(--radius);
+  object-fit: cover;
+  border: 1px solid var(--brand-mid);
+}
+.person__role { color: var(--text-on-light-muted); font-size: var(--step--1); margin-bottom: var(--space-2); }
+.theme-dark .person__role { color: var(--brand-sky); }
+.person__skills { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.person__skills li { margin: 0; font-size: var(--step--1); }
+.person__skills li::after { content: ' ·'; color: var(--brand-bright); }
+.person__skills li:last-child::after { content: ''; }
+
+/* --- Banda de llamada a la acción ------------------------------------------ */
+.ctaband { background: var(--surface-dark); color: var(--text-on-dark); }
+.ctaband__inner { display: grid; gap: var(--space-6); align-items: center; }
+@media (min-width: 56em) { .ctaband__inner { grid-template-columns: minmax(0, 1fr) auto; } }
+
+/* --- Aviso destacado -------------------------------------------------------
+   Para matices importantes (por ejemplo: qué NO tenemos certificado todavía).
+   -------------------------------------------------------------------------- */
+.callout {
+  border-left: 4px solid var(--brand-bright);
+  background: var(--brand-ice);
+  padding: var(--space-5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout > :last-child { margin-bottom: 0; }
+.theme-dark .callout { background: var(--surface-dark-alt); }
+
+/* --- Lista con marca ------------------------------------------------------- */
+.checklist { list-style: none; padding: 0; margin: 0; }
+.checklist li { display: flex; gap: var(--space-3); align-items: flex-start; max-width: 60ch; }
+.checklist svg { flex: none; margin-top: 0.2em; color: var(--brand-bright); }
+.theme-dark .checklist svg { color: var(--brand-sky); }
+
+
+/* --- El cambio de paradigma -----------------------------------------------
+   Una sola frase en dos mitades, no dos tarjetas: lo que importa es el paso
+   de una a otra, y eso se lee mejor junto que separado.
+   -------------------------------------------------------------------------- */
+.shift {
+  display: grid; gap: var(--space-4);
+  align-items: center;
+  margin: var(--space-7) 0 0;
+  max-width: none;
+}
+@media (min-width: 48em) { .shift { grid-template-columns: 1fr auto 1fr; } }
+.shift__from, .shift__to { max-width: 22ch; margin: 0; }
+.shift__from {
+  font-size: var(--step-1);
+  color: var(--text-on-light-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--brand-bright);
+  text-decoration-thickness: 2px;
+}
+.shift__to {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+  color: var(--brand-blue);
+}
+.shift__arrow { color: var(--brand-bright); flex: none; }
+@media (max-width: 47.99em) { .shift__arrow { transform: rotate(90deg); } }
+
+/* ==========================================================================
+   Pase visual — personalidad propia por bloque
+   ========================================================================== */
+
+/* --- El dato como protagonista ---------------------------------------------
+   1.300 millones deja de ser una frase dentro de un párrafo y pasa a ser la
+   pieza gráfica de la sección, con la proporción real dibujada al lado: una
+   de cada seis personas del mundo.
+   -------------------------------------------------------------------------- */
+.figure-lead { display: grid; gap: var(--space-6); align-items: center; margin: 0 0 var(--space-7); }
+@media (min-width: 56em) { .figure-lead { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-8); } }
+
+.figure-lead__n {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 1.8rem + 8vw, 6.5rem);
+  font-weight: 700; line-height: 0.82;
+  letter-spacing: -0.045em;
+  color: var(--brand-blue);
+  font-variant-numeric: tabular-nums;
+  display: block;
+  margin: 0;
+}
+.figure-lead__unit {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-2); font-weight: 700;
+  line-height: var(--leading-tight);
+  color: var(--brand-mid);
+  margin-top: var(--space-3);
+  /* El interletrado del número es enorme en píxeles porque va en em sobre un
+     cuerpo de 10rem, y se hereda: hay que devolverlo a su sitio. */
+  letter-spacing: var(--tracking-tight);
+}
+.figure-lead__caption {
+  font-size: var(--step-1);
+  max-width: 26ch;
+  margin: var(--space-4) 0 0;
+}
+.figure-lead__ratio { margin: var(--space-4) 0 0; font-size: var(--step--1); color: var(--text-on-light-muted); max-width: 28ch; }
+.figure-lead__chart { inline-size: min(100%, 17rem); block-size: auto; }
+
+/* --- Pasos: un raíl que los une ---------------------------------------------- */
+@media (min-width: 60em) {
+  .steps { position: relative; }
+  .steps::before {
+    content: ""; position: absolute; inset-inline: 14%; inset-block-start: 5.6rem;
+    block-size: 2px; background: var(--brand-sky); opacity: .55; z-index: 0;
+  }
+  .steps > li { position: relative; z-index: 1; }
+}
+.step__n {
+  font-family: var(--font-display);
+  font-size: var(--step-1); font-weight: 700; line-height: 1;
+  color: var(--brand-mid);
+  font-variant-numeric: tabular-nums;
+}
+.theme-ice .step__n { color: var(--brand-mid); }
+.step__head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
+.step__head .card__icon { margin-bottom: 0; }
+
+/* --- Acento CATY -----------------------------------------------------------
+   El gradiente holográfico de CATY entra SOLO donde se habla de CATY, y nunca
+   detrás de texto: va en el borde de la tarjeta, en la placa del icono y en un
+   orbe decorativo. Así se nota el acento sin tocar ningún ratio de contraste.
+   -------------------------------------------------------------------------- */
+.card--caty { position: relative; border-color: transparent; }
+.card--caty { box-shadow: 0 0 0 1px rgba(169, 199, 255, .18), 0 18px 40px -24px rgba(169, 199, 255, .5); }
+.card--caty::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  padding: 3px; background: var(--caty-sheen);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.card--caty > * { position: relative; }
+.card--caty .card__icon {
+  background: var(--caty-sheen);
+  color: var(--brand-night);          /* sobre el gradiente claro: más de 10:1 */
+  border: 0;
+  box-shadow: 0 0 0 1px rgba(169, 199, 255, .5), 0 8px 24px -8px rgba(169, 199, 255, .55);
+}
+
+.caty-side { display: grid; gap: var(--space-6); align-items: center; }
+@media (min-width: 60em) { .caty-side { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-8); } }
+
+/* --- Comparación: cada columna con su icono -------------------------------- */
+.compare__head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-5); }
+.compare__head .card__icon { margin-bottom: 0; }
+.compare__head img { inline-size: 3rem; block-size: 3rem; object-fit: contain; background: none; }
+.compare__col--after .card__icon { background: var(--brand-night); border: 1px solid var(--brand-mid); color: var(--brand-sky); }
+.compare__col--before { box-shadow: var(--shadow-sm); }
+.compare__col--after { box-shadow: var(--shadow-dark); }
+.compare__col { display: flex; flex-direction: column; }
+
+/* --- Hoja de ruta: marcadores de estado ------------------------------------- */
+.roadmap > li { position: relative; padding-top: var(--space-6); }
+.roadmap > li::before {
+  content: ""; position: absolute; inset-block-start: -0.55rem; inset-inline-start: 0;
+  inline-size: 0.95rem; block-size: 0.95rem; border-radius: 50%;
+  background: var(--brand-ice); border: 3px solid var(--brand-mid);
+}
+.roadmap > li[data-state="done"]::before { background: var(--brand-mid); }
+.roadmap > li[data-state="current"]::before {
+  background: var(--brand-bright); border-color: var(--brand-bright);
+  box-shadow: 0 0 0 5px rgba(53, 127, 178, .22);
+}
+
+/* --- Precio ------------------------------------------------------------------ */
+.prices .card__icon { margin-bottom: var(--space-4); }
+.card--featured { border: 2px solid var(--border-interactive); box-shadow: var(--shadow); }
+
+/* --- Premios ----------------------------------------------------------------- */
+.awards { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-5); }
+@media (min-width: 52em) { .awards { grid-template-columns: repeat(2, 1fr); } }
+.awards { gap: var(--space-7); }
+.awards > li { margin: 0; max-width: none; display: flex; }
+.awards .card { flex: 1; display: flex; flex-direction: column; }
+.awards .stat__value { font-size: var(--step-3); margin-bottom: var(--space-3); display: block; }
+
+/* --- Vídeo destacado ---------------------------------------------------------
+   El clip es vertical y de un evento en directo: se le da el sitio que pide,
+   en vez de encajarlo en una miniatura que no se distingue.
+   ---------------------------------------------------------------------------- */
+.video--feature { display: grid; gap: var(--space-6); align-items: center; }
+@media (min-width: 60em) {
+  .video--feature { grid-template-columns: minmax(0, 24rem) minmax(0, 1fr); gap: var(--space-8); }
+}
+.video--feature .video__player {
+  /* El clip es vertical: a todo el ancho de una columna estrecha se dispararía
+     de alto, así que se le pone tope y se centra. */
+  max-width: none;
+  inline-size: 100%;
+  max-inline-size: 24rem;
+  margin-inline: auto;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--brand-mid);
+  box-shadow: var(--shadow-dark);
+}
+.video__label {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--step--1); font-weight: 700;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--brand-sky); margin: 0 0 var(--space-3);
+}
+.video--feature .video__desc h3 { font-size: var(--step-2); }
+
+/* --- Banda de cierre y pie: dos azules distintos -----------------------------
+   Antes compartían el azul noche y se fundían en un bloque único. La llamada a
+   la acción pasa al azul de marca y el pie se queda en el azul noche, con una
+   regla de separación. Blanco sobre #0C3862 = 11.95:1.
+   ---------------------------------------------------------------------------- */
+.ctaband { background: var(--surface-dark-alt); }
+.site-footer { border-top: 3px solid var(--brand-bright); }
+
+/* ==========================================================================
+   Segundo pase visual
+   ========================================================================== */
+
+/* --- Acabado plateado de C.A.T. ---------------------------------------------
+   Pareja del acento de CATY: mismo tratamiento y misma calidad de acabado,
+   cada uno en su material. CATY es luz azul-violeta; C.A.T. es el aluminio del
+   dispositivo. El plateado se compone solo con blancos y azules de la paleta.
+   ---------------------------------------------------------------------------- */
+.card--cat { position: relative; border-color: transparent; }
+.card--cat { box-shadow: 0 0 0 1px rgba(245, 248, 250, .18), 0 18px 40px -24px rgba(127, 168, 201, .5); }
+.card--cat::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  padding: 3px; background: var(--cat-sheen);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.card--cat > * { position: relative; }
+.card--cat .card__icon {
+  background: var(--cat-sheen);
+  color: var(--brand-night);          /* sobre plateado claro: más de 12:1 */
+  border: 0;
+  box-shadow: 0 0 0 1px rgba(245, 248, 250, .6), 0 8px 24px -8px rgba(127, 168, 201, .65);
+}
+
+/* --- Estructura interna de la tarjeta ----------------------------------------
+   Título, cuerpo y dato destacado como bloques distintos, con su propia
+   jerarquía y su propio aire, en vez de un párrafo corrido.
+   ---------------------------------------------------------------------------- */
+.card__meta {
+  font-size: var(--step--1); font-weight: 700;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  margin: 0 0 var(--space-2);
+}
+.theme-dark .card__meta { color: var(--brand-sky); }
+.card__title { margin-bottom: var(--space-4); }
+.card__body { margin: 0; }
+.card__note {
+  margin: var(--space-5) 0 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--brand-ice);
+  font-size: var(--step--1);
+  color: var(--text-on-light-muted);
+}
+.theme-dark .card__note { border-top-color: var(--brand-mid); color: var(--brand-sky); }
+.card__note strong { color: var(--brand-blue); font-size: var(--step-0); }
+.theme-dark .card__note strong { color: var(--brand-warm); }
+
+/* --- Local por defecto: la ventaja diferencial --------------------------------
+   Este bloque pesa más que el resto de la sección a propósito: es lo que nos
+   deja entrar en entornos sensibles. La palabra LOCAL lleva el degradado de
+   CATY para atar el concepto al color de nuestra IA.
+   ---------------------------------------------------------------------------- */
+/* Panel oscuro dentro de una sección clara: el degradado de CATY solo cumple
+   AA sobre el azul noche (#7FA8C9 sobre blanco cálido se queda en 2.36:1), y de
+   paso el bloque destaca sobre todo lo que tiene alrededor. */
+.local-panel {
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 1rem + 5vw, 4.5rem);
+  box-shadow: var(--shadow);
+}
+.local { display: grid; gap: var(--space-7); align-items: center; }
+@media (min-width: 60em) { .local { grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: var(--space-9); } }
+
+.local__badge {
+  display: inline-block;
+  font-size: var(--step--1); font-weight: 700;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--brand-night); background: var(--brand-sky);
+  border-radius: var(--radius-pill); padding: var(--space-1) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.local__word {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 1.6rem + 7.5vw, 6rem);
+  font-weight: 700; line-height: 0.85; letter-spacing: -0.045em;
+  margin: 0 0 var(--space-5);
+  /* El color va primero: si el navegador no recorta el fondo sobre el texto,
+     queda azul cielo, que cumple 6.97:1 sobre el azul noche. */
+  color: var(--brand-sky);
+  background: var(--caty-sheen);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .local__word { -webkit-text-fill-color: currentColor; background: none; }
+}
+@media (forced-colors: active) {
+  .local__word { -webkit-text-fill-color: currentColor; background: none; color: CanvasText; }
+}
+.local__lead { font-size: var(--step-1); max-width: 38ch; }
+.local__body { max-width: 46ch; }
+
+/* --- Globo terráqueo ---------------------------------------------------------
+   Refuerza el «funciona en cualquier sitio, sin depender de la nube». Gira muy
+   despacio; con prefers-reduced-motion se queda quieto.
+   ---------------------------------------------------------------------------- */
+.globe { inline-size: min(100%, 20rem); block-size: auto; margin-inline: auto; display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .globe__grid { animation: globe-spin 48s linear infinite; transform-origin: 110px 110px; }
+  @keyframes globe-spin { to { transform: rotate(360deg); } }
+}
+
+/* --- Mercado en burbujas -----------------------------------------------------
+   TAM, SAM y SOM como círculos anidados y tangentes, al modo del deck: la
+   proporción entre los radios se ve de un vistazo. Los textos van dentro de la
+   banda que les corresponde, y cada combinación cumple AA.
+   ---------------------------------------------------------------------------- */
+.market { display: grid; gap: var(--space-7); align-items: center; }
+@media (min-width: 60em) { .market { grid-template-columns: minmax(0, 24rem) minmax(0, 1fr); gap: var(--space-8); } }
+.market__chart { inline-size: min(100%, 24rem); block-size: auto; margin-inline: auto; display: block; }
+.market__legend { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-5); }
+.market__legend > li { margin: 0; max-width: none; display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); align-items: baseline; }
+.market__dot { inline-size: 1rem; block-size: 1rem; border-radius: 50%; align-self: center; }
+.market__dot[data-tier="tam"] { background: var(--brand-ice); border: 2px solid var(--brand-sky); }
+.market__dot[data-tier="sam"] { background: var(--brand-sky); }
+.market__dot[data-tier="som"] { background: var(--brand-blue); }
+.market__label { font-size: var(--step--1); font-weight: 700; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-on-light-muted); margin: 0; }
+.market__value { font-family: var(--font-display); font-size: var(--step-2); font-weight: 700; line-height: 1; color: var(--brand-blue); margin: 0 0 var(--space-2); font-variant-numeric: tabular-nums; }
+.market__scope { margin: 0; font-size: var(--step--1); color: var(--text-on-light-muted); max-width: 40ch; }
+
+/* --- Apoyos con logo y enlace -------------------------------------------------- */
+.supports { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-6); }
+@media (min-width: 46em) { .supports { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 72em) { .supports { grid-template-columns: repeat(3, 1fr); } }
+.supports > li { margin: 0; max-width: none; display: flex; }
+.support-card {
+  flex: 1;
+  display: flex; flex-direction: column; gap: var(--space-4);
+  padding: var(--space-6);
+  border: 1px solid var(--brand-mid);
+  border-radius: var(--radius-lg);
+  background: var(--surface-dark-alt);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.support-card:hover { border-color: var(--brand-bright); background: var(--brand-night); color: inherit; }
+.support-card__logo {
+  block-size: 3rem; inline-size: auto; max-inline-size: 100%;
+  object-fit: contain; object-position: left center;
+  background: none; align-self: flex-start;
+}
+/* Mientras no tengamos el archivo del logo, un monograma con la inicial: ocupa
+   el mismo sitio y no finge ser un logo que no es. */
+.support-card__mono {
+  inline-size: 3rem; block-size: 3rem;
+  display: grid; place-items: center;
+  border-radius: var(--radius);
+  background: var(--brand-night); border: 1px solid var(--brand-mid);
+  font-family: var(--font-display); font-weight: 700; font-size: var(--step-1);
+  color: var(--brand-sky);
+}
+.support-card__name { font-family: var(--font-display); font-weight: 700; font-size: var(--step-1); margin: 0; }
+.support-card__what { margin: 0; font-size: var(--step--1); color: var(--brand-sky); }
+.support-card__go { margin-top: auto; display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--step--1); font-weight: 700; color: var(--brand-sky); }
+
+/* --- Guiño de marca -----------------------------------------------------------
+   El vídeo del gato es una pieza de marketing, no una demostración. La etiqueta
+   va pegada al reproductor y en texto, no solo en el pie, para que no quepa
+   confundirlo con el producto funcionando.
+   ---------------------------------------------------------------------------- */
+.wink { margin: 0; display: grid; gap: var(--space-4); justify-items: center; }
+.wink__frame { position: relative; inline-size: min(100%, 22rem); }
+.wink__player { inline-size: 100%; border-radius: var(--radius-lg); border: 1px solid var(--brand-mid); display: block; }
+.wink__tag {
+  position: absolute; inset-block-start: var(--space-3); inset-inline-start: var(--space-3);
+  background: var(--brand-night); color: var(--brand-warm);
+  border: 1px solid var(--brand-bright);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--step--1); font-weight: 700;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+}
+.wink__desc { max-width: 40ch; text-align: center; }
+
+/* --- CATY: ilustración de marca ------------------------------------------------ */
+.caty-art { inline-size: min(100%, 26rem); block-size: auto; margin-inline: auto; display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .caty-art { animation: caty-float 9s var(--ease) infinite; }
+  @keyframes caty-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+}
+.caty-stack { display: grid; gap: var(--space-7); justify-items: center; }
+
+/* --- Vídeo del pitch: vertical y con protagonismo ------------------------------ */
+.video--feature { align-items: start; }
+@media (min-width: 60em) {
+  .video--feature { grid-template-columns: minmax(0, 25rem) minmax(0, 1fr); gap: var(--space-8); }
+}
+.video--feature .video__player { max-inline-size: 25rem; }
+.video__duration {
+  display: inline-block; margin-inline-start: var(--space-3);
+  font-size: var(--step--1); font-weight: 700; color: var(--brand-night);
+  background: var(--brand-sky); border-radius: var(--radius-pill);
+  padding: 0 var(--space-3); letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ==========================================================================
+   Tercer pase: una idea y un elemento visual por sección
+   ========================================================================== */
+
+/* --- Sección partida: texto a la izquierda, visual a la derecha ---------------
+   Es el patrón de las portadas de producto e inversores y de las secciones de
+   C.A.T. y CATY. El visual se dimensiona por su columna, nunca por la pantalla:
+   así no vuelve a aparecer un globo ocupando media página.
+   ---------------------------------------------------------------------------- */
+.split { display: grid; gap: var(--space-7); align-items: center; }
+@media (min-width: 62em) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    gap: var(--space-9);
+  }
+}
+.split__visual { inline-size: 100%; max-inline-size: 24rem; justify-self: center; margin: 0; }
+
+/* El vídeo del pitch es vertical: en su columna cabe entero y con holgura. */
+.split__visual.video { display: grid; gap: var(--space-5); max-inline-size: 24rem; }
+.split__visual .video__player { inline-size: 100%; max-inline-size: none; }
+.split__visual .video__desc > * { max-width: none; }
+
+/* --- Halo de producto ---------------------------------------------------------
+   El mismo resplandor para los dos, cada uno en su material: azul-violeta para
+   CATY, plateado para C.A.T. Misma opacidad y mismo desenfoque, para que
+   ninguno de los dos brille más que el otro.
+   ---------------------------------------------------------------------------- */
+.art { position: relative; display: grid; place-items: center; isolation: isolate; }
+.art::before {
+  content: "";
+  position: absolute;
+  inline-size: 86%; aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: .8;
+  z-index: -1;
+}
+.art--caty::before { background: var(--caty-glow); }
+.art--cat::before  { background: var(--cat-glow); }
+.art__img { inline-size: 100%; block-size: auto; display: block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .art::before { animation: art-breathe 7s var(--ease) infinite; }
+  @keyframes art-breathe {
+    0%, 100% { transform: scale(1);    opacity: .74; }
+    50%      { transform: scale(1.07); opacity: .92; }
+  }
+}
+
+/* La ilustración de C.A.T. conserva el giro con cursor y teclado: el guion
+   escribe --tilt-x y --tilt-y sobre .device, y aquí se aplican. */
+.device { perspective: 1200px; padding: var(--space-6) 0; }
+.device .device__stage {
+  inline-size: 100%;
+  transform: rotateX(var(--tilt-x)) rotateZ(var(--tilt-y));
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* --- Globo -------------------------------------------------------------------
+   Vive en la portada de inversores y se dimensiona por su columna. Nunca a
+   pantalla completa.
+   ---------------------------------------------------------------------------- */
+.globe { inline-size: 100%; max-inline-size: 20rem; block-size: auto; margin-inline: auto; display: block; }
+
+/* Variante en la que el visual se mide por el bloque de texto de al lado: la
+   fila del grid la marca la columna de texto, y el globo no puede pasar de ahí.
+   Ni más ni menos que el alto de ese bloque. */
+@media (min-width: 62em) {
+  .split--stretch { align-items: stretch; }
+  .split--stretch .split__visual { display: grid; place-items: center; max-inline-size: none; }
+  /* Cuadrado siempre: con inline-size auto la esfera se estiraba a lo alto de
+     la fila y dejaba de ser una esfera. */
+  .split--stretch .globe { inline-size: min(22rem, 100%); block-size: auto; }
+}
+
+/* --- LOCAL sin acompañamiento gráfico ------------------------------------------
+   El globo se ha ido a inversores. Aquí la pieza gráfica es la propia palabra.
+   ---------------------------------------------------------------------------- */
+.local--solo { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 60em) { .local--solo { grid-template-columns: minmax(0, 1fr); } }
+.local--solo .local__lead, .local--solo .local__body { max-width: 52ch; }
+
+/* --- Guiño de marca en sección propia ------------------------------------------ */
+.wink { justify-items: start; gap: var(--space-5); }
+.wink__desc { text-align: start; max-width: 52ch; }
+
+/* --- Ilustración de producto dentro de la tarjeta ------------------------------
+   Sustituye a la placa de icono genérica en las dos tarjetas de producto: cada
+   uno con su propia ilustración y su propio halo. Es decorativa —el nombre está
+   escrito justo debajo— así que va con alt vacío.
+   ---------------------------------------------------------------------------- */
+.card__mark {
+  display: grid; place-items: center;
+  inline-size: 100%; max-inline-size: 11rem;
+  block-size: 6.5rem;
+  margin-bottom: var(--space-5);
+}
+.card__mark .art__img { inline-size: auto; max-inline-size: 100%; max-block-size: 100%; }
+.card__mark::before { inline-size: 70%; filter: blur(22px); }
+
+/* ==========================================================================
+   Cuarto pase: encaje, respiración y piezas nuevas
+   ========================================================================== */
+
+/* --- Sección partida, variante ancha ------------------------------------------
+   Para un visual apaisado (el guiño de marca) la columna derecha crece y las
+   dos quedan equilibradas, en vez de dejar el texto en una tira estrecha.
+   ---------------------------------------------------------------------------- */
+@media (min-width: 62em) {
+  .split--wide { grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); gap: var(--space-8); }
+  .split--wide .split__visual { max-inline-size: 30rem; }
+}
+
+/* --- Más aire entre el texto de sección y su rejilla ---------------------------
+   Este es el hueco que se seguía viendo apretado: el bloque de titular y la
+   rejilla de tarjetas eran hermanos con solo 64 px entre medias.
+   ---------------------------------------------------------------------------- */
+.stack-lg > * + * { margin-top: var(--gap-head); }
+
+/* --- Rejilla de dos por dos ---------------------------------------------------
+   Las cuatro capas del OSCF caben mejor en cuadrado que en una fila de tres con
+   una suelta debajo.
+   ---------------------------------------------------------------------------- */
+@media (min-width: 52em) { .pillars--2x2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 72em) { .pillars--2x2 { grid-template-columns: repeat(2, 1fr); } }
+
+/* --- Banda de cierre con la marca ---------------------------------------------- */
+/* Banda de cierre alineada a la izquierda, con la marca delante del texto y el
+   botón al otro extremo. */
+.ctaband__text { display: flex; align-items: center; gap: var(--space-6); }
+.ctaband__text p { max-width: 60ch; }
+.ctaband__mark { inline-size: 4.5rem; block-size: auto; flex: none; }
+@media (max-width: 40em) { .ctaband__mark { inline-size: 3.25rem; } }
+
+/* --- Financiación --------------------------------------------------------------
+   Barra decorativa: las cifras van escritas al lado, así que va con
+   aria-hidden y no necesita anunciarse.
+   ---------------------------------------------------------------------------- */
+.funding { margin-top: var(--space-7); }
+.funding__bar {
+  block-size: 1.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--brand-ice);
+  border: 1px solid var(--brand-sky);
+  overflow: hidden;
+}
+.funding__fill {
+  display: block; block-size: 100%; inline-size: 30%;
+  background: linear-gradient(90deg, var(--brand-blue), var(--brand-bright));
+  border-radius: var(--radius-pill);
+}
+.funding__figures {
+  display: grid; gap: var(--space-6);
+  margin: var(--space-6) 0 var(--space-5);
+}
+@media (min-width: 40em) { .funding__figures { grid-template-columns: repeat(2, 1fr); } }
+.funding__figures dt {
+  font-size: var(--step--1); font-weight: 700;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  margin-bottom: var(--space-2);
+}
+.funding__figures dd { margin: 0; }
+.funding__value {
+  font-family: var(--font-display); font-size: var(--step-3); font-weight: 700;
+  line-height: 1; color: var(--brand-blue); font-variant-numeric: tabular-nums;
+}
+.funding__value--left { color: var(--text-on-light-muted); }
+
+/* --- Botones pequeños del equipo ------------------------------------------------ */
+.btn--sm {
+  min-height: 40px;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--step--1);
+}
+.person__links { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-5) 0 0; }
+
+/* --- Ilustración dentro de la tarjeta ------------------------------------------
+   Caja fija e idéntica para las dos, y object-fit para que cada ilustración se
+   ajuste dentro sin salirse. Antes la de CATY es casi cuadrada y la de C.A.T.
+   apaisada, así que al darles el 100 % del ancho la primera crecía a lo alto y
+   se comía el rótulo de debajo.
+   ---------------------------------------------------------------------------- */
+.card__mark {
+  background: none;
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: 7.5rem;
+  max-inline-size: 14rem;
+  margin-bottom: var(--space-6);
+  justify-items: start;
+}
+.card__mark .art__img {
+  background: none;
+  inline-size: 100%;
+  /* Alto en unidades absolutas, no en porcentaje: en un elemento de rejilla
+     centrado el navegador resuelve el 100 % contra un alto indefinido y la
+     imagen se salía de su caja. */
+  block-size: 7.5rem;
+  object-fit: contain;
+  object-position: left center;
+}
+.card__mark::before { inline-size: 7.5rem; }
+
+/* ==========================================================================
+   Quinto pase
+   ========================================================================== */
+
+/* --- Escudo de verificación por gestos ----------------------------------------
+   La pieza gráfica de ciberseguridad, construida igual que el globo: SVG, en
+   los azules de la marca, con un movimiento lento que se apaga con
+   prefers-reduced-motion.
+   ---------------------------------------------------------------------------- */
+.guard { inline-size: 100%; max-inline-size: 20rem; block-size: auto; margin-inline: auto; display: block; }
+@media (min-width: 62em) {
+  .split--stretch .guard { inline-size: min(22rem, 100%); block-size: auto; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .guard__ring { animation: guard-spin 26s linear infinite; transform-origin: 110px 110px; }
+  .guard__trail { animation: guard-draw 3.6s linear infinite; }
+  @keyframes guard-spin { to { transform: rotate(360deg); } }
+  @keyframes guard-draw { to { stroke-dashoffset: -34; } }
+}
+
+/* --- Tarjetas de precio: contenido centrado ------------------------------------ */
+.prices .card { text-align: center; align-items: center; }
+.prices .card__mark { justify-items: center; margin-inline: auto; }
+.prices .card__mark .art__img { object-position: center; }
+.prices .card__body { max-width: 34ch; }
+
+/* La tercera es la de hablar con nosotros: fondo oscuro y la marca en blanco,
+   para que se distinga de las dos que sí llevan precio cerrado.
+   El fondo va explícito: .theme-dark y .card van en el MISMO elemento, así que
+   el selector descendiente `.theme-dark .card` no aplica y ganaba el blanco de
+   .card — tarjeta blanca con texto blanco. */
+.card--contact {
+  background: var(--surface-dark);
+  border-color: var(--brand-mid);
+  box-shadow: var(--shadow-dark);
+}
+.card--contact .card__title { color: var(--brand-warm); }
+.card--contact .price__amount { color: var(--brand-warm); }
+.card--contact .card__mark { block-size: 5rem; }
+.card--contact .card__mark .art__img { block-size: 5rem; }
+
+/* ==========================================================================
+   Sexto pase
+   ========================================================================== */
+
+/* Lista sin viñetas ni relleno. Antes iba en un style= dentro del HTML, y ese
+   margin:0 en línea ganaba al margen que .stack-lg pone entre el texto de la
+   sección y su rejilla: por eso las tarjetas seguían pegadas al texto. */
+.bare-list { list-style: none; padding: 0; }
+
+/* --- Portadas iguales en las cuatro páginas ------------------------------------
+   Mismo alto, misma retícula y el visual siempre en la columna derecha. Lo
+   único que cambia es el texto y la pieza gráfica.
+   ---------------------------------------------------------------------------- */
+.hero > .container { display: grid; align-content: center; min-block-size: clamp(22rem, 62vh, 30rem); }
+@media (min-width: 62em) { .hero > .container { min-block-size: clamp(27rem, 72vh, 38rem); } }
+
+.hero__video { display: grid; gap: var(--space-5); }
+.hero__video .video__player {
+  inline-size: 100%; max-inline-size: 20rem;
+  margin-inline: auto;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--brand-mid);
+  box-shadow: var(--shadow-dark);
+}
+.hero__video .video__desc > * { max-width: none; }
+.hero__video .video__meta { font-size: var(--step--1); }
+
+/* --- Mercado centrado ---------------------------------------------------------- */
+.market { justify-content: center; }
+@media (min-width: 60em) {
+  .market { grid-template-columns: minmax(0, 24rem) minmax(0, 28rem); justify-content: center; }
+}
+
+/* --- Tabla comparativa ----------------------------------------------------------
+   Tabla de datos de verdad: encabezados de fila y de columna, y cada celda con
+   su «Sí» o «No» en texto para el lector de pantalla. El icono es solo apoyo
+   visual: el significado nunca depende del color.
+   ---------------------------------------------------------------------------- */
+.tablewrap { overflow-x: auto; }
+.vs { border-collapse: collapse; inline-size: 100%; min-inline-size: 40rem; }
+.vs th, .vs td { padding: var(--space-4) var(--space-3); border-bottom: 1px solid var(--brand-ice); }
+.theme-dark .vs th, .theme-dark .vs td { border-bottom-color: var(--brand-mid); }
+.vs thead th {
+  font-family: var(--font-text);
+  font-size: var(--step--1); font-weight: 700;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  text-align: center; vertical-align: bottom;
+  border-bottom: 2px solid var(--brand-mid);
+}
+.vs tbody th { text-align: start; font-weight: 700; max-width: 18rem; }
+.vs td { text-align: center; }
+
+/* La columna de AIntegra, destacada de arriba abajo. */
+.vs th:last-child, .vs td:last-child { background: var(--brand-ice); }
+.vs thead th:last-child { color: var(--brand-blue); }
+
+.vs__mark { display: inline-block; inline-size: 1.5rem; block-size: 1.5rem; position: relative; }
+.vs__mark::before, .vs__mark::after {
+  content: ""; position: absolute; inset-inline-start: 50%; inset-block-start: 50%;
+  background: currentColor; border-radius: 2px;
+}
+[data-v="si"] .vs__mark { color: var(--brand-blue); }
+[data-v="si"] .vs__mark::before { inline-size: 3px; block-size: 0.55rem; transform: translate(-0.32rem, -0.05rem) rotate(-45deg); }
+[data-v="si"] .vs__mark::after  { inline-size: 3px; block-size: 1rem;    transform: translate(-0.05rem, -0.45rem) rotate(35deg); }
+[data-v="no"] .vs__mark { color: var(--brand-mid); }
+[data-v="no"] .vs__mark::before { inline-size: 3px; block-size: 1.1rem; transform: translate(-50%, -50%) rotate(45deg); }
+[data-v="no"] .vs__mark::after  { inline-size: 3px; block-size: 1.1rem; transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* --- El argumento del modelo de negocio ------------------------------------------ */
+.model-claim {
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 1rem + 4vw, 3.5rem);
+  border-inline-start: 6px solid var(--brand-bright);
+}
+.model-claim h3 { color: var(--brand-warm); font-size: var(--step-2); margin-bottom: var(--space-5); }
+.model-claim p { max-width: 60ch; }
+.model-claim strong { color: var(--brand-sky); }
+
+/* ==========================================================================
+   Séptimo pase
+   ========================================================================== */
+
+/* --- Apoyos: el logo real sobre placa clara ------------------------------------
+   Cuatro de los seis logos vienen en tinta oscura y dos en negativo. Una placa
+   clara común los deja legibles a todos y da un muro uniforme; los dos
+   negativos se han teñido del azul de marca conservando su forma.
+   ---------------------------------------------------------------------------- */
+.support-card__plate {
+  display: grid; place-items: center;
+  inline-size: 100%;
+  block-size: 4.5rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--brand-warm);
+  border-radius: var(--radius);
+}
+.support-card__plate img {
+  /* Alto en unidades absolutas, no en porcentaje: en un elemento de rejilla
+     centrado el 100 % se resuelve contra un alto indefinido y los logos altos
+     se salían de la placa. Mismo caso que las ilustraciones de las tarjetas. */
+  inline-size: 100%; block-size: 3rem;
+  object-fit: contain; object-position: center;
+}
+
+/* --- Portada: la descripción del vídeo, en la columna de texto ------------------
+   Antes iba bajo el vídeo, en una columna estrecha, y descuadraba. Aquí baja al
+   texto con su propio tono, separada de la línea de normativa por un filete.
+   ---------------------------------------------------------------------------- */
+.hero__videodesc {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--brand-mid);
+  max-inline-size: 54ch;
+}
+.hero__videodesc p { color: var(--brand-sky); font-size: var(--step--1); margin: 0; }
+/* A dos columnas en pantalla ancha: la descripción es larga y así ocupa la
+   mitad de alto sin recortar nada. */
+@media (min-width: 62em) {
+  .hero__videodesc > p:last-child { columns: 2; column-gap: var(--space-7); }
+}
+.hero__videodesc .video__label { color: var(--brand-warm); margin-bottom: var(--space-3); }
+
+/* --- Tabla: la columna de AIntegra, destacada ------------------------------------
+   Fondo azul noche, marco con el degradado de C.A.T.Y. y el logo en blanco en
+   la cabecera en lugar del nombre escrito.
+   ---------------------------------------------------------------------------- */
+.vs { position: relative; }
+.vs th:last-child, .vs td:last-child { background: var(--brand-white); }
+.vs thead th:last-child { border-bottom-color: var(--brand-bright); padding-block: var(--space-5); }
+.vs tbody tr:last-child td:last-child { border-bottom-color: var(--brand-ice); }
+.vs__us img { inline-size: 3rem; block-size: auto; margin-inline: auto; }
+.vs td:last-child [data-v] { color: inherit; }
+.vs td:last-child .vs__mark { color: var(--brand-blue); }
+
+/* El marco con el degradado de C.A.T.Y. se dibuja como una capa encima de la
+   columna, cuyo ancho fija el <colgroup>. Solo cuando la tabla cabe entera: si
+   hay scroll horizontal, el marco se quedaría desalineado, así que se apaga. */
+.vs__col-us { inline-size: 10rem; }
+.tablewrap { position: relative; }
+@media (min-width: 62em) {
+  .tablewrap--vs::after {
+    content: ""; position: absolute; inset-block: 0; inset-inline-end: 0;
+    inline-size: 10rem;
+    border-radius: var(--radius);
+    padding: 3px;
+    background: var(--caty-sheen);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* --- Portada de la home: la figura envuelve el bloque entero --------------------
+   El pie va como último hijo de la <figure>, que es donde el estándar lo pide,
+   así que sigue asociado al vídeo. Ocupa el ancho completo debajo, en su propio
+   tono, en vez de comprimir la columna del vídeo.
+   ---------------------------------------------------------------------------- */
+.hero__figure { margin: 0; }
+.hero__figure .video__player {
+  inline-size: 100%; max-inline-size: 16.5rem;
+  margin-inline: auto;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--brand-mid);
+  box-shadow: var(--shadow-dark);
+}
+.hero__videodesc {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--brand-mid);
+  max-inline-size: 68ch;
+}
+.hero__videodesc p { color: var(--brand-sky); font-size: var(--step--1); margin: 0; }
+/* A dos columnas en pantalla ancha: la descripción es larga y así ocupa la
+   mitad de alto sin recortar nada. */
+@media (min-width: 62em) {
+  .hero__videodesc > p:last-child { columns: 2; column-gap: var(--space-7); }
+}
+.hero__videodesc .video__label { color: var(--brand-warm); margin-bottom: var(--space-3); }
+
+/* ==========================================================================
+   Octavo pase
+   ========================================================================== */
+
+/* --- Apoyos: tarjetas uniformes ------------------------------------------------
+   El nombre de cada institución ya está dentro de su propio logo, así que en la
+   tarjeta sería decirlo dos veces. Pasa al alt de la imagen, que es donde el
+   lector de pantalla lo necesita.
+   ---------------------------------------------------------------------------- */
+.support-card { align-items: center; text-align: center; gap: var(--space-5); }
+.support-card__plate { block-size: 5.5rem; padding: var(--space-4) var(--space-5); }
+.support-card__plate img { block-size: 3.25rem; }
+.support-card__what { text-align: center; }
+.support-card__go { justify-content: center; }
+
+/* --- Fundadores: los botones, a la misma altura ---------------------------------
+   Las citas tienen distinta longitud; sin esto cada pareja de botones caía a una
+   altura distinta.
+   ---------------------------------------------------------------------------- */
+.people > li > div { display: flex; flex-direction: column; flex: 1; }
+.people .quote { margin-block-end: var(--space-5); }
+.person__links { margin-top: auto; }
+
+/* --- Tabla: anchos de columna --------------------------------------------------- */
+.vs__col-label { inline-size: 30%; }
+
+/* --- El libro del OSCF ----------------------------------------------------------
+   Se abre al acercar el cursor a la sección o al llegar con el tabulador a
+   cualquier enlace de dentro. Es decorativo, así que va con aria-hidden; con
+   prefers-reduced-motion se queda abierto y quieto.
+   ---------------------------------------------------------------------------- */
+.book { display: grid; place-items: center; perspective: 900px; }
+.book__svg { inline-size: 100%; max-inline-size: 20rem; block-size: auto; overflow: visible; }
+.book__leaf {
+  transform-box: fill-box;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.book__leaf--l { transform-origin: right center; transform: rotateY(52deg); }
+.book__leaf--r { transform-origin: left center;  transform: rotateY(-52deg); }
+.book__shadow { transition: transform var(--dur-slow) var(--ease-out); transform-box: fill-box; transform-origin: center; }
+
+/* Abierto: al pasar el cursor por la sección o al enfocar algo dentro. */
+.section:hover .book__leaf--l,
+.section:focus-within .book__leaf--l { transform: rotateY(6deg); }
+.section:hover .book__leaf--r,
+.section:focus-within .book__leaf--r { transform: rotateY(-6deg); }
+.section:hover .book__shadow,
+.section:focus-within .book__shadow { transform: scaleX(1.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  .book__leaf--l { transform: rotateY(6deg); }
+  .book__leaf--r { transform: rotateY(-6deg); }
+}
+
+/* ==========================================================================
+   Hito 3 — formulario
+   ========================================================================== */
+
+.split--form { align-items: start; }
+@media (min-width: 62em) {
+  .split--form { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: var(--space-8); }
+  .split--form > * { max-inline-size: none; }
+}
+.form { margin-top: var(--space-7); max-inline-size: 34rem; }
+.fieldset { border: 0; padding: 0; margin: 0 0 var(--space-6); }
+.fieldset legend { padding: 0; margin-bottom: var(--space-3); }
+
+/* Resumen de errores. Recibe el foco al fallar la validación, así que quien
+   navega con lector de pantalla se entera de qué ha pasado sin buscarlo. */
+.form__errors {
+  border: 3px solid var(--brand-night);
+  border-radius: var(--radius);
+  background: var(--brand-white);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-6);
+}
+.form__errors:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.form__errors h3 { font-size: var(--step-1); margin-bottom: var(--space-3); }
+.form__errors ul { margin: 0; padding-left: 1.2em; }
+.form__errors a { color: var(--brand-blue); }
+
+.form__aside { display: grid; gap: var(--space-6); align-content: start; }
+@media (min-width: 62em) { .form__aside { position: sticky; inset-block-start: 7rem; } }
+.form__aside h3 { font-size: var(--step-1); }
+.form__direct {
+  border: 1px solid var(--brand-ice);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  background: var(--brand-white);
+}
+.form__contact { font-size: var(--step-1); line-height: var(--leading-snug); }
+.form__contact a { font-weight: 700; }
+
+/* --- Contacto en el pie ---------------------------------------------------- */
+.footer__contact { list-style: none; padding: 0; margin: 0 0 var(--space-5); display: grid; gap: var(--space-3); }
+.footer__contact li { margin: 0; display: grid; gap: 0.15rem; }
+.footer__contact-label {
+  font-size: var(--step--1); color: var(--brand-sky);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase; font-weight: 700;
+}
+
+/* --- Ilustración de la página de demo ------------------------------------------
+   Dos bocadillos y el trazo de un gesto entre ellos. El trazo avanza despacio,
+   como el del dispositivo y el del escudo.
+   ---------------------------------------------------------------------------- */
+.talk { inline-size: 100%; max-inline-size: 20rem; block-size: auto; margin-inline: auto; display: block; }
+@media (min-width: 62em) { .split--stretch .talk { inline-size: min(22rem, 100%); block-size: auto; } }
+@media (prefers-reduced-motion: no-preference) {
+  .talk__thread { animation: talk-draw 3.4s linear infinite; }
+  .talk__out { animation: talk-in 6s var(--ease) infinite; transform-box: fill-box; transform-origin: 20% 80%; }
+  @keyframes talk-draw { to { stroke-dashoffset: -32; } }
+  @keyframes talk-in {
+    0%, 55%, 100% { transform: translateY(0); }
+    65%           { transform: translateY(-4px); }
+  }
+}
+
+/* --- Panel de envío -------------------------------------------------------------
+   Sustituye al formulario cuando la validación pasa. Recibe el foco, así que
+   quien navega con lector de pantalla sabe que ha cambiado la pantalla.
+   ---------------------------------------------------------------------------- */
+.ready {
+  margin-top: var(--space-7);
+  max-inline-size: 34rem;
+  border: 2px solid var(--border-interactive);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  background: var(--brand-white);
+}
+.ready:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.ready h3 { font-size: var(--step-2); margin-bottom: var(--space-3); }
+.ready__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-6) 0 var(--space-5); }
+.ready__status { min-block-size: 1.5em; font-weight: 700; color: var(--brand-blue); margin: var(--space-3) 0 0; }
+.ready__status:empty { min-block-size: 0; }
+.ready__meta {
+  display: grid; grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4);
+  margin: var(--space-5) 0; padding: var(--space-4) 0;
+  border-block: 1px solid var(--brand-ice);
+  font-size: var(--step--1);
+}
+.ready__meta dt { font-weight: 700; color: var(--text-on-light-muted); }
+.ready__meta dd { margin: 0; }
+.ready__body { font-family: inherit; font-size: var(--step--1); margin-top: var(--space-2); }
+
+/* --- Panel de envío -------------------------------------------------------------
+   Sustituye al formulario cuando la validación pasa. Recibe el foco, así que
+   quien navega con lector de pantalla sabe que ha cambiado la pantalla.
+   ---------------------------------------------------------------------------- */
+.ready {
+  margin-top: var(--space-7);
+  max-inline-size: 34rem;
+  border: 2px solid var(--border-interactive);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  background: var(--brand-white);
+}
+.ready:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.ready h3 { font-size: var(--step-2); margin-bottom: var(--space-3); }
+.ready__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-6) 0 var(--space-5); }
+.ready__status { min-block-size: 1.5em; font-weight: 700; color: var(--brand-blue); margin: var(--space-3) 0 0; }
+.ready__status:empty { min-block-size: 0; }
+.ready__meta {
+  display: grid; grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4);
+  margin: var(--space-5) 0; padding: var(--space-4) 0;
+  border-block: 1px solid var(--brand-ice);
+  font-size: var(--step--1);
+}
+.ready__meta dt { font-weight: 700; color: var(--text-on-light-muted); }
+.ready__meta dd { margin: 0; }
+.ready__body { font-family: inherit; font-size: var(--step--1); margin-top: var(--space-2); }
+
+
+/* --- El guiño del gato ------------------------------------------------------------
+   C.A.T. también significa gato, y el producto viene a sustituir al ratón. El
+   chiste se cuenta una vez, en el pie, y en voz baja: trazo de línea del grosor
+   del logo, sin relleno y sin ruido. Nunca es un juego ni pide atención.
+   ---------------------------------------------------------------------------- */
+.catwink {
+  inline-size: fit-content;
+  margin-top: var(--space-7);
+  color: var(--brand-mid);
+  transition: color var(--dur-slow) var(--ease);
+}
+.catwink__svg { inline-size: 5.5rem; block-size: auto; display: block; }
+.catwink[data-near="true"] { color: var(--brand-sky); }
+.catwink__pupil { transition: transform var(--dur) var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+  .catwink__pupil { transition: none; }
+}
+
+/* --- Páginas legales --------------------------------------------------------------
+   Texto largo y poco más. Medida de lectura corta, jerarquía clara y las listas
+   vacías desaparecen: el motor de plantillas no tiene condicionales, así que una
+   sección sin lista genera un <ul> vacío.
+   ---------------------------------------------------------------------------- */
+.prose-legal > section + section { margin-top: var(--space-8); }
+.prose-legal h2 { font-size: var(--step-2); margin-bottom: var(--space-5); }
+.prose-legal p { max-width: 62ch; }
+.prose-legal ul { margin: var(--space-5) 0 0; padding-left: 1.3em; max-width: 62ch; }
+.prose-legal ul:empty { display: none; margin: 0; }
+.prose-legal li { margin-bottom: var(--space-3); }
+.prose-legal li::marker { color: var(--brand-bright); }

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistema de diseño — AIntegra Limited</title>
+<link rel="stylesheet" href="styles/fonts.css">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/base.css">
+<link rel="stylesheet" href="styles/components.css">
+<style>
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: var(--space-4); list-style: none; padding: 0; }
+  .swatches li { margin: 0; max-width: none; }
+  .sw { border-radius: var(--radius); border: 1px solid var(--brand-ice); overflow: hidden; }
+  .sw__chip { block-size: 4.5rem; display: grid; place-items: center; font-weight: 700; }
+  .sw__meta { padding: var(--space-3); font-size: var(--step--1); background: var(--brand-white); }
+  .sw__hex { font-family: ui-monospace, Consolas, monospace; }
+  table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+  th, td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--brand-ice); }
+  th { color: var(--brand-blue); }
+  td.n { font-family: ui-monospace, Consolas, monospace; text-align: right; }
+  .ok { color: var(--brand-blue); font-weight: 700; }
+  .no { color: var(--brand-night); font-weight: 700; }
+  .scale > * { margin: 0 0 var(--space-3); max-width: none; }
+  .demo-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <span class="site-header__logo"><strong>AIntegra</strong> · sistema de diseño</span>
+    <nav class="site-nav" aria-label="Secciones del kit">
+      <ul>
+        <li><a href="#color">Color</a></li>
+        <li><a href="#tipo">Tipografía</a></li>
+        <li><a href="#comp">Componentes</a></li>
+        <li><a href="#form">Formularios</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="theme-dark section">
+    <div class="container">
+      <p class="eyebrow">Hito 1</p>
+      <h1>Sistema de diseño</h1>
+      <p style="max-width:60ch">Tokens, reglas de contraste y biblioteca de componentes. Cada decisión de color está medida, no estimada: <code>node tools/contrast.mjs</code> comprueba las 24 combinaciones en uso y falla si alguna baja del umbral.</p>
+    </div>
+  </section>
+
+  <!-- ============ COLOR ============ -->
+  <section class="section" id="color" aria-labelledby="h-color">
+    <div class="container stack-lg">
+      <div>
+        <p class="eyebrow">Color</p>
+        <h2 id="h-color">Paleta cerrada</h2>
+        <p>Los ocho colores oficiales, sin tonos derivados ni añadidos.</p>
+      </div>
+
+      <ul class="swatches">
+        <li><div class="sw"><div class="sw__chip" style="background:#081A2E;color:#F5F8FA">Aa</div><div class="sw__meta">Azul noche<br><span class="sw__hex">#081A2E</span></div></div></li>
+        <li><div class="sw"><div class="sw__chip" style="background:#0C3862;color:#FFFFFF">Aa</div><div class="sw__meta">Azul marca<br><span class="sw__hex">#0C3862</span></div></div></li>
+        <li><div class="sw"><div class="sw__chip" style="background:#245E8D;color:#FFFFFF">Aa</div><div class="sw__meta">Azul medio<br><span class="sw__hex">#245E8D</span></div></div></li>
+        <li><div class="sw"><div class="sw__chip" style="background:#357FB2;color:#081A2E">Aa</div><div class="sw__meta">Azul brillante<br><span class="sw__hex">#357FB2</span></div></div></li>
+        <li><div class="sw"><div class="sw__chip" style="background:#7FA8C9;color:#081A2E">Aa</div><div class="sw__meta">Azul cielo<br><span class="sw__hex">#7FA8C9</span></div></div></li>
+        <li><div class="sw"><div class="sw__chip" style="background:#DCE6EE;color:#081A2E">Aa</div><div class="sw__meta">Azul hielo<br><span class="sw__hex">#DCE6EE</span></div></div></li>
+        <li><div class="sw"><div class="sw__chip" style="background:#F5F8FA;color:#081A2E">Aa</div><div class="sw__meta">Blanco cálido<br><span class="sw__hex">#F5F8FA</span></div></div></li>
+      </ul>
+
+      <div>
+        <h3>La regla del azul brillante</h3>
+        <p><strong>#357FB2 no llega a 4.5:1 con blanco (4.35) ni sobre azul noche (4.03).</strong> Por eso el sistema lo saca del texto normal y del relleno de botón, y lo reserva a lo que solo necesita 3:1 o a texto grande. Es el color que <em>se enciende</em> al interactuar, no el que sostiene la lectura.</p>
+        <table>
+          <caption class="visually-hidden">Contraste medido de las combinaciones del sistema</caption>
+          <thead><tr><th scope="col">Uso</th><th scope="col" class="n">Ratio</th><th scope="col" class="n">Mínimo</th><th scope="col">Estado</th></tr></thead>
+          <tbody>
+            <tr><td>Texto principal sobre blanco cálido</td><td class="n">16.44</td><td class="n">4.5</td><td class="ok">AAA</td></tr>
+            <tr><td>Texto secundario (#245E8D) sobre claro</td><td class="n">6.43</td><td class="n">4.5</td><td class="ok">AA</td></tr>
+            <tr><td>Texto secundario (#7FA8C9) sobre noche</td><td class="n">6.97</td><td class="n">4.5</td><td class="ok">AA</td></tr>
+            <tr><td>Botón primario: blanco sobre #0C3862</td><td class="n">11.95</td><td class="n">4.5</td><td class="ok">AAA</td></tr>
+            <tr><td>Enlace sobre tarjeta oscura (#7FA8C9 / #0C3862)</td><td class="n">4.75</td><td class="n">4.5</td><td class="ok">AA</td></tr>
+            <tr><td>Borde de campo y anillo de foco (#357FB2)</td><td class="n">4.08</td><td class="n">3.0</td><td class="ok">AA no textual</td></tr>
+            <tr><td><del>#357FB2 como texto normal sobre blanco</del></td><td class="n">4.35</td><td class="n">4.5</td><td class="no">Descartado</td></tr>
+            <tr><td><del>Blanco como texto normal sobre #357FB2</del></td><td class="n">4.35</td><td class="n">4.5</td><td class="no">Descartado</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIPOGRAFÍA ============ -->
+  <section class="section theme-ice" id="tipo" aria-labelledby="h-tipo">
+    <div class="container stack-lg">
+      <div>
+        <p class="eyebrow">Tipografía</p>
+        <h2 id="h-tipo">Escala fluida</h2>
+        <p>Cuerpo base de 17 a 19&nbsp;px según viewport, interlineado 1.65 y medida máxima de 68 caracteres. No se fija <code>font-size</code> en <code>&lt;html&gt;</code>: el sitio respeta el tamaño de fuente del navegador.</p>
+      </div>
+      <div class="scale">
+        <p style="font-family:var(--font-display);font-size:var(--step-4);font-weight:700;line-height:1.15">step-4 · Titular de página</p>
+        <p style="font-family:var(--font-display);font-size:var(--step-3);font-weight:700;line-height:1.15">step-3 · Titular de sección</p>
+        <p style="font-family:var(--font-display);font-size:var(--step-2);font-weight:600">step-2 · Subtítulo</p>
+        <p style="font-size:var(--step-1)">step-1 · Entradilla destacada</p>
+        <p style="font-size:var(--step-0)">step-0 · Texto corrido. El problema no es la persona, es la interfaz.</p>
+        <p style="font-size:var(--step--1)">step--1 · Nota al pie, etiqueta, pie de foto</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTES ============ -->
+  <section class="section" id="comp" aria-labelledby="h-comp">
+    <div class="container stack-lg">
+      <div>
+        <p class="eyebrow">Componentes</p>
+        <h2 id="h-comp">Biblioteca</h2>
+      </div>
+
+      <div>
+        <h3>Botones</h3>
+        <p>Altura mínima 44&nbsp;px, muy por encima del mínimo de 24&nbsp;px de WCAG 2.5.8: los objetivos grandes importan más aquí que en cualquier otra web.</p>
+        <div class="demo-row">
+          <a class="btn btn--primary" href="#comp">Solicitar una demo</a>
+          <a class="btn btn--secondary" href="#comp">Consulta el OSCF Handbook</a>
+          <button class="btn btn--primary" type="button">Escuchar en voz alta</button>
+        </div>
+        <p><small>Pulsa <kbd>Tab</kbd> para ver el anillo de foco de dos tonos.</small></p>
+      </div>
+
+      <div>
+        <h3>Tarjetas</h3>
+        <div class="grid grid--3">
+          <article class="card">
+            <h3>Local</h3>
+            <p>El procesamiento ocurre en el dispositivo siempre que es viable.</p>
+          </article>
+          <article class="card">
+            <h3>Modo seguro</h3>
+            <p>Pantalla oculta y audio privado para usar el dispositivo en espacios públicos.</p>
+          </article>
+          <article class="card card--link">
+            <h3><a href="#comp">CAPTCHA por gestos</a></h3>
+            <p>Una alternativa accesible a los CAPTCHA visuales. Tarjeta enlazada entera.</p>
+          </article>
+        </div>
+      </div>
+
+      <div>
+        <h3>Cifras, citas y etiquetas</h3>
+        <div class="grid grid--3">
+          <p class="stat"><span class="stat__value">12.500&nbsp;€</span><span class="stat__label">Primer premio Ford Smart Mobility Challenge</span></p>
+          <p class="stat"><span class="stat__value">120–160&nbsp;M€</span><span class="stat__label">SOM estimado</span></p>
+          <p class="stat"><span class="stat__value">21</span><span class="stat__label">Equipos participantes</span></p>
+        </div>
+        <div class="demo-row" style="margin-top:var(--space-5)">
+          <span class="tag">Borrador v0.1</span>
+          <span class="tag">Diseñado conforme a WCAG 2.2</span>
+          <span class="tag">En camino a la certificación ISO 27001</span>
+        </div>
+        <figure class="quote" style="margin-top:var(--space-6)">
+          <blockquote>Queremos desarrollar tecnología en la que todos podamos estar incluidos.</blockquote>
+          <figcaption>Sergio Sabater Ruiz — CTO y cofundador</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section theme-dark" aria-labelledby="h-dark">
+    <div class="container stack-lg">
+      <div>
+        <p class="eyebrow">Componentes</p>
+        <h2 id="h-dark">Los mismos, en oscuro</h2>
+        <p>Las secciones de misión e impacto invierten los tokens de texto en un único punto: <code>.theme-dark</code>.</p>
+      </div>
+      <div class="demo-row">
+        <a class="btn btn--primary" href="#h-dark">Solicitar una demo</a>
+        <a class="btn btn--secondary" href="#h-dark">Ver el roadmap</a>
+        <span class="tag">Borrador v0.1</span>
+      </div>
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>C.A.T.</h3>
+          <p>Trackpad adaptativo que aprende la forma de moverse de cada persona. <a href="#h-dark">Ver ficha</a></p>
+        </article>
+        <article class="card">
+          <h3>CATY</h3>
+          <p>La capa de IA que interpreta el gesto en contexto. <a href="#h-dark">Ver ficha</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FORMULARIOS ============ -->
+  <section class="section theme-ice" id="form" aria-labelledby="h-form">
+    <div class="container container--narrow">
+      <p class="eyebrow">Formularios</p>
+      <h2 id="h-form">Campos y errores</h2>
+      <p>Label siempre visible y asociado, pista descriptiva enlazada con <code>aria-describedby</code>, y error con icono y texto: nunca solo color.</p>
+
+      <form novalidate>
+        <div class="field">
+          <label class="field__label" for="demo-name">Nombre y apellidos <span class="field__required" aria-hidden="true">*</span><span class="visually-hidden"> (obligatorio)</span></label>
+          <input class="input" id="demo-name" name="name" type="text" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="demo-email">Correo electrónico <span class="field__required" aria-hidden="true">*</span><span class="visually-hidden"> (obligatorio)</span></label>
+          <input class="input" id="demo-email" name="email" type="email" required autocomplete="email"
+                 aria-describedby="demo-email-hint demo-email-error" aria-invalid="true" value="nerea@">
+          <p class="field__hint" id="demo-email-hint">Lo usamos solo para responderte a esta solicitud.</p>
+          <p class="field__error" id="demo-email-error">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" style="flex:none">
+              <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 5v6M10 14v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Falta el dominio del correo. Ejemplo: nombre@organizacion.com
+          </p>
+        </div>
+
+        <fieldset style="border:0;padding:0;margin:0 0 var(--space-5)">
+          <legend class="field__label" style="padding:0;margin-bottom:var(--space-2)">¿Desde dónde nos escribes?</legend>
+          <label class="choice"><input type="radio" name="perfil" value="persona" checked> <span>Soy una persona usuaria o alguien de su entorno</span></label>
+          <label class="choice"><input type="radio" name="perfil" value="entidad"> <span>Asociación, fundación o centro educativo</span></label>
+          <label class="choice"><input type="radio" name="perfil" value="empresa"> <span>Empresa o administración pública</span></label>
+        </fieldset>
+
+        <div class="field">
+          <label class="field__label" for="demo-msg">Cuéntanos tu caso</label>
+          <textarea class="textarea" id="demo-msg" name="mensaje"></textarea>
+        </div>
+
+        <button class="btn btn--primary" type="submit">Preparar solicitud de demo</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>AIntegra Limited</strong> — Make it possible. Make it accessible.</p>
+    <p class="site-footer__legal">
+      Datos legales pendientes: <span class="pending">[PENDIENTE-LEGAL]</span> — se completan en el Hito 4.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

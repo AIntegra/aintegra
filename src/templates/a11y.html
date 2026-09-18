@@ -1,0 +1,73 @@
+<!--
+  Panel de ajustes de accesibilidad.
+
+  Va justo después del enlace de salto, así que es la SEGUNDA parada del
+  tabulador en cualquier página: quien navega con teclado o con lector de
+  pantalla lo encuentra sin buscarlo. El botón dice lo que es con todas las
+  letras, no solo con un icono.
+
+  Sin JavaScript el botón no aparece: el guion lo revela. No tiene sentido
+  ofrecer controles que no van a hacer nada.
+-->
+<div class="a11y" id="a11y" data-status-reset="{{a11y.statusReset}}">
+  <button class="a11y__toggle" id="a11y-toggle" type="button"
+          aria-expanded="false" aria-controls="a11y-panel" hidden>
+    <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9.5"/>
+      <circle cx="12" cy="7.4" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M6.8 10.2c3.4 1 6.9 1 10.4 0"/>
+      <path d="M12 10.6v4.2m0 0-2.2 4.2m2.2-4.2 2.2 4.2"/>
+    </svg>
+    <span>{{a11y.open}}</span>
+  </button>
+
+  <div class="a11y__panel" id="a11y-panel" role="dialog" aria-modal="true"
+       aria-labelledby="a11y-title" hidden>
+    <div class="a11y__head">
+      <h2 id="a11y-title" tabindex="-1">{{a11y.title}}</h2>
+      <button class="a11y__close" type="button" id="a11y-close">
+        <span class="visually-hidden">{{a11y.close}}</span>
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false">
+          <path d="M5 5l12 12M17 5L5 17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="a11y__lead">{{a11y.lead}}</p>
+
+    <fieldset class="a11y__group">
+      <legend>{{a11y.textSize}}</legend>
+      <div class="a11y__sizes">
+        {{#each a11y.sizes}}
+        <label class="a11y__size">
+          <input type="radio" name="a11y-text" value="{{this.value}}">
+          <span>{{this.label}}</span>
+        </label>
+        {{/each}}
+      </div>
+    </fieldset>
+
+    <ul class="a11y__toggles">
+      {{#each a11y.toggles}}
+      <li>
+        <button class="a11y__switch" type="button" data-a11y="{{this.key}}" aria-pressed="false">
+          <span class="a11y__switch-text">
+            <span class="a11y__switch-label">{{this.label}}</span>
+            <span class="a11y__switch-hint">{{this.hint}}</span>
+          </span>
+          <span class="a11y__switch-box" aria-hidden="true"></span>
+        </button>
+      </li>
+      {{/each}}
+    </ul>
+
+    <p class="a11y__status" id="a11y-status" role="status"></p>
+
+    <div class="a11y__foot">
+      <button class="btn btn--secondary btn--sm" type="button" id="a11y-reset">{{a11y.reset}}</button>
+    </div>
+
+    <p class="a11y__note">{{a11y.note}}</p>
+  </div>
+</div>

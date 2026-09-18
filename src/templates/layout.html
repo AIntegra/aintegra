@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonical}}">
+  {{&_hreflang}}
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{site.name}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:locale" content="{{site.locale}}">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="{{base}}assets/img/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{base}}assets/img/favicon-180.png">
+
+  <link rel="preload" href="{{base}}assets/fonts/archivo-latin-400-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{base}}assets/fonts/atkinson-hyperlegible-next-latin-400-700.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="{{base}}styles/fonts.css?v={{v}}">
+  <link rel="stylesheet" href="{{base}}styles/tokens.css?v={{v}}">
+  <link rel="stylesheet" href="{{base}}styles/base.css?v={{v}}">
+  <link rel="stylesheet" href="{{base}}styles/components.css?v={{v}}">
+  <link rel="stylesheet" href="{{base}}styles/patterns.css?v={{v}}">
+  <link rel="stylesheet" href="{{base}}styles/a11y.css?v={{v}}">
+</head>
+<body>
+
+{{&_icons}}
+
+  <a class="skip-link" href="#main">{{ui.skipToContent}}</a>
+
+{{&_a11y}}
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="{{base}}{{lang}}/">
+        <img src="{{base}}assets/img/aintegra-mark-dark.png" alt="" width="256" height="251">
+        <span><strong>{{site.name}}</strong><span class="visually-hidden"> — {{ui.home}}</span></span>
+      </a>
+
+      <nav class="site-nav" aria-label="{{ui.mainNav}}">
+        <ul>
+          {{&_nav}}
+        </ul>
+      </nav>
+
+      <nav class="langswitch" aria-label="{{ui.langNav}}">
+        {{&_lang}}
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+{{&_content}}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="grid grid--4">
+        <div>
+          <p><strong>{{site.name}}</strong></p>
+          <p>{{footer.blurb}}</p>
+        </div>
+        <div>
+          <h2 class="eyebrow">{{footer.legalHeading}}</h2>
+          <ul style="list-style:none;padding:0">
+            {{&_legal}}
+          </ul>
+        </div>
+        <div>
+          <h2 class="eyebrow">{{footer.navHeading}}</h2>
+          <ul style="list-style:none;padding:0">
+            {{&_nav}}
+          </ul>
+        </div>
+        <div>
+          <h2 class="eyebrow">{{footer.contactHeading}}</h2>
+          <ul class="footer__contact">
+            <li>
+              <span class="footer__contact-label">{{footer.writeUs}}</span>
+              <a href="mailto:{{site.email}}">{{site.email}}</a>
+            </li>
+            <li>
+              <span class="footer__contact-label">{{footer.callUs}}</span>
+              <a href="tel:{{site.phoneHref}}">{{site.phone}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Guiño discreto: un gato de línea que sigue el cursor con la mirada.
+           C.A.T. también significa gato, y esto sustituye al ratón. Es
+           decorativo, va con aria-hidden y se queda quieto si el sistema pide
+           menos movimiento. -->
+      <div class="catwink" id="catwink" aria-hidden="true">
+        <svg class="catwink__svg" viewBox="0 0 120 96" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 34 L24 12 L46 24"/>
+            <path d="M90 34 L96 12 L74 24"/>
+            <path d="M60 22c20 0 34 14 34 32S80 88 60 88 26 72 26 54 40 22 60 22z"/>
+            <path d="M60 60c-3 0-5 2-5 4M60 60c3 0 5 2 5 4"/>
+            <path d="M6 52h16M6 62h16M114 52H98M114 62H98"/>
+          </g>
+          <g class="catwink__eye">
+            <circle cx="46" cy="50" r="8.5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+            <circle class="catwink__pupil" cx="46" cy="50" r="3.6" fill="currentColor"/>
+          </g>
+          <g class="catwink__eye">
+            <circle cx="74" cy="50" r="8.5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+            <circle class="catwink__pupil" cx="74" cy="50" r="3.6" fill="currentColor"/>
+          </g>
+        </svg>
+      </div>
+
+      <p class="site-footer__legal">
+        {{footer.incubated}}<br>
+        © 2026 {{footer.copyright}}. {{site.tagline}}
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{base}}scripts/device.js?v={{v}}" defer></script>
+  <script src="{{base}}scripts/form.js?v={{v}}" defer></script>
+  <script src="{{base}}scripts/catwink.js?v={{v}}" defer></script>
+  <script src="{{base}}scripts/a11y.js?v={{v}}" defer></script>
+
+</body>
+</html>

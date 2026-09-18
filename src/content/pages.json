@@ -1,0 +1,18 @@
+{
+  "_comment": "Mapa de páginas. La clave es el id interno; el slug cambia por idioma y el build genera los hreflang cruzados a partir de aquí. 'home' se emite como índice del idioma.",
+  "pages": [
+    { "id": "home",         "template": "home.html",         "slug": { "es": "",              "en": "" } },
+    { "id": "producto",     "template": "producto.html",     "slug": { "es": "producto",      "en": "product" } },
+    { "id": "seguridad",    "template": "seguridad.html",    "slug": { "es": "ciberseguridad","en": "cybersecurity" } },
+    { "id": "inversores",   "template": "inversores.html",   "slug": { "es": "inversores",    "en": "investors" } },
+    { "id": "contacto",     "template": "contacto.html",     "slug": { "es": "demo",          "en": "demo" } },
+    { "id": "privacidad",   "template": "legal.html",        "slug": { "es": "privacidad",    "en": "privacy" } },
+    { "id": "aviso",        "template": "legal.html",        "slug": { "es": "aviso-legal",   "en": "legal-notice" } },
+    { "id": "cookies",      "template": "legal.html",        "slug": { "es": "cookies",       "en": "cookies" } },
+    { "id": "accesibilidad","template": "legal.html",        "slug": { "es": "accesibilidad", "en": "accessibility" } }
+  ],
+  "nav": ["producto", "seguridad", "inversores", "contacto"],
+  "footerLegal": ["privacidad", "aviso", "cookies", "accesibilidad"],
+  "defaultLang": "es",
+  "langs": ["es", "en"]
+}

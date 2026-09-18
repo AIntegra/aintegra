@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Panel de ajustes de accesibilidad.
+
+   Dos partes: el aspecto del panel, y lo que hacen los ajustes sobre el resto
+   del sitio. Lo segundo va al final, en un bloque aparte, porque tiene que
+   ganarle a todo lo anterior.
+   ========================================================================== */
+
+.a11y { position: fixed; inset-block-end: var(--space-5); inset-inline-end: var(--space-5); z-index: var(--z-modal); }
+
+.a11y__toggle {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-text); font-size: var(--step--1); font-weight: 700;
+  background: var(--brand-blue); color: var(--brand-white);
+  border: 2px solid var(--brand-warm);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease);
+}
+.a11y__toggle:hover { background: var(--brand-bright); }
+.a11y__toggle .icon { inline-size: 1.5rem; block-size: 1.5rem; }
+
+.a11y__panel {
+  position: absolute; inset-block-end: calc(100% + var(--space-3)); inset-inline-end: 0;
+  inline-size: min(23rem, calc(100vw - 2 * var(--space-5)));
+  max-block-size: min(34rem, calc(100vh - 8rem));
+  overflow-y: auto;
+  background: var(--brand-white);
+  color: var(--brand-night);
+  border: 2px solid var(--brand-blue);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--space-6);
+}
+.a11y__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); }
+.a11y__head h2 { font-size: var(--step-1); margin: 0; }
+.a11y__head h2:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.a11y__close {
+  flex: none; inline-size: 2.25rem; block-size: 2.25rem;
+  display: grid; place-items: center;
+  background: transparent; color: var(--brand-blue);
+  border: 2px solid var(--border-interactive); border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.a11y__close:hover { background: var(--brand-ice); }
+.a11y__lead { font-size: var(--step--1); color: var(--text-on-light-muted); margin: var(--space-4) 0 var(--space-5); }
+
+.a11y__group { border: 0; padding: 0; margin: 0 0 var(--space-5); }
+.a11y__group legend { padding: 0; font-weight: 700; margin-bottom: var(--space-3); }
+.a11y__sizes { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2); }
+.a11y__size { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2); margin: 0; }
+.a11y__size input { inline-size: 1.2rem; block-size: 1.2rem; accent-color: var(--brand-blue); margin: 0; }
+
+.a11y__toggles { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+.a11y__toggles li { margin: 0; max-width: none; }
+.a11y__switch {
+  inline-size: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  text-align: start;
+  padding: var(--space-3);
+  background: transparent; color: inherit;
+  border: 1px solid var(--brand-ice); border-radius: var(--radius);
+  cursor: pointer; font: inherit;
+}
+.a11y__switch:hover { border-color: var(--border-interactive); background: var(--brand-warm); }
+.a11y__switch-label { display: block; font-weight: 700; font-size: var(--step--1); }
+.a11y__switch-hint { display: block; font-size: 0.8rem; color: var(--text-on-light-muted); line-height: 1.4; }
+/* La caja es solo apoyo visual: el estado real lo dice aria-pressed. */
+.a11y__switch-box {
+  flex: none; inline-size: 2.6rem; block-size: 1.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--brand-ice); border: 2px solid var(--brand-mid);
+  position: relative; transition: background-color var(--dur) var(--ease);
+}
+.a11y__switch-box::after {
+  content: ""; position: absolute; inset-block-start: 1px; inset-inline-start: 1px;
+  inline-size: 1rem; block-size: 1rem; border-radius: 50%;
+  background: var(--brand-mid);
+  transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.a11y__switch[aria-pressed="true"] .a11y__switch-box { background: var(--brand-blue); border-color: var(--brand-blue); }
+.a11y__switch[aria-pressed="true"] .a11y__switch-box::after { transform: translateX(1.05rem); background: var(--brand-white); }
+
+.a11y__status { min-block-size: 1.4em; margin: var(--space-4) 0 0; font-size: var(--step--1); font-weight: 700; color: var(--brand-blue); }
+.a11y__status:empty { min-block-size: 0; }
+.a11y__foot { margin-top: var(--space-5); }
+.a11y__note {
+  margin: var(--space-5) 0 0; padding-top: var(--space-4);
+  border-top: 1px solid var(--brand-ice);
+  font-size: 0.8rem; line-height: 1.5; color: var(--text-on-light-muted);
+}
+
+@media (max-width: 32em) {
+  .a11y { inset-inline: var(--space-4); inset-inline-start: auto; }
+  .a11y__toggle span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .a11y__toggle { padding: var(--space-3); }
+}
+
+/* ==========================================================================
+   Lo que hacen los ajustes.
+   Va al final de la cascada a propósito: son preferencias de la persona que
+   está leyendo y tienen que ganar a cualquier estilo del sitio.
+   ========================================================================== */
+
+/* --- Tamaño del texto ---------------------------------------------------------
+   Se escala la raíz, así que crecen los rem: texto, espaciados y componentes a
+   la vez, sin que nada se descoloque.
+   ---------------------------------------------------------------------------- */
+html[data-a11y-text="115"] { font-size: 115%; }
+html[data-a11y-text="130"] { font-size: 130%; }
+html[data-a11y-text="150"] { font-size: 150%; }
+
+/* --- Contraste alto ------------------------------------------------------------
+   Blanco y negro puros: 21:1 en todo el texto. Los bordes se marcan para que la
+   estructura no dependa del color de relleno.
+   ---------------------------------------------------------------------------- */
+html[data-a11y-contrast] body,
+html[data-a11y-contrast] .theme-dark,
+html[data-a11y-contrast] .theme-ice,
+html[data-a11y-contrast] .section,
+html[data-a11y-contrast] .card,
+html[data-a11y-contrast] .ctaband,
+html[data-a11y-contrast] .site-header,
+html[data-a11y-contrast] .site-footer,
+html[data-a11y-contrast] .local-panel,
+html[data-a11y-contrast] .compare__col,
+html[data-a11y-contrast] .support-card,
+html[data-a11y-contrast] .model-claim {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+}
+html[data-a11y-contrast] h1, html[data-a11y-contrast] h2, html[data-a11y-contrast] h3,
+html[data-a11y-contrast] p, html[data-a11y-contrast] li, html[data-a11y-contrast] span,
+html[data-a11y-contrast] dt, html[data-a11y-contrast] dd, html[data-a11y-contrast] strong,
+html[data-a11y-contrast] legend, html[data-a11y-contrast] label, html[data-a11y-contrast] th,
+html[data-a11y-contrast] td, html[data-a11y-contrast] figcaption, html[data-a11y-contrast] caption {
+  color: #000000 !important;
+}
+html[data-a11y-contrast] a { color: #00309B !important; text-decoration: underline !important; }
+html[data-a11y-contrast] .card,
+html[data-a11y-contrast] .compare__col,
+html[data-a11y-contrast] .support-card,
+html[data-a11y-contrast] .callout,
+html[data-a11y-contrast] .local-panel { border: 2px solid #000000 !important; box-shadow: none !important; }
+html[data-a11y-contrast] .btn--primary { background: #000000 !important; color: #FFFFFF !important; border-color: #000000 !important; }
+html[data-a11y-contrast] .btn--secondary { background: #FFFFFF !important; color: #000000 !important; border-color: #000000 !important; }
+html[data-a11y-contrast] .card--caty::before,
+html[data-a11y-contrast] .card--cat::before,
+html[data-a11y-contrast] .art::before,
+html[data-a11y-contrast] .tablewrap--vs::after { display: none !important; }
+html[data-a11y-contrast] .local__word { -webkit-text-fill-color: #000000 !important; background: none !important; color: #000000 !important; }
+
+/* --- Resaltar enlaces ----------------------------------------------------------- */
+html[data-a11y-links] a {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 0.2em;
+  background: #FFF3B0;
+  color: #1A1300 !important;
+  padding: 0 0.15em;
+  border-radius: 3px;
+}
+html[data-a11y-links] .btn { background: #FFF3B0 !important; color: #1A1300 !important; border-color: #1A1300 !important; }
+
+/* --- Más espaciado --------------------------------------------------------------
+   Los valores del criterio 1.4.12 de WCAG, que es el que fija cuánto tiene que
+   poder separarse el texto sin que se rompa nada.
+   ---------------------------------------------------------------------------- */
+html[data-a11y-spacing] p,
+html[data-a11y-spacing] li,
+html[data-a11y-spacing] dd,
+html[data-a11y-spacing] figcaption {
+  line-height: 1.8 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+  margin-bottom: 2em !important;
+}
+html[data-a11y-spacing] h1, html[data-a11y-spacing] h2, html[data-a11y-spacing] h3 {
+  line-height: 1.4 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* --- Pausar animaciones ---------------------------------------------------------- */
+html[data-a11y-motion] *,
+html[data-a11y-motion] *::before,
+html[data-a11y-motion] *::after {
+  animation-play-state: paused !important;
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* --- Ocultar imágenes -------------------------------------------------------------
+   Se van las ilustraciones y los vídeos; el texto se queda entero, que es de
+   donde sale toda la información de este sitio.
+   ---------------------------------------------------------------------------- */
+html[data-a11y-images] img,
+html[data-a11y-images] video,
+html[data-a11y-images] .globe,
+html[data-a11y-images] .guard,
+html[data-a11y-images] .talk,
+html[data-a11y-images] .book,
+html[data-a11y-images] .catwink,
+html[data-a11y-images] .figure-lead__chart,
+html[data-a11y-images] .market__chart { display: none !important; }

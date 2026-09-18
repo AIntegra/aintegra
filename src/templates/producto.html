@@ -1,0 +1,165 @@
+    <!-- ============================ PORTADA ============================
+         Texto a la izquierda, guiño de marca a la derecha. Es una pieza corta y
+         apaisada: encaja en la columna sin dejar el texto de al lado en una
+         tira estrecha. La etiqueta va sobre el reproductor y el texto lo
+         repite: es marketing, no una demostración.
+    -->
+    <section class="theme-dark hero">
+      <div class="container">
+        <div class="split split--wide">
+          <div>
+            <p class="eyebrow">{{producto.hero.eyebrow}}</p>
+            <h1>{{producto.hero.title}}</h1>
+            <p class="hero__lead">{{producto.hero.lead}}</p>
+          </div>
+
+          <figure class="wink video split__visual">
+            <span class="wink__frame">
+              <video class="wink__player" controls preload="none"
+                     poster="{{base}}assets/img/guino-gato-poster.jpg"
+                     width="720" height="405">
+                <source src="{{base}}assets/video/guino-gato.mp4" type="video/mp4">
+                {{ui.videoNoSupport}}
+              </video>
+            </span>
+            <figcaption class="wink__desc">
+              <p class="video__meta">{{producto.wink.desc}}</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ C.A.T. ============================
+         La ilustración de marca del dispositivo, con su halo plateado, gira
+         siguiendo al cursor y responde a las flechas del teclado.
+    -->
+    <section class="section" aria-labelledby="h-cat">
+      <div class="container">
+        <div class="split">
+          <div>
+            <p class="eyebrow">{{producto.cat.eyebrow}}</p>
+            <h2 id="h-cat">{{producto.cat.title}}</h2>
+            {{#each producto.cat.body}}
+            <p>{{this}}</p>
+            {{/each}}
+
+            <ul class="checklist stack" style="margin-top:var(--space-7)">
+              {{#each producto.cat.features}}
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                  <path d="M3.5 10.5l4.5 4.5L16.5 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{this}}</span>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+
+          <figure class="split__visual device" tabindex="0">
+            <div class="art art--cat device__stage">
+              <img class="art__img" src="{{base}}assets/img/cat-hero.png"
+                   alt="{{producto.cat.artAlt}}" width="820" height="353" loading="lazy">
+            </div>
+            <figcaption class="video__meta" style="text-align:center;margin-top:var(--space-5)">{{producto.cat.imageNote}}</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CATY ============================
+         Aquí y solo aquí entra el degradado holográfico: halo, borde de las
+         tarjetas y placa de icono.
+    -->
+    <section class="section theme-dark" aria-labelledby="h-caty">
+      <div class="container stack-lg">
+        <div class="split">
+          <div>
+            <p class="eyebrow">{{producto.caty.eyebrow}}</p>
+            <h2 id="h-caty">{{producto.caty.title}}</h2>
+            {{#each producto.caty.body}}
+            <p>{{this}}</p>
+            {{/each}}
+          </div>
+          <div class="split__visual art art--caty">
+            <img class="art__img caty-art" src="{{base}}assets/img/caty-hero.png"
+                 alt="{{producto.caty.artAlt}}" width="820" height="665" loading="lazy">
+          </div>
+        </div>
+
+        <ul class="pillars pillars--3">
+          {{#each producto.caty.pillars}}
+          <li>
+            <article class="card card--caty">
+              <p class="card__meta">{{this.meta}}</p>
+              <h3 class="card__title">{{this.title}}</h3>
+              <p class="card__body">{{this.text}}</p>
+            </article>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ PRECIO ============================
+         C.A.T. y CATY llevan su propia ilustración; los despliegues, el icono
+         genérico, porque no son un producto con cara.
+    -->
+    <section class="section theme-ice" aria-labelledby="h-price">
+      <div class="container stack-lg">
+        <div style="max-width:46rem">
+          <p class="eyebrow">{{producto.pricing.eyebrow}}</p>
+          <h2 id="h-price">{{producto.pricing.title}}</h2>
+          <p>{{producto.pricing.lead}}</p>
+        </div>
+        <ul class="prices" class="bare-list">
+          <li style="margin:0;max-width:none">
+            <article class="card">
+              <span class="card__mark art art--cat">
+                <img class="art__img" src="{{base}}assets/img/cat-mark.png" alt="" width="360" height="155" loading="lazy">
+              </span>
+              <span class="price__amount">{{producto.pricing.items.0.amount}}</span>
+              <span class="price__unit">{{producto.pricing.items.0.unit}}</span>
+              <h3 class="card__title">{{producto.pricing.items.0.title}}</h3>
+              <p class="card__body">{{producto.pricing.items.0.text}}</p>
+            </article>
+          </li>
+          <li style="margin:0;max-width:none">
+            <article class="card">
+              <span class="card__mark art art--caty">
+                <img class="art__img" src="{{base}}assets/img/caty-mark.png" alt="" width="360" height="346" loading="lazy">
+              </span>
+              <span class="price__amount">{{producto.pricing.items.1.amount}}</span>
+              <span class="price__unit">{{producto.pricing.items.1.unit}}</span>
+              <h3 class="card__title">{{producto.pricing.items.1.title}}</h3>
+              <p class="card__body">{{producto.pricing.items.1.text}}</p>
+            </article>
+          </li>
+          <li style="margin:0;max-width:none">
+            <article class="card card--contact theme-dark">
+              <span class="card__mark">
+                <img class="art__img" src="{{base}}assets/img/aintegra-mark-white.png" alt="" width="256" height="251" loading="lazy">
+              </span>
+              <span class="price__amount">{{producto.pricing.items.2.amount}}</span>
+              <span class="price__unit">{{producto.pricing.items.2.unit}}</span>
+              <h3 class="card__title">{{producto.pricing.items.2.title}}</h3>
+              <p class="card__body">{{producto.pricing.items.2.text}}</p>
+            </article>
+          </li>
+        </ul>
+        <p><a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{producto.pricing.cta}}</a></p>
+      </div>
+    </section>
+
+    <section class="section ctaband theme-dark" aria-labelledby="h-pcta">
+      <div class="container ctaband__inner">
+        <div class="ctaband__text">
+          <img class="ctaband__mark" src="{{base}}assets/img/aintegra-mark-white.png" alt="" width="256" height="251">
+          <div>
+            <h2 id="h-pcta">{{producto.cta.title}}</h2>
+            <p style="margin-bottom:0">{{producto.cta.text}}</p>
+          </div>
+        </div>
+        <p style="margin:0"><a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{producto.cta.button}}</a></p>
+      </div>
+    </section>

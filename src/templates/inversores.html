@@ -1,0 +1,270 @@
+    <!-- ============================ PORTADA ============================
+         Texto a la izquierda, globo a la derecha, del tamaño de su columna. El
+         globo vive aquí: es el «funciona en cualquier sitio» de la tesis.
+    -->
+    <section class="theme-dark hero">
+      <div class="container">
+        <div class="split split--stretch">
+          <div>
+            <p class="eyebrow">{{inversores.hero.eyebrow}}</p>
+            <h1>{{inversores.hero.title}}</h1>
+            <p class="hero__lead">{{inversores.hero.lead}}</p>
+          </div>
+
+          <svg class="globe split__visual" viewBox="0 0 220 220" role="img" aria-label="{{inversores.hero.globeAlt}}">
+            <defs>
+              <radialGradient id="sphere" cx="34%" cy="28%" r="78%">
+                <stop offset="0%" stop-color="#F5F8FA"/>
+                <stop offset="42%" stop-color="#7FA8C9"/>
+                <stop offset="100%" stop-color="#0C3862"/>
+              </radialGradient>
+              <clipPath id="ball"><circle cx="110" cy="110" r="100"/></clipPath>
+            </defs>
+            <circle cx="110" cy="110" r="100" fill="url(#sphere)"/>
+            <g clip-path="url(#ball)" fill="none" stroke="#081A2E" stroke-width="1.4" opacity=".38">
+              <ellipse cx="110" cy="110" rx="100" ry="18"/>
+              <ellipse cx="110" cy="75"  rx="93.7" ry="14"/>
+              <ellipse cx="110" cy="145" rx="93.7" ry="14"/>
+              <ellipse cx="110" cy="42"  rx="73.3" ry="10"/>
+              <ellipse cx="110" cy="178" rx="73.3" ry="10"/>
+            </g>
+            <g class="globe__grid" clip-path="url(#ball)" fill="none" stroke="#081A2E" stroke-width="1.4" opacity=".38">
+              <ellipse cx="110" cy="110" rx="100" ry="100"/>
+              <ellipse cx="110" cy="110" rx="68"  ry="100"/>
+              <ellipse cx="110" cy="110" rx="32"  ry="100"/>
+              <ellipse cx="110" cy="110" rx="4"   ry="100"/>
+            </g>
+            <circle cx="110" cy="110" r="100" fill="none" stroke="#357FB2" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FINANCIACIÓN ============================
+         Cuánto hay y cuánto falta. La barra es decorativa: las cifras están
+         escritas al lado, así que no hace falta que la lea nadie.
+    -->
+    <section class="section" aria-labelledby="h-funding">
+      <div class="container">
+        <p class="eyebrow">{{inversores.ask.eyebrow}}</p>
+        <h2 id="h-funding">{{inversores.funding.goal}}</h2>
+
+        <div class="funding" style="max-width:46rem">
+          <div class="funding__bar" aria-hidden="true"><span class="funding__fill"></span></div>
+          <dl class="funding__figures">
+            <div>
+              <dt>{{inversores.funding.label}}</dt>
+              <dd class="funding__value">{{inversores.funding.raised}}</dd>
+            </div>
+            <div>
+              <dt>{{inversores.funding.leftLabel}}</dt>
+              <dd class="funding__value funding__value--left">{{inversores.funding.left}}</dd>
+            </div>
+          </dl>
+          <p class="video__meta">{{inversores.funding.detail}}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ MERCADO ============================
+         Círculos anidados y tangentes por la base, como en el deck: la
+         proporción entre los tres mercados se ve de un vistazo. Los rótulos van
+         dentro de la banda que les toca y cada combinación cumple AA.
+    -->
+    <section class="section" aria-labelledby="h-market">
+      <div class="container stack-lg">
+        <div style="max-width:44rem">
+          <p class="eyebrow">{{inversores.market.eyebrow}}</p>
+          <h2 id="h-market">{{inversores.market.title}}</h2>
+        </div>
+
+        <div class="market">
+          <svg class="market__chart" viewBox="0 0 420 424" role="img" aria-label="{{inversores.market.chartAlt}}">
+            <defs>
+              <linearGradient id="gTam" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#F5F8FA"/><stop offset="100%" stop-color="#DCE6EE"/>
+              </linearGradient>
+              <linearGradient id="gSam" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#DCE6EE"/><stop offset="100%" stop-color="#7FA8C9"/>
+              </linearGradient>
+              <linearGradient id="gSom" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#245E8D"/><stop offset="100%" stop-color="#0C3862"/>
+              </linearGradient>
+            </defs>
+
+            <circle cx="210" cy="212" r="200" fill="url(#gTam)" stroke="#7FA8C9" stroke-width="2"/>
+            <circle cx="210" cy="280" r="132" fill="url(#gSam)" stroke="#245E8D" stroke-width="2"/>
+            <circle cx="210" cy="344" r="68"  fill="url(#gSom)" stroke="#357FB2" stroke-width="2"/>
+
+            <g text-anchor="middle" font-family="Archivo, sans-serif">
+              <text x="210" y="60"  fill="#245E8D" font-size="15" font-weight="700" letter-spacing="2">TAM</text>
+              <text x="210" y="94"  fill="#081A2E" font-size="30" font-weight="700">25–30 B€</text>
+
+              <text x="210" y="182" fill="#245E8D" font-size="15" font-weight="700" letter-spacing="2">SAM</text>
+              <text x="210" y="214" fill="#081A2E" font-size="26" font-weight="700">5–8 B€</text>
+
+              <text x="210" y="330" fill="#7FA8C9" font-size="14" font-weight="700" letter-spacing="2">SOM</text>
+              <text x="210" y="360" fill="#F5F8FA" font-size="22" font-weight="700">120–160 M€</text>
+            </g>
+          </svg>
+
+          <ul class="market__legend">
+            {{#each inversores.market.tiers}}
+            <li>
+              <span class="market__dot" data-tier="{{this.tier}}" aria-hidden="true"></span>
+              <div>
+                <p class="market__label">{{this.label}}</p>
+                <p class="market__value">{{this.value}}</p>
+                <p class="market__scope">{{this.scope}}</p>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+
+        <p class="video__meta">{{inversores.market.note}}</p>
+      </div>
+    </section>
+
+    <!-- ============================ COMPETENCIA ============================
+         Tabla de verdad, con encabezados de fila y de columna: se puede
+         recorrer con lector de pantalla y cada celda dice «sí» o «no» en texto,
+         no solo con un icono de color.
+    -->
+    <section class="section" aria-labelledby="h-comp">
+      <div class="container stack-lg">
+        <div style="max-width:46rem">
+          <p class="eyebrow">{{inversores.competitors.eyebrow}}</p>
+          <h2 id="h-comp">{{inversores.competitors.title}}</h2>
+          <p>{{inversores.competitors.lead}}</p>
+        </div>
+
+        <div class="tablewrap tablewrap--vs">
+          <table class="vs">
+            <!-- Cinco columnas: la de los rótulos de fila más las cuatro
+                 comparadas. Con cuatro, el ancho fijo caía en la columna
+                 equivocada y el marco quedaba descolocado. -->
+            <colgroup><col class="vs__col-label"><col><col><col><col class="vs__col-us"></colgroup>
+            <caption class="visually-hidden">{{inversores.competitors.caption}}</caption>
+            <thead>
+              <tr>
+                <td></td>
+                <th scope="col">{{inversores.competitors.cols.0}}</th>
+                <th scope="col">{{inversores.competitors.cols.1}}</th>
+                <th scope="col">{{inversores.competitors.cols.2}}</th>
+                <th scope="col" class="vs__us">
+                  <img src="{{base}}assets/img/aintegra-mark-light.png" alt="{{site.name}}" width="256" height="251">
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each inversores.competitors.rows}}
+              <tr>
+                <th scope="row">{{this.label}}</th>
+                {{#each this.values}}
+                <td data-v="{{this.state}}">
+                  <span class="vs__mark" aria-hidden="true"></span>
+                  <span class="visually-hidden">{{this.label}}</span>
+                </td>
+                {{/each}}
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <h3 style="font-size:var(--step-1)">{{inversores.competitors.noteTitle}}</h3>
+          <p>{{inversores.competitors.note}}</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================ MODELO DE NEGOCIO ============================ -->
+    <section class="section theme-ice" aria-labelledby="h-claim">
+      <div class="container container--narrow">
+        <div class="model-claim">
+          <h2 id="h-claim">{{inversores.competitors.modelTitle}}</h2>
+          {{#each inversores.competitors.model}}
+          <p>{{this}}</p>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ MODELO ============================ -->
+    <section class="section theme-ice" aria-labelledby="h-model">
+      <div class="container stack-lg">
+        <div style="max-width:44rem">
+          <p class="eyebrow">{{inversores.model.eyebrow}}</p>
+          <h2 id="h-model">{{inversores.model.title}}</h2>
+        </div>
+        <ul class="pillars">
+          {{#each inversores.model.items}}
+          <li>
+            <article class="card">
+              <p class="card__meta">{{this.meta}}</p>
+              <h3 class="card__title">{{this.title}}</h3>
+              <p class="card__body">{{this.text}}</p>
+            </article>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ TRACCIÓN ============================ -->
+    <section class="section" aria-labelledby="h-traction">
+      <div class="container">
+        <div class="grid grid--2" style="align-items:start">
+          <div>
+            <p class="eyebrow">{{inversores.traction.eyebrow}}</p>
+            <h2 id="h-traction">{{inversores.traction.title}}</h2>
+          </div>
+          <ul class="checklist stack">
+            {{#each inversores.traction.items}}
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                <path d="M3.5 10.5l4.5 4.5L16.5 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{this}}</span>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ HOJA DE RUTA ============================ -->
+    <section class="section theme-ice" aria-labelledby="h-iroadmap">
+      <div class="container stack-lg">
+        <div>
+          <p class="eyebrow">{{home.roadmap.eyebrow}}</p>
+          <h2 id="h-iroadmap">{{home.roadmap.title}}</h2>
+        </div>
+        <ol class="roadmap">
+          {{#each home.roadmap.phases}}
+          <li data-state="{{this.state}}">
+            <span class="roadmap__phase">{{this.phase}}</span>
+            <h3>{{this.title}}</h3>
+            <p>{{this.text}}</p>
+          </li>
+          {{/each}}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section ctaband theme-dark" aria-labelledby="h-ask">
+      <div class="container ctaband__inner">
+        <div class="ctaband__text">
+          <img class="ctaband__mark" src="{{base}}assets/img/aintegra-mark-white.png" alt="" width="256" height="251">
+          <div>
+            <p class="eyebrow">{{inversores.ask.eyebrow}}</p>
+          <h2 id="h-ask">{{inversores.ask.title}}</h2>
+            <p style="margin-bottom:0">{{inversores.ask.text}}</p>
+          </div>
+        </div>
+        <p style="margin:0"><a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{inversores.ask.button}}</a></p>
+      </div>
+    </section>

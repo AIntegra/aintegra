@@ -1,0 +1,286 @@
+/* ==========================================================================
+   Componentes — la biblioteca de piezas con la que se montan las páginas.
+   ========================================================================== */
+
+/* --- Layout --------------------------------------------------------------- */
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.container--narrow { max-width: var(--container-narrow); }
+.section { padding-block: var(--section-y); }
+.stack > * + * { margin-top: var(--space-4); }
+/* Separación entre el bloque de texto de una sección y su rejilla de
+   tarjetas. Generosa a propósito: es lo que evita que la sección se lea
+   como un documento con recuadros pegados. */
+.stack-lg > * + * { margin-top: var(--space-8); }
+
+.grid { display: grid; gap: var(--space-7); }
+@media (min-width: 46em) { .grid--2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 60em) { .grid--3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 70em) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* --- Antetítulo de sección ------------------------------------------------ */
+.eyebrow {
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-on-light-muted);
+  margin: 0 0 var(--space-3);
+  display: flex; align-items: center; gap: var(--space-3);
+}
+.eyebrow::before {
+  content: ''; inline-size: 1.75rem; block-size: 2px;
+  background: var(--brand-bright); flex: none;
+}
+.theme-dark .eyebrow { color: var(--brand-sky); }
+
+/* --- Botones --------------------------------------------------------------
+   Relleno primario = --brand-blue (11.9:1 con texto blanco). --brand-bright
+   entra solo en hover/focus, donde no soporta el peso del texto.
+   Altura mínima 44px: cómodo para motricidad reducida (WCAG 2.5.8 AAA).
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+              color var(--dur) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: var(--action-fill); color: var(--action-text); }
+.btn--primary:hover { background: var(--action-fill-hover); color: var(--action-text); }
+
+.btn--secondary {
+  background: transparent;
+  color: var(--brand-blue);
+  border-color: var(--border-interactive);
+}
+.btn--secondary:hover { background: var(--brand-ice); color: var(--brand-blue); border-color: var(--brand-blue); }
+
+.theme-dark .btn--primary { background: var(--brand-warm); color: var(--brand-night); }
+.theme-dark .btn--primary:hover { background: var(--brand-sky); color: var(--brand-night); }
+.theme-dark .btn--secondary { color: var(--brand-warm); border-color: var(--brand-bright); }
+.theme-dark .btn--secondary:hover { background: var(--brand-blue); color: var(--brand-warm); border-color: var(--brand-sky); }
+
+/* --- Tarjetas ------------------------------------------------------------- */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--brand-ice);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  box-shadow: var(--shadow-sm);
+}
+.card h3 { color: var(--brand-blue); }
+.theme-dark .card {
+  background: var(--surface-dark-alt);
+  border-color: var(--brand-mid);
+  box-shadow: var(--shadow-dark);
+}
+.theme-dark .card h3 { color: var(--brand-warm); }
+
+/* Tarjeta enlazada entera: el <a> interior cubre la tarjeta, pero el foco se
+   dibuja sobre la tarjeta completa, no sobre el texto suelto. */
+.card--link { position: relative; transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.card--link:hover { border-color: var(--border-interactive); }
+.card--link a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.card--link:has(a:focus-visible) {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.card--link a:focus-visible { outline: none; box-shadow: none; }
+
+/* --- Dato / cifra --------------------------------------------------------- */
+.stat { display: flex; flex-direction: column; gap: var(--space-1); }
+.stat__value {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--brand-blue);
+}
+.theme-dark .stat__value { color: var(--brand-warm); }
+.stat__label { font-size: var(--step--1); color: var(--text-on-light-muted); }
+
+/* --- Cita ----------------------------------------------------------------- */
+.quote { border-left: 4px solid var(--brand-bright); padding-left: var(--space-5); margin: 0; }
+.quote blockquote { margin: 0; font-size: var(--step-1); line-height: var(--leading-snug); }
+.quote figcaption { margin-top: var(--space-3); font-size: var(--step--1); color: var(--text-on-light-muted); }
+
+/* --- Etiqueta de estado ---------------------------------------------------
+   Para "Borrador v0.1", "En camino a la certificación", etc.
+   Nunca se usa con forma de sello ni con la palabra "certificado".
+   -------------------------------------------------------------------------- */
+.tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--border-interactive);
+  border-radius: var(--radius-pill);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--brand-blue);
+  background: var(--brand-ice);
+}
+.theme-dark .tag { color: var(--brand-warm); background: transparent; }
+
+/* --- Formularios ----------------------------------------------------------
+   Label siempre visible y asociado. El asterisco de obligatorio se acompaña
+   de texto real para lectores de pantalla.
+   -------------------------------------------------------------------------- */
+.field { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-5); }
+.field__label { font-weight: 600; }
+.field__hint { font-size: var(--step--1); color: var(--text-on-light-muted); }
+.field__required { color: var(--brand-mid); }
+
+.input, .textarea, .select {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-3);
+  font: inherit;
+  color: var(--text-on-light);
+  background: var(--brand-white);
+  border: 2px solid var(--border-interactive); /* 4.35:1 ≥ 3:1 no textual ✔ */
+  border-radius: var(--radius);
+  transition: border-color var(--dur) var(--ease);
+}
+.textarea { min-height: 8rem; resize: vertical; }
+.input:hover, .textarea:hover, .select:hover { border-color: var(--brand-blue); }
+
+.input[aria-invalid='true'], .textarea[aria-invalid='true'], .select[aria-invalid='true'] {
+  border-color: var(--brand-night);
+  border-width: 3px;
+}
+/* El error nunca se comunica solo por color: lleva icono y texto. */
+.field__error {
+  display: flex; align-items: flex-start; gap: var(--space-2);
+  font-size: var(--step--1); font-weight: 600; color: var(--brand-night);
+}
+.field__error:empty { display: none; }
+
+.choice { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-2) 0; }
+.choice input { inline-size: 1.35rem; block-size: 1.35rem; margin: 0.15rem 0 0; accent-color: var(--brand-blue); flex: none; }
+
+/* --- Muro de logos de apoyo ------------------------------------------------ */
+.logowall { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); list-style: none; padding: 0; margin: 0; }
+.logowall li { margin: 0; max-width: none; }
+.logowall img { max-height: 2.75rem; width: auto; background: none; }
+
+/* --- Cabecera ------------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: var(--z-header);
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+  border-bottom: 1px solid var(--brand-mid);
+}
+.site-header__inner {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  padding-block: var(--space-3);
+}
+.site-header__logo {
+  display: flex; align-items: center; gap: var(--space-3);
+  text-decoration: none; color: inherit; margin-right: auto;
+  white-space: nowrap;               /* el nombre nunca parte en dos líneas */
+}
+.site-header__logo img { block-size: 2.25rem; width: auto; background: none; }
+
+/* En estrecho la navegación baja a su propia fila a todo lo ancho, en vez de
+   pelearse con el logo por el espacio. Sin JavaScript y sin menú oculto: los
+   enlaces siguen estando todos ahí y alcanzables con el tabulador. */
+.site-nav { order: 3; width: 100%; border-top: 1px solid var(--brand-mid); padding-top: var(--space-3); }
+@media (min-width: 62em) {
+  .site-header__inner { flex-wrap: nowrap; min-height: 4.75rem; }
+  .site-nav { order: 0; width: auto; border-top: 0; padding-top: 0; }
+}
+
+.site-nav ul { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); list-style: none; margin: 0; padding: 0; }
+.site-nav li { margin: 0; }
+.site-nav a { color: var(--brand-warm); text-decoration: none; font-weight: 600; padding-block: var(--space-2); border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: var(--brand-sky); border-bottom-color: var(--brand-bright); }
+/* La página actual se marca con texto además de con color (WCAG 1.4.1). */
+.site-nav a[aria-current='page'] { border-bottom-color: var(--brand-sky); color: var(--brand-sky); }
+
+/* --- Selector de idioma ---------------------------------------------------- */
+.langswitch { display: flex; gap: var(--space-1); }
+.langswitch a {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--brand-mid);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: var(--step--1); font-weight: 700;
+  color: var(--brand-warm);
+}
+.langswitch a:hover { border-color: var(--brand-bright); background: var(--brand-blue); color: var(--brand-warm); }
+.langswitch a[aria-current='true'] { background: var(--brand-warm); color: var(--brand-night); border-color: var(--brand-warm); }
+
+/* --- Pie ------------------------------------------------------------------- */
+.site-footer { background: var(--surface-dark); color: var(--text-on-dark); padding-block: var(--space-8) var(--space-6); }
+.site-footer a { color: var(--link-on-dark); }
+.site-footer__legal { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--brand-mid); font-size: var(--step--1); color: var(--brand-sky); }
+
+/* Marcador de dato legal aún no facilitado. Visible a propósito: así no se
+   publica por descuido con el hueco sin rellenar. */
+.pending {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 0.85em;
+  padding: 0 var(--space-2);
+  border: 1px dashed var(--brand-bright);
+  border-radius: var(--radius-sm);
+  color: var(--brand-sky);
+}
+
+/* --- Iconos ----------------------------------------------------------------
+   Definidos una vez por página en un sprite SVG y referenciados con <use>.
+   Siempre decorativos: lo que significan está escrito al lado.
+   -------------------------------------------------------------------------- */
+.icon {
+  inline-size: 1.5rem; block-size: 1.5rem;
+  fill: none; stroke: currentColor; stroke-width: 1.7;
+  stroke-linecap: round; stroke-linejoin: round;
+  display: block; flex: none;
+}
+.icon--lg { inline-size: 1.9rem; block-size: 1.9rem; }
+
+/* Placa del icono: le da peso a la tarjeta y evita que el bloque empiece
+   directamente en texto. Contraste medido: #0C3862 sobre #DCE6EE = 9.44:1. */
+.card__icon {
+  inline-size: 3rem; block-size: 3rem;
+  display: grid; place-items: center;
+  border-radius: var(--radius);
+  background: var(--brand-ice);
+  color: var(--brand-blue);
+  margin-bottom: var(--space-5);
+}
+.theme-dark .card__icon {
+  background: var(--brand-night);
+  border: 1px solid var(--brand-mid);
+  color: var(--brand-sky);
+}
+
+/* --- Tarjetas a la misma altura --------------------------------------------
+   Cuando la tarjeta va envuelta en un <li>, el que se estira es el <li>: hay
+   que decirle a la tarjeta que ocupe todo el alto para que los ejes de un
+   mismo grupo queden alineados.
+   -------------------------------------------------------------------------- */
+.pillars > li, .steps > li, .prices > li, .market > li, .cards > li {
+  display: flex;
+}
+.pillars > li > .card,
+.steps > li > .card,
+.prices > li > .card,
+.cards > li > .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.card > :last-child { margin-bottom: 0; }
+/* Lo que tenga que quedar pegado abajo en todas las tarjetas del grupo. */
+.card__foot { margin-top: auto; padding-top: var(--space-5); }
