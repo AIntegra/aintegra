@@ -195,7 +195,7 @@
       }
     },
     "security": {
-      "artAlt": "Ilustración: un candado con el gato de AIntegra como ojo de cerradura, dentro de un escudo de cristal perlado, delante de un ordenador portátil y rodeado por un anillo orbital.",
+      "artAlt": "Ilustración de un ordenador de cristal que contiene un núcleo de inteligencia artificial protegido por un escudo.",
       "eyebrow": "Ciberseguridad",
       "title": "La accesibilidad no puede costar la privacidad",
       "lead": "Una persona que necesita ayuda para usar el ordenador acaba, muchas veces, entregando su contraseña a otra persona. Ese es un problema de seguridad, y es un problema de diseño.",
@@ -640,8 +640,7 @@
       "text": "Cuéntanos qué información necesitas proteger y vemos contigo cómo encaja en el proyecto.",
       "button": "Hablar con nosotros"
     },
-    "sceneAlt": "Ilustración de un ordenador de cristal que contiene un núcleo de inteligencia artificial protegido por un escudo.",
-    "sceneCaption": "IA en tu ordenador · Tú al mando",
+    "sceneAlt": "Logotipo de AIntegra: la silueta de un gato en azul marino y lavanda cuyo hueco forma una cerradura.",
     "layers": {
       "eyebrow": "MUCHO MÁS QUE UN CANDADO",
       "title": "La seguridad acompaña cada paso.",

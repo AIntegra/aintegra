@@ -195,7 +195,7 @@
       }
     },
     "security": {
-      "artAlt": "Illustration: a padlock with the AIntegra cat as its keyhole, inside a pearlescent glass shield in front of a laptop and circled by an orbital ring.",
+      "artAlt": "Glass computer illustration containing an AI core protected by a shield.",
       "eyebrow": "Cybersecurity",
       "title": "Accessibility can't cost you your privacy",
       "lead": "Someone who needs help using a computer often ends up handing their password to another person. That's a security problem, and it's a design problem.",
@@ -640,8 +640,7 @@
       "text": "Tell us what information you need to protect and we can discuss how it fits the project.",
       "button": "Talk to us"
     },
-    "sceneAlt": "Glass computer illustration containing an AI core protected by a shield.",
-    "sceneCaption": "AI on your computer · You in control",
+    "sceneAlt": "AIntegra logo: a cat silhouette in navy and lavender whose negative space forms a keyhole.",
     "layers": {
       "eyebrow": "MORE THAN A PADLOCK",
       "title": "Security at every step.",
