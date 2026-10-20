@@ -28,10 +28,11 @@
         <div class="ctaband__text">
           <img class="ctaband__mark" src="{{base}}assets/img/aintegra-emblem.png" alt="" width="256" height="251">
           <div>
-            <h2 id="h-lcta">{{footer.contactHeading}}</h2>
-            <p style="margin-bottom:0">
-              <a href="mailto:{{site.email}}">{{site.email}}</a> ·
-              <a href="tel:{{site.phoneHref}}">{{site.phone}}</a>
+            <h2 id="h-lcta">{{page.ctaTitle}}</h2>
+            <p>{{page.ctaLead}}</p>
+            <p class="ctaband__contact">
+              <a class="btn btn--primary" href="mailto:{{site.email}}">{{site.email}}</a>
+              <a class="ctaband__phone" href="tel:{{site.phoneHref}}">{{site.phone}}</a>
             </p>
           </div>
         </div>

@@ -987,6 +987,8 @@
     "privacidad": {
       "title": "Privacy policy",
       "updated": "9 September 2026",
+      "ctaTitle": "Questions about your data?",
+      "ctaLead": "Write to us and we will explain what data we handle, why, and how to exercise your rights.",
       "lead": "What data we handle, which is very little, and what you can do about it.",
       "sections": [
         {
@@ -1039,6 +1041,8 @@
     "aviso": {
       "title": "Legal notice",
       "updated": "9 September 2026",
+      "ctaTitle": "Need to get in touch?",
+      "ctaLead": "These are the contact details of AIntegra Limited for any legal or administrative enquiry.",
       "lead": "Who is behind this site, and on what terms it can be used.",
       "sections": [
         {
@@ -1077,6 +1081,8 @@
     "cookies": {
       "title": "Cookies",
       "updated": "9 September 2026",
+      "ctaTitle": "Questions about cookies?",
+      "ctaLead": "If anything in this policy is unclear, write to us and we will answer.",
       "lead": "We use no cookies. We store one thing on your device, and only if you ask for it.",
       "sections": [
         {
@@ -1111,6 +1117,8 @@
     "accesibilidad": {
       "title": "Accessibility statement",
       "updated": "9 September 2026",
+      "ctaTitle": "Found a barrier?",
+      "ctaLead": "Tell us what does not work and how you use the site. We will fix it and get back to you.",
       "lead": "What we have verified, what we know is missing, and how to tell us.",
       "sections": [
         {

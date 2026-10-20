@@ -868,3 +868,10 @@ html[data-a11y-contrast] .contact-panel .choice:has(input:checked) { outline: 2p
 @media (forced-colors: active) {
   .contact-panel, .contact-direct, .contact-how, .contact-panel .choice, .ready__seal, .contact-how li > span { background: Canvas; color: CanvasText; border: 1px solid CanvasText; box-shadow: none; backdrop-filter: none; }
 }
+
+/* Cierre de las páginas legales: texto específico y contacto legible sobre el azul. */
+.ctaband__contact { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; margin: 1.25rem 0 0; }
+.ctaband__phone { color: #FFFFFF; font-weight: 600; text-decoration: underline; text-underline-offset: .2em; }
+.ctaband__phone:hover { color: #C4BDFA; }
+.ctaband__phone:focus-visible { outline: 3px solid #C4BDFA; outline-offset: 4px; }
+html[data-a11y-contrast] .ctaband__phone { color: #000000; }

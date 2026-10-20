@@ -987,6 +987,8 @@
     "privacidad": {
       "title": "Política de privacidad",
       "updated": "9 de septiembre de 2026",
+      "ctaTitle": "¿Dudas sobre tus datos?",
+      "ctaLead": "Escríbenos y te explicamos qué datos tratamos, para qué y cómo ejercer tus derechos.",
       "lead": "Qué datos tratamos, que son muy pocos, y qué puedes hacer al respecto.",
       "sections": [
         {
@@ -1039,6 +1041,8 @@
     "aviso": {
       "title": "Aviso legal",
       "updated": "9 de septiembre de 2026",
+      "ctaTitle": "¿Necesitas hablar con nosotros?",
+      "ctaLead": "Estos son los datos de contacto de AIntegra Limited para cualquier consulta legal o administrativa.",
       "lead": "Quién está detrás de este sitio y en qué condiciones se puede usar.",
       "sections": [
         {
@@ -1077,6 +1081,8 @@
     "cookies": {
       "title": "Cookies",
       "updated": "9 de septiembre de 2026",
+      "ctaTitle": "¿Preguntas sobre las cookies?",
+      "ctaLead": "Si algo de esta política no te queda claro, escríbenos y te respondemos.",
       "lead": "No usamos cookies. Guardamos una cosa en tu equipo, y solo si tú la pides.",
       "sections": [
         {
@@ -1111,6 +1117,8 @@
     "accesibilidad": {
       "title": "Declaración de accesibilidad",
       "updated": "9 de septiembre de 2026",
+      "ctaTitle": "¿Has encontrado una barrera?",
+      "ctaLead": "Cuéntanos qué no te funciona y cómo usas la web. Lo corregimos y te respondemos.",
       "lead": "Qué hemos comprobado, qué sabemos que falta y cómo decírnoslo.",
       "sections": [
         {
