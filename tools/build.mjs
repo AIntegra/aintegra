@@ -130,6 +130,33 @@ function assertParity(dicts) {
 
 /* ---------- rutas -------------------------------------------------------- */
 
+/** Marcas en texto visible, sin alterar atributos ni duplicar nombres accesibles. */
+function inlineProductBrands(html, base) {
+  const stack = [];
+  const voidTags = new Set(['img', 'input', 'br', 'hr', 'source', 'wbr', 'meta', 'link', 'area', 'col', 'embed', 'param', 'track']);
+  return html.replace(/<!--[\s\S]*?-->|<[^>]+>|[^<]+/g, (token) => {
+    if (token.startsWith('<!--')) return token;
+    if (token.startsWith('<')) {
+      const tag = token.match(/^<\/?\s*([\w-]+)/)?.[1]?.toLowerCase();
+      if (!tag) return token;
+      if (/^<\//.test(token)) {
+        if (stack.at(-1)?.tag === tag) stack.pop();
+      } else if (!voidTags.has(tag) && !/\/\s*>$/.test(token)) {
+        const skip = stack.at(-1)?.skip || ['script', 'style', 'svg', 'video'].includes(tag) ||
+          /class="[^"]*\b(?:brand-name|visually-hidden)\b/.test(token) || /aria-hidden="true"/.test(token);
+        stack.push({ tag, skip });
+      }
+      return token;
+    }
+    if (stack.at(-1)?.skip) return token;
+    return token.replace(/C\.A\.T\.Y\.|C\.A\.T\./g, (name) => {
+      const kind = name === 'C.A.T.Y.' ? 'caty' : 'cat';
+      const file = kind === 'caty' ? 'caty-wordmark-outline.png' : 'cat-wordmark.png';
+      return `<span class="inline-brand inline-brand--${kind} brand-name"><img src="${base}assets/img/${file}" alt="" width="2172" height="724" loading="lazy"><span class="visually-hidden brand-name__text">${name}</span></span>`;
+    });
+  });
+}
+
 /** URL del sitio para una página en un idioma: siempre con barra final. */
 const pageUrl = (page, lang) => {
   const slug = page.slug[lang];
@@ -208,6 +235,7 @@ async function main() {
   // El juego de iconos se define una vez por página y se referencia con <use>.
   const icons = await readFile(join(SRC, 'templates/icons.html'), 'utf8');
   const a11yPanel = await readFile(join(SRC, 'templates/a11y.html'), 'utf8');
+  const ecosystem = await readFile(join(SRC, 'templates/ecosystem.html'), 'utf8');
 
   await rm(OUT, { recursive: true, force: true });
   await mkdir(OUT, { recursive: true });
@@ -232,7 +260,11 @@ async function main() {
         base,
       };
 
-      const content = render(tpl, ctx, where);
+      // Relato detallado de Producto; Inicio utiliza sus propias tarjetas breves.
+      ctx._ecosystem = render(ecosystem, ctx, `ecosystem [${lang}]`);
+      const rendered = render(tpl, ctx, where);
+      const content = ['home', 'producto', 'inversores', 'seguridad', 'contacto'].includes(page.id)
+        ? inlineProductBrands(rendered, base) : rendered;
 
       const html = render(
         layout,

@@ -26,7 +26,7 @@ woff2 y `tools/logo-assets.py` recorta los logos y genera los favicons.
 src/
   content/   pages.json (rutas y slugs por idioma) + es.json / en.json
   templates/ layout.html + una plantilla por página
-  styles/    tokens → base → components → patterns (en ese orden de cascada)
+  styles/    tokens → base → components → patterns → brand → a11y
   assets/    fonts (self-hosted), img, video
 tools/       build y auditorías
 dist/        salida; se regenera entera en cada build, no se edita a mano
@@ -53,12 +53,16 @@ de pantalla o con el vídeo bloqueado.
 **Nombres.** El asistente es CATY. «Kira» y «Kai» son nombres descartados de una
 versión antigua y el auditor los rechaza.
 
-**Financiación.** No se publican cifras de financiación levantada.
+**Financiación.** Solo se publican cifras confirmadas por el equipo; en esta
+iteración se han aprobado las de la presentación VDS.
 
 **Paridad de idiomas.** `es.json` y `en.json` tienen que tener exactamente las
 mismas claves. No se puede publicar una página a medio traducir.
 
-**Color.** La paleta está cerrada: ocho colores, sin derivados. `#357FB2` no
+**Color.** La identidad 2026 conserva el azul marino y amplía las superficies con
+periwinkle `#ABC4FA`, lavanda `#C4BDFA` y hielo perlado `#F2F3FC`.
+`brand.css` aplica el acabado sobre la base, antes de las preferencias de
+accesibilidad; los tonos pastel no se usan como texto sobre claro. `#357FB2` no
 llega a 4.5:1 sobre blanco (4,35) ni sobre azul noche (4,03), así que nunca es
 texto normal ni relleno de botón con texto; se reserva a hover, foco, bordes,
 iconografía y texto grande. El relleno primario es `#0C3862`.
@@ -81,24 +85,40 @@ que abren pestaña nueva, y `lang`, `title`, `description`, `canonical` y
   personas físicas y su domicilio particular no tiene por qué ser público. Al
   constituir la sociedad conviene fijar el domicilio social —la dirección de
   IAtecUV o del Parc Científic serviría— y publicarlo.
-- **Fotos.** Las de los fundadores salen del PDF del pitch y son de 200×200 px.
-  Del dispositivo C.A.T. no hay fotografía: se usa una ilustración esquemática a
-  propósito, para no aparentar un producto ya fabricado.
-- **Logo.** Los originales son PNG con el fondo quemado. `tools/logo-assets.py`
-  los recorta y les devuelve la transparencia, pero no hay vectorial: hace falta
-  vectorizar para animar el trazo y derivar la ilustración del gato.
-- **Logos de los apoyos.** Las seis tarjetas de «Incubación y apoyos» ya enlazan
-  a la web de cada institución, pero salen con un monograma porque no tenemos
-  los archivos. Al dejar un PNG o SVG en `src/assets/img/` basta con rellenar el
-  campo `logo` del apoyo en `es.json` y `en.json` para que sustituya al
-  monograma. Faltan: IAtecUV, Universitat de València, UVemprén, Parc Científic
-  UV, INCIBE y Startup Valencia.
+- **Fotos.** Las fotografías de los fundadores proceden del pitch y tienen
+  resolución limitada. Se mantienen pequeñas. El hardware se representa con
+  la ilustración oficial, no con una fotografía de una unidad fabricada.
+- **Originales.** Se conservan los recursos facilitados en la carpeta de logos.
+  Las copias de la web identifican su función: empresa, ecosistema, hardware,
+  software y pilares. Los favicons usan el nuevo emblema.
 
-## Materiales de marca
+## Actualización de identidad (octubre de 2026)
 
-`--caty-sheen` y `--caty-glow` son el acento holográfico de CATY; `--cat-sheen`
-y `--cat-glow`, el plateado del dispositivo. No son colores de marca nuevos: son
-acabados, compuestos con blancos y azules de la paleta, y solo entran donde se
-habla de ese producto. El degradado de CATY solo cumple AA sobre el azul noche,
-así que la palabra LOCAL vive dentro de un panel oscuro y las tres paradas del
-gradiente están auditadas en `tools/contrast.mjs`.
+Cabecera con los originales `logo.png` y `ojo.png`, portadas claras, ondas
+decorativas estáticas y tarjetas perladas. Se conserva Atkinson Hyperlegible
+Next para lectura y la estructura, los vídeos y los ajustes de accesibilidad.
+Los ajustes prevalecen sobre la marca y se recuerdan entre páginas.
+
+Precios y financiación confirmados con la presentación VDS: dispositivo 80 €,
+suscripción 15 €/mes, objetivo 300.000 €, conseguido 15.000 € (5 %).
+La comprobación de contraste incluye las nuevas superficies y el hover de
+los botones. Las auditorías automáticas no sustituyen una evaluación manual
+completa con tecnologías de apoyo.
+
+## Rediseño de composición y marketing (20 de octubre)
+
+El recorrido de la portada es beneficio → ecosistema → ejemplo de uso →
+propósito → públicos → privacidad → confianza → conversación. La identidad
+se concentra en `src/styles/brand.css`, antes de la capa de accesibilidad.
+El hardware y el software tienen composiciones amplias; las superficies de
+cristal se alternan con bloques editoriales abiertos. Se mantienen ambos
+idiomas y las páginas interiores.
+
+`src/scripts/experience.js` cambia tres ejemplos ilustrativos en el navegador.
+No ejecuta el producto ni transmite datos. Funciona con botones y teclado;
+sin JavaScript se muestran los tres ejemplos completos. El pitch y el vídeo
+de marca conservan controles nativos y descripción en texto.
+
+La solicitud se prepara localmente y ofrece las salidas de envío existentes.
+No se ha añadido un backend ni se ha publicado la web. Hitos y verificación
+en `docs/rediseno-2026.md`.

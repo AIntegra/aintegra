@@ -20,7 +20,7 @@
   if (!wink) return;
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (reduce.matches) return;
+  function motionPaused() { return reduce.matches || document.documentElement.hasAttribute('data-a11y-motion'); }
 
   var svg = wink.querySelector('.catwink__svg');
   var pupils = wink.querySelectorAll('.catwink__pupil');
@@ -32,6 +32,7 @@
 
   function update() {
     pending = false;
+    if (motionPaused()) return;
     // Se mide el dibujo, no su contenedor: el <div> ocupa toda la columna
     // del pie y su centro cae lejos de donde está el gato.
     var box = svg.getBoundingClientRect();
@@ -57,7 +58,7 @@
   }
 
   window.addEventListener('pointermove', function (event) {
-    if (event.pointerType === 'touch') return;
+    if (event.pointerType === 'touch' || motionPaused()) return;
     lastEvent = event;
     if (pending) return;
     pending = true;
@@ -66,9 +67,11 @@
 
   // Si el sistema empieza a pedir menos movimiento a mitad de sesión, el gato
   // se queda mirando al frente.
-  reduce.addEventListener('change', function () {
-    if (!reduce.matches) return;
+  function resetWhenPaused() {
+    if (!motionPaused()) return;
     wink.dataset.near = 'false';
     Array.prototype.forEach.call(pupils, function (pupil) { pupil.style.transform = ''; });
-  });
+  }
+  reduce.addEventListener('change', resetWhenPaused);
+  new MutationObserver(resetWhenPaused).observe(document.documentElement, { attributes: true, attributeFilter: ['data-a11y-motion'] });
 })();

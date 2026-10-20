@@ -36,24 +36,24 @@
   },
   "meta": {
     "home": {
-      "title": "AIntegra Limited — The problem isn't the person. It's the interface.",
-      "description": "C.A.T. and C.A.T.Y.: an adaptive trackpad and an AI layer that turn each person's own gesture into digital action. Accessibility and cybersecurity designed to meet WCAG 2.2 and ISO/IEC 27701."
+      "title": "AIntegra Limited — Technology that adapts to you",
+      "description": "Another way to use your computer with gestures and voice. Discover C.A.T., C.A.T.Y. and the AIntegra project."
     },
     "producto": {
       "title": "C.A.T. and C.A.T.Y.: the product — AIntegra Limited",
-      "description": "C.A.T. is the cognitive trackpad that learns how each person moves. C.A.T.Y. reads that gesture in the context of the screen and turns it into action. €60 for the device, €15/month for the subscription."
+      "description": "Discover how C.A.T. and C.A.T.Y. work, what we have tested and how we plan to bring gestures and voice together."
     },
     "seguridad": {
       "title": "Accessible cybersecurity and the OSCF Handbook — AIntegra Limited",
-      "description": "Secure mode, gesture-based CAPTCHA and the Open Source Cybersecurity Framework, AIntegra's open framework documenting the AGVS accessible verification standard."
+      "description": "How AIntegra approaches privacy, on-device processing and accessible verification."
     },
     "inversores": {
       "title": "Investors and organisations — AIntegra Limited",
-      "description": "Market, business model and roadmap for AIntegra Limited: hardware, subscription, B2B pilots and accessibility training."
+      "description": "Explore AIntegra: interaction tested with blind people, a Mac demo, the business model and a €300,000 funding target."
     },
     "contacto": {
-      "title": "Request a demo — AIntegra Limited",
-      "description": "Tell us about your situation and we'll prepare a demonstration of C.A.T. and C.A.T.Y. for your context."
+      "title": "Let’s talk — AIntegra Limited",
+      "description": "Request a demonstration, discuss a pilot or explore AIntegra’s investment opportunity."
     },
     "privacidad": {
       "title": "Privacy policy — AIntegra Limited",
@@ -74,12 +74,12 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "Digital accessibility",
-      "title": "The problem isn't the person. It's the interface.",
-      "lead": "C.A.T. learns how each person moves. C.A.T.Y. understands what's on screen. Together they turn a real gesture into digital action — with no constant precision required and no commands to memorise.",
-      "ctaPrimary": "Request a demo",
-      "ctaSecondary": "See how it works",
-      "note": "Designed to meet WCAG 2.2, ISO/IEC 27701 and ISO 27001."
+      "eyebrow": "TECHNOLOGY FOR EVERYONE",
+      "title": "Technology that adapts to you.",
+      "lead": "Navigate with gestures. Ask for help with your voice. Discover a different way to use your computer, built around you.",
+      "ctaPrimary": "Request a demonstration",
+      "ctaSecondary": "Explore the ecosystem",
+      "note": "Your voice and your movements matter."
     },
     "problem": {
       "eyebrow": "The shift",
@@ -129,40 +129,40 @@
       "cat": {
         "name": "C.A.T.",
         "full": "Cognitive Assistive Trackpad",
-        "text": "The hardware. An adaptive trackpad that replaces or complements the mouse through personalised gestures. It doesn't demand constant precision: it calibrates to each person's range of movement and copes when that range changes.",
+        "text": "The gesture control device, whose interaction we have tested through a mobile app with blind people.",
         "icon": "device"
       },
       "caty": {
         "name": "C.A.T.Y.",
-        "full": "Cognitive Assistive Technology for You",
-        "text": "The AI layer. It reads the gesture in the context of what's on screen and turns it into action: navigate, read aloud, summarise or run commands. It also works in voice mode.",
+        "full": "Cognitive Assistant Technology for You",
+        "text": "The AI and voice assistant, with a working Mac demo. It can be used independently.",
         "icon": "spark"
       },
       "cta": "See the product in detail",
-      "duoAlt": "Illustration of C.A.T. and C.A.T.Y. together: the silver trackpad with its halo, and above it the glowing C.A.T.Y. cat, joined by a thread of light rising from the device surface."
+      "duoAlt": "C.A.T.Y. ecosystem wordmark: navy CAT and a lavender Y, connected by a flowing trail."
     },
     "audience": {
       "eyebrow": "Who it's for",
       "title": "For people who face a barrier — and for those who don't know yet that they will",
-      "lead": "Accessibility isn't a category of user. It's a condition that comes and goes: an arm in a cast, a migraine, a twelve-hour day, age.",
+      "lead": "There are many ways to move, learn and work. Technology should make room for them all.",
       "groups": [
         {
           "title": "Individuals",
-          "text": "People with visual, motor or cognitive disabilities. Older people. Anyone with limited digital confidence. And also students, professionals and anyone dealing with fatigue or repetitive strain from mouse use.",
+          "text": "For anyone looking for another way to use a computer. With a disability, fatigue, an injury or simply different preferences.",
           "cta": "Pricing and what's included",
           "icon": "person",
           "meta": "Individual use"
         },
         {
           "title": "Associations and foundations",
-          "text": "Accessibility and disability organisations that want to test a real alternative to the mouse with the people they support, with hands-on guidance and measured results.",
+          "text": "Explore new ways to access technology with your community and our support.",
           "cta": "How a pilot works",
           "icon": "community",
           "meta": "Organisations"
         },
         {
           "title": "Companies and institutions",
-          "text": "Universities, schools, public administrations and companies that need their workstations and digital services to be usable by their whole workforce and everyone they serve.",
+          "text": "Bring accessibility to your workstations, classrooms and services.",
           "cta": "Discuss a rollout",
           "icon": "building",
           "meta": "Institutions"
@@ -201,36 +201,33 @@
       "items": [
         {
           "title": "Local processing",
-          "text": "Whatever can be handled on the device is handled on the device. Less data leaving means less surface to protect.",
+          "text": "We aim to improve processing on the computer itself.",
           "icon": "chip",
           "meta": "On the device"
         },
         {
           "title": "Secure mode",
-          "text": "Hidden screen and private audio, so the device can be used in a public space without exposing sensitive information to whoever is standing behind you.",
+          "text": "More visual discretion and private audio in public spaces.",
           "icon": "eye-off",
           "meta": "In public spaces"
         },
         {
           "title": "Gesture-based CAPTCHA",
-          "text": "An accessible alternative to visual CAPTCHAs, which today shut out millions of people with visual impairments.",
+          "text": "An approach to verification that starts with your gestures.",
           "icon": "shield-check",
           "meta": "At verification"
         }
       ],
-      "cta": "See how we approach it"
+      "cta": "See how we approach privacy"
     },
     "pilot": {
       "eyebrow": "Pilots",
       "title": "What a pilot includes",
-      "lead": "A pilot isn't a long demo. It's a trial with real people, with criteria agreed before it starts and data at the end.",
+      "lead": "Let’s try it with real people and tasks. With support from the very first gesture.",
       "items": [
-        "An opening session with your team and the people who'll use it, to understand which tasks get stuck today.",
-        "C.A.T. devices and access to C.A.T.Y. throughout the trial period.",
-        "Individual calibration: each person sets up their gestures with us, not with a manual.",
-        "Training for the support team, so autonomy doesn't depend on us being there.",
-        "Before-and-after measurement on specific tasks, not on impressions.",
-        "A closing report covering what worked, what didn't and what a rollout would take."
+        "We choose the tasks and goals with you.",
+        "We calibrate the gestures and support your team.",
+        "We evaluate the experience and share the findings."
       ],
       "cta": "Propose a pilot"
     },
@@ -240,44 +237,44 @@
       "phases": [
         {
           "phase": "Phase 1",
-          "title": "Validation",
+          "title": "Interaction trials",
           "state": "done",
-          "text": "Demos and interviews with users, associations and accessibility professionals to confirm which tasks actually get stuck."
+          "text": "C.A.T. interaction simulated in a mobile app and tested with blind people."
         },
         {
           "phase": "Phase 2",
-          "title": "MVP",
+          "title": "Mac demo",
           "state": "current",
-          "text": "A working C.A.T. and C.A.T.Y. handling the priority flows: navigate, read aloud, summarise and run commands."
+          "text": "C.A.T.Y. has a working demo. The next step is to advance the local model."
         },
         {
           "phase": "Phase 3",
-          "title": "Pilots",
+          "title": "First device",
           "state": "next",
-          "text": "Trials with associations, companies and institutions, with agreed metrics and support throughout the period."
+          "text": "Produce the first physical C.A.T. and connect it to the software."
         },
         {
           "phase": "Phase 4",
-          "title": "Rollout",
+          "title": "First sales",
           "state": "next",
-          "text": "Support, continuous measurement and product iteration driven by each organisation's real usage data."
+          "text": "Refine the integrated ecosystem and begin sales."
         }
       ],
       "nowLabel": "We are here"
     },
     "trust": {
       "eyebrow": "Track record",
-      "title": "Who has put us to the test",
+      "title": "A journey with support behind it.",
       "awards": [
         {
           "icon": "trophy",
-          "value": "€12,500",
-          "label": "First prize at the Ford Smart Mobility Challenge (Ford Philanthropy, May 2026), among 21 teams."
+          "value": "Ford award",
+          "label": "First prize at the Ford Smart Mobility Challenge 2026."
         },
         {
           "icon": "medal",
-          "value": "2nd place",
-          "label": "Overall in the Startup Valencia and INCIBE cybersecurity programme, where we also took the **best pitch award**."
+          "value": "Best pitch",
+          "label": "Best pitch award and second place in the Startup Valencia and INCIBE programme."
         }
       ],
       "supportTitle": "Incubation and support",
@@ -369,36 +366,20 @@
       "title": "What people ask us",
       "items": [
         {
-          "q": "Does C.A.T. replace the mouse or complement it?",
-          "a": "Both, depending on the case. Some people stop using a mouse entirely; others alternate — the mouse for what already works for them, C.A.T. for what doesn't. We don't force the choice."
+          "q": "What is AIntegra?",
+          "a": "An ecosystem for using your computer with more independence: C.A.T. gives you gesture control and C.A.T.Y. helps through voice and artificial intelligence."
         },
         {
-          "q": "Do I have to learn a list of gestures?",
-          "a": "No. Calibration starts from the movement each person already makes comfortably, and actions are assigned from there. If a gesture doesn't come out right, it gets changed; the system adapts to the gesture, not the other way round."
+          "q": "Who is it for?",
+          "a": "People who face barriers when using a computer, and organisations that want to offer them an easier way to access it."
         },
         {
-          "q": "Does it work if my hand is steadier some days than others?",
-          "a": "That's exactly the case it's built for. C.A.T. tolerates variation and fatigue: it doesn't match the gesture against a rigid template, but against the range of movement it learned from that person."
+          "q": "Do I have to stop using my keyboard?",
+          "a": "No. You can keep using your keyboard alongside C.A.T."
         },
         {
-          "q": "Does my data leave the device?",
-          "a": "Processing happens on the device itself wherever that is feasible. When something has to leave, we say so explicitly and explain what for. The detail is on the cybersecurity page."
-        },
-        {
-          "q": "Is it useful for someone without a disability?",
-          "a": "Yes. A good share of the people who try it come to us because of fatigue, repetitive strain, or simply because they'd rather not depend on a mouse. Accessibility rarely benefits only the people who need it."
-        },
-        {
-          "q": "Is it certified for accessibility or security?",
-          "a": "Not yet. The product is designed to meet WCAG 2.2, ISO/IEC 27701 and ISO 27001, and we're working towards certification, but we don't hold the formal certificates and we're not going to claim otherwise."
-        },
-        {
-          "q": "What does it cost?",
-          "a": "The C.A.T. device costs €60 per unit and the C.A.T.Y. subscription is €15 a month. For organisations we don't quote a fixed price: it depends on the number of workstations, the support and the training, and we work it out case by case."
-        },
-        {
-          "q": "What languages does C.A.T.Y. work in?",
-          "a": "Voice mode and the interface are available in Spanish and English. If you need another language for a pilot, tell us in your demo request."
+          "q": "How can I find out more?",
+          "a": "Request a demonstration and tell us what you would like to do. We will start with your own situation."
         }
       ]
     },
@@ -410,7 +391,7 @@
     "video": {
       "title": "The full pitch",
       "descHeading": "What this video shows",
-      "desc": "Nerea Panadero spends three minutes presenting AIntegra on stage at the Startup Valencia cybersecurity event, held at València Innovation Capital, with the audience seated in front of her and the project slides on the big screen. She opens by asking the audience about everyday admin — who files their own tax return — to get at the underlying problem: the interface. She then introduces the physical device, C.A.T., the Cognitive Assistive Trackpad, which lets you operate a computer in a way that fits each person’s range of movement («and we call it the cat», she says), followed by C.A.T.Y. and its three pillars. The closing stretch covers privacy by design, the cybersecurity work, the roadmap and the team — two specialist telematics engineers — and ends on the company motto: make it possible, make it accessible.",
+      "desc": "Nerea presents AIntegra to the audience of the Startup Valencia cybersecurity programme. On stage, she explains how the idea began, shows C.A.T. and C.A.T.Y. in the slides, and talks about the team and the next steps. With Spanish subtitles.",
       "meta": "The complete pitch, uncut. It carries burned-in Spanish subtitles, generated automatically by the app used to record it, with some errors in proper nouns.",
       "posterAlt": "Nerea Panadero, standing on stage, presents AIntegra to the audience at the Startup Valencia cybersecurity event, with the project logo on the big screen.",
       "duration": "3:06",
@@ -421,173 +402,221 @@
   "producto": {
     "hero": {
       "eyebrow": "Product",
-      "title": "C.A.T. and C.A.T.Y.",
-      "lead": "A trackpad that learns how you move and an intelligence that understands what's in front of you. Separately they're two products; together they're a different way of using a computer."
+      "title": "How your new way to use a computer works.",
+      "lead": "Use voice, gestures or both. Today we have a C.A.T.Y. demo on Mac and have tested C.A.T. interaction through a mobile app. The next step is to bring them together in the first device."
     },
     "cat": {
-      "eyebrow": "The hardware",
-      "title": "C.A.T. — Cognitive Assistive Trackpad",
+      "eyebrow": "GESTURES · INTERACTION TESTED ON MOBILE",
+      "title": "A touchpad that adapts to the way you move.",
       "body": [
-        "C.A.T. replaces or complements the mouse through personalised gestures. Instead of demanding that a hand reach an exact point on screen, it learns each person's range of movement and works inside it.",
-        "Calibration isn't a form. It's a session where the person moves the way they move, and the device takes that as its reference. From then on, if their hand is less steady one day, the gesture still counts."
+        "C.A.T. will be the physical device for controlling your computer with gestures, in place of a mouse. It adapts to how you move, so scrolling or selecting does not depend on hitting a tiny target.",
+        "We have tested this way of interacting through a mobile app with blind people, our first user group. The first hardware is the next step."
       ],
       "features": [
-        "Personalised gestures, mapped to the actions each person actually needs.",
-        "Tolerant of tremor, fatigue and day-to-day variation.",
-        "No constant precision required, and no holding steady through a long drag.",
-        "Works alongside the mouse and keyboard, without replacing the rest of the setup."
+        "Movements adjusted to you.",
+        "Gestures for scrolling and selecting.",
+        "Your keyboard stays with you."
       ],
-      "imageNote": "Illustration of the device: it moves with the cursor and responds to the keyboard. We'll publish real photographs once we have units from the first production run.",
-      "artAlt": "Illustration of the C.A.T. trackpad: a rounded rectangular aluminium surface with a strip of light along its front edge and a silver halo around it."
+      "imageNote": "Device concept · First hardware in development.",
+      "artAlt": "Animation of the C.A.T. trackpad, with a silver finish and its symbol on the surface."
     },
     "caty": {
-      "eyebrow": "The AI layer",
-      "title": "C.A.T.Y. — Cognitive Assistive Technology for You",
+      "eyebrow": "VOICE · WORKING DEMO ON MAC",
+      "title": "Ask for help with your voice through",
       "body": [
-        "A gesture on its own means nothing. C.A.T.Y. is what gives it meaning: it looks at what's on the screen, in the document or on the active page, and decides which action that gesture calls for in that context.",
-        "The same movement can mean «next page» in a reader, «summarise this» in a long report or «read aloud from here» on a website. The person doesn't switch modes: what's in front of them changes."
+        "C.A.T.Y. is the software that helps you use your computer by speaking. It can be used independently, without buying C.A.T., to ask for help with writing, listening to text or understanding what is on screen.",
+        "We already have a working demo on Mac. We now want to make it more capable and improve how it works locally, on the computer itself."
       ],
       "pillars": [
         {
           "title": "Communication",
-          "text": "Reading aloud, summarising, dictating and replying. C.A.T.Y. also works in voice mode, for people who'd rather speak than gesture.",
-          "icon": "speech",
-          "meta": "Pillar 1"
+          "text": "Dictate a message or listen to text instead of reading it on screen.",
+          "bubble": "bubble-communication.png"
         },
         {
           "title": "Adaptation",
-          "text": "It learns from each person and each context of use. What works in a document needn't work in a video call, and isn't forced to.",
-          "icon": "sliders",
-          "meta": "Pillar 2"
+          "text": "Help takes account of what you are doing at that moment.",
+          "bubble": "bubble-adaptation.png"
         },
         {
           "title": "Security",
-          "text": "On-device processing wherever feasible, secure mode for public spaces, and accessible gesture-based verification.",
-          "icon": "shield",
-          "meta": "Pillar 3"
+          "text": "Designed to prioritise work on your own device whenever feasible.",
+          "bubble": "bubble-security.png"
         }
       ],
-      "artAlt": "Illustration of C.A.T.Y.: a translucent, glowing cat in blues and violets, surrounded by floating icons for conversation, security, settings and voice."
+      "artAlt": "Pearlescent glass C.A.T.Y., surrounded by symbols of communication, adaptation and security.",
+      "appAlt": "C.A.T.Y. app icon: a blue and lavender glass cat symbol on a pearlescent white tile."
     },
     "pricing": {
-      "eyebrow": "Pricing",
-      "title": "Clear for individuals, tailored for organisations",
-      "lead": "We publish the individual price because making someone request a quote to find out what an accessibility device costs is, in itself, a barrier.",
+      "eyebrow": "PLANNED PRICING",
+      "title": "What each part includes.",
+      "lead": "These are the prices in the product plan. The ecosystem is in development: explore our progress in a demonstration.",
       "items": [
         {
-          "amount": "€60",
+          "amount": "€80",
           "unit": "per unit, one-off",
           "title": "C.A.T.",
-          "text": "The device, with the initial calibration session included.",
+          "text": "Your gesture control, with an initial calibration session to adapt it to you.",
           "icon": "device"
         },
         {
           "amount": "€15",
           "unit": "per month",
           "title": "C.A.T.Y.",
-          "text": "The subscription to the AI layer, with voice mode and updates included.",
+          "text": "Your AI assistant, with voice control and updates included.",
           "icon": "refresh"
         },
         {
           "amount": "Let's talk",
           "unit": "companies and institutions",
-          "title": "Rollouts",
-          "text": "Number of workstations, support, training and integration. We work it through with you before quoting a figure.",
+          "title": "Organisations",
+          "text": "We tailor the proposal to the number of people and the support you need.",
           "icon": "handshake"
         }
       ],
       "cta": "Request a demo"
     },
     "cta": {
-      "title": "The best way to understand it is to see it against your own case",
-      "text": "Tell us which task gets stuck today and we'll build the demo around it.",
+      "title": "Let’s try it with your own task.",
+      "text": "Tell us what you would like to do on your computer and we will work out where to start.",
       "button": "Request a demo"
     },
     "wink": {
-      "title": "The brand wink",
+      "title": "A wink from C.A.T.Y. · brand film",
       "tag": "Concept animation",
-      "desc": "A computer-generated animation in which a cartoon cat eats a computer mouse, eight seconds long, with music. It is a playful piece that plays on C.A.T. also meaning cat, and on the product replacing the mouse. **It does not show the device or the app**: it is not a product demonstration.",
+      "desc": "A brand animation: the cat takes on the mouse. It does not show the product in use.",
       "posterAlt": "A frame from the animation: a cartoon cat with a computer mouse in its mouth.",
       "eyebrow": "Brand wink"
+    },
+    "how": {
+      "eyebrow": "YOUR FIRST TRY",
+      "title": "A demonstration that makes sense for you.",
+      "steps": [
+        {
+          "title": "Tell us your task",
+          "text": "An email, a website or an online errand. We choose a real situation together."
+        },
+        {
+          "title": "Adjust the controls",
+          "text": "We explore which movements feel comfortable and how you prefer to ask for help."
+        },
+        {
+          "title": "Try it with us",
+          "text": "We work through the task and listen to what you need to make it easier."
+        }
+      ]
+    },
+    "joined": {
+      "eyebrow": "BETTER TOGETHER",
+      "title": "Helpful apart. A new way to navigate together.",
+      "text": "C.A.T. brings your gestures; C.A.T.Y. brings voice and artificial intelligence assistance. Each can be used independently. Our next challenge is to integrate them, so movement and assistance become one experience."
+    },
+    "orbit": {
+      "eyebrow": "YOUR WAYS IN",
+      "title": "Your movement. Your voice. One ecosystem.",
+      "lead": "Two parts you can use independently. A new experience when we connect them.",
+      "gesture": "GESTURES",
+      "voice": "VOICE",
+      "together": "TOGETHER",
+      "gestureText": "Control that adapts to you.",
+      "voiceText": "Ask for what you need.",
+      "togetherText": "Another way to navigate.",
+      "note": "Integrating the device and assistant is the project’s next milestone."
     }
   },
   "seguridad": {
     "hero": {
-      "eyebrow": "Accessible cybersecurity",
-      "title": "If using it costs you your privacy, it isn't accessible",
-      "lead": "Someone who can't read a CAPTCHA asks for help. Someone who can't type their password dictates it to another person. Every accessibility barrier left unsolved ends up as a security hole.",
+      "eyebrow": "CYBERSECURITY · AT THE HEART OF THE PRODUCT",
+      "title": "Intelligence on your side. Control in your hands.",
+      "lead": "We design C.A.T.Y. to help from your own computer. Local processing, reviewed actions and security you can use without relying on sight.",
       "artAlt": "Illustration: a shield with the path of a gesture drawn inside it, from a starting point to a target circle, surrounded by a dashed ring that turns slowly."
     },
     "local": {
-      "eyebrow": "Data",
+      "eyebrow": "PRIVACY FROM THE START",
       "badge": "Our key differentiator",
       "word": "LOCAL",
-      "title": "Local by default",
-      "lead": "Whatever can be resolved inside the device is resolved inside the device.",
+      "title": "Our goal for the local model",
+      "lead": "Your computer is the centre. Your information belongs here, too.",
       "body": [
-        "This is not an ideological stance: the less data that leaves, the less surface there is to protect and the less we have to ask people to trust us.",
-        "It is also what lets us in where other tools cannot go. In a health centre, a law firm or a public administration, the conversation does not start with price: it starts with what leaves the machine. If the gesture and the context never leave, there is nothing to negotiate.",
-        "When something does have to leave the device, we say so explicitly and explain what for. The formal detail will be in the privacy policy."
+        "C.A.T.Y.’s architecture prioritises processing information on the device itself. Investment will help us make the local model more capable.",
+        "The idea is simple: help with what is on your screen while you stay in control of your data and the actions being taken."
       ]
     },
     "features": {
       "eyebrow": "How we approach it",
-      "title": "Two pieces that didn't exist",
+      "title": "Protection must be accessible, too.",
       "items": [
         {
-          "title": "Secure mode",
-          "text": "Hidden screen and private audio. It lets the device be used in a waiting room, an open-plan office or on public transport without sensitive information being visible — or audible — to whoever is next to you. For many people, today's alternative is not doing the task until they get home.",
+          "title": "Safe mode",
+          "text": "A visual curtain and private audio for entering sensitive information away from nearby eyes.",
+          "meta": "SCREEN AND AUDIO",
           "icon": "eye-off",
-          "meta": "Screen and audio"
+          "illustration": "privacy-screen.svg?v=2"
         },
         {
-          "title": "Gesture-based CAPTCHA",
-          "text": "Visual CAPTCHAs shut out millions of people with visual impairments, and audio alternatives break down with background noise or a screen reader in the mix. Our CAPTCHA verifies that there's a person there from the way they gesture, which is hard to automate and requires seeing nothing.",
-          "icon": "shield-check",
-          "meta": "Human verification"
+          "title": "Gesture verification",
+          "text": "An alternative to visual CAPTCHAs: verify that you are a person through gestures, without deciphering images.",
+          "meta": "AGVS · GESTURES",
+          "icon": "gesture",
+          "illustration": "gesture-shield.svg"
         }
-      ]
+      ],
+      "note": "Safe mode is designed; gesture verification is under development within the open framework."
     },
     "oscf": {
-      "eyebrow": "Open framework",
+      "eyebrow": "ACCESSIBLE CYBERSECURITY, IN THE OPEN",
       "title": "OSCF Handbook",
-      "lead": "The Open Source Cybersecurity Framework is our open framework for accessible cybersecurity. It documents AGVS, the Accessible Gesture Verification Standard, and is published in the open with its source and change history visible.",
+      "lead": "Our open framework for accessible cybersecurity. It includes AGVS: a proposal to verify that a person is present through gestures, without relying on images.",
       "body": [
-        "We didn't write it as decoration. An accessible verification standard is only worth anything if other people can read it, implement it and argue with it — and for that it has to be public before it's finished."
+        "It goes beyond an idea: principles, risk analysis, interaction rules and a way to evaluate proposals. Other teams can read it and contribute."
       ],
       "structure": [
         {
-          "title": "Principles and scope",
-          "text": "What AGVS solves, and what it deliberately leaves out.",
-          "icon": "compass",
-          "meta": "Layer 1"
+          "title": "What we protect",
+          "text": "Principles, scope and limits of the proposal.",
+          "meta": "01",
+          "url": "https://aintegra-limited-project-425d77.gitlab.io/framework/principles/"
         },
         {
-          "title": "Threat model",
-          "text": "Replay of recorded gestures, automation, shoulder surfing and session abuse.",
-          "icon": "alert",
-          "meta": "Layer 2"
+          "title": "What could go wrong",
+          "text": "Risks such as gesture replay or session abuse.",
+          "meta": "02",
+          "url": "https://aintegra-limited-project-425d77.gitlab.io/framework/threat-model/"
         },
         {
-          "title": "Interaction model",
-          "text": "Rules for making the verification challenge usable multimodally, not just by looking.",
-          "icon": "hand",
-          "meta": "Layer 3"
+          "title": "How people use it",
+          "text": "Multiple ways to interact, without relying on sight alone.",
+          "meta": "03",
+          "url": "https://aintegra-limited-project-425d77.gitlab.io/framework/interaction-model/"
         },
         {
-          "title": "Conformance model",
-          "text": "Three levels — A, AA and AAA — so an implementation can show how far it goes.",
-          "icon": "levels",
-          "meta": "Layer 4"
+          "title": "How we assess it",
+          "text": "Criteria for assessing accessibility and protection.",
+          "meta": "04",
+          "url": "https://aintegra-limited-project-425d77.gitlab.io/framework/conformance-model/"
         }
       ],
       "state": "Public draft v0.1",
-      "cta": "Read the OSCF Handbook",
-      "ctaHint": "Published openly on GitLab Pages, with the repository and change history available."
+      "cta": "Explore the published work",
+      "ctaHint": "Published openly on GitLab Pages, with the repository and change history available.",
+      "resources": [
+        {
+          "title": "Control catalogue",
+          "url": "https://aintegra-limited-project-425d77.gitlab.io/controls/"
+        },
+        {
+          "title": "Architecture and flows",
+          "url": "https://aintegra-limited-project-425d77.gitlab.io/architecture/"
+        },
+        {
+          "title": "Assessment",
+          "url": "https://aintegra-limited-project-425d77.gitlab.io/assessment/"
+        }
+      ]
     },
     "standards": {
       "eyebrow": "Standards",
-      "title": "What we're aligned with",
+      "title": "A design with clear references.",
       "items": [
         {
           "name": "WCAG 2.2 level AA",
@@ -603,269 +632,274 @@
         }
       ],
       "calloutTitle": "We word this precisely, on purpose",
-      "callout": "AIntegra is **not** certified against any of these standards yet. The product is **designed to meet** them and we are **working towards certification**. When we hold a certificate, we'll publish it with its number and its certification body. Until then, putting it any other way would be selling you something we aren't."
+      "callout": "Design references and development goals. We do not yet hold certifications."
     },
     "cta": {
-      "title": "Have a security requirement to meet?",
-      "text": "If you're evaluating a public procurement or an internal rollout, tell us what's required of you and we'll tell you exactly where we stand.",
+      "title": "What does your organisation need?",
+      "text": "Tell us what information you need to protect and we can discuss how it fits the project.",
       "button": "Talk to us"
+    },
+    "sceneAlt": "Glass computer illustration containing an AI core protected by a shield.",
+    "sceneCaption": "AI on your computer · You in control",
+    "layers": {
+      "eyebrow": "MORE THAN A PADLOCK",
+      "title": "Security at every step.",
+      "items": [
+        {
+          "title": "Before taking action",
+          "text": "A control layer reviews what AI proposes. Sensitive actions require confirmation.",
+          "icon": "shield-check"
+        },
+        {
+          "title": "You decide access",
+          "text": "Permissions are part of the design: what the assistant can read and what it can interact with.",
+          "icon": "hand"
+        },
+        {
+          "title": "Local context and memory",
+          "text": "Preferences and context are designed to stay on the device, under the person’s control.",
+          "icon": "chip"
+        }
+      ],
+      "note": "Product architecture: we continue to expand and refine its protections."
+    },
+    "control": {
+      "eyebrow": "AI PROPOSES. YOU STAY IN CONTROL.",
+      "title": "Between asking and acting, there is a safety layer.",
+      "steps": [
+        "Understand",
+        "Propose",
+        "Confirm",
+        "Act",
+        "Verify"
+      ],
+      "note": "Confirmation is requested when an action requires it, such as before sending or deleting."
     }
   },
   "inversores": {
     "hero": {
-      "eyebrow": "Investors and organisations",
-      "title": "A large market, poorly served, now legally obliged to move",
-      "lead": "Digital accessibility has stopped being a voluntary gesture and become a requirement. We arrive with our own hardware, an AI layer and an open standard nobody else is writing.",
-      "globeAlt": "Illustration of a globe with its meridians and parallels, in the brand blues, turning very slowly."
+      "eyebrow": "INVESTORS",
+      "title": "More independence. An opportunity to grow.",
+      "lead": "We are creating a new way to use a computer with gestures and voice. We are starting with blind people: we have tested the interaction and have a working assistant demo on Mac. Next comes the complete ecosystem.",
+      "cta": "Talk to us about investment",
+      "secondary": "Explore the funding round",
+      "tag": "From a personal need to a wider opportunity."
     },
-    "market": {
-      "eyebrow": "Market",
-      "title": "Market size",
-      "tiers": [
-        {
-          "tier": "tam",
-          "label": "TAM",
-          "value": "€25–30B",
-          "scope": "Total market for digital access and accessibility technology."
-        },
-        {
-          "tier": "sam",
-          "label": "SAM",
-          "value": "€5–8B",
-          "scope": "The segment we can reach with the current product and languages."
-        },
-        {
-          "tier": "som",
-          "label": "SOM",
-          "value": "€120–160M",
-          "scope": "Achievable share within the plan's horizon."
-        }
-      ],
-      "note": "Our own estimates, built from public sector sources. The assumptions and the breakdown are in the executive summary, available on request.",
-      "chartAlt": "A diagram of three circles nested and tangent at their base: the largest is the total market, inside it the serviceable market and, inside that, the obtainable market."
-    },
-    "model": {
-      "eyebrow": "Business model",
-      "title": "Four lines that hold each other up",
+    "opportunity": {
+      "eyebrow": "THE PROPOSAL",
+      "title": "A computer should not be a barrier.",
+      "lead": "We are starting with blind people. Using a computer should not depend on mouse precision or discovering what to do next through trial and error.",
       "items": [
         {
-          "title": "Hardware",
-          "text": "Sale of the C.A.T. device at €60 per unit. It's the way in, and what makes the proposition tangible.",
-          "icon": "device",
-          "meta": "One-off"
+          "title": "Access through gestures",
+          "text": "C.A.T. adapts control to the person’s movement, instead of demanding mouse precision.",
+          "image": "cat-product-icon.png",
+          "name": "C.A.T."
         },
         {
-          "title": "Subscription",
-          "text": "C.A.T.Y. at €15 a month. Recurring revenue that grows with every device placed.",
-          "icon": "refresh",
-          "meta": "Recurring"
+          "title": "Help to move forward",
+          "text": "C.A.T.Y. lets people ask for voice help with reading, writing and understanding what is on screen.",
+          "image": "caty-app-icon.png",
+          "name": "C.A.T.Y."
         },
         {
-          "title": "B2B pilots",
-          "text": "Trials with associations, companies and institutions, with support and measurement. They validate the product and open the door to rollout.",
-          "icon": "flask",
-          "meta": "Project"
+          "title": "A clear first segment",
+          "text": "Blind people and the organisations that support them. A focused starting point for learning and developing the proposal.",
+          "image": "aintegra-emblem.png",
+          "name": "AIntegra"
+        }
+      ]
+    },
+    "model": {
+      "eyebrow": "THE BUSINESS MODEL",
+      "title": "A device. An ongoing relationship.",
+      "lead": "The model combines device sales with a software subscription. Each part can work independently; together they create a fuller experience.",
+      "items": [
+        {
+          "amount": "€80",
+          "unit": "per device",
+          "title": "C.A.T. device sales",
+          "text": "A one-off payment, including the initial setup.",
+          "wordmark": "cat-wordmark.png",
+          "name": "C.A.T."
         },
         {
-          "title": "Training",
-          "text": "Accessibility training and consultancy for organisations that have to comply and don't know where to start.",
-          "icon": "teach",
-          "meta": "Service"
+          "amount": "€15",
+          "unit": "per month",
+          "title": "C.A.T.Y. subscription",
+          "text": "Artificial intelligence support and updates.",
+          "wordmark": "caty-wordmark-outline.png",
+          "name": "C.A.T.Y."
+        }
+      ],
+      "organisation": "Planned prices from the business plan. The first hardware series and first sales are the next milestones."
+    },
+    "market": {
+      "eyebrow": "THE OPPORTUNITY",
+      "title": "An opportunity, from the global market to our first focus.",
+      "lead": "Our plan covers individuals and organisations. These are the market estimates in our investor deck.",
+      "tiers": [
+        {
+          "label": "Global market",
+          "value": "25–30",
+          "unit": "billion euros",
+          "scope": "The overall market considered in the plan.",
+          "code": "TAM"
+        },
+        {
+          "label": "Accessibility technology",
+          "value": "5–8",
+          "unit": "billion euros",
+          "scope": "The area our proposal belongs to.",
+          "code": "SAM"
+        },
+        {
+          "label": "Target segment",
+          "value": "120–160",
+          "unit": "million euros",
+          "scope": "The segment the project is targeting.",
+          "code": "SOM"
+        }
+      ],
+      "note": "Estimates from the deck. The bubbles show market scope, not a proportional scale or current sales."
+    },
+    "difference": {
+      "eyebrow": "WHAT MAKES US DIFFERENT",
+      "title": "Bringing access and assistance into one experience.",
+      "items": [
+        {
+          "title": "Physical and digital, together",
+          "text": "The device captures the gesture; artificial intelligence helps turn intention into a task."
+        },
+        {
+          "title": "The person sets the pace",
+          "text": "We start with how they move, what they want to do and what help they need."
+        },
+        {
+          "title": "Privacy is part of the design",
+          "text": "We want assistance to run on the computer itself. Advancing the local model is one goal of this investment."
         }
       ]
     },
     "traction": {
-      "eyebrow": "Traction",
-      "title": "What we've proved so far",
+      "eyebrow": "OUR PROGRESS",
+      "title": "Recognition and support to keep building.",
       "items": [
-        "First prize at the Ford Smart Mobility Challenge (Ford Philanthropy, May 2026), €12,500, among 21 teams.",
-        "Second place overall in the Startup Valencia and INCIBE cybersecurity programme, plus the programme's best pitch award.",
-        "Incubated at IAtecUV, with support from UVemprén and the Parc Científic de la Universitat de València.",
-        "Our own open framework published: the OSCF Handbook, with the AGVS standard as a public draft.",
-        "Interviews and demos with users and accessibility organisations that shaped the MVP's priority flows."
+        {
+          "title": "Ford Smart Mobility Challenge",
+          "text": "First prize in 2026.",
+          "image": "aintegra-emblem.png"
+        },
+        {
+          "title": "Startup Valencia and INCIBE",
+          "text": "Second place in the cybersecurity programme and best pitch award.",
+          "image": "apoyos/startup-valencia.svg"
+        },
+        {
+          "title": "IAtecUV · Universitat de València",
+          "text": "Incubation and support from the university ecosystem.",
+          "image": "apoyos/iatecuv.png"
+        }
+      ]
+    },
+    "roadmap": {
+      "eyebrow": "THE ROAD TO MARKET",
+      "title": "A stage for every step.",
+      "note": "Development plan: from prototype and demo to the complete ecosystem.",
+      "items": [
+        {
+          "date": "2024–2025",
+          "title": "Idea and validation",
+          "text": "Understand the barriers and shape the proposal.",
+          "image": "bubble-communication.png"
+        },
+        {
+          "date": "2026",
+          "title": "First version",
+          "text": "C.A.T. interaction tested on mobile and a working C.A.T.Y. demo on Mac.",
+          "image": "caty-app-icon.png"
+        },
+        {
+          "date": "2027",
+          "title": "Market launch",
+          "text": "First physical device, integration of the ecosystem and initial sales.",
+          "image": "cat-product-icon.png"
+        }
+      ]
+    },
+    "team": {
+      "eyebrow": "WHO IS BUILDING IT",
+      "title": "Two engineering backgrounds. One shared purpose.",
+      "bios": [
+        "Telecommunications engineering, artificial intelligence and accessibility. Her father’s experience inspired AIntegra.",
+        "Telecommunications engineering and machine learning. Focused on developing the project’s technology."
+      ]
+    },
+    "funding": {
+      "eyebrow": "FUNDING",
+      "title": "Build what comes next. Together.",
+      "goal": "€300,000",
+      "goalLabel": "Funding target",
+      "raised": "€15,000",
+      "raisedLabel": "Received in awards and grants",
+      "detail": "€12,500 from Ford, €2,000 from IAtecUV and €500 from the Xarxa de Preincubadoras.",
+      "lead": "Investment will help turn the tested interaction and demo into the first ecosystem ready for initial sales.",
+      "uses": [
+        {
+          "title": "Build the first C.A.T.",
+          "text": "Bring the interaction we tested on mobile to our own physical device.",
+          "step": "01",
+          "image": "cat-product-icon.png"
+        },
+        {
+          "title": "Advance local C.A.T.Y.",
+          "text": "Develop the demo into a more capable model that runs on the computer itself.",
+          "step": "02",
+          "image": "caty-app-icon.png"
+        },
+        {
+          "title": "Connect the ecosystem and sell",
+          "text": "Integrate both parts, refine the experience and begin the first sales.",
+          "step": "03",
+          "image": "aintegra-emblem.png"
+        }
       ]
     },
     "ask": {
-      "eyebrow": "Round",
-      "title": "What we're looking for",
-      "text": "We are raising €50,000 to start the market expansion phase in 2026: extending the hardware run, closing the first pilots with organisations and accelerating the path to certification. If that fits, write to us and we will send the executive summary and the full deck.",
-      "button": "Talk to us"
+      "eyebrow": "LET’S KEEP TALKING",
+      "title": "Want to be part of the next step?",
+      "text": "Meet the team and explore the deck and business plan. Let’s talk about growing AIntegra.",
+      "button": "Request investment information"
     },
-    "funding": {
-      "label": "Raised so far",
-      "raised": "€15,000",
-      "detail": "€12,500 from first prize at the Ford Smart Mobility Challenge, €2,000 for joining IAtecUV and €500 from the Xarxa de Preincubadoras award.",
-      "leftLabel": "Still to raise",
-      "left": "€35,000",
-      "goal": "Target: €50,000",
-      "barAlt": "Progress bar: €15,000 raised towards a €50,000 target, 30 per cent."
-    },
-    "competitors": {
-      "eyebrow": "Competition",
-      "title": "Why we're not just one more alternative",
-      "lead": "The tools people with digital barriers use today each solve one part of the problem. None of them solves all five at once.",
-      "caption": "Capability comparison between the current alternatives and AIntegra.",
-      "cols": [
-        "Screen reader (JAWS)",
-        "Braille display",
-        "General-purpose AI assistants",
-        "AIntegra"
-      ],
-      "colsShort": [
-        "JAWS",
-        "Braille",
-        "General AI",
-        "AIntegra"
-      ],
-      "yes": "Yes",
-      "no": "No",
-      "rows": [
+    "validation": {
+      "eyebrow": "WHAT WE HAVE ALREADY ACHIEVED",
+      "title": "You can already try the idea.",
+      "items": [
         {
-          "label": "Accessible",
-          "values": [
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "no",
-              "label": "No"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            }
-          ]
+          "title": "Gestures tested with blind people",
+          "text": "We simulated C.A.T. in a mobile app and tested the interaction with our first user group. The response was very positive: gestures enable actions without demanding mouse precision.",
+          "image": "cat-product-icon.png",
+          "state": "INTERACTION VALIDATED"
         },
         {
-          "label": "Physical",
-          "values": [
-            {
-              "state": "no",
-              "label": "No"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "no",
-              "label": "No"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            }
-          ]
-        },
-        {
-          "label": "Digital",
-          "values": [
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "no",
-              "label": "No"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            }
-          ]
-        },
-        {
-          "label": "Affordable",
-          "values": [
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "no",
-              "label": "No"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            }
-          ]
-        },
-        {
-          "label": "Secure",
-          "values": [
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "no",
-              "label": "No"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            }
-          ]
-        },
-        {
-          "label": "Data never leaves the device",
-          "values": [
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            },
-            {
-              "state": "no",
-              "label": "No"
-            },
-            {
-              "state": "si",
-              "label": "Yes"
-            }
-          ]
+          "title": "C.A.T.Y. already works on Mac",
+          "text": "We have a working assistant demo. Investment will help us advance towards a more capable local model and improve the experience.",
+          "image": "caty-app-icon.png",
+          "state": "WORKING DEMO"
         }
-      ],
-      "noteTitle": "About the accessibility row",
-      "note": "Our deck listed general-purpose AI assistants as accessible. We have tested them with a screen reader and they are not: the information turns into a maze you have to feel your way through. We are correcting it here, because saying otherwise would repeat the very mistake we exist to fix.",
-      "modelTitle": "And there's a difference that doesn't fit in a table",
-      "model": [
-        "A general-purpose AI assistant is free, or nearly free, because **the product being sold is not the tool: it is your data**. To answer you, what is on your screen has to leave your computer.",
-        "We charge €60 for a device and €15 a month for the software. That is the whole business model. **What we sell is the product**, and that is why we can afford to keep the gesture and the context on the machine."
       ]
     }
   },
   "contacto": {
     "hero": {
-      "eyebrow": "Demo",
-      "title": "Tell us what gets stuck",
-      "lead": "We don't prepare a generic demo. We want to know which specific task can't be done today without help, and build the demonstration around that.",
-      "artAlt": "Illustration: two speech bubbles, a dark one above and a light one below, joined by the dashed path of a gesture running from the first to the second."
+      "eyebrow": "LET’S TALK",
+      "title": "Tell us what you have in mind.",
+      "lead": "Try it, bring it to your organisation or explore the investment opportunity. Let’s start there.",
+      "artAlt": "Two pearlescent white and lavender speech bubbles, connected by a gesture trail."
     },
     "form": {
-      "title": "Tell us about your case",
-      "lead": "The more detail you give us about the task that gets stuck today, the more useful the demo will be. Only the marked fields are essential.",
+      "title": "Your next step starts here.",
+      "lead": "Tell us what you need and how to reach you.",
       "name": "Full name",
       "email": "Email address",
       "emailHint": "We use it only to reply to this request.",
@@ -875,11 +909,11 @@
       "profiles": [
         {
           "value": "persona",
-          "label": "I'm a user, or someone close to one"
+          "label": "For me or someone close"
         },
         {
           "value": "entidad",
-          "label": "Association, foundation or school"
+          "label": "Association or school"
         },
         {
           "value": "empresa",
@@ -890,24 +924,24 @@
           "label": "Investment or partnership"
         }
       ],
-      "task": "Which task gets stuck today?",
-      "taskHint": "For example: \"booking a doctor’s appointment\", \"reading a long PDF\", \"filling in a bank form\".",
+      "task": "How can we help?",
+      "taskHint": "For example: try the product, arrange a pilot or explore the funding round.",
       "submit": "Prepare my request",
       "required": "required",
       "errorsTitle": "Please check these fields before sending",
       "errName": "Please write your name so we know how to address you.",
       "errEmail": "A valid email is missing. Example: name@organisation.com",
-      "errTask": "Tell us in a line or two which task gets stuck.",
-      "howTitle": "How this form works",
-      "how": "Pressing the button opens your email program with the message already written, and you send it yourself. **There is no server of ours or of any third party in between**: what you write here does not leave your computer until you hit send.",
-      "fallbackTitle": "If your email program doesn't open",
+      "errTask": "Briefly tell us how we can help.",
+      "howTitle": "Your pace. Your choice.",
+      "how": "We prepare your message here. Then choose Gmail, your email app or copy the text to review and send it.",
+      "fallbackTitle": "A conversation starts with hello.",
       "fallback": "Write to us directly at",
-      "mailSubject": "AIntegra demo request",
+      "mailSubject": "Let’s talk about AIntegra",
       "mailIntro": "Hello AIntegra,",
       "mailProfileLabel": "I'm writing as",
       "mailNameLabel": "Name",
       "mailOrgLabel": "Organisation",
-      "mailTaskLabel": "The task that gets stuck today",
+      "mailTaskLabel": "My enquiry",
       "mailOutro": "Best regards.",
       "readyTitle": "Your message is ready",
       "readyLead": "Choose how you want to send it. The message is already written; you just need to press send in your email.",
@@ -920,11 +954,27 @@
       "toLabel": "To",
       "subjectLabel": "Subject",
       "edit": "Back to the form",
-      "noMailHint": "If nothing happens when you press \"Open in my email program\", this computer has none set up. Use Gmail or copy the message."
+      "noMailHint": "If nothing happens when you press \"Open in my email program\", this computer has none set up. Use Gmail or copy the message.",
+      "reviewNote": "You can review your message before sending it.",
+      "directEyebrow": "PERSON TO PERSON",
+      "howSteps": [
+        {
+          "title": "Tell us",
+          "text": "What you would like to try, solve or build with us."
+        },
+        {
+          "title": "Review",
+          "text": "We prepare your message so you can read it at your own pace."
+        },
+        {
+          "title": "Send",
+          "text": "From Gmail, your usual email app or by copying the text."
+        }
+      ]
     }
   },
   "footer": {
-    "blurb": "AIntegra Limited builds digital access technology: adaptive hardware and artificial intelligence that adjust to the person, rather than the other way round.",
+    "blurb": "Another way to use your computer: with your gestures, your voice and your way.",
     "incubated": "Incubated at IAtecUV (Universitat de València), supported by UVemprén and the Parc Científic de la Universitat de València.",
     "copyright": "AIntegra Limited",
     "legalHeading": "Legal",
@@ -1192,7 +1242,118 @@
     "on": "on",
     "off": "off",
     "statusReset": "Settings returned to their defaults.",
-    "note": "There is no \"screen reader\" button here: this site is built to work with the screen reader you already use, and a pretend one on top would only get in its way.",
+    "note": "You can combine these settings and reset them whenever you like.",
     "shortcut": "This button is the second stop of the Tab key on every page."
+  },
+  "marketing": {
+    "heroTag": "An ecosystem your way.",
+    "hardware": "Adaptive hardware",
+    "software": "Intelligence by your side",
+    "trustLabel": "Incubation & ecosystem",
+    "trustLogos": [
+      {
+        "name": "IAtecUV",
+        "mono": "IA",
+        "url": "https://www.uv.es/iatecuv/es/iatecuv.html",
+        "what": "The Universitat de València high-technology incubator for artificial intelligence.",
+        "logo": "apoyos/iatecuv.png"
+      },
+      {
+        "name": "UVemprén",
+        "mono": "UVe",
+        "url": "https://www.uv.es/uvempren",
+        "what": "The Universitat de València entrepreneurship programme, where AIntegra started.",
+        "logo": "apoyos/uvempren.png"
+      },
+      {
+        "name": "Startup Valencia",
+        "mono": "SV",
+        "url": "https://startupvalencia.org",
+        "what": "The Valencian startup ecosystem association, and organiser of the cybersecurity programme.",
+        "logo": "apoyos/startup-valencia.svg"
+      },
+      {
+        "name": "INCIBE",
+        "mono": "IN",
+        "url": "https://www.incibe.es",
+        "what": "Spain's National Cybersecurity Institute, with whom we work on accessible security.",
+        "logo": "apoyos/incibe.svg"
+      }
+    ],
+    "ecosystemEyebrow": "TWO WAYS TO MAKE IT YOURS",
+    "ecosystemTitle": "An ecosystem your way.",
+    "ecosystemLead": "Choose how you want to take your next step.",
+    "catBenefit": "The cat that takes on the mouse.",
+    "catCopy": "Trade mouse precision for gestures that fit the way you move.",
+    "catyBenefit": "Your voice gets things moving.",
+    "catyCopy": "Talk to your computer and get help with what you need to do.",
+    "catDetail": "See how it works",
+    "catyDetail": "See what you can ask it",
+    "experienceEyebrow": "FROM INTENTION TO ACTION",
+    "experienceTitle": "A different way to do an everyday task.",
+    "experienceLead": "An email, a website, a document. See how your voice and gestures can help with everyday tasks.",
+    "exampleLabel": "Illustrative example",
+    "exampleNote": "Illustrative usage sequence. This is not a live product demonstration or the final product interface.",
+    "gestureLabel": "What you need",
+    "contextLabel": "Your way to do it",
+    "resultLabel": "What changes",
+    "examples": [
+      {
+        "id": "email",
+        "button": "Write an email",
+        "title": "Something to say? Say it.",
+        "gesture": "You want to send an email, but you do not know where to start.",
+        "context": "Talk to C.A.T.Y.: “Help me write an email to Ana to meet tomorrow.”",
+        "result": "Prepare your message with its help, review it and decide when to send it.",
+        "document": "“I want to write an email to Ana.”",
+        "response": "From an idea to a message, with your voice.",
+        "wordmark": "caty-wordmark-outline.png",
+        "productName": "C.A.T.Y.",
+        "appIcon": "caty-app-icon.png",
+        "selected": "true",
+        "hidden": ""
+      },
+      {
+        "id": "navigate",
+        "button": "Browse a website",
+        "title": "Your gestures become actions.",
+        "gesture": "You want to browse a website, but the mouse demands more precision than feels comfortable.",
+        "context": "With C.A.T., use gestures calibrated to your movement to scroll and select.",
+        "result": "Explore the page at your own pace, with control that adapts to you.",
+        "document": "A website to explore. Your way.",
+        "response": "Move the way you can. Keep exploring.",
+        "wordmark": "cat-wordmark.png",
+        "productName": "C.A.T.",
+        "appIcon": "cat-product-icon.png",
+        "selected": "false",
+        "hidden": "hidden"
+      },
+      {
+        "id": "read",
+        "button": "Understand a document",
+        "title": "Find what matters.",
+        "gesture": "You receive a long document and need to understand what it is asking you to do.",
+        "context": "Ask C.A.T.Y.: “Read this to me and summarise the key points.”",
+        "result": "Listen to the content and go through the main ideas with its help.",
+        "document": "“What matters most in this document?”",
+        "response": "Read, listen and understand at your own pace.",
+        "wordmark": "caty-wordmark-outline.png",
+        "productName": "C.A.T.Y.",
+        "appIcon": "caty-app-icon.png",
+        "selected": "false",
+        "hidden": "hidden"
+      }
+    ],
+    "manifestoEyebrow": "OUR BEGINNING",
+    "manifestoTitle": "It starts with someone close to us.",
+    "manifestoCopy": "Nerea’s father, Manolo, is blind. His experience led to a question: what if using a computer did not mean adapting to a single way of doing things? AIntegra grew from that question.",
+    "audienceTitle": "Everyone has their own way.",
+    "securityTitle": "Independence and privacy, together.",
+    "securityLead": "Doing more on your own also means keeping control of your information.",
+    "foundersTitle": "A personal idea. A shared purpose.",
+    "closeEyebrow": "LET’S TALK ABOUT YOUR NEEDS",
+    "closeTitle": "Your way of doing things deserves its space.",
+    "closeCopy": "Tell us which task you would like to do more independently. We will build the conversation around your needs.",
+    "development": "Gesture interaction tested on mobile. C.A.T.Y. demo on Mac."
   }
 }

@@ -16,8 +16,10 @@
   <meta property="og:url" content="{{canonical}}">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="{{base}}assets/img/favicon-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="{{base}}assets/img/favicon-180.png">
+  <link rel="icon" type="image/png" href="{{base}}assets/img/favicon-outline-16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="{{base}}assets/img/favicon-outline-32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{base}}assets/img/favicon-outline-48.png" sizes="48x48">
+  <link rel="apple-touch-icon" href="{{base}}assets/img/favicon-outline-180.png">
 
   <link rel="preload" href="{{base}}assets/fonts/archivo-latin-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{base}}assets/fonts/atkinson-hyperlegible-next-latin-400-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -27,6 +29,7 @@
   <link rel="stylesheet" href="{{base}}styles/base.css?v={{v}}">
   <link rel="stylesheet" href="{{base}}styles/components.css?v={{v}}">
   <link rel="stylesheet" href="{{base}}styles/patterns.css?v={{v}}">
+  <link rel="stylesheet" href="{{base}}styles/brand.css?v={{v}}">
   <link rel="stylesheet" href="{{base}}styles/a11y.css?v={{v}}">
 </head>
 <body>
@@ -39,9 +42,10 @@
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="site-header__logo" href="{{base}}{{lang}}/">
-        <img src="{{base}}assets/img/aintegra-mark-dark.png" alt="" width="256" height="251">
-        <span><strong>{{site.name}}</strong><span class="visually-hidden"> — {{ui.home}}</span></span>
+      <a class="site-header__logo brand-name" aria-label="{{site.name}} — {{ui.home}}" href="{{base}}{{lang}}/">
+        <img class="brand-emblem" src="{{base}}assets/img/aintegra-emblem.png" alt="" width="1254" height="1254">
+        <img class="brand-wordmark" src="{{base}}assets/img/aintegra-wordmark.png" alt="{{site.name}} — {{ui.home}}" width="2170" height="725">
+        <span class="visually-hidden brand-name__text">{{site.name}}</span>
       </a>
 
       <nav class="site-nav" aria-label="{{ui.mainNav}}">
@@ -60,7 +64,7 @@
 {{&_content}}
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" id="site-footer">
     <div class="container">
       <div class="grid grid--4">
         <div>
@@ -125,6 +129,7 @@
     </div>
   </footer>
 
+  <script src="{{base}}scripts/experience.js?v={{v}}" defer></script>
   <script src="{{base}}scripts/device.js?v={{v}}" defer></script>
   <script src="{{base}}scripts/form.js?v={{v}}" defer></script>
   <script src="{{base}}scripts/catwink.js?v={{v}}" defer></script>

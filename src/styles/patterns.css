@@ -733,7 +733,7 @@
   overflow: hidden;
 }
 .funding__fill {
-  display: block; block-size: 100%; inline-size: 30%;
+  display: block; block-size: 100%; inline-size: 5%;
   background: linear-gradient(90deg, var(--brand-blue), var(--brand-bright));
   border-radius: var(--radius-pill);
 }

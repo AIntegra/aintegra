@@ -29,6 +29,12 @@
   var ready = document.getElementById('form-ready');
   var status = document.getElementById('ready-status');
 
+  // La llamada desde Inversores conserva el motivo de la conversación.
+  var profile = new URLSearchParams(window.location.search).get('perfil');
+  form.querySelectorAll('[data-profile]').forEach(function (field) {
+    if (field.getAttribute('data-profile') === profile) field.checked = true;
+  });
+
   /** Campos obligatorios, con su comprobación y su mensaje. */
   var RULES = [
     { id: 'f-name', msg: form.dataset.errName, ok: function (v) { return v.trim().length > 0; } },

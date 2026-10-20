@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="460" viewBox="0 0 560 460" fill="none"><defs><linearGradient id="p" x1="80" y1="80" x2="440" y2="340" gradientUnits="userSpaceOnUse"><stop stop-color="white"/><stop offset=".6" stop-color="#F2F3FC"/><stop offset="1" stop-color="#ABC4FA"/></linearGradient><linearGradient id="b"><stop stop-color="#ABC4FA"/><stop offset="1" stop-color="#C4BDFA"/></linearGradient></defs>
+<ellipse cx="280" cy="393" rx="196" ry="18" fill="#ABC4FA" opacity=".2"/><circle cx="283" cy="201" r="155" fill="url(#p)" fill-opacity=".35" stroke="white" stroke-width="2"/>
+<path d="m279 156-157-42c-15-4-31 6-31 22v205l188 50 190-50V136c0-16-16-26-31-22l-159 42Z" fill="url(#b)" stroke="white" stroke-width="3"/><path d="m279 140-147-39c-11-3-22 6-22 17v206l169 47 171-47V118c0-11-11-20-22-17l-149 39Z" fill="url(#p)" stroke="white" stroke-width="3"/>
+<path d="M279 144v222" stroke="#ABC4FA" stroke-width="4"/><g stroke="#7FA8C9" stroke-width="5" stroke-linecap="round"><path d="m141 168 103 28m-103 0 103 28m-103 0 71 19m101-47 103-28m-103 56 103-28m-103 56 71-19"/></g>
+<g transform="translate(285 94)"><path d="m0-56 47 18V0c0 40-47 64-47 64S-47 40-47 0v-38L0-56Z" fill="url(#p)" stroke="white" stroke-width="3"/><path d="m-21 1 14 14 29-32" stroke="#245E8D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

@@ -1,281 +1,98 @@
-    <!-- ============================ HERO ============================ -->
-    <!-- ============================ PORTADA ============================
-         Texto a la izquierda, vídeo a la derecha, y la descripción del vídeo
-         debajo de todo el bloque: es el pie de la figura, así que va asociada
-         al vídeo de verdad, pero no comprime la columna estrecha.
-    -->
-    <section class="theme-dark hero">
+    <section class="hero hero--home theme-pearl" aria-labelledby="h-home">
       <div class="container">
-        <figure class="video hero__figure">
-          <div class="split split--stretch">
-            <div>
-              <p class="eyebrow">{{home.hero.eyebrow}}</p>
-              <h1>{{home.hero.title}}</h1>
-              <p class="hero__lead">{{home.hero.lead}}</p>
-              <div class="hero__actions">
-                <a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{home.hero.ctaPrimary}}</a>
-                <a class="btn btn--secondary" href="#como-funciona">{{home.hero.ctaSecondary}}</a>
-              </div>
-              <p class="hero__note">{{home.hero.note}}</p>
+        <div class="hero__glass-grid">
+          <div class="hero__copy">
+            <p class="eyebrow">{{home.hero.eyebrow}}</p>
+            <h1 id="h-home">{{home.hero.title}}</h1>
+            <p class="hero__lead">{{home.hero.lead}}</p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{home.hero.ctaPrimary}} <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="#h-product">{{home.hero.ctaSecondary}} <span aria-hidden="true">↓</span></a>
             </div>
-
-            <video class="video__player split__visual" controls preload="none"
-                   poster="{{base}}assets/img/pitch-poster.jpg"
-                   width="404" height="718">
-              <source src="{{base}}assets/video/pitch-startup-valencia.mp4" type="video/mp4">
-              {{ui.videoNoSupport}}
-            </video>
+            <p class="hero__note">{{home.hero.note}}</p>
           </div>
-
-          <figcaption class="hero__videodesc">
-            <p class="video__label">
-              {{home.video.title}}
-              <span class="video__duration">{{home.video.duration}}</span>
-            </p>
-            <p>{{home.video.desc}}</p>
-          </figcaption>
-        </figure>
+          <div class="hero-brand-stage" aria-hidden="true">
+            <div class="pearl-orb"></div>
+            <img src="{{base}}assets/img/caty-ecosystem-wordmark.png" alt="" width="2172" height="724" fetchpriority="high">
+            <span class="showcase-caption">{{marketing.heroTag}}</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============================ EL CAMBIO ============================
-         El dato manda: 1.300 millones a gran escala, con la proporción real
-         dibujada al lado. El copy va detrás, corto y directo.
-    -->
-    <section class="section" aria-labelledby="h-problem">
+    <section class="section experience-section" id="como-funciona" aria-labelledby="h-experience">
       <div class="container">
-        <p class="eyebrow">{{home.problem.eyebrow}}</p>
-
-        <div class="figure-lead">
-          <div>
-            <p class="figure-lead__n">{{home.problem.figure}}<span class="figure-lead__unit">{{home.problem.figureUnit}}</span></p>
-            <p class="figure-lead__caption">{{home.problem.figureCaption}}</p>
-            <p class="figure-lead__ratio">{{home.problem.figureRatio}}</p>
-          </div>
-
-          <!-- Treinta y dos figuras, seis marcadas: la proporción real está
-               dibujada a escala, no redondeada para que quede bonita. -->
-          <svg class="figure-lead__chart" viewBox="0 0 196 134" role="img"
-               aria-label="{{home.problem.chartAlt}}">
-            <defs>
-              <g id="ppl">
-                <circle cx="10" cy="8" r="4.6"/>
-                <path d="M3.4 27c0-3.6 3-6.6 6.6-6.6s6.6 3 6.6 6.6"/>
-              </g>
-            </defs>
-            <g fill="none" stroke="#7FA8C9" stroke-width="2.4" stroke-linecap="round">
-              <use href="#ppl" x="0"   y="0"/><use href="#ppl" x="24"  y="0"/><use href="#ppl" x="48"  y="0"/><use href="#ppl" x="72" y="0"/>
-              <use href="#ppl" x="96"  y="0"/><use href="#ppl" x="120" y="0"/><use href="#ppl" x="144" y="0"/><use href="#ppl" x="168" y="0"/>
-              <use href="#ppl" x="0"   y="35"/><use href="#ppl" x="24"  y="35"/><use href="#ppl" x="48"  y="35"/><use href="#ppl" x="72" y="35"/>
-              <use href="#ppl" x="96"  y="35"/><use href="#ppl" x="120" y="35"/><use href="#ppl" x="144" y="35"/><use href="#ppl" x="168" y="35"/>
-              <use href="#ppl" x="0"   y="70"/><use href="#ppl" x="24"  y="70"/><use href="#ppl" x="48"  y="70"/><use href="#ppl" x="72" y="70"/>
-              <use href="#ppl" x="96"  y="70"/><use href="#ppl" x="120" y="70"/><use href="#ppl" x="144" y="70"/><use href="#ppl" x="168" y="70"/>
-              <use href="#ppl" x="0"   y="105"/><use href="#ppl" x="24" y="105"/><use href="#ppl" x="48"  y="105"/><use href="#ppl" x="72" y="105"/>
-              <use href="#ppl" x="96"  y="105"/><use href="#ppl" x="120" y="105"/><use href="#ppl" x="144" y="105"/><use href="#ppl" x="168" y="105"/>
-            </g>
-            <g fill="none" stroke="#0C3862" stroke-width="3" stroke-linecap="round">
-              <use href="#ppl" x="0"   y="0"/><use href="#ppl" x="144" y="0"/>
-              <use href="#ppl" x="72"  y="35"/>
-              <use href="#ppl" x="24"  y="70"/><use href="#ppl" x="168" y="70"/>
-              <use href="#ppl" x="96"  y="105"/>
-            </g>
-          </svg>
-        </div>
-
-        <div style="max-width:44rem">
-          <h2 id="h-problem">{{home.problem.title}}</h2>
-          {{#each home.problem.body}}
-          <p>{{this}}</p>
-          {{/each}}
-        </div>
-
-        <p class="shift">
-          <span class="shift__from">{{home.problem.shift.from}}</span>
-          <svg class="shift__arrow" width="44" height="24" viewBox="0 0 44 24" aria-hidden="true" focusable="false">
-            <path d="M2 12h38M30 3l10 9-10 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="shift__to">{{home.problem.shift.to}}</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================ CÓMO FUNCIONA ============================ -->
-    <section class="section theme-ice" id="como-funciona" aria-labelledby="h-flow">
-      <div class="container stack-lg">
-        <div style="max-width:44rem">
-          <p class="eyebrow">{{home.flow.eyebrow}}</p>
-          <h2 id="h-flow">{{home.flow.title}}</h2>
-          <p>{{home.flow.lead}}</p>
-        </div>
-        <ol class="steps">
-          {{#each home.flow.steps}}
-          <li>
-            <article class="card">
-              <div class="step__head">
-                  <span class="step__n" aria-hidden="true">{{@n}}</span>
-              </div>
-              <p class="card__meta">{{this.meta}}</p>
-              <h3 class="card__title">{{this.title}}</h3>
-              <p class="card__body">{{this.text}}</p>
-            </article>
-          </li>
-          {{/each}}
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============================ PRODUCTO ============================ -->
-    <section class="section theme-dark" aria-labelledby="h-product">
-      <div class="container stack-lg">
-        <div class="split">
-          <div>
-            <p class="eyebrow">{{home.product.eyebrow}}</p>
-            <h2 id="h-product">{{home.product.title}}</h2>
-          </div>
-          <img class="split__visual art__img" src="{{base}}assets/img/duo.png"
-               alt="{{home.product.duoAlt}}" width="980" height="640" loading="lazy">
-        </div>
-        <ul class="cards grid grid--2" class="bare-list">
-          <li style="margin:0;max-width:none">
-            <article class="card card--cat">
-              <span class="card__mark art art--cat">
-                <img class="art__img" src="{{base}}assets/img/cat-mark.png" alt="" width="360" height="155" loading="lazy">
-              </span>
-              <p class="card__meta">{{home.product.cat.full}}</p>
-              <h3 class="card__title">{{home.product.cat.name}}</h3>
-              <p class="card__body">{{home.product.cat.text}}</p>
-            </article>
-          </li>
-          <li style="margin:0;max-width:none">
-            <article class="card card--caty">
-              <span class="card__mark art art--caty">
-                <img class="art__img" src="{{base}}assets/img/caty-mark.png" alt="" width="360" height="346" loading="lazy">
-              </span>
-              <p class="card__meta">{{home.product.caty.full}}</p>
-              <h3 class="card__title">{{home.product.caty.name}}</h3>
-              <p class="card__body">{{home.product.caty.text}}</p>
-            </article>
-          </li>
-        </ul>
-        <p><a class="btn btn--secondary" href="{{base}}{{lang}}/{{slug.producto}}/">{{home.product.cta}}</a></p>
-      </div>
-    </section>
-
-    <!-- ============================ PARA QUIÉN ============================ -->
-    <section class="section theme-ice" aria-labelledby="h-audience">
-      <div class="container stack-lg">
-        <div style="max-width:46rem">
-          <p class="eyebrow">{{home.audience.eyebrow}}</p>
-          <h2 id="h-audience">{{home.audience.title}}</h2>
-          <p>{{home.audience.lead}}</p>
-        </div>
-        <ul class="pillars pillars--3">
-          {{#each home.audience.groups}}
-          <li>
-            <article class="card">
-              <p class="card__meta">{{this.meta}}</p>
-              <h3 class="card__title">{{this.title}}</h3>
-              <p class="card__body">{{this.text}}</p>
-            </article>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============================ ANTES Y DESPUÉS ============================ -->
-    <section class="section" aria-labelledby="h-compare">
-      <div class="container stack-lg">
-        <div style="max-width:44rem">
-          <p class="eyebrow">{{home.compare.eyebrow}}</p>
-          <h2 id="h-compare">{{home.compare.title}}</h2>
-          <p>{{home.compare.lead}}</p>
-        </div>
-        <div class="compare">
-          <div class="compare__col compare__col--before">
-            <div class="compare__head">
-              <h3 class="compare__label" style="margin:0">{{home.compare.before.label}}</h3>
-            </div>
-            <ul>
-              {{#each home.compare.before.items}}
-              <li>
-                <svg class="compare__mark" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
-                  <path d="M4 4l10 10M14 4L4 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                </svg>
-                <span>{{this}}</span>
-              </li>
-              {{/each}}
-            </ul>
-          </div>
-          <div class="compare__col compare__col--after">
-            <div class="compare__head">
-              <img src="{{base}}assets/img/aintegra-mark-dark.png" alt="" width="256" height="251">
-              <h3 class="compare__label" style="margin:0">{{home.compare.after.label}}</h3>
-            </div>
-            <ul>
-              {{#each home.compare.after.items}}
-              <li>
-                <svg class="compare__mark" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
-                  <path d="M3 9.5l4 4L15 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>{{this}}</span>
-              </li>
-              {{/each}}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ CIBERSEGURIDAD ============================ -->
-    <section class="section theme-dark" aria-labelledby="h-security">
-      <div class="container stack-lg">
-        <div style="max-width:46rem">
-          <p class="eyebrow">{{home.security.eyebrow}}</p>
-          <h2 id="h-security">{{home.security.title}}</h2>
-          <p>{{home.security.lead}}</p>
-        </div>
-        <ul class="pillars pillars--3">
-          {{#each home.security.items}}
-          <li>
-            <article class="card">
-              <p class="card__meta">{{this.meta}}</p>
-              <h3 class="card__title">{{this.title}}</h3>
-              <p class="card__body">{{this.text}}</p>
-            </article>
-          </li>
-          {{/each}}
-        </ul>
-        <p><a class="btn btn--secondary" href="{{base}}{{lang}}/{{slug.seguridad}}/">{{home.security.cta}}</a></p>
-      </div>
-    </section>
-
-    <!-- ============================ PILOTO ============================ -->
-    <section class="section" aria-labelledby="h-pilot">
-      <div class="container">
-        <div class="grid grid--2" style="align-items:start">
-          <div>
-            <p class="eyebrow">{{home.pilot.eyebrow}}</p>
-            <h2 id="h-pilot">{{home.pilot.title}}</h2>
-            <p>{{home.pilot.lead}}</p>
-            <p style="margin-top:var(--space-5)"><a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{home.pilot.cta}}</a></p>
-          </div>
-          <ul class="checklist stack">
-            {{#each home.pilot.items}}
-            <li>
-              <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-                <path d="M3.5 10.5l4.5 4.5L16.5 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>{{this}}</span>
-            </li>
+        <div class="section-heading"><p class="eyebrow">{{marketing.experienceEyebrow}}</p><h2 id="h-experience">{{marketing.experienceTitle}}</h2><p>{{marketing.experienceLead}}</p></div>
+        <div class="experience" data-experience>
+          <div class="experience__controls" aria-label="{{marketing.exampleLabel}}">
+            {{#each marketing.examples}}
+            <button type="button" data-example="{{this.id}}" aria-pressed="{{this.selected}}" aria-controls="example-{{this.id}}">{{this.button}}</button>
             {{/each}}
-          </ul>
+          </div>
+          <div class="experience__panels" aria-live="polite" aria-atomic="true">
+            {{#each marketing.examples}}
+            <div class="experience__panel" id="example-{{this.id}}" {{this.hidden}}>
+              <div class="experience__screen">
+                <div class="screen-bar" aria-hidden="true"><i></i><i></i><i></i><img class="screen-brand" src="{{base}}assets/img/{{this.wordmark}}" alt="{{this.productName}}" width="2172" height="724" loading="lazy"></div>
+                <p class="eyebrow">{{marketing.exampleLabel}}</p><h3>{{this.title}}</h3>
+                <div class="example-document"><svg class="icon" aria-hidden="true"><use href="#ic-screen"/></svg><span>{{this.document}}</span><div class="document-lines" aria-hidden="true"><i></i><i></i><i></i></div></div>
+                <div class="example-result"><img src="{{base}}assets/img/{{this.appIcon}}" alt="" width="64" height="64" loading="lazy"><p>{{this.response}}</p></div>
+              </div>
+              <ol class="experience__steps">
+                <li><span class="experience__number">01</span><div><strong>{{marketing.gestureLabel}}</strong><p>{{this.gesture}}</p></div></li>
+                <li><span class="experience__number">02</span><div><strong>{{marketing.contextLabel}}</strong><p>{{this.context}}</p></div></li>
+                <li><span class="experience__number">03</span><div><strong>{{marketing.resultLabel}}</strong><p>{{this.result}}</p></div></li>
+              </ol>
+            </div>
+            {{/each}}
+          </div>
+          <p class="experience__note">{{marketing.exampleNote}}</p>
         </div>
+        <noscript><style>.experience__panel[hidden]{display:grid!important}.experience__controls{display:none}</style></noscript>
       </div>
     </section>
+
+    <section class="section ecosystem-section" aria-labelledby="h-product">
+      <div class="container">
+        <div class="ecosystem-heading">
+          <div><p class="eyebrow">{{marketing.ecosystemEyebrow}}</p><h2 id="h-product">{{marketing.ecosystemTitle}}</h2></div>
+          <img class="ecosystem-wordmark" src="{{base}}assets/img/caty-ecosystem-wordmark.png" alt="{{home.product.duoAlt}}" width="2172" height="724" loading="lazy">
+        </div>
+        <p class="section-intro">{{marketing.ecosystemLead}}</p><p class="section-note">{{marketing.development}}</p>
+      </div>
+    </section>
+    <section class="section discovery-section" aria-label="{{marketing.ecosystemTitle}}"><div class="container discovery-grid">
+      <a class="discovery-card" href="{{base}}{{lang}}/{{slug.producto}}/#h-cat">
+        <div class="discovery-card__art"><img src="{{base}}assets/img/cat-product-icon.png" alt="" width="1254" height="1254" loading="lazy"></div>
+        <p class="brand-name discovery-card__brand"><img src="{{base}}assets/img/cat-wordmark.png" alt="" width="2172" height="724" loading="lazy"><span class="visually-hidden brand-name__text">C.A.T.</span></p>
+        <h3 id="h-cat">{{marketing.catBenefit}}</h3><p>{{marketing.catCopy}}</p><span class="discovery-card__link">{{marketing.catDetail}} <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="discovery-card" href="{{base}}{{lang}}/{{slug.producto}}/#h-caty">
+        <div class="discovery-card__art"><img src="{{base}}assets/img/caty-app-icon.png" alt="" width="1254" height="1254" loading="lazy"></div>
+        <p class="brand-name discovery-card__brand"><img src="{{base}}assets/img/caty-wordmark-outline.png" alt="" width="2172" height="724" loading="lazy"><span class="visually-hidden brand-name__text">C.A.T.Y.</span></p>
+        <h3 id="h-caty">{{marketing.catyBenefit}}</h3><p>{{marketing.catyCopy}}</p><span class="discovery-card__link">{{marketing.catyDetail}} <span aria-hidden="true">↗</span></span>
+      </a>
+    </div></section>
+
+    <section class="section manifesto-section" aria-labelledby="h-manifesto">
+      <div class="container manifesto"><div><p class="eyebrow">{{marketing.manifestoEyebrow}}</p><h2 id="h-manifesto">{{marketing.manifestoTitle}}</h2></div><div><p class="manifesto__lead">{{marketing.manifestoCopy}}</p>
+        <details class="pitch-details"><summary>{{home.video.title}} <span class="video__duration">{{home.video.duration}}</span></summary>
+          <figure class="video pitch-content"><video class="video__player" controls preload="none" poster="{{base}}assets/img/pitch-poster.jpg" width="404" height="718"><source src="{{base}}assets/video/pitch-startup-valencia.mp4" type="video/mp4">{{ui.videoNoSupport}}</video><figcaption><p>{{home.video.desc}}</p></figcaption></figure>
+        </details>
+      </div></div>
+    </section>
+
+    <section class="section audience-section" aria-labelledby="h-audience"><div class="container audience-layout"><div><p class="eyebrow">{{home.audience.eyebrow}}</p><h2 id="h-audience">{{marketing.audienceTitle}}</h2><p>{{home.audience.lead}}</p></div>
+      <ul class="audience-list">{{#each home.audience.groups}}<li><span class="audience-list__n" aria-hidden="true">0{{@n}}</span><div><h3>{{this.title}}</h3><p>{{this.text}}</p></div></li>{{/each}}</ul>
+    </div></section>
+
+    <section class="section security-feature" aria-labelledby="h-security"><div class="container security-feature__grid">
+      <div class="security-feature__art"><img src="{{base}}assets/img/caty-pillars-pearl.png" alt="{{producto.caty.artAlt}}" width="1672" height="941" loading="lazy"></div>
+      <div><p class="eyebrow">{{home.security.eyebrow}}</p><h2 id="h-security">{{marketing.securityTitle}}</h2><p>{{marketing.securityLead}}</p><a class="text-link" href="{{base}}{{lang}}/{{slug.seguridad}}/">{{home.security.cta}} <span aria-hidden="true">↗</span></a></div>
+    </div></section>
 
     <!-- ============================ CONFIANZA ============================ -->
-    <section class="section theme-dark" aria-labelledby="h-trust">
+    <section class="section trust-section" aria-labelledby="h-trust">
       <div class="container stack-lg">
         <div style="max-width:44rem">
           <p class="eyebrow">{{home.trust.eyebrow}}</p>
@@ -293,23 +110,17 @@
           {{/each}}
         </ul>
 
-        <div>
+        <div class="support-showcase">
           <h3>{{home.trust.supportTitle}}</h3>
           <ul class="supports" style="margin-top:var(--space-6)">
             {{#each home.trust.support}}
             <li>
-              <a class="support-card" href="{{this.url}}" target="_blank" rel="noopener">
+              <a class="support-card support-card--logo brand-name" href="{{this.url}}" target="_blank" rel="noopener">
                 <span class="support-card__plate">
-                  <img src="{{base}}assets/img/{{this.logo}}" alt="{{this.name}}" loading="lazy">
+                  <img src="{{base}}assets/img/{{this.logo}}" alt="" loading="lazy">
                 </span>
-                <span class="support-card__what">{{this.what}}</span>
-                <span class="support-card__go">
-                  {{home.trust.supportGo}}
-                  <span class="visually-hidden">— {{this.name}} ({{ui.openInNewTab}})</span>
-                  <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
-                    <path d="M7 3H3.5v11.5H15V11M10.5 3H15v4.5M15 3l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
+                <span class="visually-hidden brand-name__text">{{this.name}}</span>
+                <span class="visually-hidden">({{ui.openInNewTab}})</span>
               </a>
             </li>
             {{/each}}
@@ -323,7 +134,7 @@
       <div class="container stack-lg">
         <div style="max-width:44rem">
           <p class="eyebrow">{{home.founders.eyebrow}}</p>
-          <h2 id="h-founders">{{home.founders.title}}</h2>
+          <h2 id="h-founders">{{marketing.foundersTitle}}</h2>
         </div>
         <ul class="people">
           {{#each home.founders.people}}
@@ -333,14 +144,6 @@
             <div>
               <h3>{{this.name}}</h3>
               <p class="person__role">{{this.role}}</p>
-              <ul class="person__skills">
-                {{#each this.skills}}
-                <li>{{this}}</li>
-                {{/each}}
-              </ul>
-              <figure class="quote" style="margin-top:var(--space-5)">
-                <blockquote>{{this.quote}}</blockquote>
-              </figure>
               <p class="person__links">
                 <a class="btn btn--secondary btn--sm" href="{{this.linkedin}}" target="_blank" rel="noopener">
                   {{home.founders.linkedinLabel}}
@@ -361,7 +164,7 @@
           </li>
           {{/each}}
         </ul>
-        <p class="video__meta">{{home.founders.photoPending}}</p>
+
       </div>
     </section>
 
@@ -381,16 +184,4 @@
       </div>
     </section>
 
-    <!-- ============================ CTA ============================ -->
-    <section class="section ctaband theme-dark" aria-labelledby="h-cta">
-      <div class="container ctaband__inner">
-        <div class="ctaband__text">
-          <img class="ctaband__mark" src="{{base}}assets/img/aintegra-mark-white.png" alt="" width="256" height="251">
-          <div>
-            <h2 id="h-cta">{{home.cta.title}}</h2>
-            <p style="margin-bottom:0">{{home.cta.text}}</p>
-          </div>
-        </div>
-        <p style="margin:0"><a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{home.cta.button}}</a></p>
-      </div>
-    </section>
+    <section class="section ctaband theme-pearl" aria-labelledby="h-cta"><div class="container ctaband__inner"><div class="ctaband__text"><div><p class="eyebrow">{{marketing.closeEyebrow}}</p><h2 id="h-cta">{{marketing.closeTitle}}</h2><p>{{marketing.closeCopy}}</p></div></div><p><a class="btn btn--primary" href="{{base}}{{lang}}/{{slug.contacto}}/">{{home.hero.ctaPrimary}} <span aria-hidden="true">↗</span></a></p></div></section>

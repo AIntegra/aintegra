@@ -1,0 +1,70 @@
+    <!-- ============================ C.A.T. ============================
+         Animación oficial con imagen estática al reducir o pausar movimiento.
+    -->
+    <section class="section" aria-labelledby="h-cat">
+      <div class="container">
+        <div class="split">
+          <div>
+            <p class="eyebrow">{{producto.cat.eyebrow}}</p>
+            <p class="product-brand brand-name"><img src="{{base}}assets/img/cat-wordmark.png" alt="" width="2171" height="724" loading="lazy"><span class="visually-hidden brand-name__text">C.A.T.</span></p>
+            <h2 id="h-cat">{{producto.cat.title}}</h2>
+            {{#each producto.cat.body}}
+            <p>{{this}}</p>
+            {{/each}}
+
+            <ul class="checklist stack" style="margin-top:var(--space-7)">
+              {{#each producto.cat.features}}
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                  <path d="M3.5 10.5l4.5 4.5L16.5 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{this}}</span>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+
+          <figure class="split__visual cat-animation">
+            <div class="art art--cat">
+              <img class="art__img" src="{{base}}assets/img/cat-pearl.png" data-motion-src="{{base}}assets/img/cat-gesture.webp" data-still-src="{{base}}assets/img/cat-pearl.png"
+                   alt="{{producto.cat.artAlt}}" width="1254" height="1254" loading="lazy">
+            </div>
+            <figcaption class="video__meta" style="text-align:center;margin-top:var(--space-5)">{{producto.cat.imageNote}}</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ C.A.T.Y. ============================
+         Icono oficial de la aplicación y burbujas originales de marca.
+    -->
+    <section class="section theme-pearl" aria-labelledby="h-caty">
+      <div class="container stack-lg">
+        <div class="split">
+          <div>
+            <p class="eyebrow">{{producto.caty.eyebrow}}</p>
+            <h2 id="h-caty">{{producto.caty.title}} <span class="title-brand brand-name"><img src="{{base}}assets/img/caty-wordmark-outline.png" alt="" width="2172" height="724" loading="lazy"><span class="visually-hidden brand-name__text">C.A.T.Y.</span></span></h2>
+            {{#each producto.caty.body}}
+            <p>{{this}}</p>
+            {{/each}}
+          </div>
+          <div class="split__visual art art--caty">
+            <img class="art__img caty-art caty-app-icon" src="{{base}}assets/img/caty-app-icon.png"
+                 alt="{{producto.caty.appAlt}}" width="1254" height="1254" loading="lazy">
+          </div>
+        </div>
+
+        <ul class="caty-features">
+          {{#each producto.caty.pillars}}
+          <li>
+            <article class="caty-feature">
+              <img class="feature-bubble" src="{{base}}assets/img/{{this.bubble}}" alt="" width="1254" height="1254" loading="lazy">
+              <h3>{{this.title}}</h3>
+              <p>{{this.text}}</p>
+            </article>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </section>
+

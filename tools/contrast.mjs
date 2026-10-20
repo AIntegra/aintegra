@@ -26,6 +26,12 @@ const P = {
   catyTop: '#C9BFFF',
   warm:   '#F5F8FA',
   white:  '#FFFFFF',
+  pearl: '#F2F3FC',
+  heroBlue: '#E4EDFF',
+  heroLavender: '#E9E4FF',
+  vividIce: '#DCD7FA',
+  vividBlue: '#CCD9FC',
+  lavender: '#C4BDFA',
 };
 
 const srgb = (c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
@@ -42,6 +48,14 @@ function ratio(a, b) {
 
 /** [uso, color, fondo, umbral] */
 const CHECKS = [
+  ...['lavender', 'pearl', 'white'].map((fg) => [
+    ['cierre azul: texto y degradado ' + fg, P[fg], P.blue, 4.5],
+  ]).flat(),
+  ...['pearl', 'heroBlue', 'heroLavender', 'vividIce', 'vividBlue'].flatMap((bg) => [
+    ['marca: texto principal sobre ' + bg, P.blue, P[bg], 4.5],
+    ['marca: texto secundario sobre ' + bg, P.mid, P[bg], 4.5],
+  ]),
+  ['botón primario hover', P.white, P.mid, 4.5],
   // Texto sobre superficie clara
   ['texto principal sobre blanco cálido',      P.night,  P.warm,  4.5],
   ['texto principal sobre azul hielo',         P.night,  P.ice,   4.5],

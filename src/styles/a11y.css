@@ -20,7 +20,7 @@
   cursor: pointer;
   transition: background-color var(--dur) var(--ease);
 }
-.a11y__toggle:hover { background: var(--brand-bright); }
+.a11y__toggle:hover { background: var(--action-fill-hover); }
 .a11y__toggle .icon { inline-size: 1.5rem; block-size: 1.5rem; }
 
 .a11y__panel {
@@ -147,6 +147,7 @@ html[data-a11y-contrast] .callout,
 html[data-a11y-contrast] .local-panel { border: 2px solid #000000 !important; box-shadow: none !important; }
 html[data-a11y-contrast] .btn--primary { background: #000000 !important; color: #FFFFFF !important; border-color: #000000 !important; }
 html[data-a11y-contrast] .btn--secondary { background: #FFFFFF !important; color: #000000 !important; border-color: #000000 !important; }
+html[data-a11y-contrast] .site-nav li:last-child a { background: #FFFFFF !important; color: #00309B !important; border-color: #000000 !important; }
 html[data-a11y-contrast] .card--caty::before,
 html[data-a11y-contrast] .card--cat::before,
 html[data-a11y-contrast] .art::before,
@@ -164,6 +165,7 @@ html[data-a11y-links] a {
   border-radius: 3px;
 }
 html[data-a11y-links] .btn { background: #FFF3B0 !important; color: #1A1300 !important; border-color: #1A1300 !important; }
+html[data-a11y-links] .site-nav li:last-child a { background: #FFF3B0 !important; color: #1A1300 !important; border-color: #1A1300 !important; }
 
 /* --- Más espaciado --------------------------------------------------------------
    Los valores del criterio 1.4.12 de WCAG, que es el que fija cuánto tiene que

@@ -1,7 +1,8 @@
 /* ==========================================================================
    AIntegra Limited — Design tokens
    --------------------------------------------------------------------------
-   Paleta CERRADA. No se añaden tonos nuevos ni derivados.
+   Base de contraste. La identidad 2026 se amplía en brand.css con
+   superficies perladas, periwinkle y lavanda.
    Cada token de color lleva anotado su ratio de contraste medido para que
    cualquier uso futuro sea auditable sin tener que recalcularlo.
    ========================================================================== */
