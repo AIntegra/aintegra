@@ -130,7 +130,7 @@ function assertParity(dicts) {
 
 /* ---------- rutas -------------------------------------------------------- */
 
-/** Marcas en texto visible, sin alterar atributos ni duplicar nombres accesibles. */
+/** Marcas en texto visible: el logotipo se pinta por CSS sobre el propio texto. */
 function inlineProductBrands(html, base) {
   const stack = [];
   const voidTags = new Set(['img', 'input', 'br', 'hr', 'source', 'wbr', 'meta', 'link', 'area', 'col', 'embed', 'param', 'track']);
@@ -151,8 +151,10 @@ function inlineProductBrands(html, base) {
     if (stack.at(-1)?.skip) return token;
     return token.replace(/C\.A\.T\.Y\.|C\.A\.T\./g, (name) => {
       const kind = name === 'C.A.T.Y.' ? 'caty' : 'cat';
-      const file = kind === 'caty' ? 'caty-wordmark-outline.png' : 'cat-wordmark.png';
-      return `<span class="inline-brand inline-brand--${kind} brand-name"><img src="${base}assets/img/${file}" alt="" width="2172" height="724" loading="lazy"><span class="visually-hidden brand-name__text">${name}</span></span>`;
+      // El nombre sigue siendo texto corrido en el DOM (lo lee el lector de pantalla
+      // dentro de la frase, sin cortes ni imágenes intermedias); el logotipo es
+      // sólo el fondo del <span>, que oculta el texto en pantalla.
+      return `<span class="inline-brand inline-brand--${kind}">${name}</span>`;
     });
   });
 }

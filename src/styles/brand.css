@@ -624,12 +624,22 @@ html[data-a11y-contrast] .joined-story, html[data-a11y-contrast] .validation-gri
 .stack-lg > :is(.journey-grid, .proposal-grid, .business-grid, .market-cards, .evidence-grid, .validation-grid, .value-list) { margin-top: var(--gap-head); }
 .stack-lg > .funding-uses { margin-top: 1.5rem; }
 
-/* Nombres de producto integrados en la lectura, con alternativa textual. */
-.inline-brand { display: inline-block; position: relative; width: 3.7em; height: 1.08em; overflow: hidden; vertical-align: -.17em; line-height: 1; }
-.inline-brand img { display: block; width: 100%; height: auto; margin: 0; transform: translateY(-.12em); }
-.inline-brand--caty { width: 4.5em; }
-.inline-brand--caty img { transform: translateY(-.28em); }
-html[data-a11y-images] .inline-brand, html[data-a11y-contrast] .inline-brand { width: auto; height: auto; overflow: visible; vertical-align: baseline; line-height: inherit; }
+/* Nombres de producto integrados en la lectura. El texto real sigue en el DOM
+   (se lee, se copia y se busca); el logotipo es un fondo que lo tapa. */
+.inline-brand {
+  display: inline-block; width: 3.7em; height: 1.08em; overflow: hidden; vertical-align: -.17em;
+  line-height: 1; white-space: nowrap; text-indent: -100em; text-align: left;
+  background: url('../assets/img/cat-wordmark.png') 0 -.12em / 100% auto no-repeat;
+}
+.inline-brand--caty { width: 4.5em; background-image: url('../assets/img/caty-wordmark-outline.png'); background-position: 0 -.28em; }
+html[data-a11y-images] .inline-brand, html[data-a11y-contrast] .inline-brand,
+html[data-a11y-images] .inline-brand--caty, html[data-a11y-contrast] .inline-brand--caty {
+  display: inline; width: auto; height: auto; overflow: visible; vertical-align: baseline; line-height: inherit;
+  white-space: normal; text-indent: 0; background: none;
+}
+@media (forced-colors: active) {
+  .inline-brand, .inline-brand--caty { display: inline; width: auto; height: auto; overflow: visible; vertical-align: baseline; white-space: normal; text-indent: 0; background: none; }
+}
 
 /* Ronda y hoja de ruta: ejes compartidos y piezas de marca. */
 .funding-story { align-items: stretch; }

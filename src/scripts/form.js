@@ -1,8 +1,9 @@
 /**
  * Formulario de solicitud de demo.
  *
- * Valida en el navegador y, si todo está bien, abre el programa de correo con
- * el mensaje ya redactado. No hay servidor nuestro ni de terceros: lo que se
+ * Valida en el navegador y, si todo está bien, abre el programa de correo
+ * predeterminado con el mensaje ya redactado (y deja Gmail y copiar como salida
+ * alternativa). No hay servidor nuestro ni de terceros: lo que se
  * escribe aquí no sale del ordenador de la persona hasta que le da a enviar.
  *
  * El día que haya backend propio solo cambia `send()`. La validación, los
@@ -108,6 +109,7 @@
     var lines = [d.intro, ''];
     if (perfil) lines.push(d.lProfile + ': ' + perfil.value);
     lines.push(d.lName + ': ' + get('f-name'));
+    lines.push(d.lEmail + ': ' + get('f-email'));
     if (get('f-org')) lines.push(d.lOrg + ': ' + get('f-org'));
     lines.push('', d.lTask + ':', get('f-task'), '', d.outro, get('f-name'));
     return lines.join('\n');
@@ -137,6 +139,11 @@
     form.hidden = true;
     ready.hidden = false;
     ready.focus();
+
+    // Abre directamente el programa de correo predeterminado con el mensaje
+    // ya redactado. El panel queda debajo por si no hay ninguno configurado:
+    // entonces se puede usar Gmail o copiar el mensaje.
+    window.location.href = document.getElementById('ready-mailto').href;
   }
 
   form.addEventListener('submit', function (event) {
